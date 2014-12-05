@@ -1,6 +1,6 @@
 # Hues
 
-A tool for working with colors in CSS (SCSS).
+A yet-nonexistent tool for working with colors in CSS (SCSS).
 
 Things to do:
 
