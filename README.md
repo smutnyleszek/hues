@@ -23,3 +23,4 @@ Inspiration:
 1. http://chir.ag/projects/name-that-color
 2. https://github.com/imathis/hsl-picker
 3. https://www.npmjs.org/package/color-namer
+4. http://viget.com/inspire/naming-colors
