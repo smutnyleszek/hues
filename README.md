@@ -16,6 +16,7 @@ Things to do:
     1. current color
     2. color pair
     3. color pair hue
+7. Create a whole palette of colors
 
 
 Inspiration:
