@@ -25,3 +25,4 @@ Inspiration:
 2. https://github.com/imathis/hsl-picker
 3. https://www.npmjs.org/package/color-namer
 4. http://viget.com/inspire/naming-colors
+5. https://github.com/MoOx/color-convert
