@@ -53,6 +53,9 @@ module.exports = (grunt) ->
                 cwd: '_assets/scripts/thirdparty'
                 src: '**/*.js'
                 dest: 'public/scripts/thirdparty'
+        clean:
+            generativeAssets:
+                src: ['public/scripts', 'public/styles']
     )
 
     # register tasks
@@ -64,6 +67,7 @@ module.exports = (grunt) ->
         'build_assets'
     ])
     grunt.registerTask('build_assets', [
+        'clean:generativeAssets'
         'svgstore'
         'coffee'
         'cssnext'
