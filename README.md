@@ -13,7 +13,7 @@ Things to do:
 4. List of all colors from the library hue-sorted
 5. Variables live output for SASS and CSS4:
     - `$c-colorName: hsl(0, 0%, 0%);`
-    - '--c-colorName: hsl(0, 0%, 0%);'
+    - `--c-colorName: hsl(0, 0%, 0%);`
 6. Visual color overview:
     1. current color
     2. color pair
