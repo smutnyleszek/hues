@@ -2,41 +2,19 @@
 # hues app
 #-------------------------------------------------------------------------------
 
-Space = Backbone.Model.extend(
-    defaults:
-        label: 'foo bar:'
-        slug: 'dupa'
+app = app || {}
+
+app.spacesData =
+    rgb:
+        label: 'RGB'
+        color: 'rgb(255,255,255)'
+    hex:
+        label: 'hexadecimal'
+        color: '#ffffff'
+    hwb:
+        label: 'HWB'
+        color: 'hwb(0, 100%, 0%)'
+
+$( ->
+    new app.AppView()
 )
-
-testSpace = new Space(
-    slug: 'test1'
-)
-
-SpacesView = Backbone.View.extend(
-
-    el: '#spaces'
-    template: _.template( $('#space-template').html() )
-
-    events:
-        'click button[js-space-button]': 'onButtonClick'
-        'keypress input[js-space-input]': 'onKeypress'
-
-
-    initialize: ->
-        @$el = $(@el)
-        @render()
-
-    render: ->
-        @$el.html(@template( @model.attributes ))
-        @input = @$('input[js-space-input]')
-        return @
-
-    onButtonClick: ->
-        console.log('button click')
-
-    onKeypress: ->
-        console.log('key pressed')
-
-)
-
-spaces = new SpacesView({ model: testSpace })
