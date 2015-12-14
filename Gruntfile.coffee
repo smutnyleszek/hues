@@ -45,8 +45,14 @@ module.exports = (grunt) ->
                 files: ['_assets/styles/**/*.css']
                 tasks: ['cssnext']
             scripts:
-                files: ['_assets/styles/**/*.coffee']
+                files: ['_assets/scripts/**/*.coffee']
                 tasks: ['coffee']
+        copy:
+            scripts:
+                expand: true
+                cwd: '_assets/scripts/thirdparty'
+                src: '**/*.js'
+                dest: 'public/scripts/thirdparty'
     )
 
     # register tasks
@@ -61,4 +67,5 @@ module.exports = (grunt) ->
         'svgstore'
         'coffee'
         'cssnext'
+        'copy:scripts'
     ])

@@ -23,6 +23,7 @@
     "color-convert": "^0.6.0",
     "grunt": "^0.4.5",
     "grunt-contrib-coffee": "^0.12.0",
+    "grunt-contrib-copy": "^0.8.2",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-cssnext": "^1.0.0",
     "grunt-svgstore": "^0.5.0",

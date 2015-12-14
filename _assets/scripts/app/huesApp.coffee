@@ -1,5 +1,11 @@
 #-------------------------------------------------------------------------------
-# Main script file
+# main app file
 #-------------------------------------------------------------------------------
 
-console.log('Hello world!')
+AppView = Backbone.View.extend(
+    el: '#app'
+    initialize: -> @render()
+    render: -> @$el.html("Huello world!")
+)
+
+app = new AppView()
