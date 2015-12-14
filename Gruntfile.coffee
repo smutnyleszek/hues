@@ -18,6 +18,7 @@ module.exports = (grunt) ->
         coffee:
             default:
                 options:
+                    bare: true # important for backbone
                     sourcemap: false
                 expand: true
                 cwd: '_assets/scripts'

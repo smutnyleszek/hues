@@ -33,4 +33,7 @@ Converter tools:
 2. https://github.com/imathis/hsl-picker
 3. https://drafts.csswg.org/css-color/#the-hwb-notation
 
-Framework to test: https://github.com/tastejs/todomvc/tree/master/examples/backbone
+Backbone links:
+- http://addyosmani.com/backbone-fundamentals/
+- http://ricostacruz.com/backbone-patterns/
+- http://backbonejs.org/docs/todos.html
