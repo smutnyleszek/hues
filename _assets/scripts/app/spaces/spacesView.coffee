@@ -1,6 +1,6 @@
 app.SpacesView = Backbone.View.extend(
 
-    el: 'div'
+    tagName: 'div'
     template: _.template( $('#space-template').html() )
 
     events:

@@ -1,3 +1,4 @@
+{% include data.liquid %}
 {% include backbone-templates/space.liquid %}
 
 <script src="public/scripts/thirdparty/jquery-min.js"></script>
@@ -6,9 +7,10 @@
 
 <script src="public/scripts/app/huesApp.js"></script>
 
-<script src="public/scripts/app/models/space.js"></script>
+<script src="public/scripts/app/commons/colorsHelper.js"></script>
 
-<script src="public/scripts/app/collections/spaces.js"></script>
+<script src="public/scripts/app/main/appView.js"></script>
 
-<script src="public/scripts/app/views/app.js"></script>
-<script src="public/scripts/app/views/spaces.js"></script>
+<script src="public/scripts/app/spaces/spaceModel.js"></script>
+<script src="public/scripts/app/spaces/spacesCollection.js"></script>
+<script src="public/scripts/app/spaces/spacesView.js"></script>
