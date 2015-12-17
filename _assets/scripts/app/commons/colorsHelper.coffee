@@ -8,41 +8,41 @@ class ColorsHelper
         safe.push(Math.round(part)) for part in color
         return safe
 
-    _toHex: ( decimal ) ->
+    toHex: ( decimal ) ->
         hex = Number(decimal).toString(16)
         return "0#{hex}".slice(-2)
 
-    _fromHex: ( hex ) -> return parseInt(hex, 16)
+    fromHex: ( hex ) -> return parseInt(hex, 16)
 
     hex2rgb: ( hex ) ->
-        red = @_fromHex(hex[0])
-        green = @_fromHex(hex[1])
-        blue = @_fromHex(hex[2])
+        red = @fromHex(hex[0])
+        green = @fromHex(hex[1])
+        blue = @fromHex(hex[2])
 
         return [ red, green, blue ]
 
     hex2hsl: ( hex ) ->
-        red = @_fromHex(hex[0])
-        green = @_fromHex(hex[1])
-        blue = @_fromHex(hex[2])
+        red = @fromHex(hex[0])
+        green = @fromHex(hex[1])
+        blue = @fromHex(hex[2])
 
         rgb = [ red, green, blue ]
 
         return @rgb2hsl(rgb)
 
     hex2hwb: ( hex ) ->
-        red = @_fromHex(hex[0])
-        green = @_fromHex(hex[1])
-        blue = @_fromHex(hex[2])
+        red = @fromHex(hex[0])
+        green = @fromHex(hex[1])
+        blue = @fromHex(hex[2])
 
         rgb = [ red, green, blue ]
 
         return @rgb2hwb(rgb)
 
     rgb2hex: ( rgb ) ->
-        red16 = @_toHex(rgb[0])
-        green16 = @_toHex(rgb[1])
-        blue16 = @_toHex(rgb[2])
+        red16 = @toHex(rgb[0])
+        green16 = @toHex(rgb[1])
+        blue16 = @toHex(rgb[2])
 
         hex = [ red16, green16, blue16 ]
 
@@ -164,7 +164,7 @@ class ColorsHelper
             when 5
                 return [ v, whiteness, n ]
             else
-                console.warn("Should return proper value for #{hwb}")
+                console.warn("no proper HWB value for #{hwb}")
                 return [ 0, 0, 0 ]
 
     hwb2hsl: ( args ) -> return @rgb2hsl(@hwb2rgb(args))

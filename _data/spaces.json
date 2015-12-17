@@ -5,16 +5,19 @@
         "properties": [
             {
                 "name": "red",
+                "value": 0,
                 "type": "hexadecimal",
                 "range": [0, 255]
             },
             {
                 "name": "green",
+                "value": 0,
                 "type": "hexadecimal",
                 "range": [0, 255]
             },
             {
                 "name": "blue",
+                "value": 0,
                 "type": "hexadecimal",
                 "range": [0, 255]
             }
@@ -26,16 +29,19 @@
         "properties": [
             {
                 "name": "red",
+                "value": 0,
                 "type": "integer",
                 "range": [0, 255]
             },
             {
                 "name": "green",
+                "value": 0,
                 "type": "integer",
                 "range": [0, 255]
             },
             {
                 "name": "blue",
+                "value": 0,
                 "type": "integer",
                 "range": [0, 255]
             }
@@ -47,16 +53,19 @@
         "properties": [
             {
                 "name": "hue",
+                "value": 0,
                 "type": "radious",
                 "range": [0, 360]
             },
             {
                 "name": "saturation",
+                "value": 0,
                 "type": "percentage",
                 "range": [0, 100]
             },
             {
                 "name": "lightness",
+                "value": 0,
                 "type": "percentage",
                 "range": [0, 100]
             }
@@ -68,16 +77,19 @@
         "properties": [
             {
                 "name": "hue",
+                "value": 0,
                 "type": "radious",
                 "range": [0, 360]
             },
             {
                 "name": "whiteness",
+                "value": 0,
                 "type": "percentage",
                 "range": [0, 100]
             },
             {
                 "name": "blackness",
+                "value": 0,
                 "type": "percentage",
                 "range": [0, 100]
             }

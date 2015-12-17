@@ -7,8 +7,8 @@
         <% _.each(properties, function (property) { %>
             <input
                 type="number"
-                js-space-property-<%= _.escape(property.name) %>
-                value="<%= property.range[0] %>"
+                js-space-property="<%= property.name %>"
+                value="<%= property.value %>"
                 min="<%= property.range[0] %>"
                 max="<%= property.range[1] %>"
             >
