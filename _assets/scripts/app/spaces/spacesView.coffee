@@ -5,20 +5,41 @@ app.SpacesView = Backbone.View.extend(
 
     events:
         'click button[js-space-button]': 'onButtonClick'
-        'keypress input[js-space-input]': 'onInputKeypress'
+        'blur input[js-space-property]': 'onInputBlur'
 
     initialize: ->
+        @_propertyAttr = 'js-space-property'
+        @_colorAttr = 'js-space-color'
+
         @listenTo(@model, 'change', @render)
 
     render: ->
         @$el.html(@template( @model.attributes ))
-        @$input = @$('input[js-space-input]')
+        @$colorInput= @$("input[#{@_colorAttr}]")
         return @
+
+    onInputBlur: ( event ) ->
+        propertyName = event.currentTarget.attributes[@_propertyAttr].value
+        currentValue = $(event.currentTarget).val()
+
+        spaceName = @model.attributes.slug
+        range = @model.getPropertyRange(propertyName)
+
+        # dont go any further if invalid value
+        if @_isValueValid(currentValue, range[0], range[1])
+            @model.setProperty(propertyName, currentValue)
+            @$colorInput.val(@model.getColor())
+        else
+            console.warn("invalid value for #{propertyName} of #{spaceName}")
 
     onButtonClick: ->
         console.log('button click')
 
-    onInputKeypress: ->
-        console.log('key pressed')
+    _isValueValid: ( value, min, max ) ->
+        isInRange = parseInt(value) >= min and parseInt(value) <= max
 
+        if value.length > 0 and isInRange
+            return true
+        else
+            return false
 )

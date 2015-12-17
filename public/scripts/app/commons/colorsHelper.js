@@ -15,47 +15,47 @@ ColorsHelper = (function() {
     return safe;
   };
 
-  ColorsHelper.prototype._toHex = function(decimal) {
+  ColorsHelper.prototype.toHex = function(decimal) {
     var hex;
     hex = Number(decimal).toString(16);
     return ("0" + hex).slice(-2);
   };
 
-  ColorsHelper.prototype._fromHex = function(hex) {
+  ColorsHelper.prototype.fromHex = function(hex) {
     return parseInt(hex, 16);
   };
 
   ColorsHelper.prototype.hex2rgb = function(hex) {
     var blue, green, red;
-    red = this._fromHex(hex[0]);
-    green = this._fromHex(hex[1]);
-    blue = this._fromHex(hex[2]);
+    red = this.fromHex(hex[0]);
+    green = this.fromHex(hex[1]);
+    blue = this.fromHex(hex[2]);
     return [red, green, blue];
   };
 
   ColorsHelper.prototype.hex2hsl = function(hex) {
     var blue, green, red, rgb;
-    red = this._fromHex(hex[0]);
-    green = this._fromHex(hex[1]);
-    blue = this._fromHex(hex[2]);
+    red = this.fromHex(hex[0]);
+    green = this.fromHex(hex[1]);
+    blue = this.fromHex(hex[2]);
     rgb = [red, green, blue];
     return this.rgb2hsl(rgb);
   };
 
   ColorsHelper.prototype.hex2hwb = function(hex) {
     var blue, green, red, rgb;
-    red = this._fromHex(hex[0]);
-    green = this._fromHex(hex[1]);
-    blue = this._fromHex(hex[2]);
+    red = this.fromHex(hex[0]);
+    green = this.fromHex(hex[1]);
+    blue = this.fromHex(hex[2]);
     rgb = [red, green, blue];
     return this.rgb2hwb(rgb);
   };
 
   ColorsHelper.prototype.rgb2hex = function(rgb) {
     var blue16, green16, hex, red16;
-    red16 = this._toHex(rgb[0]);
-    green16 = this._toHex(rgb[1]);
-    blue16 = this._toHex(rgb[2]);
+    red16 = this.toHex(rgb[0]);
+    green16 = this.toHex(rgb[1]);
+    blue16 = this.toHex(rgb[2]);
     hex = [red16, green16, blue16];
     return hex;
   };
@@ -183,7 +183,7 @@ ColorsHelper = (function() {
       case 5:
         return [v, whiteness, n];
       default:
-        console.warn("Should return proper value for " + hwb);
+        console.warn("no proper HWB value for " + hwb);
         return [0, 0, 0];
     }
   };
