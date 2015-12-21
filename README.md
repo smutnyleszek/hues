@@ -13,7 +13,7 @@ Things to do:
 4. List of all colors from the library hue-sorted
 5. Variables live output for SASS and CSS4:
     - `$c-colorName: hsl(0, 0%, 0%);`
-    - '--c-colorName: hsl(0, 0%, 0%);'
+    - `--c-colorName: hsl(0, 0%, 0%);`
 6. Visual color overview:
     1. current color
     2. color pair
@@ -37,3 +37,5 @@ Backbone links:
 - http://addyosmani.com/backbone-fundamentals/
 - http://ricostacruz.com/backbone-patterns/
 - http://backbonejs.org/docs/todos.html
+
+Event dispatcher: https://lostechies.com/derickbailey/2011/07/19/references-routing-and-the-event-aggregator-coordinating-views-in-backbone-js/

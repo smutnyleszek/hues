@@ -54,9 +54,14 @@ module.exports = (grunt) ->
                 cwd: '_assets/scripts/thirdparty'
                 src: '**/*.js'
                 dest: 'public/scripts/thirdparty'
+            images:
+                expand: true
+                cwd: '_assets/images'
+                src: ['**/*.{png, jpg, gif}']
+                dest: 'public/images'
         clean:
             generativeAssets:
-                src: ['public/scripts', 'public/styles']
+                src: ['public/scripts', 'public/styles', 'public/images']
     )
 
     # register tasks
@@ -73,4 +78,5 @@ module.exports = (grunt) ->
         'coffee'
         'cssnext'
         'copy:scripts'
+        'copy:images'
     ])
