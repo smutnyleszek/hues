@@ -5,11 +5,15 @@ class ColorsHelper
     # rounds all values in color
     pacify: ( color ) ->
         safe = []
-        safe.push(Math.round(part)) for part in color
+        for part in color
+            if isNaN(part)
+                safe.push(part)
+            else
+                safe.push(Math.round(part))
         return safe
 
     toHex: ( decimal ) ->
-        hex = Number(decimal).toString(16)
+        hex = Math.round(Number(decimal)).toString(16)
         return "0#{hex}".slice(-2)
 
     fromHex: ( hex ) -> return parseInt(hex, 16)

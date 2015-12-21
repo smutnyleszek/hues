@@ -1,0 +1,6 @@
+{
+    "spaces": {
+        "colorChanged": "hues.spaces.colorChanged",
+        "colorConverted": "hues.spaces.colorConverted"
+    }
+}
