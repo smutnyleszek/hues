@@ -10,6 +10,9 @@ app.AppView = Backbone.View.extend(
         @render()
 
     render: ->
+        # clear loading message
+        @$el.html('')
+
         @addAll()
 
     addAll: ->
@@ -18,8 +21,5 @@ app.AppView = Backbone.View.extend(
     addOne: ( space ) ->
         instance = new app.SpacesView({ model: space })
         @$el.append( instance.render().el )
-
-    onColorChanged: ->
-        console.log('on color changed')
 
 )

@@ -1,9 +1,7 @@
 var ColorsHelper;
 
 ColorsHelper = (function() {
-  function ColorsHelper() {
-    console.info('colorConvert up and running');
-  }
+  function ColorsHelper() {}
 
   ColorsHelper.prototype.pacify = function(color) {
     var part, safe, _i, _len;

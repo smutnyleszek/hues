@@ -1,6 +1,6 @@
 class ColorsHelper
     constructor: ->
-        console.info('colorConvert up and running')
+        # up and running
 
     # rounds all values in color
     pacify: ( color ) ->
