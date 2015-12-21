@@ -1,8 +1,13 @@
 app.Space = Backbone.Model.extend(
 
     defaults:
-        color: ''
+        shortName: null
+        color: null
         properties: []
+
+    initialize: ->
+        @_setShortNames()
+        @_setColor()
 
     _refresh: ->
         @_setColor()
@@ -29,6 +34,10 @@ app.Space = Backbone.Model.extend(
         @attributes.color = newColor
 
         # TODO dispatch color changed
+
+    _setShortNames: ->
+        for property in @attributes.properties
+            property.shortName = property.name[0]
 
     setProperty: ( name, value ) ->
         property = @_findProperty(name)

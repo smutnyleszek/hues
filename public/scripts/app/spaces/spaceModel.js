@@ -1,7 +1,12 @@
 app.Space = Backbone.Model.extend({
   defaults: {
-    color: '',
+    shortName: null,
+    color: null,
     properties: []
+  },
+  initialize: function() {
+    this._setShortNames();
+    return this._setColor();
   },
   _refresh: function() {
     return this._setColor();
@@ -31,6 +36,16 @@ app.Space = Backbone.Model.extend({
       newColor = newColor.replace(syntaxName, value);
     }
     return this.attributes.color = newColor;
+  },
+  _setShortNames: function() {
+    var property, _i, _len, _ref, _results;
+    _ref = this.attributes.properties;
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      property = _ref[_i];
+      _results.push(property.shortName = property.name[0]);
+    }
+    return _results;
   },
   setProperty: function(name, value) {
     var property;

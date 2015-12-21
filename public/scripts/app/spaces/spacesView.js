@@ -2,8 +2,8 @@ app.SpacesView = Backbone.View.extend({
   tagName: 'div',
   template: _.template($('#space-template').html()),
   events: {
-    'click button[js-space-button]': 'onButtonClick',
-    'blur input[js-space-property]': 'onInputBlur'
+    'click button[js-space-button]': '_onButtonClick',
+    'blur input[js-space-property]': '_onInputBlur'
   },
   initialize: function() {
     this._propertyAttr = 'js-space-property';
@@ -13,9 +13,10 @@ app.SpacesView = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template(this.model.attributes));
     this.$colorInput = this.$("input[" + this._colorAttr + "]");
+    this.$colorInput.val(this.model.getColor());
     return this;
   },
-  onInputBlur: function(event) {
+  _onInputBlur: function(event) {
     var currentValue, propertyName, range, spaceName;
     propertyName = event.currentTarget.attributes[this._propertyAttr].value;
     currentValue = $(event.currentTarget).val();
@@ -28,8 +29,21 @@ app.SpacesView = Backbone.View.extend({
       return console.warn("invalid value for " + propertyName + " of " + spaceName);
     }
   },
-  onButtonClick: function() {
-    return console.log('button click');
+  _onButtonClick: function() {
+    var copying, error, value;
+    this.$colorInput.select();
+    try {
+      value = this.$colorInput.val();
+      copying = document.execCommand('copy');
+      if (copying) {
+        app.notifier.notify("copied color to clipboard: " + value);
+      } else {
+        console.warn("unable to copy to clipboard");
+      }
+    } catch (_error) {
+      error = _error;
+      console.warn("unable to copy to clipboard: " + error);
+    }
   },
   _isValueValid: function(value, min, max) {
     var isInRange;
