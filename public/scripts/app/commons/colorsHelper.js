@@ -8,14 +8,18 @@ ColorsHelper = (function() {
     safe = [];
     for (_i = 0, _len = color.length; _i < _len; _i++) {
       part = color[_i];
-      safe.push(Math.round(part));
+      if (isNaN(part)) {
+        safe.push(part);
+      } else {
+        safe.push(Math.round(part));
+      }
     }
     return safe;
   };
 
   ColorsHelper.prototype.toHex = function(decimal) {
     var hex;
-    hex = Number(decimal).toString(16);
+    hex = Math.round(Number(decimal)).toString(16);
     return ("0" + hex).slice(-2);
   };
 

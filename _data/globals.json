@@ -2,6 +2,7 @@
     "appName": "hues",
     "appLang": "en",
     "notifierIcon": "public/images/test.png",
+
     "delays": {
         "notification": 1500
     }

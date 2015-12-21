@@ -12,13 +12,24 @@ app.SpacesView = Backbone.View.extend(
         @_colorAttr = 'js-space-color'
 
         @listenTo(@model, 'change', @render)
+        app.eventer.bind(
+            window.eventsData.spaces.colorConverted,
+            @_onColorConverted.bind(@)
+        )
 
     render: ->
         @$el.html(@template( @model.attributes ))
-        @$colorInput= @$("input[#{@_colorAttr}]")
-        # create starting color label
-        @$colorInput.val(@model.getColor())
+
+        @$colorInput = @$("input[#{@_colorAttr}]")
+        @$propertyInput0 = $(@$("input[#{@_propertyAttr}]")[0])
+        @$propertyInput1 = $(@$("input[#{@_propertyAttr}]")[1])
+        @$propertyInput2 = $(@$("input[#{@_propertyAttr}]")[2])
+
+        @_setInputsValues()
+
         return @
+
+    _onColorConverted: -> @_setInputsValues()
 
     _onInputBlur: ( event ) ->
         # get property name and value
@@ -43,7 +54,7 @@ app.SpacesView = Backbone.View.extend(
             value = @$colorInput.val()
             copying = document.execCommand('copy');
             if copying
-                app.notifier.notify("copied color to clipboard: #{value}")
+                app.notifier.notify("copied color: #{value}")
             else
                 console.warn("unable to copy to clipboard");
         catch error
@@ -57,5 +68,11 @@ app.SpacesView = Backbone.View.extend(
             return true
         else
             return false
+
+    _setInputsValues: ->
+        @$colorInput.val(@model.getColor())
+        @$propertyInput0.val(@model.attributes.properties[0].value)
+        @$propertyInput1.val(@model.attributes.properties[1].value)
+        @$propertyInput2.val(@model.attributes.properties[2].value)
 
 )
