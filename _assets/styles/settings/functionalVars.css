@@ -8,7 +8,7 @@ common FUNCTIONAL variables (each module has own config file)
 
     --app-txt-c: var(--c-charcoal);
     --app-bg-c: var(--c-white);
-    --app-content-w: 36rem; /* 576px @ 16px */
+    --app-content-w: 45rem; /* 720px @ 16px */
 
     /* root typography with font sizes for different screens scaling */
 

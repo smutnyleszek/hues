@@ -30,7 +30,7 @@ common FUNCTIONAL variables (each module has own config file)
 
 :root {
 
-    /* base */ /* 576px @ 16px */
+    /* base */ /* 720px @ 16px */
 
     /* root typography with font sizes for different screens scaling */
 
@@ -260,8 +260,8 @@ sizing base layout parts
 body {
     margin: 0;
     width: 100%;
-    max-width: 648px;
-    max-width: 36rem;
+    max-width: 810px;
+    max-width: 45rem;
     padding: 54px 27px;
     padding: 3rem 1.5rem;
 }

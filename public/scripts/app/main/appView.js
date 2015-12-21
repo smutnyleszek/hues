@@ -7,6 +7,7 @@ app.AppView = Backbone.View.extend({
     return this.render();
   },
   render: function() {
+    this.$el.html('');
     return this.addAll();
   },
   addAll: function() {
@@ -18,8 +19,5 @@ app.AppView = Backbone.View.extend({
       model: space
     });
     return this.$el.append(instance.render().el);
-  },
-  onColorChanged: function() {
-    return console.log('on color changed');
   }
 });

@@ -1,9 +1,26 @@
 <script type="text/template" id="space-template">
     <div gui-c-section>
-        <label for="<%= slug %>-input">
-            <%= label %>
-        </label>
-        <input type="text" id="<%= slug %>-input" js-space-input value="<%= color %>">
-        <button gui-c-button js-space-button>click!</button>
+        <strong>
+            <%= slug %>:
+        </strong>
+
+        <% _.each(properties, function (property) { %>
+            <label for="input-<%= slug %>-<%= property.name %>">
+                <%= property.shortName %>
+            </label>
+            <input
+                type="number"
+                id="input-<%= slug %>-<%= property.name %>"
+                js-space-property="<%= property.name %>"
+                value=""
+                min="<%= property.range[0] %>"
+                max="<%= property.range[1] %>"
+            >
+        <% }); %>
+
+        <input type="text" js-space-color value="<%= color %>" readonly>
+
+        <button gui-c-button js-space-button>copy</button>
+
     </div>
 </script>

@@ -1,0 +1,98 @@
+[
+    {
+        "slug": "hex",
+        "syntax": "#[red][green][blue]",
+        "properties": [
+            {
+                "name": "red",
+                "value": 0,
+                "type": "hexadecimal",
+                "range": [0, 255]
+            },
+            {
+                "name": "green",
+                "value": 0,
+                "type": "hexadecimal",
+                "range": [0, 255]
+            },
+            {
+                "name": "blue",
+                "value": 0,
+                "type": "hexadecimal",
+                "range": [0, 255]
+            }
+        ]
+    },
+    {
+        "slug": "rgb",
+        "syntax": "rgb([red], [green], [blue])",
+        "properties": [
+            {
+                "name": "red",
+                "value": 0,
+                "type": "integer",
+                "range": [0, 255]
+            },
+            {
+                "name": "green",
+                "value": 0,
+                "type": "integer",
+                "range": [0, 255]
+            },
+            {
+                "name": "blue",
+                "value": 0,
+                "type": "integer",
+                "range": [0, 255]
+            }
+        ]
+    },
+    {
+        "slug": "hsl",
+        "syntax": "hsl([hue], [saturation]%, [lightness]%)",
+        "properties": [
+            {
+                "name": "hue",
+                "value": 0,
+                "type": "radious",
+                "range": [0, 360]
+            },
+            {
+                "name": "saturation",
+                "value": 0,
+                "type": "percentage",
+                "range": [0, 100]
+            },
+            {
+                "name": "lightness",
+                "value": 0,
+                "type": "percentage",
+                "range": [0, 100]
+            }
+        ]
+    },
+    {
+        "slug": "hwb",
+        "syntax": "hwb([hue], [whiteness]%, [blackness]%)",
+        "properties": [
+            {
+                "name": "hue",
+                "value": 0,
+                "type": "radious",
+                "range": [0, 360]
+            },
+            {
+                "name": "whiteness",
+                "value": 0,
+                "type": "percentage",
+                "range": [0, 100]
+            },
+            {
+                "name": "blackness",
+                "value": 0,
+                "type": "percentage",
+                "range": [0, 100]
+            }
+        ]
+    }
+]
