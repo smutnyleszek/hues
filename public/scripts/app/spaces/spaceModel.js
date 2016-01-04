@@ -57,17 +57,18 @@ app.Space = Backbone.Model.extend({
     throw new Error("nonexistent property " + name);
   },
   _setColor: function() {
-    var newColor, property, syntaxName, value, _i, _len, _ref;
-    newColor = this.attributes.syntax;
+    var after, before, newColor, property, value, _i, _len, _ref;
+    newColor = '';
     _ref = this.attributes.properties;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       property = _ref[_i];
-      syntaxName = "[" + property.name + "]";
       value = property.value;
       if (property.type === 'hexadecimal') {
         value = app.colorsHelper.toHex(value);
       }
-      newColor = newColor.replace(syntaxName, value);
+      before = property.syntaxBefore || '';
+      after = property.syntaxAfter || '';
+      newColor += "" + before + value + after;
     }
     return this.attributes.color = newColor;
   },

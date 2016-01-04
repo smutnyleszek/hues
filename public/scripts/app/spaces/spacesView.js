@@ -8,11 +8,13 @@ app.SpacesView = Backbone.View.extend({
   initialize: function() {
     this._propertyAttr = 'js-space-property';
     this._colorAttr = 'js-space-color';
+    this._styleAttr = 'gui-c-space';
     this.listenTo(this.model, 'change', this.render);
     return app.eventer.bind(window.eventsData.spaces.colorConverted, this._onColorConverted.bind(this));
   },
   render: function() {
     this.$el.html(this.template(this.model.attributes));
+    this.$el[0].setAttribute(this._styleAttr, '');
     this.$colorInput = this.$("input[" + this._colorAttr + "]");
     this.$propertyInput0 = $(this.$("input[" + this._propertyAttr + "]")[0]);
     this.$propertyInput1 = $(this.$("input[" + this._propertyAttr + "]")[1]);
