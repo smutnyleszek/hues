@@ -28,6 +28,7 @@ app.SpacesView = Backbone.View.extend(
         @$propertyInput1 = $(@$("input[#{@_propertyAttr}]")[1])
         @$propertyInput2 = $(@$("input[#{@_propertyAttr}]")[2])
 
+        @_setInputsAttributes()
         @_setInputsValues()
 
         return @
@@ -44,7 +45,10 @@ app.SpacesView = Backbone.View.extend(
         range = @model.getPropertyRange(propertyName)
 
         # validate property value and save it with syntax in color input
-        if @_isValueValid(currentValue, range[0], range[1])
+        if range is undefined
+            @model.setProperty(propertyName, currentValue)
+            @$colorInput.val(@model.getColor())
+        else if @_isValueValid(currentValue, range[0], range[1])
             @model.setProperty(propertyName, currentValue)
             @$colorInput.val(@model.getColor())
         else
@@ -77,5 +81,14 @@ app.SpacesView = Backbone.View.extend(
         @$propertyInput0.val(@model.attributes.properties[0].value)
         @$propertyInput1.val(@model.attributes.properties[1].value)
         @$propertyInput2.val(@model.attributes.properties[2].value)
+
+    _setInputsAttributes: ->
+        for property, index in @model.attributes.properties
+            el = @["$propertyInput#{index}"][0]
+            if property.range isnt undefined
+                el.setAttribute('min', property.range[0])
+                el.setAttribute('max', property.range[1])
+            if property.maxlength isnt undefined
+                el.setAttribute('maxlength', property.maxlength)
 
 )

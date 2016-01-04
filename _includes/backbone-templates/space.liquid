@@ -2,17 +2,15 @@
 
     <% _.each(properties, function (property) { %>
         <% if (typeof(property.syntaxBefore) != 'undefined') {
-            print('<span gui-c-space-property>' + property.syntaxBefore + '</span>')
+            print('<span gui-c-space-property>' + property.syntaxBefore + '</span>');
         } %>
         <span gui-c-space-property>
             <input
-                type="number"
-                gui-c-textinput="number"
+                type="<%= property.inputType %>"
+                gui-c-textinput="<%= property.inputType %>"
                 id="input-<%= slug %>-<%= property.name %>"
                 js-space-property="<%= property.name %>"
                 value=""
-                min="<%= property.range[0] %>"
-                max="<%= property.range[1] %>"
             >
         </span>
         <% if (typeof(property.syntaxAfter) != 'undefined') {

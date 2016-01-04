@@ -1,11 +1,10 @@
 app.Space = Backbone.Model.extend({
   defaults: {
-    shortName: null,
     color: null,
     properties: []
   },
   initialize: function() {
-    this._setShortNames();
+    this._setInputTypes();
     this._setColor();
     return app.eventer.bind(window.eventsData.spaces.colorChanged, this._onColorChanged.bind(this));
   },
@@ -20,7 +19,7 @@ app.Space = Backbone.Model.extend({
     return this._convertFrom(changedSpace);
   },
   _convertFrom: function(otherSpace) {
-    var conversionLabel, index, newColorArray, newValue, otherColorArray, otherSlug, property, thisSlug, _i, _len, _ref;
+    var conversionLabel, index, newColorArray, otherColorArray, otherSlug, property, thisSlug, _i, _len, _ref;
     thisSlug = this.attributes.slug;
     otherSlug = otherSpace.attributes.slug;
     otherColorArray = otherSpace.getColorArray();
@@ -30,17 +29,7 @@ app.Space = Backbone.Model.extend({
     _ref = this.attributes.properties;
     for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
       property = _ref[index];
-      newValue = null;
-      switch (property.type) {
-        case 'hexadecimal':
-          newValue = app.colorsHelper.fromHex(newColorArray[index]);
-          break;
-        case 'integer':
-        case 'radious':
-        case 'percentage':
-          newValue = newColorArray[index];
-      }
-      property.value = newValue;
+      property.value = newColorArray[index];
     }
     this._setColor();
     return app.eventer.trigger(window.eventsData.spaces.colorConverted, this);
@@ -63,29 +52,42 @@ app.Space = Backbone.Model.extend({
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       property = _ref[_i];
       value = property.value;
-      if (property.type === 'hexadecimal') {
-        value = app.colorsHelper.toHex(value);
-      }
       before = property.syntaxBefore || '';
       after = property.syntaxAfter || '';
       newColor += "" + before + value + after;
     }
     return this.attributes.color = newColor;
   },
-  _setShortNames: function() {
+  _setInputTypes: function() {
     var property, _i, _len, _ref, _results;
     _ref = this.attributes.properties;
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       property = _ref[_i];
-      _results.push(property.shortName = property.name[0]);
+      switch (property.type) {
+        case 'integer':
+        case 'radious':
+        case 'percentage':
+          _results.push(property.inputType = 'number');
+          break;
+        default:
+          _results.push(property.inputType = 'text');
+      }
     }
     return _results;
   },
   setProperty: function(name, value) {
     var property;
     property = this._findProperty(name);
-    property.value = Number(value);
+    switch (property.type) {
+      case 'integer':
+      case 'radious':
+      case 'percentage':
+        property.value = Number(value);
+        break;
+      default:
+        property.value = value;
+    }
     return this._refresh();
   },
   getColor: function() {
@@ -97,15 +99,7 @@ app.Space = Backbone.Model.extend({
     _ref = this.attributes.properties;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       property = _ref[_i];
-      switch (property.type) {
-        case 'hexadecimal':
-          colorArray.push(app.colorsHelper.toHex(property.value));
-          break;
-        case 'integer':
-        case 'radious':
-        case 'percentage':
-          colorArray.push(property.value);
-      }
+      colorArray.push(property.value);
     }
     return colorArray;
   },

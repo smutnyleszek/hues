@@ -19,6 +19,7 @@ app.SpacesView = Backbone.View.extend({
     this.$propertyInput0 = $(this.$("input[" + this._propertyAttr + "]")[0]);
     this.$propertyInput1 = $(this.$("input[" + this._propertyAttr + "]")[1]);
     this.$propertyInput2 = $(this.$("input[" + this._propertyAttr + "]")[2]);
+    this._setInputsAttributes();
     this._setInputsValues();
     return this;
   },
@@ -31,7 +32,10 @@ app.SpacesView = Backbone.View.extend({
     currentValue = $(event.currentTarget).val();
     spaceName = this.model.attributes.slug;
     range = this.model.getPropertyRange(propertyName);
-    if (this._isValueValid(currentValue, range[0], range[1])) {
+    if (range === void 0) {
+      this.model.setProperty(propertyName, currentValue);
+      return this.$colorInput.val(this.model.getColor());
+    } else if (this._isValueValid(currentValue, range[0], range[1])) {
       this.model.setProperty(propertyName, currentValue);
       return this.$colorInput.val(this.model.getColor());
     } else {
@@ -68,5 +72,24 @@ app.SpacesView = Backbone.View.extend({
     this.$propertyInput0.val(this.model.attributes.properties[0].value);
     this.$propertyInput1.val(this.model.attributes.properties[1].value);
     return this.$propertyInput2.val(this.model.attributes.properties[2].value);
+  },
+  _setInputsAttributes: function() {
+    var el, index, property, _i, _len, _ref, _results;
+    _ref = this.model.attributes.properties;
+    _results = [];
+    for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
+      property = _ref[index];
+      el = this["$propertyInput" + index][0];
+      if (property.range !== void 0) {
+        el.setAttribute('min', property.range[0]);
+        el.setAttribute('max', property.range[1]);
+      }
+      if (property.maxlength !== void 0) {
+        _results.push(el.setAttribute('maxlength', property.maxlength));
+      } else {
+        _results.push(void 0);
+      }
+    }
+    return _results;
   }
 });
