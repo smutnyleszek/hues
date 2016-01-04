@@ -154,22 +154,41 @@ class ColorsHelper
         # linear interpolation
         n = whiteness + f * (v - whiteness)
 
+        red = 0
+        green = 0
+        blue = 0
+
         switch i
             when 6, 0
-                return [ v, n, whiteness ]
+                red = v
+                green = n
+                blue = whiteness
             when 1
-                return [ n, v, whiteness ]
+                red = n
+                green = v
+                blue = whiteness
             when 2
-                return [ whiteness, v, n ]
+                red = whiteness
+                green = v
+                blue = n
             when 3
-                return [ whiteness, n, v ]
+                red = whiteness
+                green = n
+                blue = v
             when 4
-                return [ n, whiteness, v ]
+                red = n
+                green = whiteness
+                blue = v
             when 5
-                return [ v, whiteness, n ]
+                red = v
+                green = whiteness
+                blue = n
             else
-                console.warn("no proper HWB value for #{hwb}")
-                return [ 0, 0, 0 ]
+                console.warn("unproper case #{i} for HWB: #{hwb}")
+
+        rgb = [ red * 255, green * 255, blue * 255 ]
+
+        return rgb
 
     hwb2hsl: ( args ) -> return @rgb2hsl(@hwb2rgb(args))
 
