@@ -1,12 +1,11 @@
 app.Space = Backbone.Model.extend(
 
     defaults:
-        shortName: null
         color: null
         properties: []
 
     initialize: ->
-        @_setShortNames()
+        @_setInputTypes()
         @_setColor()
 
         app.eventer.bind(
@@ -33,13 +32,7 @@ app.Space = Backbone.Model.extend(
         newColorArray = app.colorsHelper.pacify(newColorArray)
 
         for property, index in @attributes.properties
-            newValue = null
-            switch property.type
-                when 'hexadecimal'
-                    newValue = app.colorsHelper.fromHex(newColorArray[index])
-                when 'integer', 'radious', 'percentage'
-                    newValue = newColorArray[index]
-            property.value = newValue
+            property.value = newColorArray[index]
 
         @_setColor()
         app.eventer.trigger( window.eventsData.spaces.colorConverted, @ )
@@ -56,9 +49,6 @@ app.Space = Backbone.Model.extend(
         for property in @attributes.properties
 
             value = property.value
-            if property.type is 'hexadecimal'
-                value = app.colorsHelper.toHex(value)
-
             before = property.syntaxBefore or ''
             after = property.syntaxAfter or ''
 
@@ -66,13 +56,23 @@ app.Space = Backbone.Model.extend(
 
         @attributes.color = newColor
 
-    _setShortNames: ->
+    _setInputTypes: ->
         for property in @attributes.properties
-            property.shortName = property.name[0]
+            switch property.type
+                when 'integer', 'radious', 'percentage'
+                    property.inputType = 'number'
+                else
+                    property.inputType = 'text'
 
     setProperty: ( name, value ) ->
         property = @_findProperty(name)
-        property.value = Number(value)
+
+        switch property.type
+            when 'integer', 'radious', 'percentage'
+                property.value = Number(value)
+            else
+                property.value = value
+
         @_refresh()
 
     getColor: -> return @attributes.color
@@ -80,11 +80,7 @@ app.Space = Backbone.Model.extend(
     getColorArray: ->
         colorArray = []
         for property in @attributes.properties
-            switch property.type
-                when 'hexadecimal'
-                    colorArray.push(app.colorsHelper.toHex(property.value))
-                when 'integer', 'radious', 'percentage'
-                    colorArray.push(property.value)
+            colorArray.push(property.value)
         return colorArray
 
     getPropertyRange: ( name ) ->

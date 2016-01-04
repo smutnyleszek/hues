@@ -8,10 +8,10 @@ ColorsHelper = (function() {
     safe = [];
     for (_i = 0, _len = color.length; _i < _len; _i++) {
       part = color[_i];
-      if (isNaN(part)) {
-        safe.push(part);
-      } else {
+      if (typeof part === 'number') {
         safe.push(Math.round(part));
+      } else {
+        safe.push(part);
       }
     }
     return safe;

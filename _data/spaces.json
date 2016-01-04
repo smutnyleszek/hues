@@ -4,22 +4,22 @@
         "properties": [
             {
                 "name": "red",
-                "value": 0,
+                "value": "00",
                 "type": "hexadecimal",
-                "range": [0, 255],
+                "maxlength": 2,
                 "syntaxBefore": "#"
             },
             {
                 "name": "green",
-                "value": 0,
+                "value": "00",
                 "type": "hexadecimal",
-                "range": [0, 255]
+                "maxlength": 2
             },
             {
                 "name": "blue",
-                "value": 0,
+                "value": "00",
                 "type": "hexadecimal",
-                "range": [0, 255]
+                "maxlength": 2
             }
         ]
     },

@@ -6,10 +6,10 @@ class ColorsHelper
     pacify: ( color ) ->
         safe = []
         for part in color
-            if isNaN(part)
-                safe.push(part)
-            else
+            if typeof part is 'number'
                 safe.push(Math.round(part))
+            else
+                safe.push(part)
         return safe
 
     toHex: ( decimal ) ->
