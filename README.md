@@ -5,23 +5,33 @@ A yet-nonexistent tool for working with colors in CSS (SCSS).
 
 ## WIP
 
-Things to do:
+Elments that tool should be made of:
 
-1. User input of color in any format (HEX, RGB, RGBA, HSL and HSLA)
-    1. text boxes for color strings: HEX, RGB and HSL
-    2. visual color picker
-    3. text boxes (input type number) for basic values of those three formats
-2. Conversion to HEX, RGB and HSL (dropping alpha)
-3. Paring given color with a label and general hue from predefined color-names-library (approximate or exact)
-4. List of all colors from the library hue-sorted
-5. Variables live output for SASS and CSS4:
-    - `$c-colorName: hsl(0, 0%, 0%);`
-    - `--c-colorName: hsl(0, 0%, 0%);`
-6. Visual color overview:
-    1. current color
-    2. color pair
-    3. color pair hue
-7. Create a whole palette of colors
+1. **paster** - one component
+    - an input for pasting strings
+    - should interpret string and identify space from syntax
+    - should update spaces after interpretation
+    - should log error if couldn't identify space
+2. **space** - one component for each color space (HEX, RGB, HSL, HWB)
+    - multiple inputs for each property
+    - button to copy syntaxed color
+    - should update other spaces on change
+3. **visualiser** - one component
+    - rectangle for displaying current color
+    - rectangle for displaying general color hue
+    - general color hue name
+    - should update when a space color changes
+4. **guesser** - one component
+    - rectangle for displaying guessed color
+    - read-only input for color name string
+    - "approximate" or "exact" sublabel
+    - should update when a space color changes
+5. **library** - one component
+    - list of all colors from the library hue-sorted
+    - **library item** - one component for each color
+        - rectangle for displaying color
+        - read-only input for color name string
+        - button to load color in spaces
 
 Color names inspiration:
 
