@@ -1,7 +1,6 @@
 {
   "name": "hues",
-  "version": "1.0.0",
-  "description": "A nonexistent tool for working with colors..",
+  "description": "A tool for working with colors",
   "repository": {
     "type": "git",
     "url": "https://github.com/smutnyleszek/hues.git"
