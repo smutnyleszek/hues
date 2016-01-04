@@ -1,0 +1,27 @@
+/*------------------------------------------------------------------------------
+space component
+------------------------------------------------------------------------------*/
+
+@import "config.css";
+
+[gui-c-space]:not(:last-child) {
+    margin-bottom: var(--leading-s);
+}
+
+[gui-c-space-property] {
+    float: left;
+    height: var(--leading-s);
+}
+
+[gui-c-space-property]:not(:last-child) {
+    margin-left: var(--space-property-spacing);
+}
+
+[gui-c-space-outcome] { display: none; }
+
+[gui-c-space]:not(:hover) [gui-c-space-button] {
+    visibility: hidden;
+    opacity: 0;
+}
+
+[gui-c-space-button] { transition-duration: var(--t-faster); }

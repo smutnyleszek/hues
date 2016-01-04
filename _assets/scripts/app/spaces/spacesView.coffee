@@ -10,6 +10,7 @@ app.SpacesView = Backbone.View.extend(
     initialize: ->
         @_propertyAttr = 'js-space-property'
         @_colorAttr = 'js-space-color'
+        @_styleAttr = 'gui-c-space'
 
         @listenTo(@model, 'change', @render)
         app.eventer.bind(
@@ -19,6 +20,8 @@ app.SpacesView = Backbone.View.extend(
 
     render: ->
         @$el.html(@template( @model.attributes ))
+
+        @$el[0].setAttribute(@_styleAttr, '')
 
         @$colorInput = @$("input[#{@_colorAttr}]")
         @$propertyInput0 = $(@$("input[#{@_propertyAttr}]")[0])

@@ -51,17 +51,18 @@ app.Space = Backbone.Model.extend(
         throw new Error("nonexistent property #{name}")
 
     _setColor: ->
-        newColor = @attributes.syntax
+        newColor = ''
 
         for property in @attributes.properties
 
-            syntaxName = "[#{property.name}]"
             value = property.value
-
             if property.type is 'hexadecimal'
                 value = app.colorsHelper.toHex(value)
 
-            newColor = newColor.replace(syntaxName, value)
+            before = property.syntaxBefore or ''
+            after = property.syntaxAfter or ''
+
+            newColor += "#{before}#{value}#{after}"
 
         @attributes.color = newColor
 

@@ -1,13 +1,13 @@
 [
     {
         "slug": "hex",
-        "syntax": "#[red][green][blue]",
         "properties": [
             {
                 "name": "red",
                 "value": 0,
                 "type": "hexadecimal",
-                "range": [0, 255]
+                "range": [0, 255],
+                "syntaxBefore": "#"
             },
             {
                 "name": "green",
@@ -25,73 +25,82 @@
     },
     {
         "slug": "rgb",
-        "syntax": "rgb([red], [green], [blue])",
         "properties": [
             {
                 "name": "red",
                 "value": 0,
                 "type": "integer",
-                "range": [0, 255]
+                "range": [0, 255],
+                "syntaxBefore": "rgb(",
+                "syntaxAfter": ", "
             },
             {
                 "name": "green",
                 "value": 0,
                 "type": "integer",
-                "range": [0, 255]
+                "range": [0, 255],
+                "syntaxAfter": ", "
             },
             {
                 "name": "blue",
                 "value": 0,
                 "type": "integer",
-                "range": [0, 255]
+                "range": [0, 255],
+                "syntaxAfter": ")"
             }
         ]
     },
     {
         "slug": "hsl",
-        "syntax": "hsl([hue], [saturation]%, [lightness]%)",
         "properties": [
             {
                 "name": "hue",
                 "value": 0,
-                "type": "radious",
-                "range": [0, 360]
+                "type": "integer",
+                "range": [0, 360],
+                "syntaxBefore": "hsl(",
+                "syntaxAfter": ", "
             },
             {
                 "name": "saturation",
                 "value": 0,
                 "type": "percentage",
-                "range": [0, 100]
+                "range": [0, 100],
+                "syntaxAfter": "%, "
             },
             {
                 "name": "lightness",
                 "value": 0,
                 "type": "percentage",
-                "range": [0, 100]
+                "range": [0, 100],
+                "syntaxAfter": "%)"
             }
         ]
     },
     {
         "slug": "hwb",
-        "syntax": "hwb([hue], [whiteness]%, [blackness]%)",
         "properties": [
             {
                 "name": "hue",
                 "value": 0,
-                "type": "radious",
-                "range": [0, 360]
+                "type": "integer",
+                "range": [0, 360],
+                "syntaxBefore": "hwb(",
+                "syntaxAfter": ", "
             },
             {
                 "name": "whiteness",
                 "value": 0,
                 "type": "percentage",
-                "range": [0, 100]
+                "range": [0, 100],
+                "syntaxAfter": "%, "
             },
             {
                 "name": "blackness",
                 "value": 0,
                 "type": "percentage",
-                "range": [0, 100]
+                "range": [0, 100],
+                "syntaxAfter": "%)"
             }
         ]
     }

@@ -19,7 +19,9 @@ main styles aggregation
 @import "components/image/base.css";
 @import "components/progressbar/base.css";
 @import "components/section/base.css";
+@import "components/space/base.css";
 @import "components/table/base.css";
+@import "components/textinput/base.css";
 
 /* utilities */
 @import "utilities/area.css";
