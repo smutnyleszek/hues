@@ -2,6 +2,9 @@
 
 A yet-nonexistent tool for working with colors in CSS (SCSS).
 
+
+## WIP
+
 Things to do:
 
 1. User input of color in any format (HEX, RGB, RGBA, HSL and HSLA)
@@ -19,7 +22,6 @@ Things to do:
     2. color pair
     3. color pair hue
 7. Create a whole palette of colors
-
 
 Color names inspiration:
 
@@ -39,3 +41,30 @@ Backbone links:
 - http://backbonejs.org/docs/todos.html
 
 Event dispatcher: https://lostechies.com/derickbailey/2011/07/19/references-routing-and-the-event-aggregator-coordinating-views-in-backbone-js/
+
+
+## Development
+
+
+### Grunt
+
+Just use default grunt command:
+
+```
+grunt
+```
+
+
+### Jekyll
+
+To serve local version of the site:
+
+```
+jekyll serve --watch --baseurl ''
+```
+
+To build site on disk:
+
+```
+jekyll build --watch
+```
