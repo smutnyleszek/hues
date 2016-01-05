@@ -1,6 +1,6 @@
 class ColorsHelper
     constructor: ->
-        # up and running
+        @_hexRegex = new RegExp('[0-9A-F]{2}', 'i')
 
     # rounds all values in color
     pacify: ( color ) ->
@@ -17,6 +17,8 @@ class ColorsHelper
         return "0#{hex}".slice(-2)
 
     fromHex: ( hex ) -> return parseInt(hex, 16)
+
+    isHex: ( string ) -> return @_hexRegex.test(string)
 
     hex2rgb: ( hex ) ->
         red = @fromHex(hex[0])

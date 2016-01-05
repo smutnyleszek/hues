@@ -1,7 +1,9 @@
 var ColorsHelper;
 
 ColorsHelper = (function() {
-  function ColorsHelper() {}
+  function ColorsHelper() {
+    this._hexRegex = new RegExp('[0-9A-F]{2}', 'i');
+  }
 
   ColorsHelper.prototype.pacify = function(color) {
     var part, safe, _i, _len;
@@ -25,6 +27,10 @@ ColorsHelper = (function() {
 
   ColorsHelper.prototype.fromHex = function(hex) {
     return parseInt(hex, 16);
+  };
+
+  ColorsHelper.prototype.isHex = function(string) {
+    return this._hexRegex.test(string);
   };
 
   ColorsHelper.prototype.hex2rgb = function(hex) {

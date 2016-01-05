@@ -41,5 +41,6 @@ common FUNCTIONAL variables (each module has own config file)
 
     --disabled-o: var(--f-big);
     --leading-s: calc( var(--rootLineHeight) * 1rem );
+    --letter-width: 0.625rem;
 
 }

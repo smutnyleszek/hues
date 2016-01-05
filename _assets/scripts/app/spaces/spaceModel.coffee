@@ -37,7 +37,7 @@ app.Space = Backbone.Model.extend(
         @_setColor()
         app.eventer.trigger( window.eventsData.spaces.colorConverted, @ )
 
-    _findProperty: ( name ) ->
+    findProperty: ( name ) ->
         for property in @attributes.properties
             if property.name is name
                 return property
@@ -65,7 +65,7 @@ app.Space = Backbone.Model.extend(
                     property.inputType = 'text'
 
     setProperty: ( name, value ) ->
-        property = @_findProperty(name)
+        property = @findProperty(name)
 
         switch property.type
             when 'integer', 'radious', 'percentage'
@@ -82,9 +82,5 @@ app.Space = Backbone.Model.extend(
         for property in @attributes.properties
             colorArray.push(property.value)
         return colorArray
-
-    getPropertyRange: ( name ) ->
-        property = @_findProperty(name)
-        return property.range
 
 )

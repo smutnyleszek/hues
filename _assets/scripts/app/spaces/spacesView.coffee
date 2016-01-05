@@ -42,17 +42,28 @@ app.SpacesView = Backbone.View.extend(
 
         # get current space and property range
         spaceName = @model.attributes.slug
-        range = @model.getPropertyRange(propertyName)
+        property = @model.findProperty(propertyName)
 
         # validate property value and save it with syntax in color input
-        if range is undefined
-            @model.setProperty(propertyName, currentValue)
-            @$colorInput.val(@model.getColor())
-        else if @_isValueValid(currentValue, range[0], range[1])
-            @model.setProperty(propertyName, currentValue)
-            @$colorInput.val(@model.getColor())
-        else
-            console.warn("invalid value for #{propertyName} of #{spaceName}")
+        switch property.type
+            when 'hexadecimal'
+                if app.colorsHelper.isHex(currentValue)
+                    @model.setProperty(propertyName, currentValue)
+                    @$colorInput.val(@model.getColor())
+                    return
+            else
+                min = null
+                max = null
+                if property.range isnt undefined
+                    min = property.range[0]
+                    max = property.range[1]
+                if @_isValueInRange(currentValue, min, max)
+                    @model.setProperty(propertyName, currentValue)
+                    @$colorInput.val(@model.getColor())
+                    return
+
+        console.warn("invalid value for #{spaceName} #{propertyName}:
+        #{currentValue}")
 
     _onButtonClick: ->
         # select input and execute copy command on it
@@ -68,7 +79,7 @@ app.SpacesView = Backbone.View.extend(
             console.warn("unable to copy to clipboard: #{error}");
         return
 
-    _isValueValid: ( value, min, max ) ->
+    _isValueInRange: ( value, min, max ) ->
         isInRange = parseInt(value) >= min and parseInt(value) <= max
 
         if value.length > 0 and isInRange
@@ -90,5 +101,6 @@ app.SpacesView = Backbone.View.extend(
                 el.setAttribute('max', property.range[1])
             if property.maxlength isnt undefined
                 el.setAttribute('maxlength', property.maxlength)
+                el.setAttribute('size', property.maxlength)
 
 )
