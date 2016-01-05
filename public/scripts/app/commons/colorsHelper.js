@@ -1,17 +1,19 @@
 var ColorsHelper;
 
 ColorsHelper = (function() {
-  function ColorsHelper() {}
+  function ColorsHelper() {
+    this._hexRegex = new RegExp('[0-9A-F]{2}', 'i');
+  }
 
   ColorsHelper.prototype.pacify = function(color) {
     var part, safe, _i, _len;
     safe = [];
     for (_i = 0, _len = color.length; _i < _len; _i++) {
       part = color[_i];
-      if (isNaN(part)) {
-        safe.push(part);
-      } else {
+      if (typeof part === 'number') {
         safe.push(Math.round(part));
+      } else {
+        safe.push(part);
       }
     }
     return safe;
@@ -25,6 +27,10 @@ ColorsHelper = (function() {
 
   ColorsHelper.prototype.fromHex = function(hex) {
     return parseInt(hex, 16);
+  };
+
+  ColorsHelper.prototype.isHex = function(string) {
+    return this._hexRegex.test(string);
   };
 
   ColorsHelper.prototype.hex2rgb = function(hex) {
@@ -154,7 +160,7 @@ ColorsHelper = (function() {
   };
 
   ColorsHelper.prototype.hwb2rgb = function(hwb) {
-    var blackness, f, hue, i, n, ratio, v, whiteness;
+    var blackness, blue, f, green, hue, i, n, ratio, red, rgb, v, whiteness;
     hue = hwb[0] / 360;
     whiteness = hwb[1] / 100;
     blackness = hwb[2] / 100;
@@ -170,24 +176,46 @@ ColorsHelper = (function() {
       f = 1 - f;
     }
     n = whiteness + f * (v - whiteness);
+    red = 0;
+    green = 0;
+    blue = 0;
     switch (i) {
       case 6:
       case 0:
-        return [v, n, whiteness];
+        red = v;
+        green = n;
+        blue = whiteness;
+        break;
       case 1:
-        return [n, v, whiteness];
+        red = n;
+        green = v;
+        blue = whiteness;
+        break;
       case 2:
-        return [whiteness, v, n];
+        red = whiteness;
+        green = v;
+        blue = n;
+        break;
       case 3:
-        return [whiteness, n, v];
+        red = whiteness;
+        green = n;
+        blue = v;
+        break;
       case 4:
-        return [n, whiteness, v];
+        red = n;
+        green = whiteness;
+        blue = v;
+        break;
       case 5:
-        return [v, whiteness, n];
+        red = v;
+        green = whiteness;
+        blue = n;
+        break;
       default:
-        console.warn("no proper HWB value for " + hwb);
-        return [0, 0, 0];
+        console.warn("unproper case " + i + " for HWB: " + hwb);
     }
+    rgb = [red * 255, green * 255, blue * 255];
+    return rgb;
   };
 
   ColorsHelper.prototype.hwb2hsl = function(args) {

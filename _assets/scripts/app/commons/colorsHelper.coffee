@@ -1,15 +1,15 @@
 class ColorsHelper
     constructor: ->
-        # up and running
+        @_hexRegex = new RegExp('[0-9A-F]{2}', 'i')
 
     # rounds all values in color
     pacify: ( color ) ->
         safe = []
         for part in color
-            if isNaN(part)
-                safe.push(part)
-            else
+            if typeof part is 'number'
                 safe.push(Math.round(part))
+            else
+                safe.push(part)
         return safe
 
     toHex: ( decimal ) ->
@@ -17,6 +17,8 @@ class ColorsHelper
         return "0#{hex}".slice(-2)
 
     fromHex: ( hex ) -> return parseInt(hex, 16)
+
+    isHex: ( string ) -> return @_hexRegex.test(string)
 
     hex2rgb: ( hex ) ->
         red = @fromHex(hex[0])
@@ -154,22 +156,41 @@ class ColorsHelper
         # linear interpolation
         n = whiteness + f * (v - whiteness)
 
+        red = 0
+        green = 0
+        blue = 0
+
         switch i
             when 6, 0
-                return [ v, n, whiteness ]
+                red = v
+                green = n
+                blue = whiteness
             when 1
-                return [ n, v, whiteness ]
+                red = n
+                green = v
+                blue = whiteness
             when 2
-                return [ whiteness, v, n ]
+                red = whiteness
+                green = v
+                blue = n
             when 3
-                return [ whiteness, n, v ]
+                red = whiteness
+                green = n
+                blue = v
             when 4
-                return [ n, whiteness, v ]
+                red = n
+                green = whiteness
+                blue = v
             when 5
-                return [ v, whiteness, n ]
+                red = v
+                green = whiteness
+                blue = n
             else
-                console.warn("no proper HWB value for #{hwb}")
-                return [ 0, 0, 0 ]
+                console.warn("unproper case #{i} for HWB: #{hwb}")
+
+        rgb = [ red * 255, green * 255, blue * 255 ]
+
+        return rgb
 
     hwb2hsl: ( args ) -> return @rgb2hsl(@hwb2rgb(args))
 

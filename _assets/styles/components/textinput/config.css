@@ -1,0 +1,16 @@
+/*------------------------------------------------------------------------------
+textinput config
+------------------------------------------------------------------------------*/
+
+:root {
+
+    --textinput-br: 0.125rem;
+    --textinput-txt: var(--c-charcoal);
+    --textinput-fontsize: var(--p-giant);
+    --textinput-letter-width: calc( var(--letter-width) * var(--f-giant) );
+    --textinput-padding: var(--s-tiny);
+    --textinput-bg: var(--c-whitesmoke);
+    --textinput-bg-hover: color( var(--c-whitesmoke) tint(20%) );
+    --textinput-bg-active: color( var(--c-whitesmoke) tint(30%) );
+
+}
