@@ -52,6 +52,9 @@ Backbone links:
 
 Event dispatcher: https://lostechies.com/derickbailey/2011/07/19/references-routing-and-the-event-aggregator-coordinating-views-in-backbone-js/
 
+Color identify:
+https://github.com/surfacecurve/sc-color/blob/master/lib/surfacecurve-color.js
+
 
 ## Development
 
