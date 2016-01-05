@@ -1,0 +1,67 @@
+/*------------------------------------------------------------------------------
+textinput component
+------------------------------------------------------------------------------*/
+
+@import "config.css";
+
+[gui-c-textinput] {
+    position: relative;
+
+    display: inline-block;
+    vertical-align: top;
+
+    border: 0;
+    outline: 0;
+
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: var(--textinput-padding);
+    padding-right: var(--textinput-padding);
+    box-sizing: content-box;
+
+    line-height: calc(var(--leading-s) - 0.125rem);
+    height: calc(var(--leading-s) - 0.25rem);
+    margin: 0.125rem 0;
+
+    border-radius: var(--textinput-br);
+
+    font-size: var(--textinput-fontsize);
+    font-weight: 700;
+    font-family: inherit;
+    text-align: center;
+
+    background-color: var(--textinput-bg);
+}
+
+[gui-c-textinput]:not([disabled]):hover {
+    background-color: var(--textinput-bg-hover);
+}
+
+[gui-c-textinput]:not([disabled]):active,
+[gui-c-textinput]:not([disabled]):focus {
+    background-color: var(--textinput-bg-active);
+}
+
+[gui-c-textinput~="middle"] {
+    vertical-align: middle;
+}
+
+/* hide spinner for number input */
+[gui-c-textinput="number"]::-webkit-outer-spin-button,
+[gui-c-textinput="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+[gui-c-textinput][size="2"] {
+    width: calc( var(--textinput-letter-width) * 2 )
+}
+
+[gui-c-textinput][size="3"] {
+    width: calc( var(--textinput-letter-width) * 3 )
+}

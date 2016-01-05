@@ -10,6 +10,7 @@ app.SpacesView = Backbone.View.extend(
     initialize: ->
         @_propertyAttr = 'js-space-property'
         @_colorAttr = 'js-space-color'
+        @_styleAttr = 'gui-c-space'
 
         @listenTo(@model, 'change', @render)
         app.eventer.bind(
@@ -20,11 +21,14 @@ app.SpacesView = Backbone.View.extend(
     render: ->
         @$el.html(@template( @model.attributes ))
 
+        @$el[0].setAttribute(@_styleAttr, '')
+
         @$colorInput = @$("input[#{@_colorAttr}]")
         @$propertyInput0 = $(@$("input[#{@_propertyAttr}]")[0])
         @$propertyInput1 = $(@$("input[#{@_propertyAttr}]")[1])
         @$propertyInput2 = $(@$("input[#{@_propertyAttr}]")[2])
 
+        @_setInputsAttributes()
         @_setInputsValues()
 
         return @
@@ -38,14 +42,28 @@ app.SpacesView = Backbone.View.extend(
 
         # get current space and property range
         spaceName = @model.attributes.slug
-        range = @model.getPropertyRange(propertyName)
+        property = @model.findProperty(propertyName)
 
         # validate property value and save it with syntax in color input
-        if @_isValueValid(currentValue, range[0], range[1])
-            @model.setProperty(propertyName, currentValue)
-            @$colorInput.val(@model.getColor())
-        else
-            console.warn("invalid value for #{propertyName} of #{spaceName}")
+        switch property.type
+            when 'hexadecimal'
+                if app.colorsHelper.isHex(currentValue)
+                    @model.setProperty(propertyName, currentValue)
+                    @$colorInput.val(@model.getColor())
+                    return
+            else
+                min = null
+                max = null
+                if property.range isnt undefined
+                    min = property.range[0]
+                    max = property.range[1]
+                if @_isValueInRange(currentValue, min, max)
+                    @model.setProperty(propertyName, currentValue)
+                    @$colorInput.val(@model.getColor())
+                    return
+
+        console.warn("invalid value for #{spaceName} #{propertyName}:
+        #{currentValue}")
 
     _onButtonClick: ->
         # select input and execute copy command on it
@@ -61,7 +79,7 @@ app.SpacesView = Backbone.View.extend(
             console.warn("unable to copy to clipboard: #{error}");
         return
 
-    _isValueValid: ( value, min, max ) ->
+    _isValueInRange: ( value, min, max ) ->
         isInRange = parseInt(value) >= min and parseInt(value) <= max
 
         if value.length > 0 and isInRange
@@ -74,5 +92,15 @@ app.SpacesView = Backbone.View.extend(
         @$propertyInput0.val(@model.attributes.properties[0].value)
         @$propertyInput1.val(@model.attributes.properties[1].value)
         @$propertyInput2.val(@model.attributes.properties[2].value)
+
+    _setInputsAttributes: ->
+        for property, index in @model.attributes.properties
+            el = @["$propertyInput#{index}"][0]
+            if property.range isnt undefined
+                el.setAttribute('min', property.range[0])
+                el.setAttribute('max', property.range[1])
+            if property.maxlength isnt undefined
+                el.setAttribute('maxlength', property.maxlength)
+                el.setAttribute('size', property.maxlength)
 
 )

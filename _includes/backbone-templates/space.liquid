@@ -1,26 +1,35 @@
 <script type="text/template" id="space-template">
-    <div gui-c-section>
-        <strong>
-            <%= slug %>:
-        </strong>
 
-        <% _.each(properties, function (property) { %>
-            <label for="input-<%= slug %>-<%= property.name %>">
-                <%= property.shortName %>
-            </label>
+    <% _.each(properties, function (property) { %>
+        <% if (typeof(property.syntaxBefore) != 'undefined') {
+            print('<span gui-c-space-property>' + property.syntaxBefore + '</span>');
+        } %>
+        <span gui-c-space-property>
             <input
-                type="number"
+                type="<%= property.inputType %>"
+                gui-c-textinput="<%= property.inputType %>"
                 id="input-<%= slug %>-<%= property.name %>"
                 js-space-property="<%= property.name %>"
                 value=""
-                min="<%= property.range[0] %>"
-                max="<%= property.range[1] %>"
             >
-        <% }); %>
+        </span>
+        <% if (typeof(property.syntaxAfter) != 'undefined') {
+            print('<span gui-c-space-property>' + property.syntaxAfter + '</span>')
+        } %>
+    <% }); %>
 
-        <input type="text" js-space-color value="<%= color %>" readonly>
+    <button
+        gui-c-space-button
+        gui-c-button
+        js-space-button
+    >copy</button>
 
-        <button gui-c-button js-space-button>copy</button>
+    <input
+        gui-c-space-outcome
+        type="text"
+        js-space-color
+        value="<%= color %>"
+        readonly
+    >
 
-    </div>
 </script>
