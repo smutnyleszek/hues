@@ -34,7 +34,7 @@ app.Space = Backbone.Model.extend({
     this._setColor();
     return app.eventer.trigger(window.eventsData.spaces.colorConverted, this);
   },
-  _findProperty: function(name) {
+  findProperty: function(name) {
     var property, _i, _len, _ref;
     _ref = this.attributes.properties;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -78,7 +78,7 @@ app.Space = Backbone.Model.extend({
   },
   setProperty: function(name, value) {
     var property;
-    property = this._findProperty(name);
+    property = this.findProperty(name);
     switch (property.type) {
       case 'integer':
       case 'radious':
@@ -102,10 +102,5 @@ app.Space = Backbone.Model.extend({
       colorArray.push(property.value);
     }
     return colorArray;
-  },
-  getPropertyRange: function(name) {
-    var property;
-    property = this._findProperty(name);
-    return property.range;
   }
 });

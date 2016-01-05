@@ -4,6 +4,10 @@ space component
 
 @import "config.css";
 
+[gui-c-space] {
+    position: relative;
+}
+
 [gui-c-space]:not(:last-child) {
     margin-bottom: var(--leading-s);
 }
@@ -14,14 +18,15 @@ space component
 }
 
 [gui-c-space-property]:not(:last-child) {
-    margin-left: var(--space-property-spacing);
+    margin-right: var(--space-property-spacing);
 }
 
-[gui-c-space-outcome] { display: none; }
-
-[gui-c-space]:not(:hover) [gui-c-space-button] {
-    visibility: hidden;
+[gui-c-space-outcome] {
+    position: absolute;
+    top: 0;
+    left: 0;
     opacity: 0;
+    pointer-events: none;
 }
 
 [gui-c-space-button] { transition-duration: var(--t-faster); }

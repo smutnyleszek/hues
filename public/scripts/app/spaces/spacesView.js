@@ -27,20 +27,33 @@ app.SpacesView = Backbone.View.extend({
     return this._setInputsValues();
   },
   _onInputBlur: function(event) {
-    var currentValue, propertyName, range, spaceName;
+    var currentValue, max, min, property, propertyName, spaceName;
     propertyName = event.currentTarget.attributes[this._propertyAttr].value;
     currentValue = $(event.currentTarget).val();
     spaceName = this.model.attributes.slug;
-    range = this.model.getPropertyRange(propertyName);
-    if (range === void 0) {
-      this.model.setProperty(propertyName, currentValue);
-      return this.$colorInput.val(this.model.getColor());
-    } else if (this._isValueValid(currentValue, range[0], range[1])) {
-      this.model.setProperty(propertyName, currentValue);
-      return this.$colorInput.val(this.model.getColor());
-    } else {
-      return console.warn("invalid value for " + propertyName + " of " + spaceName);
+    property = this.model.findProperty(propertyName);
+    switch (property.type) {
+      case 'hexadecimal':
+        if (app.colorsHelper.isHex(currentValue)) {
+          this.model.setProperty(propertyName, currentValue);
+          this.$colorInput.val(this.model.getColor());
+          return;
+        }
+        break;
+      default:
+        min = null;
+        max = null;
+        if (property.range !== void 0) {
+          min = property.range[0];
+          max = property.range[1];
+        }
+        if (this._isValueInRange(currentValue, min, max)) {
+          this.model.setProperty(propertyName, currentValue);
+          this.$colorInput.val(this.model.getColor());
+          return;
+        }
     }
+    return console.warn("invalid value for " + spaceName + " " + propertyName + ": " + currentValue);
   },
   _onButtonClick: function() {
     var copying, error, value;
@@ -58,7 +71,7 @@ app.SpacesView = Backbone.View.extend({
       console.warn("unable to copy to clipboard: " + error);
     }
   },
-  _isValueValid: function(value, min, max) {
+  _isValueInRange: function(value, min, max) {
     var isInRange;
     isInRange = parseInt(value) >= min && parseInt(value) <= max;
     if (value.length > 0 && isInRange) {
@@ -85,7 +98,8 @@ app.SpacesView = Backbone.View.extend({
         el.setAttribute('max', property.range[1]);
       }
       if (property.maxlength !== void 0) {
-        _results.push(el.setAttribute('maxlength', property.maxlength));
+        el.setAttribute('maxlength', property.maxlength);
+        _results.push(el.setAttribute('size', property.maxlength));
       } else {
         _results.push(void 0);
       }

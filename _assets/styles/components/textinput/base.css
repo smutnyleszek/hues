@@ -17,6 +17,7 @@ textinput component
     padding-bottom: 0;
     padding-left: var(--textinput-padding);
     padding-right: var(--textinput-padding);
+    box-sizing: content-box;
 
     line-height: calc(var(--leading-s) - 0.125rem);
     height: calc(var(--leading-s) - 0.25rem);
@@ -55,4 +56,12 @@ textinput component
     opacity: 0;
     width: 0;
     height: 0;
+}
+
+[gui-c-textinput][size="2"] {
+    width: calc( var(--textinput-letter-width) * 2 )
+}
+
+[gui-c-textinput][size="3"] {
+    width: calc( var(--textinput-letter-width) * 3 )
 }
