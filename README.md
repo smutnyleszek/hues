@@ -45,13 +45,6 @@ Converter tools:
 2. https://github.com/imathis/hsl-picker
 3. https://drafts.csswg.org/css-color/#the-hwb-notation
 
-Backbone links:
-- http://addyosmani.com/backbone-fundamentals/
-- http://ricostacruz.com/backbone-patterns/
-- http://backbonejs.org/docs/todos.html
-
-Event dispatcher: https://lostechies.com/derickbailey/2011/07/19/references-routing-and-the-event-aggregator-coordinating-views-in-backbone-js/
-
 Color identify:
 https://github.com/surfacecurve/sc-color/blob/master/lib/surfacecurve-color.js
 
