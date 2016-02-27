@@ -21,5 +21,5 @@ timezone: Europe/Warsaw
 # excludes
 exclude:
     - node_modules
-    - Gruntfile.coffee
     - package.json
+    - jasmine.json
