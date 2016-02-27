@@ -1,5 +1,6 @@
 {
   "name": "hues",
+  "private": true,
   "description": "A tool for working with colors",
   "repository": {
     "type": "git",
@@ -14,7 +15,8 @@
   "author": "Leszek Pietrzak",
   "license": "CC-BY-4.0",
   "bugs": {
-    "url": "https://github.com/smutnyleszek/hues/issues"
+    "url": "https://github.com/smutnyleszek/hues/issues",
+    "email": "smutnyleszek@gmail.com"
   },
   "homepage": "https://hues.smutnyleszek.com",
   "devDependencies": {
@@ -36,7 +38,7 @@
   "scripts": {
     "start": "npm install && npm run clear && npm run build && npm run test",
     "clear": "rm -rf public && mkdir public && mkdir public/styles && mkdir public/scripts",
-    "build": "npm run build:js && npm run build:css && npm run build:svg",
+    "build": "npm run build:js && npm run build:css && npm run build:svg && build:jekyll",
     "build:css": "cssnext -c _assets/styles/main.css > public/styles/main.css",
     "watch:css": "watch 'npm run build:css' _assets/styles",
     "build:js": "browserify -t babelify -g uglifyify -e _assets/scripts/app/app.js > public/scripts/monolith.js",
@@ -44,6 +46,8 @@
     "build:svg": "svgo -f _assets/symbols/ && svgshelf -p symbol- _assets/symbols/\\*.svg _includes/symbols.svg",
     "test": "jasmine JASMINE_CONFIG_PATH=jasmine.json",
     "watch:test": "watch 'npm run test' _assets/scripts/tests",
-    "watch": "npm-watch"
+    "watch": "npm-watch",
+    "build:jekyll": "jekyll build",
+    "serve:jekyll": "jekyll serve --watch --baseurl ''"
   }
 }
