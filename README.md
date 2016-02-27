@@ -53,8 +53,13 @@ http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html
 
 ## Development
 
+Requirements:
 
-### NPM
+1. [Jekyll](http://jekyllrb.com/)
+2. [Node](https://nodejs.org)
+
+
+### Building
 
 Installs NPM dependencies, clears current assets and builds new ones:
 
@@ -67,19 +72,17 @@ Watching `css` and `scripts` building or running `tests`:
 ```
 npm run watch:css
 npm run watch:scripts
+npm run watch:tests
 ```
 
-
-### Jekyll
-
-To serve local version of the site:
+Building Jekyll project:
 
 ```
-jekyll serve --watch --baseurl ''
+npm run build:jekyll
 ```
 
-To build site on disk:
+You can also serve it on [127.0.0.1:4000](http://127.0.0.1:4000/) with:
 
 ```
-jekyll build --watch
+npm run serve:jekyll
 ```
