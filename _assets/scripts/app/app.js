@@ -1,3 +1,3 @@
-'use strict';
+import Foo from './foo.js';
 
-console.log('dupa');
+console.log('foo');

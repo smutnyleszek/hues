@@ -48,16 +48,25 @@ Converter tools:
 Color identify:
 https://github.com/surfacecurve/sc-color/blob/master/lib/surfacecurve-color.js
 
+http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html
+
 
 ## Development
 
 
-### Grunt
+### NPM
 
-Just use default grunt command:
+Installs NPM dependencies, clears current assets and builds new ones:
 
 ```
-grunt
+npm run start
+```
+
+Watching `css` and `scripts` building or running `tests`:
+
+```
+npm run watch:css
+npm run watch:scripts
 ```
 
 
