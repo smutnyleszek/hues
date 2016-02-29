@@ -1,5 +1,6 @@
 {
   "name": "hues",
+  "private": true,
   "description": "A tool for working with colors",
   "repository": {
     "type": "git",
@@ -12,22 +13,51 @@
     "css"
   ],
   "author": "Leszek Pietrzak",
-  "license": "CC0 1.0 Universal",
+  "license": "CC-BY-4.0",
   "bugs": {
-    "url": "https://github.com/smutnyleszek/hues/issues"
+    "url": "https://github.com/smutnyleszek/hues/issues",
+    "email": "smutnyleszek@gmail.com"
   },
   "homepage": "https://hues.smutnyleszek.com",
   "devDependencies": {
-    "coffee-script": "^1.10.0",
-    "color-convert": "^0.6.0",
-    "grunt": "^0.4.5",
-    "grunt-contrib-clean": "^0.7.0",
-    "grunt-contrib-coffee": "^0.12.0",
-    "grunt-contrib-copy": "^0.8.2",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-cssnext": "^1.0.0",
-    "grunt-svgstore": "^0.5.0",
-    "load-grunt-config": "^0.17.2",
-    "time-grunt": "^1.2.1"
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.2.0",
+    "browserify": "^13.0.0",
+    "color-convert": "^1.0.0",
+    "cssnext": "^1.8.4",
+    "eslint": "^2.2.0",
+    "eslint-plugin-react": "^4.1.0",
+    "imagemin": "^4.0.0",
+    "imagemin-cli": "^2.1.0",
+    "jasmine": "^2.4.1",
+    "svgo": "^0.6.1",
+    "svgshelf": "^1.0.3",
+    "uglifyify": "^3.0.1",
+    "watch": "^0.17.1"
+  },
+  "dependencies": {
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-redux": "^4.4.0",
+    "redux": "^3.3.1"
+  },
+  "scripts": {
+    "start": "npm install && npm run clear && npm run build && npm run test",
+    "clear": "rm -rf public && mkdir public && mkdir public/styles && mkdir public/scripts && mkdir public/images",
+    "build": "npm run build:js && npm run build:css && npm run build:svg && npm run build:images && npm run build:jekyll",
+    "watch": "npm-watch",
+    "build:css": "cssnext -c _assets/styles/main.css > public/styles/main.css",
+    "watch:css": "watch 'npm run build:css' _assets/styles",
+    "build:js": "browserify -t [ babelify --presets [ es2015 react ] ] -g [ uglifyify --no-sourcemap ] _assets/scripts/app/app.js > public/scripts/monolith.js",
+    "build:js_dev": "browserify -t [ babelify --presets [ es2015 react ] ] _assets/scripts/app/app.js > public/scripts/monolith.js",
+    "watch:js": "watch 'npm run build:js' _assets/scripts/app",
+    "watch:js_dev": "watch 'npm run build:js_dev' _assets/scripts/app",
+    "build:svg": "svgo -f _assets/symbols/ && svgshelf -p symbol- _assets/symbols/\\*.svg _includes/symbols.svg",
+    "build:images": "imagemin -o 5 _assets/images public/images",
+    "test": "jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "watch:test": "watch 'npm run test' _assets/scripts/tests",
+    "build:jekyll": "jekyll build",
+    "serve:jekyll": "jekyll serve --watch --baseurl ''"
   }
 }
