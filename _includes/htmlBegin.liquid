@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html
-    class="pterodactylus crushed my algorithms"
-    lang="{{ site.data.globals.appLang }}"
->
+<html lang="{{ site.data.globals.appLang }}">
 
 <head>
 
@@ -12,12 +9,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <!-- info -->
-    <title>{% include helpers/metaTitle.liquid %}</title>
+    <title>{{ site.name }}</title>
     <meta name="keywords" content="{{ site.keywords }}">
-    <meta
-        name="description"
-        content="{% include helpers/metaDescription.liquid %}"
-    >
+    <meta name="description" content="{{ site.description }}">
     <meta name="author" content="{{ site.author }}">
     <link rel="author" href="humans.txt">
     <link rel="home" href="{{ site.baseurl }}">
@@ -25,11 +19,8 @@
     <!-- open graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ site.name }}">
-    <meta property="og:title" content="{% include helpers/metaTitle.liquid %}">
-    <meta
-        property="og:description"
-        content="{% include helpers/metaDescription.liquid %}"
-    >
+    <meta property="og:title" content="{{ site.name }}">
+    <meta property="og:description" content="{{ site.description }}">
     <meta property="og:url" content="{{ site.baseurl }}{{ page.url }}">
     <meta property="og:image" content="/public/images/hues-logo-200.png">
 
@@ -45,7 +36,6 @@
 
 <body>
 
-    {% include icons.svg %}
-
-    <!-- begin unmovedMover -->
-    <section id="unmovedMover">
+    <div style="display: none;">
+        {% include symbols.svg %}
+    </div>
