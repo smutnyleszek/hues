@@ -1,24 +1,29 @@
 # TODO
 
-https://babeljs.io/docs/learn-es2015/
-http://redux.js.org/docs/basics/UsageWithReact.html
+React+redux:
+
+- https://babeljs.io/docs/learn-es2015/
+- http://redux.js.org/docs/basics/UsageWithReact.html
+- http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html
 
 Color names inspiration:
 
-1. http://chir.ag/projects/name-that-color
-2. https://www.npmjs.org/package/color-namer
-3. http://viget.com/inspire/naming-colors
+- http://chir.ag/projects/name-that-color
+- https://www.npmjs.org/package/color-namer
+- http://viget.com/inspire/naming-colors
 
 Converter tools:
 
-1. https://github.com/MoOx/color-convert
-2. https://github.com/imathis/hsl-picker
-3. https://drafts.csswg.org/css-color/#the-hwb-notation
+- https://github.com/MoOx/color-convert
+- https://github.com/imathis/hsl-picker
+- https://drafts.csswg.org/css-color/#the-hwb-notation
 
 Color identify:
-https://github.com/surfacecurve/sc-color/blob/master/lib/surfacecurve-color.js
 
-http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html
+- https://github.com/surfacecurve/sc-color/blob/master/lib/surfacecurve-color.js
+
+
+## Architecture
 
 Elments that tool should be made of:
 
