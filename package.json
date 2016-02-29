@@ -26,6 +26,8 @@
     "browserify": "^13.0.0",
     "color-convert": "^1.0.0",
     "cssnext": "^1.8.4",
+    "eslint": "^2.2.0",
+    "eslint-plugin-react": "^4.1.0",
     "imagemin": "^4.0.0",
     "imagemin-cli": "^2.1.0",
     "jasmine": "^2.4.1",
