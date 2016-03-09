@@ -6,6 +6,8 @@ React+redux:
 - http://redux.js.org/docs/basics/UsageWithReact.html
 - http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html
 
+CSS Modules: http://glenmaddern.com/articles/css-modules
+
 Color names inspiration:
 
 - http://chir.ag/projects/name-that-color
