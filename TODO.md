@@ -1,5 +1,12 @@
 # TODO
 
+React:
+- http://jlongster.com/Removing-User-Interface-Complexity,-or-Why-React-is-Awesome
+
+React+bacon:
+- https://medium.com/@milankinen/good-bye-flux-welcome-bacon-rx-23c71abfb1a7#.zb5kpwbtd
+- https://github.com/milankinen/react-bacon-todomvc
+
 React+redux:
 
 - https://babeljs.io/docs/learn-es2015/
