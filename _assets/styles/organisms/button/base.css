@@ -1,55 +1,62 @@
-/*------------------------------------------------------------------------------
+/* -----------------------------------------------------------------------------
 button organism
-------------------------------------------------------------------------------*/
+----------------------------------------------------------------------------- */
 
 @import '_config.css';
 
 [gui-o-button] {
     display: inline-block;
-    vertical-align: top;
 
-    border: 0;
+    margin: 0.125rem 0;
+
     outline: 0;
+    border: 0;
+
+    border-radius: var(--button-br);
+
+    background-color: var(--button-bg);
+    background-image: none;
+    box-shadow: var(--button-sh);
 
     cursor: pointer;
 
     padding-top: 0;
+    padding-right: var(--button-padding);
     padding-bottom: 0;
     padding-left: var(--button-padding);
-    padding-right: var(--button-padding);
 
-    line-height: calc(var(--leading-s) - 0.125rem);
     height: calc(var(--leading-s) - 0.25rem);
-    margin: 0.125rem 0;
-
-    border-radius: var(--button-br);
-
-    font-size: var(--button-fontsize);
-    font-weight: 700;
-    font-family: inherit;
-    text-align: center;
-
-    text-decoration: none;
-    background-image: none;
 
     overflow: hidden;
+
+    vertical-align: top;
+
+    text-align: center;
+    text-decoration: none;
+    line-height: calc(var(--leading-s) - 0.125rem);
     white-space: nowrap;
+
+    color: var(--button-txt);
+
+    font-family: inherit;
+    font-size: var(--button-fontsize);
+    font-weight: 700;
+
     text-overflow: ellipsis;
 }
 
-[gui-o-button],
 [gui-o-button]:visited {
-    color: var(--button-txt);
     background-color: var(--button-bg);
+    color: var(--button-txt);
     box-shadow: var(--button-sh);
 }
 
-[gui-o-button]:not([disabled]):hover {
+[gui-o-button]:hover {
     background-color: var(--button-bg-hover);
     box-shadow: var(--button-sh-hover);
 }
 
-[gui-o-button]:not([disabled]):active {
+[gui-o-button]:active {
     background-color: var(--button-bg-active);
     box-shadow: var(--button-sh-active);
 }
@@ -58,32 +65,31 @@ button organism
     vertical-align: middle;
 }
 
-
-/*------------------------------------------------------------------------------
+/* -----------------------------------------------------------------------------
 button sizes
-------------------------------------------------------------------------------*/
+----------------------------------------------------------------------------- */
 
 [gui-o-button~='double'] {
-    padding-left: calc( var(--button-padding) * 2 );
-    padding-right: calc( var(--button-padding) * 2 );
+    padding-right: calc(var(--button-padding) * 2);
+    padding-left: calc(var(--button-padding) * 2);
 
-    line-height: calc( ( var(--leading-s) - 0.125rem ) * 2 );
-    height: calc( var(--leading-s) * 2 - 0.25rem );
+    height: calc(var(--leading-s) * 2 - 0.25rem);
+    line-height: calc((var(--leading-s) - 0.125rem) * 2);
 
-    font-size: calc( var(--button-fontsize) * 2 );
+    font-size: calc(var(--button-fontsize) * 2);
 }
 
 [gui-o-button~='triple'] {
-    padding-left: calc( var(--button-padding) * 3 );
-    padding-right: calc( var(--button-padding) * 3 );
+    padding-right: calc(var(--button-padding) * 3);
+    padding-left: calc(var(--button-padding) * 3);
 
-    line-height: calc( ( var(--leading-s) - 0.125rem ) * 3 );
-    height: calc( var(--leading-s) * 3 - 0.25rem );
+    height: calc(var(--leading-s) * 3 - 0.25rem);
+    line-height: calc((var(--leading-s) - 0.125rem) * 3);
 
-    font-size: calc( var(--button-fontsize) * 3 );
+    font-size: calc(var(--button-fontsize) * 3);
 }
 
 [gui-o-button~='full'] {
-    width: 100%;
     display: block;
+    width: 100%;
 }

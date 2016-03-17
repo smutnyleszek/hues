@@ -1,11 +1,11 @@
-/*------------------------------------------------------------------------------
+/* -----------------------------------------------------------------------------
 base typographic rules
-------------------------------------------------------------------------------*/
+----------------------------------------------------------------------------- */
 
 :--headers {
-    line-height: 1;
     margin: 0;
     padding: 0;
+    line-height: 1;
 }
 
 :--textblocks:not(:last-child) {
@@ -13,82 +13,109 @@ base typographic rules
     margin-bottom: var(--leading-s);
 }
 
-h1 { font-size: 3rem; }
-
-h2 {
-    font-size: 2rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+h1 {
+    font-size: 3rem;
 }
 
-h3 { font-size: 1.5rem; }
+h2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
 
 h4 {
     font-size: inherit;
     font-weight: 700;
 }
 
-p, pre { margin: 0; }
-
-ul, ol {
-    padding: 0;
-    margin-left: var(--leading-s);
+p,
+pre {
+    margin: 0;
 }
 
-ul { list-style-type: disc; }
+ul,
+ol {
+    margin-left: var(--leading-s);
+    padding: 0;
+}
 
-ol { list-style-type: decimal; }
+ul {
+    list-style-type: disc;
+}
 
-small, sub, sup { font-size: var(--a-p-giant); }
+ol {
+    list-style-type: decimal;
+}
 
-sub, sup {
-    line-height: 0;
+small,
+sub,
+sup {
+    font-size: var(--a-p-giant);
+}
+
+sub,
+sup {
     position: relative;
     vertical-align: baseline;
+    line-height: 0;
 }
 
-sup { top: -0.5em; }
+sup {
+    top: -0.5em;
+}
 
-sub { bottom: -0.25em; }
+sub {
+    bottom: -0.25em;
+}
 
-strong { font-weight: 700; }
+strong {
+    font-weight: 700;
+}
 
-em { font-style: italic; }
+em {
+    font-style: italic;
+}
 
 blockquote {
-    font-style: italic;
-
-    margin-left: 0;
     margin-right: 0;
+    margin-left: 0;
 
     padding-left: var(--leading-s);
+
+    font-style: italic;
 
     box-shadow: inset var(--a-s-tiny) 0 0 0 var(--a-c-silver);
 }
 
-blockquote cite:before {
-    content: '\2014';
+blockquote cite::before {
     display: inline-block;
     margin-right: var(--a-s-tiny);
+    content: '\2014';
 }
 
 code {
     display: inline-block;
+
+    border-radius: 0.125rem;
+
+    background-color: var(--a-c-silver);
+
+    padding-right: var(--a-s-tiny);
+    padding-left: var(--a-s-tiny);
+
     vertical-align: bottom;
 
-    padding-left: var(--a-s-tiny);
-    padding-right: var(--a-s-tiny);
-
-    font-family: var(--a-font-monospace);
-    font-size: 0.75rem;
     line-height: var(--leading-s);
 
     color: var(--a-c-charcoal);
-    background-color: var(--a-c-silver);
-    border-radius: 0.125rem;
-}
 
-/* bigger blocks */
+    font-family: var(--a-font-monospace);
+    font-size: 0.75rem;
+}
 
 pre code {
     display: block;
@@ -100,7 +127,7 @@ pre code {
 
 :--formelements {
     color: inherit;
-    font-family: inherit;
     font-style: inherit;
+    font-family: inherit;
     font-weight: inherit;
 }
