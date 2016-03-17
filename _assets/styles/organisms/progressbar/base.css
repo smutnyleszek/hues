@@ -1,6 +1,6 @@
-/*------------------------------------------------------------------------------
+/* -----------------------------------------------------------------------------
 progressbar organism
-------------------------------------------------------------------------------*/
+----------------------------------------------------------------------------- */
 
 @import '_config.css';
 
@@ -18,7 +18,9 @@ progressbar organism
     border-radius: var(--progressbar-br);
 }
 
-[gui-o-progressbar]:not(:last-child) { margin-bottom: var(--leading-s); }
+[gui-o-progressbar]:not(:last-child) {
+    margin-bottom: var(--leading-s);
+}
 
 [gui-o-progressbar-indicator] {
     display: block;
@@ -31,11 +33,17 @@ progressbar organism
     transition: var(--a-t-fast);
 }
 
-[gui-o-progressbar~='short'] { max-width: var(--progressbar-short-w); }
+[gui-o-progressbar~='short'] {
+    max-width: var(--progressbar-short-w);
+}
 
 @keyframes framesProgressPending {
-    0% { background-position: calc( var(--progressbar-pending-s) * -1 ) 0; }
-    100% { background-position: var(--progressbar-pending-s) 0; }
+    0% {
+        background-position: calc(var(--progressbar-pending-s) * -1) 0;
+    }
+    100% {
+        background-position: var(--progressbar-pending-s) 0;
+    }
 }
 
 [gui-o-progressbar~='is-pending']:after {
@@ -57,7 +65,7 @@ progressbar organism
     animation-name: framesProgressPending;
     animation-duration: var(--a-t-slow);
     animation-timing-function: linear;
-    animation-delay: 0s;
+    animation-delay: initial;
     animation-direction: normal;
     animation-iteration-count: infinite;
     animation-fill-mode: none;

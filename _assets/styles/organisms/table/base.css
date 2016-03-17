@@ -1,6 +1,6 @@
-/*------------------------------------------------------------------------------
+/* -----------------------------------------------------------------------------
 table organism
-------------------------------------------------------------------------------*/
+----------------------------------------------------------------------------- */
 
 @import '_config.css';
 
@@ -9,14 +9,13 @@ table organism
     border-spacing: 0;
 }
 
-[gui-o-table]:not(:last-child),
-[gui-o-table] caption:not(:last-child) {
+[gui-o-table]:not(:last-child) {
     margin-bottom: var(--leading-s);
 }
 
 [gui-o-table] td,
 [gui-o-table] th {
-    padding: calc( var(--leading-s) * 0.5 );
+    padding: calc(var(--leading-s) * 0.5);
     box-shadow: var(--table-cell-sh);
 
     background-color: var(--table-cell-bg);
@@ -27,6 +26,10 @@ table organism
 [gui-o-table] caption {
     text-align: center;
     font-style: italic;
+}
+
+[gui-o-table] caption:not(:last-child) {
+    margin-bottom: var(--leading-s);
 }
 
 [gui-o-table~='hoverable'] tr:hover td {

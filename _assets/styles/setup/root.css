@@ -1,6 +1,6 @@
-/*------------------------------------------------------------------------------
+/* -----------------------------------------------------------------------------
 root stuff and normalizations
-------------------------------------------------------------------------------*/
+----------------------------------------------------------------------------- */
 
 /* Root line height is being used in many places throughout the project.
 It is recommended to keep all vertical margins and heights of elements to match
@@ -10,33 +10,45 @@ as they tend to add unwanted pixels, thus braking the flow. */
 @import '_config.css';
 
 html {
-    font-weight: var(--rootFontWeight);
-    font-size: var(--rootFontSize);
-    line-height: var(--rootLineHeight);
-    font-family: var(--rootFontFamily);
-    text-rendering: optimizeLegibility;
+    background-color: var(--app-bg-c);
 
     min-height: 100%;
 
+    line-height: var(--rootLineHeight);
+
     color: var(--app-txt-c);
-    background-color: var(--app-bg-c);
+
+    font-family: var(--rootFontFamily);
+    font-size: var(--rootFontSize);
+    font-weight: var(--rootFontWeight);
+    text-rendering: optimizeLegibility;
 
     box-sizing: border-box;
 }
 
 /* clever page scaling with root font size changes */
 
-@media (--bigger) { html { font-size: var(--rootFontSizeBigger); } }
+@media (--bigger) {
+    html {
+        font-size: var(--rootFontSizeBigger);
+    }
+}
 
-@media (--smaller) { html { font-size: var(--rootFontSizeSmaller); } }
+@media (--smaller) {
+    html {
+        font-size: var(--rootFontSizeSmaller);
+    }
+}
 
-*, *:before, *:after {
+*,
+*::before,
+*::after {
     box-sizing: inherit;
 }
 
 body {
     margin: 0;
+    padding: calc(var(--leading-s) * 2) var(--leading-s);
     width: 100%;
     max-width: var(--app-content-w);
-    padding: calc(var(--leading-s) * 2) var(--leading-s);
 }

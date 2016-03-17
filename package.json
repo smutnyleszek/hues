@@ -25,7 +25,6 @@
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
-    "color-convert": "^1.0.0",
     "eslint": "^2.2.0",
     "eslint-plugin-react": "^4.1.0",
     "imagemin": "^4.0.0",
@@ -35,16 +34,18 @@
     "postcss-cli": "^2.5.1",
     "postcss-cssnext": "^2.4.0",
     "postcss-import": "^8.0.2",
+    "stylelint": "^5.0.1",
     "svgo": "^0.6.1",
     "svgshelf": "^1.0.3",
     "uglifyify": "^3.0.1",
     "watch": "^0.17.1"
   },
   "dependencies": {
+    "babel": "^6.5.2",
+    "baconjs": "^0.7.83",
+    "color-convert": "^1.0.0",
     "react": "^0.14.7",
-    "react-dom": "^0.14.7",
-    "react-redux": "^4.4.0",
-    "redux": "^3.3.1"
+    "react-dom": "^0.14.7"
   },
   "scripts": {
     "start": "npm install && npm run clear && npm run build && npm run test",
@@ -60,6 +61,9 @@
     "build:svg": "svgo -f _assets/symbols/ && svgshelf -p symbol- _assets/symbols/\\*.svg _includes/symbols.svg",
     "build:images": "imagemin -o 5 _assets/images public/images",
     "test": "jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "lint": "npm run lint:styles && npm run lint:scripts",
+    "lint:styles": "stylelint \"_assets/**/*.css\" --config .stylelintrc.json --verbose",
+    "lint:scripts": "eslint _assets/**/*.js --config .eslintrc.json",
     "watch:test": "watch 'npm run test' _assets/scripts/tests",
     "build:jekyll": "jekyll build",
     "serve:jekyll": "jekyll serve --watch --baseurl ''"
