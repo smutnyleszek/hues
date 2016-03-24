@@ -10,7 +10,9 @@ React+bacon:
 - https://medium.com/@milankinen/good-bye-flux-welcome-bacon-rx-23c71abfb1a7#.zb5kpwbtd
 - https://github.com/milankinen/react-bacon-todomvc
 
-CSS Modules: http://glenmaddern.com/articles/css-modules
+CSS Modules:
+- http://glenmaddern.com/articles/css-modules
+- https://jakearchibald.com/2016/link-in-body/
 
 Color names inspiration:
 
