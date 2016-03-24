@@ -27,6 +27,7 @@
     "browserify": "^13.0.0",
     "eslint": "^2.2.0",
     "eslint-plugin-react": "^4.1.0",
+    "gadkod": "^0.2.1",
     "imagemin": "^4.0.0",
     "imagemin-cli": "^2.1.0",
     "jasmine": "^2.4.1",
@@ -48,7 +49,7 @@
     "react-dom": "^0.14.7"
   },
   "scripts": {
-    "start": "npm install && npm run clear && npm run build && npm run test",
+    "start": "npm install && npm run clear && npm run build && npm run test && npm run lint",
     "clear": "rm -rf public && mkdir public && mkdir public/styles && mkdir public/scripts && mkdir public/images",
     "build": "npm run build:js && npm run build:css && npm run build:svg && npm run build:images && npm run build:jekyll",
     "watch": "npm-watch",
@@ -61,9 +62,10 @@
     "build:svg": "svgo -f _assets/symbols/ && svgshelf -p symbol- _assets/symbols/\\*.svg _includes/symbols.svg",
     "build:images": "imagemin -o 5 _assets/images public/images",
     "test": "jasmine JASMINE_CONFIG_PATH=jasmine.json",
-    "lint": "npm run lint:styles && npm run lint:scripts",
+    "lint": "npm run lint:styles && npm run lint:scripts && npm run lint:gadkod",
     "lint:styles": "stylelint \"_assets/**/*.css\" --config .stylelintrc.json --verbose",
     "lint:scripts": "eslint _assets/**/*.js --config .eslintrc.json",
+    "lint:gadkod": "gadkod \"_assets/**/*.js\" && gadkod \"_assets/**/*.css\" && gadkod \"_assets/**/*.md\" && gadkod \"_assets/**/*.json\" && gadkod \"./*.json\"",
     "watch:test": "watch 'npm run test' _assets/scripts/tests",
     "build:jekyll": "jekyll build",
     "serve:jekyll": "jekyll serve --watch --baseurl ''"
