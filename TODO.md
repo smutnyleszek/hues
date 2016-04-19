@@ -60,3 +60,10 @@ Elments that tool should be made of:
         - rectangle for displaying color
         - read-only input for color name string
         - button to load color in spaces
+
+Library color should have these informations:
+- name
+- value (decide whether base should be HEX, RGB or HWB)
+- general hue group
+- source (if it has one; could be Crayola, Resene, etc.)
+- additional information/short description (?)
