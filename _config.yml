@@ -26,5 +26,4 @@ exclude:
     - LICENSE
     - README.md
     - TODO.md
-    - jasmine.json
     - package.json
