@@ -1,7 +1,19 @@
----
-layout: default
----
+{% include htmlBegin.liquid %}
 
-<svg><use xlink:href="#symbol-sonar"></svg>
+<header>
+    <h1>hues</h1>
+</header>
 
-<div id="app">Loading...</div>
+<section>
+    <svg><use xlink:href="#symbol-sonar"></svg>
+
+    <div id="app">Loading...</div>
+</section>
+
+<footer>
+    <a href="{{ site.rootSiteUrl }}">
+        Leszek<br>Pietrzak<br>{{ site.time | date: '%Y' }}
+    </a>
+</footer>
+
+{% include htmlEnd.liquid %}

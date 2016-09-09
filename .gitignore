@@ -6,10 +6,10 @@ _site
 .grunt
 _SpecRunner.html
 
-# assets
+# NPM
 node_modules
+npm-debug.log
 
 # OS generated
 .DS_Store
-ehthumbs.db
 Thumbs.db
