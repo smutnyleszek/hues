@@ -14,12 +14,12 @@
   },
   "homepage": "https://hues.smutnyleszek.com",
   "scripts": {
-    "build": "npm-run-all test dist:rebuild svg:build styles:build scripts:npmdeps scripts:build",
+    "build": "npm-run-all test dist:rebuild svg:build styles:build scripts:copydeps scripts:build",
     "test": "npm-run-all scripts:test",
     "watch": "npm-watch",
     "dist:rebuild": "rm -rf dist && mkdir dist && mkdir dist/styles && mkdir dist/scripts && mkdir dist/scripts/npmdeps",
     "styles:build": "postcss -u postcss-import -u postcss-cssnext -o dist/styles/monolith.css src/styles/main.css",
-    "scripts:npmdeps": "cp node_modules/requirejs/require.js dist/scripts/npmdeps/require.js",
+    "scripts:copydeps": "cp node_modules/requirejs/require.js dist/scripts/npmdeps/require.js && cp node_modules/react/dist/react.js dist/scripts/npmdeps/react.js && cp node_modules/react-dom/dist/react-dom.js dist/scripts/npmdeps/react-dom.js && cp src/scripts/config.js dist/scripts/config.js",
     "scripts:build": "babel src/scripts --out-dir dist/scripts",
     "scripts:test": "karma start .karma.conf.js",
     "svg:build": "svgo -f src/symbols/ && svgshelf -p symbol- src/symbols/\\*.svg _includes/symbols.svg",
@@ -27,13 +27,13 @@
     "jekyll:serve": "jekyll serve --watch --baseurl ''"
   },
   "watch": {
-    "build:styles": {
+    "styles:build": {
       "patterns": [
         "src/styles"
       ],
       "quiet": false
     },
-    "build:scripts": {
+    "scripts:build": {
       "patterns": [
         "src/scripts"
       ],
@@ -68,6 +68,8 @@
     "svgshelf": "^1.0.3"
   },
   "dependencies": {
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
     "requirejs": "^2.3.1"
   }
 }
