@@ -20,6 +20,11 @@ timezone: Europe/Warsaw
 
 # excludes
 exclude:
+    - src
+    - test
     - node_modules
-    - package.json
+    - LICENSE
+    - README.md
+    - TODO.md
     - jasmine.json
+    - package.json
