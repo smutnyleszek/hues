@@ -4,7 +4,16 @@ import ReactDom from 'react-dom';
 
 console.log(new Helper('test'));
 
+const SomeComponent = React.createClass({
+    displayName: 'Some component',
+    render() {
+        return React.createElement('div', {is: '', 'i-o-test': 'test'}, 'Hi!');
+    }
+});
+
+const componentInstance = React.createElement(SomeComponent);
+
 ReactDom.render(
-    React.createElement('div', {label: 'test'}, 'Hello World!'),
+    componentInstance,
     document.getElementById('app')
 );
