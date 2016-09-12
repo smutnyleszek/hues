@@ -63,7 +63,32 @@ Elments that tool should be made of:
 
 Library color should have these informations:
 - name
+- id/slug (hex?)
 - value (decide whether base should be HEX, RGB or HWB)
 - general hue group
 - source (if it has one; could be Crayola, Resene, etc.)
 - additional information/short description (?)
+
+Scripts idea:
+
+```
+paster/
+    pasterRenderer.js
+visualiser/
+    currentColor.js
+    currentColorRenderer.js
+    guessedColorRenderer.js
+helpers/
+    colorFinder.js
+    colorValidator.js
+spaces/
+    spacesRenderer.js
+    spacesLibrary.js
+    space.js
+colors/
+    colorsRenderer.js
+    colorsLibrary.js
+    color.js
+config.js
+main.js
+```
