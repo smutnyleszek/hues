@@ -30,7 +30,7 @@ define(['exports', '../stores/myStore', 'react'], function (exports, _myStore, _
         },
 
 
-        displayName: 'current color',
+        displayName: 'current-color',
         render: function render() {
             return _react2.default.createElement('div', {}, 'Current color:' + this.state.currentColor);
         }
