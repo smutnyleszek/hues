@@ -18,7 +18,7 @@ const CurrentColor = React.createClass({
         this.setState(state);
     },
 
-    displayName: 'current color',
+    displayName: 'current-color',
     render() {
         return React.createElement(
             'div',
