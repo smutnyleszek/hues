@@ -19,7 +19,7 @@
     "watch": "npm-watch",
     "dist:rebuild": "rm -rf dist && mkdir dist && mkdir dist/styles && mkdir dist/scripts && mkdir dist/scripts/npmdeps",
     "styles:build": "postcss -u postcss-import -u postcss-cssnext -o dist/styles/monolith.css src/styles/main.css",
-    "scripts:copydeps": "cp node_modules/requirejs/require.js dist/scripts/npmdeps/require.js && cp node_modules/react/dist/react.js dist/scripts/npmdeps/react.js && cp node_modules/react-dom/dist/react-dom.js dist/scripts/npmdeps/react-dom.js && cp src/scripts/config.js dist/scripts/config.js",
+    "scripts:copydeps": "cp node_modules/requirejs/require.js dist/scripts/npmdeps/require.js && cp node_modules/react/dist/react.js dist/scripts/npmdeps/react.js && cp node_modules/alt/dist/alt.js dist/scripts/npmdeps/alt.js && cp node_modules/react-dom/dist/react-dom.js dist/scripts/npmdeps/react-dom.js && cp src/scripts/config.js dist/scripts/config.js",
     "scripts:build": "babel src/scripts --out-dir dist/scripts",
     "scripts:test": "karma start .karma.conf.js",
     "svg:build": "svgo -f src/symbols/ && svgshelf -p symbol- src/symbols/\\*.svg _includes/symbols.svg",
@@ -68,6 +68,7 @@
     "svgshelf": "^1.0.3"
   },
   "dependencies": {
+    "alt": "^0.18.6",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "requirejs": "^2.3.1"

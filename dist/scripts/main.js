@@ -1,7 +1,7 @@
-define(['./Helper', 'react', 'react-dom'], function (_Helper, _react, _reactDom) {
+define(['components/CurrentColor', 'react', 'react-dom'], function (_CurrentColor, _react, _reactDom) {
     'use strict';
 
-    var _Helper2 = _interopRequireDefault(_Helper);
+    var _CurrentColor2 = _interopRequireDefault(_CurrentColor);
 
     var _react2 = _interopRequireDefault(_react);
 
@@ -13,16 +13,5 @@ define(['./Helper', 'react', 'react-dom'], function (_Helper, _react, _reactDom)
         };
     }
 
-    console.log(new _Helper2.default('test'));
-
-    var SomeComponent = _react2.default.createClass({
-        displayName: 'Some component',
-        render: function render() {
-            return _react2.default.createElement('div', { is: '', 'i-o-test': 'test' }, 'Hi!');
-        }
-    });
-
-    var componentInstance = _react2.default.createElement(SomeComponent);
-
-    _reactDom2.default.render(componentInstance, document.getElementById('app'));
+    _reactDom2.default.render(_react2.default.createElement(_CurrentColor2.default), document.getElementById('app'));
 });
