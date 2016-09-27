@@ -37,20 +37,20 @@ define(['exports', '../myAlt'], function (exports, _myAlt) {
         };
     }();
 
-    var SomeActions = function () {
-        function SomeActions() {
-            _classCallCheck(this, SomeActions);
+    var MyActions = function () {
+        function MyActions() {
+            _classCallCheck(this, MyActions);
         }
 
-        _createClass(SomeActions, [{
+        _createClass(MyActions, [{
             key: 'updateCurrentColor',
             value: function updateCurrentColor(color) {
                 return color;
             }
         }]);
 
-        return SomeActions;
+        return MyActions;
     }();
 
-    exports.default = _myAlt2.default.createActions(SomeActions);
+    exports.default = _myAlt2.default.createActions(MyActions);
 });

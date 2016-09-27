@@ -1,9 +1,9 @@
 import myAlt from '../myAlt';
 
-class SomeActions {
+class MyActions {
     updateCurrentColor(color) {
         return color;
     }
 }
 
-export default myAlt.createActions(SomeActions);
+export default myAlt.createActions(MyActions);

@@ -11,7 +11,7 @@ define(['exports'], function (exports) {
         return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
     };
 
-    var deepFreeze = function deepFreeze(obj) {
+    function deepFreeze(obj) {
         if (obj instanceof Map) {
             obj.clear = obj.delete = obj.set = function () {
                 throw new Error('map is read-only');
@@ -25,17 +25,17 @@ define(['exports'], function (exports) {
         // Freeze self
         Object.freeze(obj);
 
-        Object.getOwnPropertyNames(obj).forEach(function (name) {
-            var prop = obj[name];
+        Reflect.ownKeys(obj).forEach(function (propName) {
+            var prop = obj[propName];
 
             // Freeze prop if it is an object
-            if ((typeof prop === 'undefined' ? 'undefined' : _typeof(prop)) == 'object' && !Object.isFrozen(prop)) {
+            if ((typeof prop === 'undefined' ? 'undefined' : _typeof(prop)) === 'object' && !Object.isFrozen(prop)) {
                 deepFreeze(prop);
             }
         });
 
         return obj;
-    };
+    }
 
     exports.default = deepFreeze;
 });

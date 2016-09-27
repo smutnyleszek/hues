@@ -1,4 +1,4 @@
-const deepFreeze = function (obj) {
+function deepFreeze(obj) {
     if (obj instanceof Map) {
         obj.clear = obj.delete = obj.set = function () {
             throw new Error('map is read-only');
@@ -12,17 +12,16 @@ const deepFreeze = function (obj) {
     // Freeze self
     Object.freeze(obj);
 
-    Object.getOwnPropertyNames(obj).forEach(function (name) {
-        var prop = obj[name];
+    Reflect.ownKeys(obj).forEach((propName) => {
+        const prop = obj[propName];
 
         // Freeze prop if it is an object
-        if (typeof prop == 'object' && !Object.isFrozen(prop)) {
+        if (typeof prop === 'object' && !Object.isFrozen(prop)) {
             deepFreeze(prop);
         }
     });
 
-
     return obj;
-};
+}
 
 export default deepFreeze;

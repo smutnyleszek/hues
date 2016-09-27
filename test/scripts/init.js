@@ -1,3 +1,5 @@
+// NOTE: this file is pure JavaScript and doesn't go through Babel
+
 var tests = [];
 
 for (var file in window.__karma__.files) {
@@ -8,7 +10,7 @@ for (var file in window.__karma__.files) {
 
 requirejs.config({
     // Karma serves files from '/base'
-    baseUrl: '/src/scripts',
+    baseUrl: '/base/src/scripts',
 
     // ask Require.js to load these files (all our tests)
     deps: tests,
