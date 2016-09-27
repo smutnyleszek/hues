@@ -1,11 +1,11 @@
-define(['exports', '../stores/myStore', 'react'], function (exports, _myStore, _react) {
+define(['exports', '../stores/currentColor', 'react'], function (exports, _currentColor, _react) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
 
-    var _myStore2 = _interopRequireDefault(_myStore);
+    var _currentColor2 = _interopRequireDefault(_currentColor);
 
     var _react2 = _interopRequireDefault(_react);
 
@@ -17,13 +17,13 @@ define(['exports', '../stores/myStore', 'react'], function (exports, _myStore, _
 
     var CurrentColor = _react2.default.createClass({
         getInitialState: function getInitialState() {
-            return _myStore2.default.getState();
+            return _currentColor2.default.getState();
         },
         componentDidMount: function componentDidMount() {
-            _myStore2.default.listen(this.onChange);
+            _currentColor2.default.listen(this.onChange);
         },
         componentWillUnmount: function componentWillUnmount() {
-            _myStore2.default.unlisten(this.onChange);
+            _currentColor2.default.unlisten(this.onChange);
         },
         onChange: function onChange(state) {
             this.setState(state);
@@ -31,8 +31,9 @@ define(['exports', '../stores/myStore', 'react'], function (exports, _myStore, _
 
 
         displayName: 'current-color',
+
         render: function render() {
-            return _react2.default.createElement('div', {}, 'Current color:' + this.state.currentColor);
+            return _react2.default.createElement('div', {}, 'Current color: ' + this.state.colorValue);
         }
     });
 

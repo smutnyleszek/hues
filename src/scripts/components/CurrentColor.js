@@ -1,17 +1,17 @@
-import ColorStore from '../stores/myStore';
+import CurrentColorStore from '../stores/currentColor';
 import React from 'react';
 
 const CurrentColor = React.createClass({
     getInitialState() {
-        return ColorStore.getState();
+        return CurrentColorStore.getState();
     },
 
     componentDidMount() {
-        ColorStore.listen(this.onChange);
+        CurrentColorStore.listen(this.onChange);
     },
 
     componentWillUnmount() {
-        ColorStore.unlisten(this.onChange);
+        CurrentColorStore.unlisten(this.onChange);
     },
 
     onChange(state) {
@@ -19,11 +19,12 @@ const CurrentColor = React.createClass({
     },
 
     displayName: 'current-color',
+
     render() {
         return React.createElement(
             'div',
             {},
-            'Current color:' + this.state.currentColor
+            'Current color: ' + this.state.colorValue
         );
     }
 });

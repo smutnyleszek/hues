@@ -39,25 +39,28 @@ define(['exports', '../actions/myActions', '../myAlt'], function (exports, _myAc
         };
     }();
 
-    var ColorStore = function () {
-        function ColorStore() {
-            _classCallCheck(this, ColorStore);
+    var CurrentColorStore = function () {
+        function CurrentColorStore() {
+            _classCallCheck(this, CurrentColorStore);
 
-            this.currentColor = null;
+            this.spaceId = null;
+            this.colorValue = null;
+
             this.bindListeners({
                 handleCurrentColorChange: _myActions2.default.UPDATE_CURRENT_COLOR
             });
         }
 
-        _createClass(ColorStore, [{
+        _createClass(CurrentColorStore, [{
             key: 'handleCurrentColorChange',
-            value: function handleCurrentColorChange(currentColor) {
-                this.currentColor = currentColor;
+            value: function handleCurrentColorChange(newColor) {
+                this.spaceId = newColor.spaceId;
+                this.colorValue = newColor.value;
             }
         }]);
 
-        return ColorStore;
+        return CurrentColorStore;
     }();
 
-    exports.default = _myAlt2.default.createStore(ColorStore, 'ColorStore');
+    exports.default = _myAlt2.default.createStore(CurrentColorStore, 'CurrentColorStore');
 });
