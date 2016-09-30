@@ -1,182 +1,120 @@
 import colorverter from 'helpers/colorverter';
+import deepFreeze from 'helpers/deepFreeze';
 
-const mocks = Object.freeze({
-    valid: Object.freeze({
+const mocks = deepFreeze({
+    validOne: {
         hex: ['00', '80', 'ff'],
         rgb: [0, 128, 255],
         hsl: [210, 100, 50],
         hwb: [210, 0, 0]
-    })
+    },
+    validTwo: {
+        hex: ['00', '7f', 'ff'],
+        rgb: [0, 127, 255],
+        hsl: [210, 100, 50],
+        hwb: [210, 0, 0]
+    }
 });
+
+const hexConvertersMap = new Map([
+    ['rgb', 'hexToRgb'],
+    ['hsl', 'hexToHsl'],
+    ['hwb', 'hexToHwb']
+]);
+const rgbConvertersMap = new Map([
+    ['hex', 'rgbToHex'],
+    ['hsl', 'rgbToHsl'],
+    ['hwb', 'rgbToHwb']
+]);
+const hslConvertersMap = new Map([
+    ['rgb', 'hslToRgb'],
+    ['hex', 'hslToHex'],
+    ['hwb', 'hslToHwb']
+]);
+const hwbConvertersMap = new Map([
+    ['hex', 'hwbToHex'],
+    ['rgb', 'hwbToRgb'],
+    ['hsl', 'hwbToHsl']
+]);
+const convertersMap = new Map([
+    ['hex', hexConvertersMap],
+    ['rgb', rgbConvertersMap],
+    ['hsl', hslConvertersMap],
+    ['hwb', hwbConvertersMap]
+]);
+
+const validatorsMap = new Map([
+    ['hex', 'isHex'],
+    ['rgb', 'isRgb'],
+    ['hsl', 'isHsl'],
+    ['hwb', 'isHwb']
+]);
+
+const generatorsMap = new Map([
+    ['hex', 'getRandomHex'],
+    ['rgb', 'getRandomRgb'],
+    ['hsl', 'getRandomHsl'],
+    ['hwb', 'getRandomHwb']
+]);
 
 // -----------------------------------------------------------------------------
 // testing returned values
 // -----------------------------------------------------------------------------
 
-describe('colorverter *2hex', () => {
-    it('should return hex color array', () => {
-        const rgbToHexValue = colorverter.rgbToHex(mocks.valid.rgb);
-        const hslToHexValue = colorverter.hslToHex(mocks.valid.hsl);
-        const hwbToHexValue = colorverter.hwbToHex(mocks.valid.hwb);
-        expect(rgbToHexValue instanceof Array).toBeTruthy();
-        expect(hslToHexValue instanceof Array).toBeTruthy();
-        expect(hwbToHexValue instanceof Array).toBeTruthy();
+describe('colorverter.*To*', () => {
+    it('should return color array', () => {
+        convertersMap.forEach((targetsMap, sourceName) => {
+            targetsMap.forEach((convertName, targetName) => {
+                const convert = colorverter[convertName].bind(colorverter);
+                const newColor = convert(mocks.validOne[sourceName]);
+                expect(newColor instanceof Array).toBeTruthy();
+            });
+        });
     });
 });
 
-describe('colorverter *2rgb', () => {
-    it('should return rgb color array', () => {
-        const hexToRgbValue = colorverter.hexToRgb(mocks.valid.hex);
-        const hslToRgbValue = colorverter.hslToRgb(mocks.valid.hsl);
-        const hwbToRgbValue = colorverter.hwbToRgb(mocks.valid.hwb);
-        expect(hexToRgbValue instanceof Array).toBeTruthy();
-        expect(hslToRgbValue instanceof Array).toBeTruthy();
-        expect(hwbToRgbValue instanceof Array).toBeTruthy();
-    });
-});
+describe('colorverter.*To*', () => {
+    it('should generate valid values', () => {
+        convertersMap.forEach((targetsMap, sourceName) => {
+            targetsMap.forEach((convertName, targetName) => {
+                const convert = colorverter[convertName].bind(colorverter);
 
-describe('colorverter *2hsl', () => {
-    it('should return hsl color array', () => {
-        const hexToHslValue = colorverter.hexToHsl(mocks.valid.hex);
-        const rgbToHslValue = colorverter.rgbToHsl(mocks.valid.rgb);
-        const hwbToHslValue = colorverter.hwbToHsl(mocks.valid.hwb);
-        expect(hexToHslValue instanceof Array).toBeTruthy();
-        expect(rgbToHslValue instanceof Array).toBeTruthy();
-        expect(hwbToHslValue instanceof Array).toBeTruthy();
-    });
-});
+                const generateName = generatorsMap.get(sourceName);
+                const generate = colorverter[generateName].bind(colorverter);
 
-describe('colorverter *2hwb', () => {
-    it('should return hwb color array', () => {
-        const hexToHwbValue = colorverter.hexToHwb(mocks.valid.hex);
-        const rgbToHwbValue = colorverter.rgbToHwb(mocks.valid.rgb);
-        const hslToHwbValue = colorverter.hslToHwb(mocks.valid.hsl);
-        expect(hexToHwbValue instanceof Array).toBeTruthy();
-        expect(rgbToHwbValue instanceof Array).toBeTruthy();
-        expect(hslToHwbValue instanceof Array).toBeTruthy();
+                const validateName = validatorsMap.get(targetName);
+                const validate = colorverter[validateName].bind(colorverter);
+
+                for (let i = 0; i < 999; i++) {
+                    const newRandom = convert(generate());
+                    const isValid = validate(newRandom);
+                    expect(isValid).toBeTruthy();
+                }
+            });
+        });
     });
 });
 
 // -----------------------------------------------------------------------------
-// testing conversion from hex
+// testing conversion
 // -----------------------------------------------------------------------------
 
-describe('colorverter.hexToRgb', () => {
-    it('should convert values properly', () => {
-        const newValue = colorverter.hexToRgb(mocks.valid.hex);
-        expect(newValue[0]).toBe(mocks.valid.rgb[0]);
-        expect(newValue[1]).toBe(mocks.valid.rgb[1]);
-        expect(newValue[2]).toBe(mocks.valid.rgb[2]);
-    });
-});
+describe('colorverter.*To*', () => {
+    it('should convert values to expected value', () => {
+        convertersMap.forEach((targetsMap, sourceName) => {
+            targetsMap.forEach((convertName, targetName) => {
+                const convert = colorverter[convertName].bind(colorverter);
 
-describe('colorverter.hexToHsl', () => {
-    it('should convert values properly', () => {
-        const newValue = colorverter.hexToHsl(mocks.valid.hex);
-        expect(newValue[0]).toBe(mocks.valid.hsl[0]);
-        expect(newValue[1]).toBe(mocks.valid.hsl[1]);
-        expect(newValue[2]).toBe(mocks.valid.hsl[2]);
-    });
-});
+                let generated = convert(mocks.validOne[sourceName]);
+                let expected = mocks.validOne[targetName];
+                let isSame = colorverter.isSameColor(generated, expected);
+                expect(isSame).toBeTruthy(`${generated} is not ${expected}`);
 
-describe('colorverter.hexToHwb', () => {
-    it('should convert values properly', () => {
-        const newValue = colorverter.hexToHwb(mocks.valid.hex);
-        expect(newValue[0]).toBe(mocks.valid.hwb[0]);
-        expect(newValue[1]).toBe(mocks.valid.hwb[1]);
-        expect(newValue[2]).toBe(mocks.valid.hwb[2]);
-    });
-});
-
-// -----------------------------------------------------------------------------
-// testing conversion from rgb
-// -----------------------------------------------------------------------------
-
-describe('colorverter.rgbToHex', () => {
-    it('should convert values properly', () => {
-        const newValue = colorverter.rgbToHex(mocks.valid.rgb);
-        expect(newValue[0]).toBe(mocks.valid.hex[0]);
-        expect(newValue[1]).toBe(mocks.valid.hex[1]);
-        expect(newValue[2]).toBe(mocks.valid.hex[2]);
-    });
-});
-
-describe('colorverter.rgbToHsl', () => {
-    it('should convert values properly', () => {
-        const newValue = colorverter.rgbToHsl(mocks.valid.rgb);
-        expect(newValue[0]).toBe(mocks.valid.hsl[0]);
-        expect(newValue[1]).toBe(mocks.valid.hsl[1]);
-        expect(newValue[2]).toBe(mocks.valid.hsl[2]);
-    });
-});
-
-describe('colorverter.rgbToHwb', () => {
-    it('should convert values properly', () => {
-        const newValue = colorverter.rgbToHwb(mocks.valid.rgb);
-        expect(newValue[0]).toBe(mocks.valid.hwb[0]);
-        expect(newValue[1]).toBe(mocks.valid.hwb[1]);
-        expect(newValue[2]).toBe(mocks.valid.hwb[2]);
-    });
-});
-
-// -----------------------------------------------------------------------------
-// testing conversion from hsl
-// -----------------------------------------------------------------------------
-
-describe('colorverter.hslToHex', () => {
-    it('should convert values properly', () => {
-        const newValue = colorverter.hslToHex(mocks.valid.hsl);
-        expect(newValue[0]).toBe(mocks.valid.hex[0]);
-        expect(newValue[1]).toBe(mocks.valid.hex[1]);
-        expect(newValue[2]).toBe(mocks.valid.hex[2]);
-    });
-});
-
-describe('colorverter.hslToRgb', () => {
-    it('should convert values properly', () => {
-        const newValue = colorverter.hslToRgb(mocks.valid.hsl);
-        expect(newValue[0]).toBe(mocks.valid.rgb[0]);
-        expect(newValue[1]).toBe(mocks.valid.rgb[1]);
-        expect(newValue[2]).toBe(mocks.valid.rgb[2]);
-    });
-});
-
-describe('colorverter.hslToHwb', () => {
-    it('should convert values properly', () => {
-        const newValue = colorverter.hslToHwb(mocks.valid.hsl);
-        expect(newValue[0]).toBe(mocks.valid.hwb[0]);
-        expect(newValue[1]).toBe(mocks.valid.hwb[1]);
-        expect(newValue[2]).toBe(mocks.valid.hwb[2]);
-    });
-});
-
-// -----------------------------------------------------------------------------
-// testing conversion from hwb
-// -----------------------------------------------------------------------------
-
-describe('colorverter.hwbToHex', () => {
-    it('should convert values properly', () => {
-        const newValue = colorverter.hwbToHex(mocks.valid.hwb);
-        expect(newValue[0]).toBe(mocks.valid.hex[0]);
-        expect(newValue[1]).toBe(mocks.valid.hex[1]);
-        expect(newValue[2]).toBe(mocks.valid.hex[2]);
-    });
-});
-
-describe('colorverter.hwbToRgb', () => {
-    it('should convert values properly', () => {
-        const newValue = colorverter.hwbToRgb(mocks.valid.hwb);
-        expect(newValue[0]).toBe(mocks.valid.rgb[0]);
-        expect(newValue[1]).toBe(mocks.valid.rgb[1]);
-        expect(newValue[2]).toBe(mocks.valid.rgb[2]);
-    });
-});
-
-describe('colorverter.hwbToHsl', () => {
-    it('should convert values properly', () => {
-        const newValue = colorverter.hwbToHsl(mocks.valid.hwb);
-        expect(newValue[0]).toBe(mocks.valid.hsl[0]);
-        expect(newValue[1]).toBe(mocks.valid.hsl[1]);
-        expect(newValue[2]).toBe(mocks.valid.hsl[2]);
+                generated = convert(mocks.validTwo[sourceName]);
+                expected = mocks.validTwo[targetName];
+                isSame = colorverter.isSameColor(generated, expected);
+                expect(isSame).toBeTruthy(`${generated} is not ${expected}`);
+            });
+        });
     });
 });
