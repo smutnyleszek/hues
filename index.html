@@ -24,21 +24,27 @@ layout: null
             {% include symbols.svg %}
         </div>
 
+        {% comment %}
         <header>
             <h1>hues</h1>
         </header>
+        {% endcomment %}
 
         <section>
+            {% comment %}
             <svg><use xlink:href="#symbol-sonar"></svg>
+            {% endcomment %}
 
             <div id="app">Loading...</div>
         </section>
 
+        {% comment %}
         <footer>
             <a href="{{ site.rootSiteUrl }}">
                 Leszek<br>Pietrzak<br>{{ site.time | date: '%Y' }}
             </a>
         </footer>
+        {% endcomment %}
 
         <script
             data-main="dist/scripts/main.js"
