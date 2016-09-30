@@ -3,7 +3,11 @@ class Colorverter {
         this._hexRegex = new RegExp('[0-9A-F]{2}', 'i');
     }
 
-    roundValues(color) {
+// -----------------------------------------------------------------------------
+// helpers
+// -----------------------------------------------------------------------------
+
+    _roundValues(color) {
         const safe = [];
         for (let i = 0; i < color.length; i++) {
             const part = color[i];
@@ -30,29 +34,49 @@ class Colorverter {
         return this._hexRegex.test(string);
     }
 
-    hex2rgb(hex) {
+// -----------------------------------------------------------------------------
+// conversion from hex
+// -----------------------------------------------------------------------------
+
+    hexToRgb(hex) {
         const red = this._hexToInt(hex[0]);
         const green = this._hexToInt(hex[1]);
         const blue = this._hexToInt(hex[2]);
         return [red, green, blue];
     }
 
-    hex2hsl(hex) {
-        return this.rgb2hsl(this.hex2rgb(hex));
+    hexToHsl(hex) {
+        return this._roundValues(this._hexToHslFloat(hex));
     }
 
-    hex2hwb(hex) {
-        return this.rgb2hwb(this.hex2rgb(hex));
+    _hexToHslFloat(hex) {
+        return this._rgbToHslFloat(this.hexToRgb(hex));
     }
 
-    rgb2hex(rgb) {
+    hexToHwb(hex) {
+        return this._roundValues(this._hexToHwbFloat(hex));
+    }
+
+    _hexToHwbFloat(hex) {
+        return this._rgbToHwbFloat(this.hexToRgb(hex));
+    }
+
+// -----------------------------------------------------------------------------
+// conversion from rgb
+// -----------------------------------------------------------------------------
+
+    rgbToHex(rgb) {
         const red16 = this._intToHex(rgb[0]);
         const green16 = this._intToHex(rgb[1]);
         const blue16 = this._intToHex(rgb[2]);
         return [red16, green16, blue16];
     }
 
-    rgb2hsl(rgb) {
+    rgbToHsl(rgb) {
+        return this._roundValues(this._rgbToHslFloat(rgb));
+    }
+
+    _rgbToHslFloat(rgb) {
         const red = rgb[0] / 255;
         const green = rgb[1] / 255;
         const blue = rgb[2] / 255;
@@ -93,23 +117,35 @@ class Colorverter {
         return [hue, saturation * 100, lightness * 100];
     }
 
-    rgb2hwb(rgb) {
+    rgbToHwb(rgb) {
+        return this._roundValues(this._rgbToHwbFloat(rgb));
+    }
+
+    _rgbToHwbFloat(rgb) {
         const red = rgb[0];
         const green = rgb[1];
         const blue = rgb[2];
 
-        const hue = this.rgb2hsl(rgb)[0];
+        const hue = this._rgbToHslFloat(rgb)[0];
         const whiteness = 1 / 255 * Math.min(red, Math.min(green, blue));
         const blackness = 1 - 1 / 255 * Math.max(red, Math.max(green, blue));
 
         return [hue, whiteness * 100, blackness * 100];
     }
 
-    hsl2hex(hsl) {
-        return this.rgb2hex(this.hsl2rgb(hsl));
+// -----------------------------------------------------------------------------
+// conversion from hsl
+// -----------------------------------------------------------------------------
+
+    hslToHex(hsl) {
+        return this.rgbToHex(this._hslToRgbFloat(hsl));
     }
 
-    hsl2rgb(hsl) {
+    hslToRgb(hsl) {
+        return this._roundValues(this._hslToRgbFloat(hsl));
+    }
+
+    _hslToRgbFloat(hsl) {
         const hue = hsl[0] / 360;
         const saturation = hsl[1] / 100;
         const lightness = hsl[2] / 100;
@@ -153,16 +189,28 @@ class Colorverter {
         return rgb;
     }
 
-    hsl2hwb(args) {
-        return this.rgb2hwb(this.hsl2rgb(args));
+    hslToHwb(hsl) {
+        return this._roundValues(this._hslToHwbFloat(hsl));
     }
 
-    hwb2hex(hwb) {
-        return this.rgb2hex(this.hwb2rgb(hwb));
+    _hslToHwbFloat(hsl) {
+        return this._rgbToHwbFloat(this._hslToRgbFloat(hsl));
+    }
+
+// -----------------------------------------------------------------------------
+// conversion from hwb
+// -----------------------------------------------------------------------------
+
+    hwbToHex(hwb) {
+        return this.rgbToHex(this._hwbToRgbFloat(hwb));
+    }
+
+    hwbToRgb(hwb) {
+        return this._roundValues(this._hwbToRgbFloat(hwb));
     }
 
     // http://dev.w3.org/csswg/css-color/#hwb-to-rgb
-    hwb2rgb(hwb) {
+    _hwbToRgbFloat(hwb) {
         const hue = hwb[0] / 360;
         let whiteness = hwb[1] / 100;
         let blackness = hwb[2] / 100;
@@ -225,8 +273,12 @@ class Colorverter {
         return [red * 255, green * 255, blue * 255];
     }
 
-    hwb2hsl(args) {
-        return this.rgb2hsl(this.hwb2rgb(args));
+    hwbToHsl(hwb) {
+        return this._roundValues(this._hwbToHslFloat(hwb));
+    }
+
+    _hwbToHslFloat(hwb) {
+        return this._rgbToHslFloat(this._hwbToRgbFloat(hwb));
     }
 }
 
