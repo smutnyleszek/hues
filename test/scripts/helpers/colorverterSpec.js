@@ -105,15 +105,21 @@ describe('colorverter.*To*', () => {
             targetsMap.forEach((convertName, targetName) => {
                 const convert = colorverter[convertName].bind(colorverter);
 
+                const errorPrefix = `From ${sourceName} to ${targetName}: `;
+
                 let generated = convert(mocks.validOne[sourceName]);
                 let expected = mocks.validOne[targetName];
                 let isSame = colorverter.isSameColor(generated, expected);
-                expect(isSame).toBeTruthy(`${generated} is not ${expected}`);
+                expect(isSame).toBeTruthy(
+                    `${errorPrefix}expected ${expected}, but got ${generated}`
+                );
 
                 generated = convert(mocks.validTwo[sourceName]);
                 expected = mocks.validTwo[targetName];
                 isSame = colorverter.isSameColor(generated, expected);
-                expect(isSame).toBeTruthy(`${generated} is not ${expected}`);
+                expect(isSame).toBeTruthy(
+                    `${errorPrefix}expected ${expected}, but got ${generated}`
+                );
             });
         });
     });
