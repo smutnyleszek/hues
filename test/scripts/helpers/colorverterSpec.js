@@ -100,7 +100,7 @@ describe('colorverter.*To*', () => {
 // -----------------------------------------------------------------------------
 
 describe('colorverter.*To*', () => {
-    it('should convert values to expected value', () => {
+    it('should convert colors to expected value', () => {
         convertersMap.forEach((targetsMap, sourceName) => {
             targetsMap.forEach((convertName, targetName) => {
                 const convert = colorverter[convertName].bind(colorverter);
