@@ -1,7 +1,56 @@
 ---
-layout: default
+layout: null
 ---
+<!DOCTYPE html>
+<html lang="{{ site.data.globals.appLang }}">
+    <head>
+        <title>{{ site.name }}</title>
+        <meta charset="utf-8">
+        <meta http-equiv="cleartype" content="on">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="keywords" content="{{ site.keywords }}">
+        <meta name="description" content="{{ site.description }}">
+        <meta name="author" content="{{ site.author }}">
+        <link rel="author" href="humans.txt">
+        <link rel="home" href="{{ site.baseurl }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/dist/styles/monolith.css?v1" media="all" rel="stylesheet">
+        <link rel="icon" href="/favicon.ico?v1">
+        <link rel="apple-touch-icon" href="/dist/images/hues-logo-1440.png?v1">
+    </head>
 
-<svg><use xlink:href="#symbol-sonar"></svg>
+    <body>
+        <div style="display: none;">
+            {% include symbols.svg %}
+        </div>
 
-<div id="app">Loading...</div>
+        {% comment %}
+        <header>
+            <h1>hues</h1>
+        </header>
+        {% endcomment %}
+
+        <section>
+            {% comment %}
+            <svg><use xlink:href="#symbol-sonar"></svg>
+            {% endcomment %}
+
+            <div id="app">Loading...</div>
+        </section>
+
+        {% comment %}
+        <footer>
+            <a href="{{ site.rootSiteUrl }}">
+                Leszek<br>Pietrzak<br>{{ site.time | date: '%Y' }}
+            </a>
+        </footer>
+        {% endcomment %}
+
+        <script
+            data-main="dist/scripts/main.js"
+            src="dist/scripts/npmdeps/require.js"
+        ></script>
+
+        <script src="dist/scripts/config.js"></script>
+    </body>
+</html>

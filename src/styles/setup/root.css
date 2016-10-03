@@ -1,0 +1,54 @@
+/* -----------------------------------------------------------------------------
+root stuff and normalizations
+----------------------------------------------------------------------------- */
+
+/* Root line height is being used in many places throughout the project.
+It is recommended to keep all vertical margins and heights of elements to match
+the leading. Use caution when adding borders or when using vertical-align middle
+as they tend to add unwanted pixels, thus braking the flow. */
+
+@import '_config.css';
+
+html {
+    background-color: var(--app-bg-c);
+
+    min-height: 100%;
+
+    line-height: var(--rootLineHeight);
+
+    color: var(--app-txt-c);
+
+    font-family: var(--rootFontFamily);
+    font-size: var(--rootFontSize);
+    font-weight: var(--rootFontWeight);
+    text-rendering: optimizeLegibility;
+
+    box-sizing: border-box;
+}
+
+/* clever page scaling with root font size changes */
+
+@media (--bigger) {
+    html {
+        font-size: var(--rootFontSizeBigger);
+    }
+}
+
+@media (--smaller) {
+    html {
+        font-size: var(--rootFontSizeSmaller);
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: calc(var(--leading-s) * 2) var(--leading-s);
+    width: 100%;
+    max-width: var(--app-content-w);
+}

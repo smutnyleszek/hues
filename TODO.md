@@ -63,7 +63,47 @@ Elments that tool should be made of:
 
 Library color should have these informations:
 - name
+- id/slug (hex?)
 - value (decide whether base should be HEX, RGB or HWB)
 - general hue group
 - source (if it has one; could be Crayola, Resene, etc.)
 - additional information/short description (?)
+
+Scripts idea:
+
+```
+paster/
+    pasterRenderer.js
+visualiser/
+    currentColor.js
+    currentColorRenderer.js
+    guessedColorRenderer.js
+helpers/
+    colorFinder.js
+    colorValidator.js
+spaces/
+    spacesRenderer.js
+    spacesLibrary.js
+    space.js
+colors/
+    colorsRenderer.js
+    colorsLibrary.js
+    color.js
+config.js
+main.js
+```
+
+start with simple color converter:
+- four spaces components that updates on currentColor
+- store: currentColor (spaceId, colorValue)
+- converter service
+
+then add library:
+- multiple colors components that onClick set color value in currentColor
+
+then add visualiser:
+- visualiser component that updates on currentColor and displays color
+
+then add guesser:
+- guesser service that finds closes color from library (returns color and similarity score - 1=exact)
+- visualiser shows guessed color with name, hue and similarity

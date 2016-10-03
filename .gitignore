@@ -2,14 +2,12 @@
 _site
 .jekyll-metadata
 
-# grunt temp files
-.grunt
-_SpecRunner.html
-
-# assets
+# NPM
 node_modules
+npm-debug.log
+
+test/coverage
 
 # OS generated
 .DS_Store
-ehthumbs.db
 Thumbs.db
