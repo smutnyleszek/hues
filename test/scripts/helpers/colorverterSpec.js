@@ -1,26 +1,5 @@
 import colorverter from 'helpers/colorverter';
 
-const testPairs = [
-    ['hex', ['00', '7f', 'ff'], 'rgb', [0, 127, 255]],
-    ['hex', ['00', '7f', 'ff'], 'hsl', [210, 100, 50]],
-    ['hex', ['00', '7f', 'ff'], 'hwb', [210, 0, 0]],
-    ['rgb', [0, 127, 255], 'hex', ['00', '7f', 'ff']],
-    ['rgb', [0, 127, 255], 'hwb', [210, 0, 0]],
-    ['hsl', [210, 100, 50], 'hex', ['00', '7f', 'ff']],
-    ['hsl', [210, 100, 50], 'rgb', [0, 127, 255]],
-    ['hsl', [210, 100, 50], 'hwb', [210, 0, 0]],
-    ['hwb', [210, 0, 0], 'hex', ['00', '80', 'ff']],
-    ['hwb', [210, 0, 0], 'rgb', [0, 128, 255]],
-    ['hwb', [210, 0, 0], 'hsl', [210, 100, 50]],
-    // there are some RGB color variations that can't be displayed with HSL:
-    ['rgb', [0, 125, 255], 'hsl', [211, 100, 50]],
-    ['rgb', [0, 126, 255], 'hsl', [210, 100, 50]],
-    ['rgb', [0, 127, 255], 'hsl', [210, 100, 50]],
-    ['rgb', [0, 128, 255], 'hsl', [210, 100, 50]],
-    ['rgb', [0, 129, 255], 'hsl', [210, 100, 50]],
-    ['rgb', [0, 130, 255], 'hsl', [209, 100, 50]]
-];
-
 const hexConvertersMap = new Map([
     ['rgb', 'hexToRgb'],
     ['hsl', 'hexToHsl'],
@@ -88,6 +67,22 @@ describe('colorverter.*To*', () => {
 });
 
 describe('colorverter.*To*', () => {
+    it('should only allow proper value input', () => {
+        convertersMap.forEach((targetsMap, sourceName) => {
+            targetsMap.forEach((convertName, targetName) => {
+                const convert = colorverter[convertName].bind(colorverter);
+
+                expect(() => {convert('#fff');}).toThrow();
+                expect(() => {convert('red');}).toThrow();
+                expect(() => {convert(0, 0, 0);}).toThrow();
+                expect(() => {convert([0, 0, 0, 1]);}).toThrow();
+                expect(() => {convert([100, 100]);}).toThrow();
+            });
+        });
+    });
+});
+
+describe('colorverter.*To*', () => {
     it('should generate valid values', () => {
         convertersMap.forEach((targetsMap, sourceName) => {
             targetsMap.forEach((convertName, targetName) => {
@@ -115,6 +110,42 @@ describe('colorverter.*To*', () => {
 
 describe('colorverter.*To*', () => {
     it('should convert colors to expected value', () => {
+        const testPairs = [
+            ['hex', ['00', '7f', 'ff'], 'rgb', [0, 127, 255]],
+            ['hex', ['00', '7f', 'ff'], 'hsl', [210, 100, 50]],
+            ['hex', ['00', '7f', 'ff'], 'hwb', [210, 0, 0]],
+            ['hex', ['ab', 'cd', 'ef'], 'rgb', [171, 205, 239]],
+            ['rgb', [0, 127, 255], 'hex', ['00', '7f', 'ff']],
+            ['rgb', [0, 127, 255], 'hwb', [210, 0, 0]],
+            ['hsl', [210, 100, 50], 'hex', ['00', '7f', 'ff']],
+            ['hsl', [210, 100, 50], 'rgb', [0, 127, 255]],
+            ['hsl', [210, 100, 50], 'hwb', [210, 0, 0]],
+            ['hsl', [96, 48, 59], 'hwb', [96, 39, 21]],
+            ['hwb', [210, 0, 0], 'hex', ['00', '80', 'ff']],
+            ['hwb', [210, 0, 0], 'rgb', [0, 128, 255]],
+            ['hwb', [210, 0, 0], 'hsl', [210, 100, 50]],
+            ['hwb', [0, 0, 0], 'rgb', [255, 0, 0]],
+            ['hwb', [0, 20, 40], 'rgb', [153, 51, 51]],
+            ['hwb', [0, 40, 40], 'rgb', [153, 102, 102]],
+            ['hwb', [0, 40, 20], 'rgb', [204, 102, 102]],
+            ['hwb', [120, 0, 0], 'rgb', [0, 255, 0]],
+            ['hwb', [120, 20, 40], 'rgb', [51, 153, 51]],
+            ['hwb', [120, 40, 40], 'rgb', [102, 153, 102]],
+            ['hwb', [120, 40, 20], 'rgb', [102, 204, 102]],
+            ['hwb', [240, 0, 0], 'rgb', [0, 0, 255]],
+            ['hwb', [240, 20, 40], 'rgb', [51, 51, 153]],
+            ['hwb', [240, 40, 40], 'rgb', [102, 102, 153]],
+            ['hwb', [240, 40, 20], 'rgb', [102, 102, 204]],
+            // there are some RGB color variations
+            // that can't be displayed with HSL:
+            ['rgb', [0, 125, 255], 'hsl', [211, 100, 50]],
+            ['rgb', [0, 126, 255], 'hsl', [210, 100, 50]],
+            ['rgb', [0, 127, 255], 'hsl', [210, 100, 50]],
+            ['rgb', [0, 128, 255], 'hsl', [210, 100, 50]],
+            ['rgb', [0, 129, 255], 'hsl', [210, 100, 50]],
+            ['rgb', [0, 130, 255], 'hsl', [209, 100, 50]]
+        ];
+
         for (const testPair of testPairs) {
             const from = testPair[0];
             const fromVal = testPair[1];
@@ -130,6 +161,31 @@ describe('colorverter.*To*', () => {
                 `From ${from} to ${to}: expected ${toVal}, got ${generated}`
             );
         }
+    });
+});
+
+describe('colorverter.*To*', () => {
+    it('should keep black black', () => {
+        const black = {
+            hex: ['00', '00', '00'],
+            rgb: [0, 0, 0],
+            hsl: [0, 0, 0],
+            hwb: [0, 0, 100]
+        };
+
+        convertersMap.forEach((targetsMap, sourceName) => {
+            targetsMap.forEach((convertName, targetName) => {
+                const convert = colorverter[convertName].bind(colorverter);
+                const newColor = convert(black[sourceName]);
+                const isSame = colorverter.isSameColor(
+                    newColor,
+                    black[targetName]
+                );
+                expect(isSame).toBeTruthy(
+                    `expected ${black.targetName}, got ${newColor}`
+                );
+            });
+        });
     });
 });
 
