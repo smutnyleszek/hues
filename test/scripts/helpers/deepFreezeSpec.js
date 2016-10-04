@@ -1,7 +1,7 @@
 import deepFreeze from 'helpers/deepFreeze';
 
 describe('deepFreeze', () => {
-    it('should froze all nested object\'s properties', () => {
+    it('should freeze all nested object\'s properties', () => {
         const sampleObj = deepFreeze({
             a: {
                 b: {
