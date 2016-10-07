@@ -1,4 +1,4 @@
-import CurrentColorActions from 'currentColorActions';
+import CurrentColorActions from './currentColorActions';
 import myAlt from 'myAlt';
 
 class CurrentColorStore {

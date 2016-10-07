@@ -1,4 +1,4 @@
-define(['exports', 'myAlt'], function (exports, _myAlt) {
+define(['exports', './myAlt'], function (exports, _myAlt) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {

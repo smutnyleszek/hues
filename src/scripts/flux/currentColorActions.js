@@ -1,4 +1,4 @@
-import myAlt from 'myAlt';
+import myAlt from './myAlt';
 
 class CurrentColorActions {
     updateCurrentColor(color) {

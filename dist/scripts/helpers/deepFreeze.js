@@ -11,6 +11,10 @@ define(['exports'], function (exports) {
         return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
 
+    // -----------------------------------------------------------------------------
+    // deepFreeze -- deeply (includes nested) freezes objects, Maps and Sets.
+    // -----------------------------------------------------------------------------
+
     function deepFreeze(obj) {
         if (obj instanceof Map) {
             obj.clear = obj.delete = obj.set = function () {

@@ -1,3 +1,9 @@
+// -----------------------------------------------------------------------------
+// colorverter -- a tool for converting colors from one space to another.
+// Currently supported color spaces: HEX, RGB, HSL and HWB.
+// It also can generate a random color and validate object if is a proper color.
+// -----------------------------------------------------------------------------
+
 class Colorverter {
     constructor() {
         this._hexRegex = new RegExp('[0-9A-F]{2}', 'i');

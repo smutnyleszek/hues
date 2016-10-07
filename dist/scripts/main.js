@@ -1,11 +1,11 @@
-define(['components/CurrentColor', 'react', 'react-dom'], function (_CurrentColor, _react, _reactDom) {
+define(['react', 'react-dom', 'spaces/SpacesList'], function (_react, _reactDom, _SpacesList) {
     'use strict';
-
-    var _CurrentColor2 = _interopRequireDefault(_CurrentColor);
 
     var _react2 = _interopRequireDefault(_react);
 
     var _reactDom2 = _interopRequireDefault(_reactDom);
+
+    var _SpacesList2 = _interopRequireDefault(_SpacesList);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -13,5 +13,5 @@ define(['components/CurrentColor', 'react', 'react-dom'], function (_CurrentColo
         };
     }
 
-    _reactDom2.default.render(_react2.default.createElement(_CurrentColor2.default), document.getElementById('app'));
+    _reactDom2.default.render(_react2.default.createElement(_SpacesList2.default), document.getElementById('app'));
 });

@@ -1,8 +1,8 @@
-import CurrentColor from 'components/CurrentColor';
 import React from 'react';
 import ReactDom from 'react-dom';
+import SpacesList from 'spaces/SpacesList';
 
 ReactDom.render(
-    React.createElement(CurrentColor),
+    React.createElement(SpacesList),
     document.getElementById('app')
 );

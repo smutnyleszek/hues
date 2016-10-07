@@ -1,3 +1,7 @@
+// -----------------------------------------------------------------------------
+// deepFreeze -- deeply (includes nested) freezes objects, Maps and Sets.
+// -----------------------------------------------------------------------------
+
 function deepFreeze(obj) {
     if (obj instanceof Map) {
         obj.clear = obj.delete = obj.set = function () {

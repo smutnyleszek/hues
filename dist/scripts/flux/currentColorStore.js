@@ -1,4 +1,4 @@
-define(['exports', 'currentColorActions', 'myAlt'], function (exports, _currentColorActions, _myAlt) {
+define(['exports', './currentColorActions', 'myAlt'], function (exports, _currentColorActions, _myAlt) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
