@@ -43,6 +43,12 @@
         "src/scripts"
       ],
       "quiet": false
+    },
+    "scripts:test": {
+      "patterns": [
+        "test/scripts"
+      ],
+      "quiet": false
     }
   },
   "devDependencies": {

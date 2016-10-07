@@ -34,6 +34,11 @@ define(['exports'], function (exports) {
             _classCallCheck(this, Colorverter);
 
             this._hexRegex = new RegExp('[0-9A-F]{2}', 'i');
+            this._errors = Object.freeze({
+                invalidValue: function invalidValue(colorVal) {
+                    return 'Not a proper color value: \'' + colorVal + '\'!';
+                }
+            });
         }
 
         // -----------------------------------------------------------------------------
@@ -65,11 +70,6 @@ define(['exports'], function (exports) {
             key: '_hexToInt',
             value: function _hexToInt(hex) {
                 return parseInt(hex, 16);
-            }
-        }, {
-            key: '_isColor',
-            value: function _isColor(color) {
-                return color instanceof Array === true;
             }
         }, {
             key: '_isIntInRange',
@@ -115,9 +115,22 @@ define(['exports'], function (exports) {
                 return this.rgbToHwb(this.getRandomRgb());
             }
         }, {
+            key: 'isColor',
+            value: function isColor(color) {
+                // color needs to be an array
+                if (color instanceof Array !== true) {
+                    return false;
+                }
+                // color needs to have 3 parameters
+                if (color.length !== 3) {
+                    return false;
+                }
+                return true;
+            }
+        }, {
             key: 'isHex',
             value: function isHex(hex) {
-                if (!this._isColor(hex)) {
+                if (!this.isColor(hex)) {
                     return false;
                 }
                 var isHexR = this._isHexValue(hex[0]);
@@ -128,7 +141,7 @@ define(['exports'], function (exports) {
         }, {
             key: 'isRgb',
             value: function isRgb(rgb) {
-                if (!this._isColor(rgb)) {
+                if (!this.isColor(rgb)) {
                     return false;
                 }
                 var _iteratorNormalCompletion = true;
@@ -163,7 +176,7 @@ define(['exports'], function (exports) {
         }, {
             key: 'isHsl',
             value: function isHsl(hsl) {
-                if (!this._isColor(hsl)) {
+                if (!this.isColor(hsl)) {
                     return false;
                 }
                 if (!this._isIntInRange(hsl[0], 0, 360)) {
@@ -180,7 +193,7 @@ define(['exports'], function (exports) {
         }, {
             key: 'isHwb',
             value: function isHwb(hwb) {
-                if (!this._isColor(hwb)) {
+                if (!this.isColor(hwb)) {
                     return false;
                 }
                 if (!this._isIntInRange(hwb[0], 0, 360)) {
@@ -197,7 +210,7 @@ define(['exports'], function (exports) {
         }, {
             key: 'isSameColor',
             value: function isSameColor(first, second) {
-                if (!this._isColor(first) || !this._isColor(second)) {
+                if (!this.isColor(first) || !this.isColor(second)) {
                     return false;
                 }
                 // different lenght means different array
@@ -215,51 +228,80 @@ define(['exports'], function (exports) {
             }
         }, {
             key: 'hexToRgb',
-            value: function hexToRgb(hex) {
-                var red = this._hexToInt(hex[0]);
-                var green = this._hexToInt(hex[1]);
-                var blue = this._hexToInt(hex[2]);
+            value: function hexToRgb(colorVal) {
+                if (!this.isColor(colorVal)) {
+                    throw new TypeError(this._errors.invalidValue(colorVal));
+                }
+
+                var red = this._hexToInt(colorVal[0]);
+                var green = this._hexToInt(colorVal[1]);
+                var blue = this._hexToInt(colorVal[2]);
                 return [red, green, blue];
             }
         }, {
             key: 'hexToHsl',
-            value: function hexToHsl(hex) {
-                return this._roundValues(this._hexToHslFloat(hex));
-            }
-        }, {
-            key: '_hexToHslFloat',
-            value: function _hexToHslFloat(hex) {
-                return this._rgbToHslFloat(this.hexToRgb(hex));
+            value: function hexToHsl(colorVal) {
+                if (!this.isColor(colorVal)) {
+                    throw new TypeError(this._errors.invalidValue(colorVal));
+                }
+
+                return this._roundValues(this._hexToHslFloat(colorVal));
             }
         }, {
             key: 'hexToHwb',
-            value: function hexToHwb(hex) {
-                return this._roundValues(this._hexToHwbFloat(hex));
+            value: function hexToHwb(colorVal) {
+                if (!this.isColor(colorVal)) {
+                    throw new TypeError(this._errors.invalidValue(colorVal));
+                }
+
+                return this._roundValues(this._hexToHwbFloat(colorVal));
+            }
+        }, {
+            key: '_hexToHslFloat',
+            value: function _hexToHslFloat(colorVal) {
+                return this._rgbToHslFloat(this.hexToRgb(colorVal));
             }
         }, {
             key: '_hexToHwbFloat',
-            value: function _hexToHwbFloat(hex) {
-                return this._rgbToHwbFloat(this.hexToRgb(hex));
+            value: function _hexToHwbFloat(colorVal) {
+                return this._rgbToHwbFloat(this.hexToRgb(colorVal));
             }
         }, {
             key: 'rgbToHex',
-            value: function rgbToHex(rgb) {
-                var red16 = this._intToHex(rgb[0]);
-                var green16 = this._intToHex(rgb[1]);
-                var blue16 = this._intToHex(rgb[2]);
+            value: function rgbToHex(colorVal) {
+                if (!this.isColor(colorVal)) {
+                    throw new TypeError(this._errors.invalidValue(colorVal));
+                }
+
+                var red16 = this._intToHex(colorVal[0]);
+                var green16 = this._intToHex(colorVal[1]);
+                var blue16 = this._intToHex(colorVal[2]);
                 return [red16, green16, blue16];
             }
         }, {
             key: 'rgbToHsl',
-            value: function rgbToHsl(rgb) {
-                return this._roundValues(this._rgbToHslFloat(rgb));
+            value: function rgbToHsl(colorVal) {
+                if (!this.isColor(colorVal)) {
+                    throw new TypeError(this._errors.invalidValue(colorVal));
+                }
+
+                return this._roundValues(this._rgbToHslFloat(colorVal));
+            }
+        }, {
+            key: 'rgbToHwb',
+            value: function rgbToHwb(colorVal) {
+                if (!this.isColor(colorVal)) {
+                    throw new TypeError(this._errors.invalidValue(colorVal));
+                }
+
+                return this._roundValues(this._rgbToHwbFloat(colorVal));
             }
         }, {
             key: '_rgbToHslFloat',
-            value: function _rgbToHslFloat(rgb) {
-                var red = rgb[0] / 255;
-                var green = rgb[1] / 255;
-                var blue = rgb[2] / 255;
+            value: function _rgbToHslFloat(colorVal) {
+                var red = colorVal[0] / 255;
+                var green = colorVal[1] / 255;
+                var blue = colorVal[2] / 255;
 
                 var min = Math.min(red, green, blue);
                 var max = Math.max(red, green, blue);
@@ -297,18 +339,13 @@ define(['exports'], function (exports) {
                 return [hue, saturation * 100, lightness * 100];
             }
         }, {
-            key: 'rgbToHwb',
-            value: function rgbToHwb(rgb) {
-                return this._roundValues(this._rgbToHwbFloat(rgb));
-            }
-        }, {
             key: '_rgbToHwbFloat',
-            value: function _rgbToHwbFloat(rgb) {
-                var red = rgb[0];
-                var green = rgb[1];
-                var blue = rgb[2];
+            value: function _rgbToHwbFloat(colorVal) {
+                var red = colorVal[0];
+                var green = colorVal[1];
+                var blue = colorVal[2];
 
-                var hue = this._rgbToHslFloat(rgb)[0];
+                var hue = this._rgbToHslFloat(colorVal)[0];
                 var whiteness = 1 / 255 * Math.min(red, Math.min(green, blue));
                 var blackness = 1 - 1 / 255 * Math.max(red, Math.max(green, blue));
 
@@ -316,20 +353,37 @@ define(['exports'], function (exports) {
             }
         }, {
             key: 'hslToHex',
-            value: function hslToHex(hsl) {
-                return this.rgbToHex(this._hslToRgbFloat(hsl));
+            value: function hslToHex(colorVal) {
+                if (!this.isColor(colorVal)) {
+                    throw new TypeError(this._errors.invalidValue(colorVal));
+                }
+
+                return this.rgbToHex(this._hslToRgbFloat(colorVal));
             }
         }, {
             key: 'hslToRgb',
-            value: function hslToRgb(hsl) {
-                return this._roundValues(this._hslToRgbFloat(hsl));
+            value: function hslToRgb(colorVal) {
+                if (!this.isColor(colorVal)) {
+                    throw new TypeError(this._errors.invalidValue(colorVal));
+                }
+
+                return this._roundValues(this._hslToRgbFloat(colorVal));
+            }
+        }, {
+            key: 'hslToHwb',
+            value: function hslToHwb(colorVal) {
+                if (!this.isColor(colorVal)) {
+                    throw new TypeError(this._errors.invalidValue(colorVal));
+                }
+
+                return this._roundValues(this._hslToHwbFloat(colorVal));
             }
         }, {
             key: '_hslToRgbFloat',
-            value: function _hslToRgbFloat(hsl) {
-                var hue = hsl[0] / 360;
-                var sat = hsl[1] / 100;
-                var lum = hsl[2] / 100;
+            value: function _hslToRgbFloat(colorVal) {
+                var hue = colorVal[0] / 360;
+                var sat = colorVal[1] / 100;
+                var lum = colorVal[2] / 100;
 
                 var q = null;
                 if (lum <= 0.5) {
@@ -370,31 +424,43 @@ define(['exports'], function (exports) {
                 }
             }
         }, {
-            key: 'hslToHwb',
-            value: function hslToHwb(hsl) {
-                return this._roundValues(this._hslToHwbFloat(hsl));
-            }
-        }, {
             key: '_hslToHwbFloat',
-            value: function _hslToHwbFloat(hsl) {
-                return this._rgbToHwbFloat(this._hslToRgbFloat(hsl));
+            value: function _hslToHwbFloat(colorVal) {
+                return this._rgbToHwbFloat(this._hslToRgbFloat(colorVal));
             }
         }, {
             key: 'hwbToHex',
-            value: function hwbToHex(hwb) {
-                return this.rgbToHex(this._hwbToRgbFloat(hwb));
+            value: function hwbToHex(colorVal) {
+                if (!this.isColor(colorVal)) {
+                    throw new TypeError(this._errors.invalidValue(colorVal));
+                }
+
+                return this.rgbToHex(this._hwbToRgbFloat(colorVal));
             }
         }, {
             key: 'hwbToRgb',
-            value: function hwbToRgb(hwb) {
-                return this._roundValues(this._hwbToRgbFloat(hwb));
+            value: function hwbToRgb(colorVal) {
+                if (!this.isColor(colorVal)) {
+                    throw new TypeError(this._errors.invalidValue(colorVal));
+                }
+
+                return this._roundValues(this._hwbToRgbFloat(colorVal));
+            }
+        }, {
+            key: 'hwbToHsl',
+            value: function hwbToHsl(colorVal) {
+                if (!this.isColor(colorVal)) {
+                    throw new TypeError(this._errors.invalidValue(colorVal));
+                }
+
+                return this._roundValues(this._hwbToHslFloat(colorVal));
             }
         }, {
             key: '_hwbToRgbFloat',
-            value: function _hwbToRgbFloat(hwb) {
-                var hue = hwb[0] / 360;
-                var whiteness = hwb[1] / 100;
-                var blackness = hwb[2] / 100;
+            value: function _hwbToRgbFloat(colorVal) {
+                var hue = colorVal[0] / 360;
+                var whiteness = colorVal[1] / 100;
+                var blackness = colorVal[2] / 100;
                 var ratio = whiteness + blackness;
 
                 // whiteness + blackness cant be > 1
@@ -448,20 +514,15 @@ define(['exports'], function (exports) {
                         blue = n;
                         break;
                     default:
-                        throw new Error('unproper case ' + i + ' for HWB: ' + hwb);
+                        throw new Error('unproper case ' + i + ' for HWB: ' + colorVal);
                 }
 
                 return [red * 255, green * 255, blue * 255];
             }
         }, {
-            key: 'hwbToHsl',
-            value: function hwbToHsl(hwb) {
-                return this._roundValues(this._hwbToHslFloat(hwb));
-            }
-        }, {
             key: '_hwbToHslFloat',
-            value: function _hwbToHslFloat(hwb) {
-                return this._rgbToHslFloat(this._hwbToRgbFloat(hwb));
+            value: function _hwbToHslFloat(colorVal) {
+                return this._rgbToHslFloat(this._hwbToRgbFloat(colorVal));
             }
         }]);
 
