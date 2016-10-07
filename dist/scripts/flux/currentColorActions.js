@@ -1,11 +1,9 @@
-define(['exports', '../actions/myActions', '../myAlt'], function (exports, _myActions, _myAlt) {
+define(['exports', 'myAlt'], function (exports, _myAlt) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-
-    var _myActions2 = _interopRequireDefault(_myActions);
 
     var _myAlt2 = _interopRequireDefault(_myAlt);
 
@@ -39,28 +37,20 @@ define(['exports', '../actions/myActions', '../myAlt'], function (exports, _myAc
         };
     }();
 
-    var CurrentColorStore = function () {
-        function CurrentColorStore() {
-            _classCallCheck(this, CurrentColorStore);
-
-            this.spaceId = null;
-            this.colorValue = null;
-
-            this.bindListeners({
-                handleCurrentColorChange: _myActions2.default.UPDATE_CURRENT_COLOR
-            });
+    var CurrentColorActions = function () {
+        function CurrentColorActions() {
+            _classCallCheck(this, CurrentColorActions);
         }
 
-        _createClass(CurrentColorStore, [{
-            key: 'handleCurrentColorChange',
-            value: function handleCurrentColorChange(newColor) {
-                this.spaceId = newColor.spaceId;
-                this.colorValue = newColor.value;
+        _createClass(CurrentColorActions, [{
+            key: 'updateCurrentColor',
+            value: function updateCurrentColor(color) {
+                return color;
             }
         }]);
 
-        return CurrentColorStore;
+        return CurrentColorActions;
     }();
 
-    exports.default = _myAlt2.default.createStore(CurrentColorStore, 'CurrentColorStore');
+    exports.default = _myAlt2.default.createActions(CurrentColorActions);
 });

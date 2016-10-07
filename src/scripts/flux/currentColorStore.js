@@ -1,5 +1,5 @@
-import MyActions from '../actions/myActions';
-import myAlt from '../myAlt';
+import CurrentColorActions from 'currentColorActions';
+import myAlt from 'myAlt';
 
 class CurrentColorStore {
     constructor() {
@@ -7,7 +7,7 @@ class CurrentColorStore {
         this.colorValue = null;
 
         this.bindListeners({
-            handleCurrentColorChange: MyActions.UPDATE_CURRENT_COLOR
+            handleCurrentColorChange: CurrentColorActions.UPDATE_CURRENT_COLOR
         });
     }
 
