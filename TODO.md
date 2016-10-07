@@ -89,7 +89,7 @@ colors/
     colorsRenderer.js
     colorsLibrary.js
     color.js
-config.js
+requireConfig.js
 main.js
 ```
 
