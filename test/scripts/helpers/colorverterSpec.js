@@ -53,7 +53,7 @@ function getConverter(from, to) {
 describe('colorverter.*To*', () => {
     it('should return color array', () => {
         convertersMap.forEach((targetsMap, sourceName) => {
-            targetsMap.forEach((convertName, targetName) => {
+            targetsMap.forEach((convertName) => {
                 const convert = colorverter[convertName].bind(colorverter);
 
                 const generateName = generatorsMap.get(sourceName);
@@ -68,15 +68,24 @@ describe('colorverter.*To*', () => {
 
 describe('colorverter.*To*', () => {
     it('should only allow proper value input', () => {
-        convertersMap.forEach((targetsMap, sourceName) => {
-            targetsMap.forEach((convertName, targetName) => {
+        convertersMap.forEach((targetsMap) => {
+            targetsMap.forEach((convertName) => {
                 const convert = colorverter[convertName].bind(colorverter);
 
-                expect(() => {convert('#fff');}).toThrow();
-                expect(() => {convert('red');}).toThrow();
-                expect(() => {convert(0, 0, 0);}).toThrow();
-                expect(() => {convert([0, 0, 0, 1]);}).toThrow();
-                expect(() => {convert([100, 100]);}).toThrow();
+                let criminal = () => {convert('#fff');};
+                expect(criminal).toThrow();
+
+                criminal = () => {convert('red');};
+                expect(criminal).toThrow();
+
+                criminal = () => {convert(0, 0, 0);};
+                expect(criminal).toThrow();
+
+                criminal = () => {convert([0, 0, 0, 1]);};
+                expect(criminal).toThrow();
+
+                criminal = () => {convert([100, 100]);};
+                expect(criminal).toThrow();
             });
         });
     });
