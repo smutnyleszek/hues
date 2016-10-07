@@ -35,27 +35,6 @@ class Colorverter {
         return parseInt(hex, 16);
     }
 
-    _isIntInRange(number, min, max) {
-        if (!Number.isInteger(number)) {
-            return false;
-        }
-
-        if (number < min) {
-            return false;
-        } else if (number > max) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    _isHexValue(hexValue) {
-        if (typeof hexValue !== 'string') {
-            return false;
-        }
-        return this._hexRegex.test(hexValue);
-    }
-
 // -----------------------------------------------------------------------------
 // random color generators
 // -----------------------------------------------------------------------------
@@ -100,10 +79,19 @@ class Colorverter {
         if (!this.isColor(hex)) {
             return false;
         }
-        const isHexR = this._isHexValue(hex[0]);
-        const isHexG = this._isHexValue(hex[1]);
-        const isHexB = this._isHexValue(hex[2]);
-        return isHexR && isHexG && isHexB;
+
+        let isValuesInRange = true;
+        let isValuesHex = true;
+        for (const value of hex) {
+            if (!this._isHexValue(value)) {
+                isValuesHex = false;
+            }
+            if (!this._isIntInRange(this._hexToInt(value), 0, 255)) {
+                isValuesInRange = false;
+            }
+        }
+
+        return isValuesHex && isValuesInRange;
     }
 
     isRgb(rgb) {
@@ -166,6 +154,27 @@ class Colorverter {
             }
         }
         return isSame;
+    }
+
+    _isIntInRange(number, min, max) {
+        if (!Number.isInteger(number)) {
+            return false;
+        }
+
+        if (number < min) {
+            return false;
+        } else if (number > max) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    _isHexValue(hexValue) {
+        if (typeof hexValue !== 'string') {
+            return false;
+        }
+        return this._hexRegex.test(hexValue);
     }
 
 // -----------------------------------------------------------------------------

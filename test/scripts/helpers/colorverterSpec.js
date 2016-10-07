@@ -223,3 +223,101 @@ describe('colorverter.hwbToRgb', () => {
         }
     });
 });
+
+// -----------------------------------------------------------------------------
+// testing random generators
+// -----------------------------------------------------------------------------
+
+describe('colorverter.getRandom*', () => {
+    it('should return proper HEX color', () => {
+        for (let i = 0; i < 999; i++) {
+            const newRandom = colorverter.getRandomHex();
+            const isValid = colorverter.isHex(newRandom);
+            expect(isValid).toBeTruthy();
+        }
+    });
+
+    it('should return proper RGB color', () => {
+        for (let i = 0; i < 999; i++) {
+            const newRandom = colorverter.getRandomRgb();
+            const isValid = colorverter.isRgb(newRandom);
+            expect(isValid).toBeTruthy();
+        }
+    });
+
+    it('should return proper HSL color', () => {
+        for (let i = 0; i < 999; i++) {
+            const newRandom = colorverter.getRandomHsl();
+            const isValid = colorverter.isHsl(newRandom);
+            expect(isValid).toBeTruthy();
+        }
+    });
+
+    it('should return proper HWB color', () => {
+        for (let i = 0; i < 999; i++) {
+            const newRandom = colorverter.getRandomHwb();
+            const isValid = colorverter.isHwb(newRandom);
+            expect(isValid).toBeTruthy();
+        }
+    });
+});
+
+// -----------------------------------------------------------------------------
+// testing validation
+// -----------------------------------------------------------------------------
+
+describe('colorverter.isColor', () => {
+    it('should fail for non-arrays', () => {
+        expect(colorverter.isColor('#fff')).toBeFalsy();
+        expect(colorverter.isColor('red')).toBeFalsy();
+        expect(colorverter.isColor('rebeccapurple')).toBeFalsy();
+        expect(colorverter.isColor({r: 255, g: 255, b: 255})).toBeFalsy();
+        expect(colorverter.isColor(255, 255, 255)).toBeFalsy();
+    });
+});
+
+describe('colorverter.isHex', () => {
+    it('should fail for invalid values', () => {
+        expect(colorverter.isHex([0, 0, 0])).toBeFalsy();
+        expect(colorverter.isHex(['zz', 'xx', 'yy'])).toBeFalsy();
+        expect(colorverter.isHex(['ab', 'ab', 'a'])).toBeFalsy();
+        expect(colorverter.isHex(['12', '34', '567'])).toBeFalsy();
+    });
+});
+
+describe('colorverter.isRgb', () => {
+    it('should fail for invalid values', () => {
+        expect(colorverter.isRgb([0, 0, 256])).toBeFalsy();
+        expect(colorverter.isRgb([0, 0, 125.5])).toBeFalsy();
+    });
+});
+
+describe('colorverter.isHsl', () => {
+    it('should fail for invalid values', () => {
+        expect(colorverter.isHsl([900, 0, 0])).toBeFalsy();
+        expect(colorverter.isHsl([125.5, 0, 0])).toBeFalsy();
+        expect(colorverter.isHsl([360, 110, 0])).toBeFalsy();
+        expect(colorverter.isHsl([360, 0, 110])).toBeFalsy();
+        expect(colorverter.isHsl([-45, 0.5, 55.5])).toBeFalsy();
+    });
+});
+
+describe('colorverter.isHwb', () => {
+    it('should fail for invalid values', () => {
+        expect(colorverter.isHwb([900, 0, 0])).toBeFalsy();
+        expect(colorverter.isHwb([125.5, 0, 0])).toBeFalsy();
+        expect(colorverter.isHwb([360, 110, 0])).toBeFalsy();
+        expect(colorverter.isHwb([360, 0, 110])).toBeFalsy();
+        expect(colorverter.isHwb([-45, 0.5, 55.5])).toBeFalsy();
+    });
+});
+
+describe('colorverter.isSameColor', () => {
+    it('should fail for invalid colors', () => {
+        expect(colorverter.isSameColor('#fff', '#fff')).toBeFalsy();
+    });
+
+    it('should fail for different colors', () => {
+        expect(colorverter.isSameColor([0, 0, 0], [0, 0, 1])).toBeFalsy();
+    });
+});

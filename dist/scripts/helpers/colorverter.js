@@ -72,29 +72,6 @@ define(['exports'], function (exports) {
                 return parseInt(hex, 16);
             }
         }, {
-            key: '_isIntInRange',
-            value: function _isIntInRange(number, min, max) {
-                if (!Number.isInteger(number)) {
-                    return false;
-                }
-
-                if (number < min) {
-                    return false;
-                } else if (number > max) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        }, {
-            key: '_isHexValue',
-            value: function _isHexValue(hexValue) {
-                if (typeof hexValue !== 'string') {
-                    return false;
-                }
-                return this._hexRegex.test(hexValue);
-            }
-        }, {
             key: 'getRandomRgb',
             value: function getRandomRgb() {
                 return this._roundValues([Math.random() * 255, Math.random() * 255, Math.random() * 255]);
@@ -133,27 +110,22 @@ define(['exports'], function (exports) {
                 if (!this.isColor(hex)) {
                     return false;
                 }
-                var isHexR = this._isHexValue(hex[0]);
-                var isHexG = this._isHexValue(hex[1]);
-                var isHexB = this._isHexValue(hex[2]);
-                return isHexR && isHexG && isHexB;
-            }
-        }, {
-            key: 'isRgb',
-            value: function isRgb(rgb) {
-                if (!this.isColor(rgb)) {
-                    return false;
-                }
+
+                var isValuesInRange = true;
+                var isValuesHex = true;
                 var _iteratorNormalCompletion = true;
                 var _didIteratorError = false;
                 var _iteratorError = undefined;
 
                 try {
-                    for (var _iterator = rgb[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    for (var _iterator = hex[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                         var value = _step.value;
 
-                        if (!this._isIntInRange(value, 0, 255)) {
-                            return false;
+                        if (!this._isHexValue(value)) {
+                            isValuesHex = false;
+                        }
+                        if (!this._isIntInRange(this._hexToInt(value), 0, 255)) {
+                            isValuesInRange = false;
                         }
                     }
                 } catch (err) {
@@ -167,6 +139,41 @@ define(['exports'], function (exports) {
                     } finally {
                         if (_didIteratorError) {
                             throw _iteratorError;
+                        }
+                    }
+                }
+
+                return isValuesHex && isValuesInRange;
+            }
+        }, {
+            key: 'isRgb',
+            value: function isRgb(rgb) {
+                if (!this.isColor(rgb)) {
+                    return false;
+                }
+                var _iteratorNormalCompletion2 = true;
+                var _didIteratorError2 = false;
+                var _iteratorError2 = undefined;
+
+                try {
+                    for (var _iterator2 = rgb[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                        var value = _step2.value;
+
+                        if (!this._isIntInRange(value, 0, 255)) {
+                            return false;
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError2 = true;
+                    _iteratorError2 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                            _iterator2.return();
+                        }
+                    } finally {
+                        if (_didIteratorError2) {
+                            throw _iteratorError2;
                         }
                     }
                 }
@@ -225,6 +232,29 @@ define(['exports'], function (exports) {
                     }
                 }
                 return isSame;
+            }
+        }, {
+            key: '_isIntInRange',
+            value: function _isIntInRange(number, min, max) {
+                if (!Number.isInteger(number)) {
+                    return false;
+                }
+
+                if (number < min) {
+                    return false;
+                } else if (number > max) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }, {
+            key: '_isHexValue',
+            value: function _isHexValue(hexValue) {
+                if (typeof hexValue !== 'string') {
+                    return false;
+                }
+                return this._hexRegex.test(hexValue);
             }
         }, {
             key: 'hexToRgb',
