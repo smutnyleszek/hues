@@ -1,102 +1,114 @@
 import deepFreeze from '../helpers/deepFreeze';
 
-const spacesData = deepFreeze({
-    hex: {
-        syntax: {
-            before: '#',
-            between: '',
-            after: ''
-        },
-        properties: [
-            {
-                name: 'red',
-                type: 'hexadecimal',
-                length: 2
+const spacesData = deepFreeze(new Map([
+    [
+        'hex',
+        {
+            syntax: {
+                before: '#',
+                between: '',
+                after: ''
             },
-            {
-                name: 'green',
-                type: 'hexadecimal',
-                length: 2
+            properties: [
+                {
+                    id: 'red',
+                    category: 'hexadecimal',
+                    maxlength: 2
+                },
+                {
+                    id: 'green',
+                    category: 'hexadecimal',
+                    maxlength: 2
+                },
+                {
+                    id: 'blue',
+                    category: 'hexadecimal',
+                    maxlength: 2
+                }
+            ]
+        }
+    ],
+    [
+        'rgb',
+        {
+            syntax: {
+                before: 'rgb(',
+                between: ',',
+                after: ')'
             },
-            {
-                name: 'blue',
-                type: 'hexadecimal',
-                length: 2
-            }
-        ]
-    },
-    rgb: {
-        syntax: {
-            before: 'rgb(',
-            between: ',',
-            after: ')'
-        },
-        properties: [
-            {
-                name: 'red',
-                type: 'integer',
-                range: [0, 255]
+            properties: [
+                {
+                    id: 'red',
+                    category: 'integer',
+                    range: [0, 255]
+                },
+                {
+                    id: 'green',
+                    category: 'integer',
+                    range: [0, 255]
+                },
+                {
+                    id: 'blue',
+                    category: 'integer',
+                    range: [0, 255]
+                }
+            ]
+        }
+    ],
+    [
+        'hsl',
+        {
+            syntax: {
+                before: 'hsl(',
+                between: ',',
+                after: ')'
             },
-            {
-                name: 'green',
-                type: 'integer',
-                range: [0, 255]
+            properties: [
+                {
+                    id: 'hue',
+                    category: 'integer',
+                    range: [0, 360]
+                },
+                {
+                    id: 'saturation',
+                    category: 'integer',
+                    range: [0, 100]
+                },
+                {
+                    id: 'lightness',
+                    category: 'integer',
+                    range: [0, 100]
+                }
+            ]
+        }
+    ],
+    [
+        'hwb',
+        {
+            syntax: {
+                before: 'hwb(',
+                between: ',',
+                after: ')'
             },
-            {
-                name: 'blue',
-                type: 'integer',
-                range: [0, 255]
-            }
-        ]
-    },
-    hsl: {
-        syntax: {
-            before: 'hsl(',
-            between: ',',
-            after: ')'
-        },
-        properties: [
-            {
-                name: 'hue',
-                type: 'integer',
-                range: [0, 360]
-            },
-            {
-                name: 'saturation',
-                type: 'integer',
-                range: [0, 100]
-            },
-            {
-                name: 'lightness',
-                type: 'integer',
-                range: [0, 100]
-            }
-        ]
-    },
-    hwb: {
-        syntax: {
-            before: 'hwb(',
-            between: ',',
-            after: ')'
-        },
-        properties: [
-            {
-                name: 'hue',
-                type: 'integer',
-                range: [0, 360]
-            },
-            {
-                name: 'whiteness',
-                type: 'integer',
-                range: [0, 100]
-            },
-            {
-                name: 'blackness',
-                type: 'integer',
-                range: [0, 100]
-            }
-        ]
-    }
-});
+            properties: [
+                {
+                    id: 'hue',
+                    category: 'integer',
+                    range: [0, 360]
+                },
+                {
+                    id: 'whiteness',
+                    category: 'integer',
+                    range: [0, 100]
+                },
+                {
+                    id: 'blackness',
+                    category: 'integer',
+                    range: [0, 100]
+                }
+            ]
+        }
+    ]
+]));
 
 export default spacesData;

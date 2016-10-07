@@ -1,4 +1,4 @@
-define(['exports', 'react', './Space', './spacesData'], function (exports, _react, _Space, _spacesData) {
+define(['exports', 'react', '../helpers/deepFreeze'], function (exports, _react, _deepFreeze) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -7,9 +7,7 @@ define(['exports', 'react', './Space', './spacesData'], function (exports, _reac
 
     var _react2 = _interopRequireDefault(_react);
 
-    var _Space2 = _interopRequireDefault(_Space);
-
-    var _spacesData2 = _interopRequireDefault(_spacesData);
+    var _deepFreeze2 = _interopRequireDefault(_deepFreeze);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -65,38 +63,56 @@ define(['exports', 'react', './Space', './spacesData'], function (exports, _reac
         if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
     }
 
-    var SpacesList = function (_React$Component) {
-        _inherits(SpacesList, _React$Component);
+    var inputTypesMap = (0, _deepFreeze2.default)(new Map([['hexadecimal', 'text'], ['integer', 'number']]));
 
-        function SpacesList() {
-            _classCallCheck(this, SpacesList);
+    var SpaceInput = function (_React$Component) {
+        _inherits(SpaceInput, _React$Component);
 
-            var _this = _possibleConstructorReturn(this, (SpacesList.__proto__ || Object.getPrototypeOf(SpacesList)).call(this));
+        function SpaceInput(data) {
+            _classCallCheck(this, SpaceInput);
 
-            console.log('new SpacesList!');
+            var _this = _possibleConstructorReturn(this, (SpaceInput.__proto__ || Object.getPrototypeOf(SpaceInput)).call(this));
+
+            _this.id = data.id;
+            _this.category = data.category;
+            _this.range = data.range;
+            _this.maxlength = data.maxlength;
+            _this.onChangeCallback = data.onChangeCallback;
             return _this;
         }
 
-        _createClass(SpacesList, [{
-            key: '_createSpace',
-            value: function _createSpace(id) {
-                var spaceData = _spacesData2.default.get(id);
-                var data = {
-                    id: id,
-                    properties: spaceData.properties,
-                    syntax: spaceData.syntax
-                };
-                return _react2.default.createElement(_Space2.default, data);
+        _createClass(SpaceInput, [{
+            key: '_onChange',
+            value: function _onChange(e) {
+                var currentValue = e.target.value;
+                this.onChangeCallback(this.id, currentValue);
+            }
+        }, {
+            key: '_getRenderAttributes',
+            value: function _getRenderAttributes() {
+                var attributes = {};
+                attributes.type = inputTypesMap.get(this.category);
+                attributes.onChange = this._onChange.bind(this);
+                // number input range limits
+                if (typeof this.range !== 'undefined') {
+                    attributes.min = this.range[0];
+                    attributes.max = this.range[1];
+                }
+                // text input string length limit
+                if (typeof this.maxlength !== 'undefined') {
+                    attributes.maxLength = this.maxlength;
+                }
+                return attributes;
             }
         }, {
             key: 'render',
             value: function render() {
-                return _react2.default.createElement('div', null, this._createSpace('hex'), this._createSpace('rgb'), this._createSpace('hsl'), this._createSpace('hwb'));
+                return _react2.default.createElement('input', this._getRenderAttributes());
             }
         }]);
 
-        return SpacesList;
+        return SpaceInput;
     }(_react2.default.Component);
 
-    exports.default = SpacesList;
+    exports.default = SpaceInput;
 });
