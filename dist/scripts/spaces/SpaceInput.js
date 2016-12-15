@@ -73,11 +73,11 @@ define(['exports', 'react', '../helpers/deepFreeze'], function (exports, _react,
 
             var _this = _possibleConstructorReturn(this, (SpaceInput.__proto__ || Object.getPrototypeOf(SpaceInput)).call(this));
 
-            _this.id = data.id;
-            _this.category = data.category;
-            _this.range = data.range;
-            _this.maxlength = data.maxlength;
-            _this.onChangeCallback = data.onChangeCallback;
+            _this._name = data.name;
+            _this._category = data.category;
+            _this._range = data.range;
+            _this._maxlength = data.maxlength;
+            _this._onChangeCallback = data.onChangeCallback;
             return _this;
         }
 
@@ -85,23 +85,30 @@ define(['exports', 'react', '../helpers/deepFreeze'], function (exports, _react,
             key: '_onChange',
             value: function _onChange(e) {
                 var currentValue = e.target.value;
-                this.onChangeCallback(this.id, currentValue);
+                this._onChangeCallback(this._name, currentValue);
             }
         }, {
             key: '_getRenderAttributes',
             value: function _getRenderAttributes() {
                 var attributes = {};
-                attributes.type = inputTypesMap.get(this.category);
-                attributes.onChange = this._onChange.bind(this);
+
+                attributes.name = this._name;
+
+                attributes.type = inputTypesMap.get(this._category);
+
                 // number input range limits
-                if (typeof this.range !== 'undefined') {
-                    attributes.min = this.range[0];
-                    attributes.max = this.range[1];
+                if (typeof this._range !== 'undefined') {
+                    attributes.min = this._range[0];
+                    attributes.max = this._range[1];
                 }
+
                 // text input string length limit
-                if (typeof this.maxlength !== 'undefined') {
-                    attributes.maxLength = this.maxlength;
+                if (typeof this._maxlength !== 'undefined') {
+                    attributes.maxLength = this._maxlength;
                 }
+
+                attributes.onChange = this._onChange.bind(this);
+
                 return attributes;
             }
         }, {

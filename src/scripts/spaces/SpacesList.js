@@ -8,10 +8,10 @@ class SpacesList extends React.Component {
         console.log('new SpacesList!');
     }
 
-    _createSpace(id) {
-        const spaceData = spacesData.get(id);
+    _createSpace(spaceName) {
+        const spaceData = spacesData.get(spaceName);
         const data = {
-            id: id,
+            name: spaceName,
             properties: spaceData.properties,
             syntax: spaceData.syntax
         };

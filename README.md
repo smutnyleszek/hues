@@ -13,28 +13,22 @@ Requirements:
 
 ### Building
 
-Installs NPM dependencies, clears current assets and builds new ones:
+Basic tasks:
 
 ```
-npm run start
-```
-
-Watching `css` and `scripts` building or running `tests`:
-
-```
-npm run watch:css
-npm run watch:scripts
-npm run watch:tests
+npm run build
+npm run test
+npm run watch
 ```
 
 Building Jekyll project:
 
 ```
-npm run build:jekyll
+npm run jekyll:build
 ```
 
 You can also serve it on [127.0.0.1:4000](http://127.0.0.1:4000/) with:
 
 ```
-npm run serve:jekyll
+npm run jekyll:serve
 ```

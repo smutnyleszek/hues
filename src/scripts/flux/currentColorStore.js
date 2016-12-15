@@ -1,18 +1,18 @@
 import CurrentColorActions from './currentColorActions';
-import myAlt from 'myAlt';
+import myAlt from './myAlt';
 
 class CurrentColorStore {
     constructor() {
-        this.spaceId = null;
+        this.spaceName = null;
         this.colorValue = null;
 
         this.bindListeners({
-            handleCurrentColorChange: CurrentColorActions.UPDATE_CURRENT_COLOR
+            _handleCurrentColorChange: CurrentColorActions.UPDATE_CURRENT_COLOR
         });
     }
 
-    handleCurrentColorChange(newColor) {
-        this.spaceId = newColor.spaceId;
+    _handleCurrentColorChange(newColor) {
+        this.spaceName = newColor.name;
         this.colorValue = newColor.value;
     }
 }

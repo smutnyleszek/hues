@@ -79,10 +79,10 @@ define(['exports', 'react', './Space', './spacesData'], function (exports, _reac
 
         _createClass(SpacesList, [{
             key: '_createSpace',
-            value: function _createSpace(id) {
-                var spaceData = _spacesData2.default.get(id);
+            value: function _createSpace(spaceName) {
+                var spaceData = _spacesData2.default.get(spaceName);
                 var data = {
-                    id: id,
+                    name: spaceName,
                     properties: spaceData.properties,
                     syntax: spaceData.syntax
                 };

@@ -9,31 +9,38 @@ const inputTypesMap = deepFreeze(new Map([
 class SpaceInput extends React.Component {
     constructor(data) {
         super();
-        this.id = data.id;
-        this.category = data.category;
-        this.range = data.range;
-        this.maxlength = data.maxlength;
-        this.onChangeCallback = data.onChangeCallback;
+        this._name = data.name;
+        this._category = data.category;
+        this._range = data.range;
+        this._maxlength = data.maxlength;
+        this._onChangeCallback = data.onChangeCallback;
     }
 
     _onChange(e) {
         const currentValue = e.target.value;
-        this.onChangeCallback(this.id, currentValue);
+        this._onChangeCallback(this._name, currentValue);
     }
 
     _getRenderAttributes() {
         const attributes = {};
-        attributes.type = inputTypesMap.get(this.category);
-        attributes.onChange = this._onChange.bind(this);
+
+        attributes.name = this._name;
+
+        attributes.type = inputTypesMap.get(this._category);
+
         // number input range limits
-        if (typeof this.range !== 'undefined') {
-            attributes.min = this.range[0];
-            attributes.max = this.range[1];
+        if (typeof this._range !== 'undefined') {
+            attributes.min = this._range[0];
+            attributes.max = this._range[1];
         }
+
         // text input string length limit
-        if (typeof this.maxlength !== 'undefined') {
-            attributes.maxLength = this.maxlength;
+        if (typeof this._maxlength !== 'undefined') {
+            attributes.maxLength = this._maxlength;
         }
+
+        attributes.onChange = this._onChange.bind(this);
+
         return attributes;
     }
 

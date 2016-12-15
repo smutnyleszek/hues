@@ -1,9 +1,13 @@
-define(['exports', 'react', './SpaceInput'], function (exports, _react, _SpaceInput) {
+define(['exports', '../flux/currentColorActions', '../flux/currentColorStore', 'react', './SpaceInput'], function (exports, _currentColorActions, _currentColorStore, _react, _SpaceInput) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
+
+    var _currentColorActions2 = _interopRequireDefault(_currentColorActions);
+
+    var _currentColorStore2 = _interopRequireDefault(_currentColorStore);
 
     var _react2 = _interopRequireDefault(_react);
 
@@ -71,33 +75,61 @@ define(['exports', 'react', './SpaceInput'], function (exports, _react, _SpaceIn
 
             var _this = _possibleConstructorReturn(this, (Space.__proto__ || Object.getPrototypeOf(Space)).call(this));
 
-            _this.id = data.id;
-            _this.syntax = data.syntax;
-            _this.properties = data.properties;
+            _this._name = data.name;
+            _this._syntax = data.syntax;
+            _this._properties = data.properties;
+            _this.state = _currentColorStore2.default.getState();
             return _this;
         }
 
         _createClass(Space, [{
+            key: 'componentDidMount',
+            value: function componentDidMount() {
+                _currentColorStore2.default.listen(this._onCurrentColorChange.bind(this));
+            }
+        }, {
+            key: 'componentWillUnmount',
+            value: function componentWillUnmount() {
+                _currentColorStore2.default.unlisten(this._onCurrentColorChange.bind(this));
+            }
+        }, {
+            key: '_onCurrentColorChange',
+            value: function _onCurrentColorChange(state) {
+                this.setState(state);
+                console.log('current color changed', state);
+            }
+        }, {
             key: '_createInput',
             value: function _createInput(propertyData) {
-                var data = {
-                    id: propertyData.id,
+                return _react2.default.createElement(_SpaceInput2.default, {
+                    name: propertyData.name,
                     category: propertyData.category,
                     maxlength: propertyData.maxlength,
                     range: propertyData.range,
                     onChangeCallback: this._onInputChange.bind(this)
-                };
-                return _react2.default.createElement(_SpaceInput2.default, data);
+                });
             }
         }, {
             key: '_onInputChange',
             value: function _onInputChange(inputId, newVal) {
                 console.log('space -- input change!', inputId, newVal);
+                console.log(this);
+                _currentColorActions2.default.updateCurrentColor({
+                    name: this._name,
+                    value: []
+                });
+            }
+        }, {
+            key: '_getRenderAttributes',
+            value: function _getRenderAttributes() {
+                return {
+                    name: this._name
+                };
             }
         }, {
             key: 'render',
             value: function render() {
-                return _react2.default.createElement('div', null, this.syntax.before, this._createInput(this.properties[0]), this.syntax.between, this._createInput(this.properties[1]), this.syntax.between, this._createInput(this.properties[2]), this.syntax.after);
+                return _react2.default.createElement('div', this._getRenderAttributes(), this._syntax.before, this._createInput(this._properties[0]), this._syntax.between, this._createInput(this._properties[1]), this._syntax.between, this._createInput(this._properties[2]), this._syntax.after);
             }
         }]);
 

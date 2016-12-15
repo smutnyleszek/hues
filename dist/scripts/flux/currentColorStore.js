@@ -1,4 +1,4 @@
-define(['exports', './currentColorActions', 'myAlt'], function (exports, _currentColorActions, _myAlt) {
+define(['exports', './currentColorActions', './myAlt'], function (exports, _currentColorActions, _myAlt) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -43,18 +43,18 @@ define(['exports', './currentColorActions', 'myAlt'], function (exports, _curren
         function CurrentColorStore() {
             _classCallCheck(this, CurrentColorStore);
 
-            this.spaceId = null;
+            this.spaceName = null;
             this.colorValue = null;
 
             this.bindListeners({
-                handleCurrentColorChange: _currentColorActions2.default.UPDATE_CURRENT_COLOR
+                _handleCurrentColorChange: _currentColorActions2.default.UPDATE_CURRENT_COLOR
             });
         }
 
         _createClass(CurrentColorStore, [{
-            key: 'handleCurrentColorChange',
-            value: function handleCurrentColorChange(newColor) {
-                this.spaceId = newColor.spaceId;
+            key: '_handleCurrentColorChange',
+            value: function _handleCurrentColorChange(newColor) {
+                this.spaceName = newColor.name;
                 this.colorValue = newColor.value;
             }
         }]);

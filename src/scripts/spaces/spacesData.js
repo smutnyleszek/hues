@@ -11,17 +11,17 @@ const spacesData = deepFreeze(new Map([
             },
             properties: [
                 {
-                    id: 'red',
+                    name: 'red',
                     category: 'hexadecimal',
                     maxlength: 2
                 },
                 {
-                    id: 'green',
+                    name: 'green',
                     category: 'hexadecimal',
                     maxlength: 2
                 },
                 {
-                    id: 'blue',
+                    name: 'blue',
                     category: 'hexadecimal',
                     maxlength: 2
                 }
@@ -38,17 +38,17 @@ const spacesData = deepFreeze(new Map([
             },
             properties: [
                 {
-                    id: 'red',
+                    name: 'red',
                     category: 'integer',
                     range: [0, 255]
                 },
                 {
-                    id: 'green',
+                    name: 'green',
                     category: 'integer',
                     range: [0, 255]
                 },
                 {
-                    id: 'blue',
+                    name: 'blue',
                     category: 'integer',
                     range: [0, 255]
                 }
@@ -65,17 +65,17 @@ const spacesData = deepFreeze(new Map([
             },
             properties: [
                 {
-                    id: 'hue',
+                    name: 'hue',
                     category: 'integer',
                     range: [0, 360]
                 },
                 {
-                    id: 'saturation',
+                    name: 'saturation',
                     category: 'integer',
                     range: [0, 100]
                 },
                 {
-                    id: 'lightness',
+                    name: 'lightness',
                     category: 'integer',
                     range: [0, 100]
                 }
@@ -92,17 +92,17 @@ const spacesData = deepFreeze(new Map([
             },
             properties: [
                 {
-                    id: 'hue',
+                    name: 'hue',
                     category: 'integer',
                     range: [0, 360]
                 },
                 {
-                    id: 'whiteness',
+                    name: 'whiteness',
                     category: 'integer',
                     range: [0, 100]
                 },
                 {
-                    id: 'blackness',
+                    name: 'blackness',
                     category: 'integer',
                     range: [0, 100]
                 }
