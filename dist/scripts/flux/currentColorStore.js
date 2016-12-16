@@ -41,12 +41,14 @@ define(['exports', './currentColorActions', '../helpers/colorverter', './myAlt']
         };
     }();
 
+    var defaultSpace = 'rgb';
+
     var CurrentColorStore = function () {
         function CurrentColorStore() {
             _classCallCheck(this, CurrentColorStore);
 
-            this.name = 'rgb';
-            this.value = _colorverter2.default.getRandomRgb();
+            this.name = defaultSpace;
+            this.value = _colorverter2.default.getRandom[defaultSpace]();
 
             this.bindListeners({
                 _handleCurrentColorChange: _currentColorActions2.default.UPDATE_CURRENT_COLOR

@@ -53,44 +53,44 @@ define(['exports', './deepFreeze'], function (exports, _deepFreeze) {
             this.convert = (0, _deepFreeze2.default)({
                 hex: {
                     to: {
-                        rgb: this._hexToRgb,
-                        hsl: this._hexToHsl,
-                        hwb: this._hexToHwb
+                        rgb: this._hexToRgb.bind(this),
+                        hsl: this._hexToHsl.bind(this),
+                        hwb: this._hexToHwb.bind(this)
                     }
                 },
                 rgb: {
                     to: {
-                        hex: this._rgbToHex,
-                        hsl: this._rgbToHsl,
-                        hwb: this._rgbToHwb
+                        hex: this._rgbToHex.bind(this),
+                        hsl: this._rgbToHsl.bind(this),
+                        hwb: this._rgbToHwb.bind(this)
                     }
                 },
                 hsl: {
                     to: {
-                        hex: this._hslToHex,
-                        tgb: this._hslToRgb,
-                        hwb: this._hslToHwb
+                        hex: this._hslToHex.bind(this),
+                        rgb: this._hslToRgb.bind(this),
+                        hwb: this._hslToHwb.bind(this)
                     }
                 },
                 hwb: {
                     to: {
-                        hex: this._hwbToHex,
-                        rgb: this._hwbToRgb,
-                        hsl: this._hwbToHsl
+                        hex: this._hwbToHex.bind(this),
+                        rgb: this._hwbToRgb.bind(this),
+                        hsl: this._hwbToHsl.bind(this)
                     }
                 }
             });
             this.validate = (0, _deepFreeze2.default)({
-                hex: this._isHex,
-                rgb: this._isRgb,
-                hsl: this._isHsl,
-                hwb: this._isHwb
+                hex: this._isHex.bind(this),
+                rgb: this._isRgb.bind(this),
+                hsl: this._isHsl.bind(this),
+                hwb: this._isHwb.bind(this)
             });
             this.getRandom = (0, _deepFreeze2.default)({
-                hex: this._getRandomHex,
-                rgb: this._getRandomRgb,
-                hsl: this._getRandomHsl,
-                hwb: this._getRandomHwb
+                hex: this._getRandomHex.bind(this),
+                rgb: this._getRandomRgb.bind(this),
+                hsl: this._getRandomHsl.bind(this),
+                hwb: this._getRandomHwb.bind(this)
             });
         }
 
