@@ -2,6 +2,7 @@ import CurrentColorActions from '../flux/currentColorActions';
 import CurrentColorStore from '../flux/currentColorStore';
 import React from 'react';
 import SpaceInput from './SpaceInput';
+import colorverter from '../helpers/colorverter';
 
 class Space extends React.Component {
     constructor(data) {
@@ -9,7 +10,8 @@ class Space extends React.Component {
         this._name = data.name;
         this._syntax = data.syntax;
         this._properties = data.properties;
-        this.state = CurrentColorStore.getState();
+
+        this._onCurrentColorChange(CurrentColorStore.getState());
     }
 
     componentDidMount() {
@@ -20,9 +22,8 @@ class Space extends React.Component {
         CurrentColorStore.unlisten(this._onCurrentColorChange.bind(this));
     }
 
-    _onCurrentColorChange(state) {
-        this.setState(state);
-        console.log('current color changed', state);
+    _onCurrentColorChange(currentColor) {
+        console.log(this._name, 'current color changed', currentColor);
     }
 
     _createInput(propertyData) {
@@ -35,12 +36,28 @@ class Space extends React.Component {
         });
     }
 
-    _onInputChange(inputId, newVal) {
-        console.log('space -- input change!', inputId, newVal);
-        console.log(this);
+    _setPropertyValue(propertyName, value) {
+        for (const property of this._properties) {
+            if (property.name === propertyName) {
+                property.value = value;
+                break;
+            }
+        }
+    }
+
+    _getPropertiesValuesArray() {
+        const values = [];
+        for (const property of this._properties) {
+            values.push(property.value);
+        }
+        return values;
+    }
+
+    _onInputChange(inputName, newVal) {
+        this._setPropertyValue(inputName, newVal);
         CurrentColorActions.updateCurrentColor({
             name: this._name,
-            value: []
+            value: this._getPropertiesValuesArray()
         });
     }
 

@@ -4,6 +4,8 @@
 // It also can generate a random color and validate object if is a proper color.
 // -----------------------------------------------------------------------------
 
+import deepFreeze from './deepFreeze';
+
 class Colorverter {
     constructor() {
         this._hexRegex = new RegExp('[0-9A-F]{2}', 'i');
@@ -11,6 +13,51 @@ class Colorverter {
             invalidValue(colorVal) {
                 return `Not a proper color value: '${colorVal}'!`;
             }
+        });
+
+        // public methods that do stuff -- we try to have them more useful with
+        // passable names: `colorverter.convert[name].to[name]`
+        this.convert = deepFreeze({
+            hex: {
+                to: {
+                    rgb: this._hexToRgb.bind(this),
+                    hsl: this._hexToHsl.bind(this),
+                    hwb: this._hexToHwb.bind(this)
+                }
+            },
+            rgb: {
+                to: {
+                    hex: this._rgbToHex.bind(this),
+                    hsl: this._rgbToHsl.bind(this),
+                    hwb: this._rgbToHwb.bind(this)
+                }
+            },
+            hsl: {
+                to: {
+                    hex: this._hslToHex.bind(this),
+                    rgb: this._hslToRgb.bind(this),
+                    hwb: this._hslToHwb.bind(this)
+                }
+            },
+            hwb: {
+                to: {
+                    hex: this._hwbToHex.bind(this),
+                    rgb: this._hwbToRgb.bind(this),
+                    hsl: this._hwbToHsl.bind(this)
+                }
+            }
+        });
+        this.validate = deepFreeze({
+            hex: this._isHex.bind(this),
+            rgb: this._isRgb.bind(this),
+            hsl: this._isHsl.bind(this),
+            hwb: this._isHwb.bind(this)
+        });
+        this.getRandom = deepFreeze({
+            hex: this._getRandomHex.bind(this),
+            rgb: this._getRandomRgb.bind(this),
+            hsl: this._getRandomHsl.bind(this),
+            hwb: this._getRandomHwb.bind(this)
         });
     }
 
@@ -45,7 +92,7 @@ class Colorverter {
 // random color generators
 // -----------------------------------------------------------------------------
 
-    getRandomRgb() {
+    _getRandomRgb() {
         return this._roundValues([
             Math.random() * 255,
             Math.random() * 255,
@@ -53,23 +100,23 @@ class Colorverter {
         ]);
     }
 
-    getRandomHex() {
-        return this.rgbToHex(this.getRandomRgb());
+    _getRandomHex() {
+        return this._rgbToHex(this._getRandomRgb());
     }
 
-    getRandomHsl() {
-        return this.rgbToHsl(this.getRandomRgb());
+    _getRandomHsl() {
+        return this._rgbToHsl(this._getRandomRgb());
     }
 
-    getRandomHwb() {
-        return this.rgbToHwb(this.getRandomRgb());
+    _getRandomHwb() {
+        return this._rgbToHwb(this._getRandomRgb());
     }
 
 // -----------------------------------------------------------------------------
 // colors validation
 // -----------------------------------------------------------------------------
 
-    isColor(color) {
+    _isColor(color) {
         // color needs to be an array
         if (color instanceof Array !== true) {
             return false;
@@ -81,8 +128,8 @@ class Colorverter {
         return true;
     }
 
-    isHex(hex) {
-        if (!this.isColor(hex)) {
+    _isHex(hex) {
+        if (!this._isColor(hex)) {
             return false;
         }
 
@@ -100,8 +147,8 @@ class Colorverter {
         return isValuesHex && isValuesInRange;
     }
 
-    isRgb(rgb) {
-        if (!this.isColor(rgb)) {
+    _isRgb(rgb) {
+        if (!this._isColor(rgb)) {
             return false;
         }
         for (const value of rgb) {
@@ -112,8 +159,8 @@ class Colorverter {
         return true;
     }
 
-    isHsl(hsl) {
-        if (!this.isColor(hsl)) {
+    _isHsl(hsl) {
+        if (!this._isColor(hsl)) {
             return false;
         }
         if (!this._isIntInRange(hsl[0], 0, 360)) {
@@ -128,8 +175,8 @@ class Colorverter {
         return true;
     }
 
-    isHwb(hwb) {
-        if (!this.isColor(hwb)) {
+    _isHwb(hwb) {
+        if (!this._isColor(hwb)) {
             return false;
         }
         if (!this._isIntInRange(hwb[0], 0, 360)) {
@@ -145,7 +192,7 @@ class Colorverter {
     }
 
     isSameColor(first, second) {
-        if (!this.isColor(first) || !this.isColor(second)) {
+        if (!this._isColor(first) || !this._isColor(second)) {
             return false;
         }
         // different lenght means different array
@@ -187,8 +234,8 @@ class Colorverter {
 // conversion from hex
 // -----------------------------------------------------------------------------
 
-    hexToRgb(colorVal) {
-        if (!this.isColor(colorVal)) {
+    _hexToRgb(colorVal) {
+        if (!this._isColor(colorVal)) {
             throw new TypeError(this._errors.invalidValue(colorVal));
         }
 
@@ -198,36 +245,36 @@ class Colorverter {
         return [red, green, blue];
     }
 
-    hexToHsl(colorVal) {
-        if (!this.isColor(colorVal)) {
+    _hexToHsl(colorVal) {
+        if (!this._isColor(colorVal)) {
             throw new TypeError(this._errors.invalidValue(colorVal));
         }
 
-        return this._roundValues(this._hexToHslFloat(colorVal));
+        return this._roundValues(this.__hexToHslFloat(colorVal));
     }
 
-    hexToHwb(colorVal) {
-        if (!this.isColor(colorVal)) {
+    _hexToHwb(colorVal) {
+        if (!this._isColor(colorVal)) {
             throw new TypeError(this._errors.invalidValue(colorVal));
         }
 
-        return this._roundValues(this._hexToHwbFloat(colorVal));
+        return this._roundValues(this.__hexToHwbFloat(colorVal));
     }
 
-    _hexToHslFloat(colorVal) {
-        return this._rgbToHslFloat(this.hexToRgb(colorVal));
+    __hexToHslFloat(colorVal) {
+        return this.__rgbToHslFloat(this._hexToRgb(colorVal));
     }
 
-    _hexToHwbFloat(colorVal) {
-        return this._rgbToHwbFloat(this.hexToRgb(colorVal));
+    __hexToHwbFloat(colorVal) {
+        return this.__rgbToHwbFloat(this._hexToRgb(colorVal));
     }
 
 // -----------------------------------------------------------------------------
 // conversion from rgb
 // -----------------------------------------------------------------------------
 
-    rgbToHex(colorVal) {
-        if (!this.isColor(colorVal)) {
+    _rgbToHex(colorVal) {
+        if (!this._isColor(colorVal)) {
             throw new TypeError(this._errors.invalidValue(colorVal));
         }
 
@@ -237,23 +284,23 @@ class Colorverter {
         return [red16, green16, blue16];
     }
 
-    rgbToHsl(colorVal) {
-        if (!this.isColor(colorVal)) {
+    _rgbToHsl(colorVal) {
+        if (!this._isColor(colorVal)) {
             throw new TypeError(this._errors.invalidValue(colorVal));
         }
 
-        return this._roundValues(this._rgbToHslFloat(colorVal));
+        return this._roundValues(this.__rgbToHslFloat(colorVal));
     }
 
-    rgbToHwb(colorVal) {
-        if (!this.isColor(colorVal)) {
+    _rgbToHwb(colorVal) {
+        if (!this._isColor(colorVal)) {
             throw new TypeError(this._errors.invalidValue(colorVal));
         }
 
-        return this._roundValues(this._rgbToHwbFloat(colorVal));
+        return this._roundValues(this.__rgbToHwbFloat(colorVal));
     }
 
-    _rgbToHslFloat(colorVal) {
+    __rgbToHslFloat(colorVal) {
         const red = colorVal[0] / 255;
         const green = colorVal[1] / 255;
         const blue = colorVal[2] / 255;
@@ -294,12 +341,12 @@ class Colorverter {
         return [hue, saturation * 100, lightness * 100];
     }
 
-    _rgbToHwbFloat(colorVal) {
+    __rgbToHwbFloat(colorVal) {
         const red = colorVal[0];
         const green = colorVal[1];
         const blue = colorVal[2];
 
-        const hue = this._rgbToHslFloat(colorVal)[0];
+        const hue = this.__rgbToHslFloat(colorVal)[0];
         const whiteness = 1 / 255 * Math.min(red, Math.min(green, blue));
         const blackness = 1 - 1 / 255 * Math.max(red, Math.max(green, blue));
 
@@ -310,31 +357,31 @@ class Colorverter {
 // conversion from hsl
 // -----------------------------------------------------------------------------
 
-    hslToHex(colorVal) {
-        if (!this.isColor(colorVal)) {
+    _hslToHex(colorVal) {
+        if (!this._isColor(colorVal)) {
             throw new TypeError(this._errors.invalidValue(colorVal));
         }
 
-        return this.rgbToHex(this._hslToRgbFloat(colorVal));
+        return this._rgbToHex(this.__hslToRgbFloat(colorVal));
     }
 
-    hslToRgb(colorVal) {
-        if (!this.isColor(colorVal)) {
+    _hslToRgb(colorVal) {
+        if (!this._isColor(colorVal)) {
             throw new TypeError(this._errors.invalidValue(colorVal));
         }
 
-        return this._roundValues(this._hslToRgbFloat(colorVal));
+        return this._roundValues(this.__hslToRgbFloat(colorVal));
     }
 
-    hslToHwb(colorVal) {
-        if (!this.isColor(colorVal)) {
+    _hslToHwb(colorVal) {
+        if (!this._isColor(colorVal)) {
             throw new TypeError(this._errors.invalidValue(colorVal));
         }
 
-        return this._roundValues(this._hslToHwbFloat(colorVal));
+        return this._roundValues(this.__hslToHwbFloat(colorVal));
     }
 
-    _hslToRgbFloat(colorVal) {
+    __hslToRgbFloat(colorVal) {
         const hue = colorVal[0] / 360;
         const sat = colorVal[1] / 100;
         const lum = colorVal[2] / 100;
@@ -377,40 +424,40 @@ class Colorverter {
         }
     }
 
-    _hslToHwbFloat(colorVal) {
-        return this._rgbToHwbFloat(this._hslToRgbFloat(colorVal));
+    __hslToHwbFloat(colorVal) {
+        return this.__rgbToHwbFloat(this.__hslToRgbFloat(colorVal));
     }
 
 // -----------------------------------------------------------------------------
 // conversion from hwb
 // -----------------------------------------------------------------------------
 
-    hwbToHex(colorVal) {
-        if (!this.isColor(colorVal)) {
+    _hwbToHex(colorVal) {
+        if (!this._isColor(colorVal)) {
             throw new TypeError(this._errors.invalidValue(colorVal));
         }
 
-        return this.rgbToHex(this._hwbToRgbFloat(colorVal));
+        return this._rgbToHex(this.__hwbToRgbFloat(colorVal));
     }
 
-    hwbToRgb(colorVal) {
-        if (!this.isColor(colorVal)) {
+    _hwbToRgb(colorVal) {
+        if (!this._isColor(colorVal)) {
             throw new TypeError(this._errors.invalidValue(colorVal));
         }
 
-        return this._roundValues(this._hwbToRgbFloat(colorVal));
+        return this._roundValues(this.__hwbToRgbFloat(colorVal));
     }
 
-    hwbToHsl(colorVal) {
-        if (!this.isColor(colorVal)) {
+    _hwbToHsl(colorVal) {
+        if (!this._isColor(colorVal)) {
             throw new TypeError(this._errors.invalidValue(colorVal));
         }
 
-        return this._roundValues(this._hwbToHslFloat(colorVal));
+        return this._roundValues(this.__hwbToHslFloat(colorVal));
     }
 
     // http://dev.w3.org/csswg/css-color/#hwb-to-rgb
-    _hwbToRgbFloat(colorVal) {
+    __hwbToRgbFloat(colorVal) {
         const hue = colorVal[0] / 360;
         let whiteness = colorVal[1] / 100;
         let blackness = colorVal[2] / 100;
@@ -473,8 +520,8 @@ class Colorverter {
         return [red * 255, green * 255, blue * 255];
     }
 
-    _hwbToHslFloat(colorVal) {
-        return this._rgbToHslFloat(this._hwbToRgbFloat(colorVal));
+    __hwbToHslFloat(colorVal) {
+        return this.__rgbToHslFloat(this.__hwbToRgbFloat(colorVal));
     }
 }
 

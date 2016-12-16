@@ -1,4 +1,4 @@
-define(['exports', './currentColorActions', './myAlt'], function (exports, _currentColorActions, _myAlt) {
+define(['exports', './currentColorActions', '../helpers/colorverter', './myAlt'], function (exports, _currentColorActions, _colorverter, _myAlt) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -6,6 +6,8 @@ define(['exports', './currentColorActions', './myAlt'], function (exports, _curr
     });
 
     var _currentColorActions2 = _interopRequireDefault(_currentColorActions);
+
+    var _colorverter2 = _interopRequireDefault(_colorverter);
 
     var _myAlt2 = _interopRequireDefault(_myAlt);
 
@@ -43,8 +45,8 @@ define(['exports', './currentColorActions', './myAlt'], function (exports, _curr
         function CurrentColorStore() {
             _classCallCheck(this, CurrentColorStore);
 
-            this.spaceName = null;
-            this.colorValue = null;
+            this.name = 'rgb';
+            this.value = _colorverter2.default.getRandomRgb();
 
             this.bindListeners({
                 _handleCurrentColorChange: _currentColorActions2.default.UPDATE_CURRENT_COLOR
@@ -54,8 +56,8 @@ define(['exports', './currentColorActions', './myAlt'], function (exports, _curr
         _createClass(CurrentColorStore, [{
             key: '_handleCurrentColorChange',
             value: function _handleCurrentColorChange(newColor) {
-                this.spaceName = newColor.name;
-                this.colorValue = newColor.value;
+                this.name = newColor.name;
+                this.value = newColor.value;
             }
         }]);
 

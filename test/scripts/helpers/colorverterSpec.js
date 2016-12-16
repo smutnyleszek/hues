@@ -1,76 +1,19 @@
 import colorverter from 'helpers/colorverter';
 
-const hexConvertersMap = new Map([
-    ['rgb', 'hexToRgb'],
-    ['hsl', 'hexToHsl'],
-    ['hwb', 'hexToHwb']
-]);
-const rgbConvertersMap = new Map([
-    ['hex', 'rgbToHex'],
-    ['hsl', 'rgbToHsl'],
-    ['hwb', 'rgbToHwb']
-]);
-const hslConvertersMap = new Map([
-    ['rgb', 'hslToRgb'],
-    ['hex', 'hslToHex'],
-    ['hwb', 'hslToHwb']
-]);
-const hwbConvertersMap = new Map([
-    ['hex', 'hwbToHex'],
-    ['rgb', 'hwbToRgb'],
-    ['hsl', 'hwbToHsl']
-]);
-const convertersMap = new Map([
-    ['hex', hexConvertersMap],
-    ['rgb', rgbConvertersMap],
-    ['hsl', hslConvertersMap],
-    ['hwb', hwbConvertersMap]
-]);
-
-const validatorsMap = new Map([
-    ['hex', 'isHex'],
-    ['rgb', 'isRgb'],
-    ['hsl', 'isHsl'],
-    ['hwb', 'isHwb']
-]);
-
-const generatorsMap = new Map([
-    ['hex', 'getRandomHex'],
-    ['rgb', 'getRandomRgb'],
-    ['hsl', 'getRandomHsl'],
-    ['hwb', 'getRandomHwb']
-]);
-
-function getConverter(from, to) {
-    const targetsMap = convertersMap.get(from);
-    return targetsMap.get(to);
-}
+const spacesList = ['hex', 'rgb', 'hsl', 'hwb'];
 
 // -----------------------------------------------------------------------------
 // testing returned values
 // -----------------------------------------------------------------------------
 
-describe('colorverter.*To*', () => {
-    it('should return color array', () => {
-        convertersMap.forEach((targetsMap, sourceName) => {
-            targetsMap.forEach((convertName) => {
-                const convert = colorverter[convertName].bind(colorverter);
-
-                const generateName = generatorsMap.get(sourceName);
-                const generate = colorverter[generateName].bind(colorverter);
-
-                const newColor = convert(generate());
-                expect(newColor instanceof Array).toBeTruthy();
-            });
-        });
-    });
-});
-
-describe('colorverter.*To*', () => {
+describe('colorverter.convert.*.to.*', () => {
     it('should only allow proper value input', () => {
-        convertersMap.forEach((targetsMap) => {
-            targetsMap.forEach((convertName) => {
-                const convert = colorverter[convertName].bind(colorverter);
+        for (const spaceA of spacesList) {
+            for (const spaceB of spacesList) {
+                if (spaceA === spaceB) {
+                    return;
+                }
+                const convert = colorverter.convert[spaceA].to[spaceB].bind(colorverter);
 
                 let criminal = () => {convert('#fff');};
                 expect(criminal).toThrow();
@@ -86,30 +29,29 @@ describe('colorverter.*To*', () => {
 
                 criminal = () => {convert([100, 100]);};
                 expect(criminal).toThrow();
-            });
-        });
+            }
+        }
     });
 });
 
-describe('colorverter.*To*', () => {
+describe('colorverter.convert.*.to.*', () => {
     it('should generate valid values', () => {
-        convertersMap.forEach((targetsMap, sourceName) => {
-            targetsMap.forEach((convertName, targetName) => {
-                const convert = colorverter[convertName].bind(colorverter);
-
-                const generateName = generatorsMap.get(sourceName);
-                const generate = colorverter[generateName].bind(colorverter);
-
-                const validateName = validatorsMap.get(targetName);
-                const validate = colorverter[validateName].bind(colorverter);
+        for (const spaceA of spacesList) {
+            for (const spaceB of spacesList) {
+                if (spaceA === spaceB) {
+                    return;
+                }
+                const convert = colorverter.convert[spaceA].to[spaceB].bind(colorverter);
+                const generate = colorverter.getRandom[spaceA].bind(colorverter);
+                const validate = colorverter.validate[spaceA].bind(colorverter);
 
                 for (let i = 0; i < 999; i++) {
                     const newRandom = convert(generate());
                     const isValid = validate(newRandom);
                     expect(isValid).toBeTruthy();
                 }
-            });
-        });
+            }
+        }
     });
 });
 
@@ -117,7 +59,7 @@ describe('colorverter.*To*', () => {
 // testing conversion
 // -----------------------------------------------------------------------------
 
-describe('colorverter.*To*', () => {
+describe('colorverter.convert.*.to.*', () => {
     it('should convert colors to expected value', () => {
         const testPairs = [
             ['hex', ['00', '7f', 'ff'], 'rgb', [0, 127, 255]],
@@ -156,24 +98,23 @@ describe('colorverter.*To*', () => {
         ];
 
         for (const testPair of testPairs) {
-            const from = testPair[0];
-            const fromVal = testPair[1];
-            const to = testPair[2];
-            const toVal = testPair[3];
+            const spaceA = testPair[0];
+            const valA = testPair[1];
+            const spaceB = testPair[2];
+            const valB = testPair[3];
 
-            const convertName = getConverter(from, to);
-            const convert = colorverter[convertName].bind(colorverter);
-            const generated = convert(fromVal);
+            const convert = colorverter.convert[spaceA].to[spaceB].bind(colorverter);
+            const generated = convert(valA);
 
-            const isSame = colorverter.isSameColor(generated, toVal);
+            const isSame = colorverter.isSameColor(generated, valB);
             expect(isSame).toBeTruthy(
-                `From ${from} to ${to}: expected ${toVal}, got ${generated}`
+                `From ${spaceA} to ${spaceB}: expected ${valB}, got ${generated}`
             );
         }
     });
 });
 
-describe('colorverter.*To*', () => {
+describe('colorverter.convert.*.to.*', () => {
     it('should keep black black', () => {
         const black = {
             hex: ['00', '00', '00'],
@@ -182,9 +123,12 @@ describe('colorverter.*To*', () => {
             hwb: [0, 0, 100]
         };
 
-        convertersMap.forEach((targetsMap, sourceName) => {
-            targetsMap.forEach((convertName, targetName) => {
-                const convert = colorverter[convertName].bind(colorverter);
+        for (const spaceA of spacesList) {
+            for (const spaceB of spacesList) {
+                if (spaceA === spaceB) {
+                    return;
+                }
+                const convert = colorverter.convert[spaceA].to[spaceB].bind(colorverter);
                 const newColor = convert(black[sourceName]);
                 const isSame = colorverter.isSameColor(
                     newColor,
@@ -193,15 +137,15 @@ describe('colorverter.*To*', () => {
                 expect(isSame).toBeTruthy(
                     `expected ${black.targetName}, got ${newColor}`
                 );
-            });
-        });
+            }
+        }
     });
 });
 
-describe('colorverter.hwbToRgb', () => {
+describe('colorverter.convert.hwb.to.rgb', () => {
     it('should convert to black for extreme blackness', () => {
         for (let angle = 0; angle <= 360; angle++) {
-            const newColor = colorverter.hwbToRgb([angle, 0, 100]);
+            const newColor = colorverter.convert.hwb.to.rgb([angle, 0, 100]);
             const isSame = colorverter.isSameColor(newColor, [0, 0, 0]);
             expect(isSame).toBeTruthy();
         }
@@ -209,7 +153,7 @@ describe('colorverter.hwbToRgb', () => {
 
     it('should convert to white for extreme whiteness', () => {
         for (let angle = 0; angle <= 360; angle++) {
-            const newColor = colorverter.hwbToRgb([angle, 100, 0]);
+            const newColor = colorverter.convert.hwb.to.rgb([angle, 100, 0]);
             const isSame = colorverter.isSameColor(newColor, [255, 255, 255]);
             expect(isSame).toBeTruthy();
         }
@@ -217,7 +161,7 @@ describe('colorverter.hwbToRgb', () => {
 
     it('should convert to gray for extreme both parameters', () => {
         for (let angle = 0; angle <= 360; angle++) {
-            const newColor = colorverter.hwbToRgb([angle, 100, 100]);
+            const newColor = colorverter.convert.hwb.to.rgb([angle, 100, 100]);
             const isSame = colorverter.isSameColor(newColor, [128, 128, 128]);
             expect(isSame).toBeTruthy();
         }
@@ -228,35 +172,35 @@ describe('colorverter.hwbToRgb', () => {
 // testing random generators
 // -----------------------------------------------------------------------------
 
-describe('colorverter.getRandom*', () => {
+describe('colorverter.getRandom.*', () => {
     it('should return proper HEX color', () => {
         for (let i = 0; i < 999; i++) {
-            const newRandom = colorverter.getRandomHex();
-            const isValid = colorverter.isHex(newRandom);
+            const newRandom = colorverter.getRandom.hex();
+            const isValid = colorverter.validate.hex(newRandom);
             expect(isValid).toBeTruthy();
         }
     });
 
     it('should return proper RGB color', () => {
         for (let i = 0; i < 999; i++) {
-            const newRandom = colorverter.getRandomRgb();
-            const isValid = colorverter.isRgb(newRandom);
+            const newRandom = colorverter.getRandom.rgb();
+            const isValid = colorverter.validate.rgb(newRandom);
             expect(isValid).toBeTruthy();
         }
     });
 
     it('should return proper HSL color', () => {
         for (let i = 0; i < 999; i++) {
-            const newRandom = colorverter.getRandomHsl();
-            const isValid = colorverter.isHsl(newRandom);
+            const newRandom = colorverter.getRandom.hsl();
+            const isValid = colorverter.validate.hsl(newRandom);
             expect(isValid).toBeTruthy();
         }
     });
 
     it('should return proper HWB color', () => {
         for (let i = 0; i < 999; i++) {
-            const newRandom = colorverter.getRandomHwb();
-            const isValid = colorverter.isHwb(newRandom);
+            const newRandom = colorverter.getRandom.hwb();
+            const isValid = colorverter.validate.hwb(newRandom);
             expect(isValid).toBeTruthy();
         }
     });
@@ -266,49 +210,39 @@ describe('colorverter.getRandom*', () => {
 // testing validation
 // -----------------------------------------------------------------------------
 
-describe('colorverter.isColor', () => {
-    it('should fail for non-arrays', () => {
-        expect(colorverter.isColor('#fff')).toBeFalsy();
-        expect(colorverter.isColor('red')).toBeFalsy();
-        expect(colorverter.isColor('rebeccapurple')).toBeFalsy();
-        expect(colorverter.isColor({r: 255, g: 255, b: 255})).toBeFalsy();
-        expect(colorverter.isColor(255, 255, 255)).toBeFalsy();
+describe('colorverter.validate.hex', () => {
+    it('should fail for invalid values', () => {
+        expect(colorverter.validate.hex([0, 0, 0])).toBeFalsy();
+        expect(colorverter.validate.hex(['zz', 'xx', 'yy'])).toBeFalsy();
+        expect(colorverter.validate.hex(['ab', 'ab', 'a'])).toBeFalsy();
+        expect(colorverter.validate.hex(['12', '34', '567'])).toBeFalsy();
     });
 });
 
-describe('colorverter.isHex', () => {
+describe('colorverter.validate.rgb', () => {
     it('should fail for invalid values', () => {
-        expect(colorverter.isHex([0, 0, 0])).toBeFalsy();
-        expect(colorverter.isHex(['zz', 'xx', 'yy'])).toBeFalsy();
-        expect(colorverter.isHex(['ab', 'ab', 'a'])).toBeFalsy();
-        expect(colorverter.isHex(['12', '34', '567'])).toBeFalsy();
+        expect(colorverter.validate.rgb([0, 0, 256])).toBeFalsy();
+        expect(colorverter.validate.rgb([0, 0, 125.5])).toBeFalsy();
     });
 });
 
-describe('colorverter.isRgb', () => {
+describe('colorverter.validate.hsl', () => {
     it('should fail for invalid values', () => {
-        expect(colorverter.isRgb([0, 0, 256])).toBeFalsy();
-        expect(colorverter.isRgb([0, 0, 125.5])).toBeFalsy();
+        expect(colorverter.validate.hsl([900, 0, 0])).toBeFalsy();
+        expect(colorverter.validate.hsl([125.5, 0, 0])).toBeFalsy();
+        expect(colorverter.validate.hsl([360, 110, 0])).toBeFalsy();
+        expect(colorverter.validate.hsl([360, 0, 110])).toBeFalsy();
+        expect(colorverter.validate.hsl([-45, 0.5, 55.5])).toBeFalsy();
     });
 });
 
-describe('colorverter.isHsl', () => {
+describe('colorverter.validate.hwb', () => {
     it('should fail for invalid values', () => {
-        expect(colorverter.isHsl([900, 0, 0])).toBeFalsy();
-        expect(colorverter.isHsl([125.5, 0, 0])).toBeFalsy();
-        expect(colorverter.isHsl([360, 110, 0])).toBeFalsy();
-        expect(colorverter.isHsl([360, 0, 110])).toBeFalsy();
-        expect(colorverter.isHsl([-45, 0.5, 55.5])).toBeFalsy();
-    });
-});
-
-describe('colorverter.isHwb', () => {
-    it('should fail for invalid values', () => {
-        expect(colorverter.isHwb([900, 0, 0])).toBeFalsy();
-        expect(colorverter.isHwb([125.5, 0, 0])).toBeFalsy();
-        expect(colorverter.isHwb([360, 110, 0])).toBeFalsy();
-        expect(colorverter.isHwb([360, 0, 110])).toBeFalsy();
-        expect(colorverter.isHwb([-45, 0.5, 55.5])).toBeFalsy();
+        expect(colorverter.validate.hwb([900, 0, 0])).toBeFalsy();
+        expect(colorverter.validate.hwb([125.5, 0, 0])).toBeFalsy();
+        expect(colorverter.validate.hwb([360, 110, 0])).toBeFalsy();
+        expect(colorverter.validate.hwb([360, 0, 110])).toBeFalsy();
+        expect(colorverter.validate.hwb([-45, 0.5, 55.5])).toBeFalsy();
     });
 });
 

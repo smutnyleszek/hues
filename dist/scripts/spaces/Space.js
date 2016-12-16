@@ -1,4 +1,4 @@
-define(['exports', '../flux/currentColorActions', '../flux/currentColorStore', 'react', './SpaceInput'], function (exports, _currentColorActions, _currentColorStore, _react, _SpaceInput) {
+define(['exports', '../flux/currentColorActions', '../flux/currentColorStore', 'react', './SpaceInput', '../helpers/colorverter'], function (exports, _currentColorActions, _currentColorStore, _react, _SpaceInput, _colorverter) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -12,6 +12,8 @@ define(['exports', '../flux/currentColorActions', '../flux/currentColorStore', '
     var _react2 = _interopRequireDefault(_react);
 
     var _SpaceInput2 = _interopRequireDefault(_SpaceInput);
+
+    var _colorverter2 = _interopRequireDefault(_colorverter);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -78,7 +80,8 @@ define(['exports', '../flux/currentColorActions', '../flux/currentColorStore', '
             _this._name = data.name;
             _this._syntax = data.syntax;
             _this._properties = data.properties;
-            _this.state = _currentColorStore2.default.getState();
+
+            _this._onCurrentColorChange(_currentColorStore2.default.getState());
             return _this;
         }
 
@@ -94,9 +97,8 @@ define(['exports', '../flux/currentColorActions', '../flux/currentColorStore', '
             }
         }, {
             key: '_onCurrentColorChange',
-            value: function _onCurrentColorChange(state) {
-                this.setState(state);
-                console.log('current color changed', state);
+            value: function _onCurrentColorChange(currentColor) {
+                console.log(this._name, 'current color changed', currentColor);
             }
         }, {
             key: '_createInput',
@@ -110,13 +112,74 @@ define(['exports', '../flux/currentColorActions', '../flux/currentColorStore', '
                 });
             }
         }, {
+            key: '_setPropertyValue',
+            value: function _setPropertyValue(propertyName, value) {
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                    for (var _iterator = this._properties[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var property = _step.value;
+
+                        if (property.name === propertyName) {
+                            property.value = value;
+                            break;
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+            }
+        }, {
+            key: '_getPropertiesValuesArray',
+            value: function _getPropertiesValuesArray() {
+                var values = [];
+                var _iteratorNormalCompletion2 = true;
+                var _didIteratorError2 = false;
+                var _iteratorError2 = undefined;
+
+                try {
+                    for (var _iterator2 = this._properties[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                        var property = _step2.value;
+
+                        values.push(property.value);
+                    }
+                } catch (err) {
+                    _didIteratorError2 = true;
+                    _iteratorError2 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                            _iterator2.return();
+                        }
+                    } finally {
+                        if (_didIteratorError2) {
+                            throw _iteratorError2;
+                        }
+                    }
+                }
+
+                return values;
+            }
+        }, {
             key: '_onInputChange',
-            value: function _onInputChange(inputId, newVal) {
-                console.log('space -- input change!', inputId, newVal);
-                console.log(this);
+            value: function _onInputChange(inputName, newVal) {
+                this._setPropertyValue(inputName, newVal);
                 _currentColorActions2.default.updateCurrentColor({
                     name: this._name,
-                    value: []
+                    value: this._getPropertiesValuesArray()
                 });
             }
         }, {

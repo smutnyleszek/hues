@@ -1,10 +1,11 @@
 import CurrentColorActions from './currentColorActions';
+import colorverter from '../helpers/colorverter';
 import myAlt from './myAlt';
 
 class CurrentColorStore {
     constructor() {
-        this.spaceName = null;
-        this.colorValue = null;
+        this.name = 'rgb';
+        this.value = colorverter.getRandomRgb();
 
         this.bindListeners({
             _handleCurrentColorChange: CurrentColorActions.UPDATE_CURRENT_COLOR
@@ -12,8 +13,8 @@ class CurrentColorStore {
     }
 
     _handleCurrentColorChange(newColor) {
-        this.spaceName = newColor.name;
-        this.colorValue = newColor.value;
+        this.name = newColor.name;
+        this.value = newColor.value;
     }
 }
 
