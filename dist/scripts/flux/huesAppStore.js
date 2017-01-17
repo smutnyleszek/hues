@@ -1,4 +1,4 @@
-define(['exports', './huesAppActions', '../helpers/colorverter', './myAlt'], function (exports, _huesAppActions, _colorverter, _myAlt) {
+define(['exports', './huesAppActions', '../helpers/colorverter', './myAlt', '../spaces/spacesData'], function (exports, _huesAppActions, _colorverter, _myAlt, _spacesData) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -10,6 +10,8 @@ define(['exports', './huesAppActions', '../helpers/colorverter', './myAlt'], fun
     var _colorverter2 = _interopRequireDefault(_colorverter);
 
     var _myAlt2 = _interopRequireDefault(_myAlt);
+
+    var _spacesData2 = _interopRequireDefault(_spacesData);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -50,6 +52,9 @@ define(['exports', './huesAppActions', '../helpers/colorverter', './myAlt'], fun
             this.name = defaultSpace;
             this.value = _colorverter2.default.getRandom[defaultSpace]();
 
+            // TODO check if keep current space name?
+            // TODO loop over spacesData map, keep all spaces values here
+
             this.bindListeners({
                 _handleCurrentColorChange: _huesAppActions2.default.UPDATE_CURRENT_COLOR
             });
@@ -58,6 +63,7 @@ define(['exports', './huesAppActions', '../helpers/colorverter', './myAlt'], fun
         _createClass(HuesAppStore, [{
             key: '_handleCurrentColorChange',
             value: function _handleCurrentColorChange(newColor) {
+                // TODO update all color spaces
                 this.name = newColor.name;
                 this.value = newColor.value;
             }
