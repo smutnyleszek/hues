@@ -1,9 +1,13 @@
-define(['exports', './myAlt'], function (exports, _myAlt) {
+define(['exports', './huesAppActions', '../helpers/colorverter', './myAlt'], function (exports, _huesAppActions, _colorverter, _myAlt) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
+
+    var _huesAppActions2 = _interopRequireDefault(_huesAppActions);
+
+    var _colorverter2 = _interopRequireDefault(_colorverter);
 
     var _myAlt2 = _interopRequireDefault(_myAlt);
 
@@ -37,20 +41,30 @@ define(['exports', './myAlt'], function (exports, _myAlt) {
         };
     }();
 
-    var HuesAppActions = function () {
-        function HuesAppActions() {
-            _classCallCheck(this, HuesAppActions);
+    var defaultSpace = 'rgb';
+
+    var HuesAppStore = function () {
+        function HuesAppStore() {
+            _classCallCheck(this, HuesAppStore);
+
+            this.name = defaultSpace;
+            this.value = _colorverter2.default.getRandom[defaultSpace]();
+
+            this.bindListeners({
+                _handleCurrentColorChange: _huesAppActions2.default.UPDATE_CURRENT_COLOR
+            });
         }
 
-        _createClass(HuesAppActions, [{
-            key: 'updateCurrentColor',
-            value: function updateCurrentColor(color) {
-                return color;
+        _createClass(HuesAppStore, [{
+            key: '_handleCurrentColorChange',
+            value: function _handleCurrentColorChange(newColor) {
+                this.name = newColor.name;
+                this.value = newColor.value;
             }
         }]);
 
-        return HuesAppActions;
+        return HuesAppStore;
     }();
 
-    exports.default = _myAlt2.default.createActions(HuesAppActions);
+    exports.default = _myAlt2.default.createStore(HuesAppStore, 'HuesAppStore');
 });

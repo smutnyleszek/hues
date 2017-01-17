@@ -1,9 +1,9 @@
 import myAlt from './myAlt';
 
-class CurrentColorActions {
+class HuesAppActions {
     updateCurrentColor(color) {
         return color;
     }
 }
 
-export default myAlt.createActions(CurrentColorActions);
+export default myAlt.createActions(HuesAppActions);

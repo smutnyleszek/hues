@@ -1,9 +1,11 @@
-define(['exports', 'react', './Space', './spacesData'], function (exports, _react, _Space, _spacesData) {
+define(['exports', '../flux/huesAppStore', 'react', './Space', './spacesData'], function (exports, _huesAppStore, _react, _Space, _spacesData) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
+
+    var _huesAppStore2 = _interopRequireDefault(_huesAppStore);
 
     var _react2 = _interopRequireDefault(_react);
 
@@ -73,25 +75,47 @@ define(['exports', 'react', './Space', './spacesData'], function (exports, _reac
 
             var _this = _possibleConstructorReturn(this, (SpacesList.__proto__ || Object.getPrototypeOf(SpacesList)).call(this));
 
-            console.log('new SpacesList!');
+            _this.state = _huesAppStore2.default.getState();
             return _this;
         }
 
         _createClass(SpacesList, [{
-            key: '_createSpace',
-            value: function _createSpace(spaceName) {
+            key: 'componentDidMount',
+            value: function componentDidMount() {
+                _huesAppStore2.default.listen(this.onHuesAppStoreChange.bind(this));
+            }
+        }, {
+            key: 'componentWillUnmount',
+            value: function componentWillUnmount() {
+                _huesAppStore2.default.unlisten(this.onHuesAppStoreChange.bind(this));
+            }
+        }, {
+            key: 'onHuesAppStoreChange',
+            value: function onHuesAppStoreChange(currentColor) {
+                // NOTE: setState is asynchronous, so if you need access for current
+                // state, do it in componentDidUpdate
+                this.setState(currentColor);
+            }
+        }, {
+            key: 'componentDidUpdate',
+            value: function componentDidUpdate() {
+                console.log('componentDidUpdate:', this.state);
+            }
+        }, {
+            key: 'createSpace',
+            value: function createSpace(spaceName) {
                 var spaceData = _spacesData2.default.get(spaceName);
-                var data = {
+                return _react2.default.createElement(_Space2.default, {
                     name: spaceName,
                     properties: spaceData.properties,
-                    syntax: spaceData.syntax
-                };
-                return _react2.default.createElement(_Space2.default, data);
+                    syntax: spaceData.syntax,
+                    state: this.state
+                });
             }
         }, {
             key: 'render',
             value: function render() {
-                return _react2.default.createElement('div', null, this._createSpace('hex'), this._createSpace('rgb'), this._createSpace('hsl'), this._createSpace('hwb'));
+                return _react2.default.createElement('div', null, this.createSpace('rgb'), this.createSpace('hex'), this.createSpace('hsl'), this.createSpace('hwb'));
             }
         }]);
 

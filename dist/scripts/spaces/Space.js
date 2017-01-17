@@ -1,19 +1,15 @@
-define(['exports', '../flux/currentColorActions', '../flux/currentColorStore', 'react', './SpaceInput', '../helpers/colorverter'], function (exports, _currentColorActions, _currentColorStore, _react, _SpaceInput, _colorverter) {
+define(['exports', '../flux/huesAppActions', 'react', './SpaceInput'], function (exports, _huesAppActions, _react, _SpaceInput) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
 
-    var _currentColorActions2 = _interopRequireDefault(_currentColorActions);
-
-    var _currentColorStore2 = _interopRequireDefault(_currentColorStore);
+    var _huesAppActions2 = _interopRequireDefault(_huesAppActions);
 
     var _react2 = _interopRequireDefault(_react);
 
     var _SpaceInput2 = _interopRequireDefault(_SpaceInput);
-
-    var _colorverter2 = _interopRequireDefault(_colorverter);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -80,27 +76,10 @@ define(['exports', '../flux/currentColorActions', '../flux/currentColorStore', '
             _this._name = data.name;
             _this._syntax = data.syntax;
             _this._properties = data.properties;
-
-            _this._onCurrentColorChange(_currentColorStore2.default.getState());
             return _this;
         }
 
         _createClass(Space, [{
-            key: 'componentDidMount',
-            value: function componentDidMount() {
-                _currentColorStore2.default.listen(this._onCurrentColorChange.bind(this));
-            }
-        }, {
-            key: 'componentWillUnmount',
-            value: function componentWillUnmount() {
-                _currentColorStore2.default.unlisten(this._onCurrentColorChange.bind(this));
-            }
-        }, {
-            key: '_onCurrentColorChange',
-            value: function _onCurrentColorChange(currentColor) {
-                console.log(this._name, 'current color changed', currentColor);
-            }
-        }, {
             key: '_createInput',
             value: function _createInput(propertyData) {
                 return _react2.default.createElement(_SpaceInput2.default, {
@@ -177,7 +156,7 @@ define(['exports', '../flux/currentColorActions', '../flux/currentColorStore', '
             key: '_onInputChange',
             value: function _onInputChange(inputName, newVal) {
                 this._setPropertyValue(inputName, newVal);
-                _currentColorActions2.default.updateCurrentColor({
+                _huesAppActions2.default.updateCurrentColor({
                     name: this._name,
                     value: this._getPropertiesValuesArray()
                 });
@@ -192,6 +171,7 @@ define(['exports', '../flux/currentColorActions', '../flux/currentColorStore', '
         }, {
             key: 'render',
             value: function render() {
+                console.log('Space rendered - state:', this.props.state);
                 return _react2.default.createElement('div', this._getRenderAttributes(), this._syntax.before, this._createInput(this._properties[0]), this._syntax.between, this._createInput(this._properties[1]), this._syntax.between, this._createInput(this._properties[2]), this._syntax.after);
             }
         }]);

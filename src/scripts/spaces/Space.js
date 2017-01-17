@@ -1,8 +1,6 @@
-import CurrentColorActions from '../flux/currentColorActions';
-import CurrentColorStore from '../flux/currentColorStore';
+import HuesAppActions from '../flux/huesAppActions';
 import React from 'react';
 import SpaceInput from './SpaceInput';
-import colorverter from '../helpers/colorverter';
 
 class Space extends React.Component {
     constructor(data) {
@@ -10,20 +8,6 @@ class Space extends React.Component {
         this._name = data.name;
         this._syntax = data.syntax;
         this._properties = data.properties;
-
-        this._onCurrentColorChange(CurrentColorStore.getState());
-    }
-
-    componentDidMount() {
-        CurrentColorStore.listen(this._onCurrentColorChange.bind(this));
-    }
-
-    componentWillUnmount() {
-        CurrentColorStore.unlisten(this._onCurrentColorChange.bind(this));
-    }
-
-    _onCurrentColorChange(currentColor) {
-        console.log(this._name, 'current color changed', currentColor);
     }
 
     _createInput(propertyData) {
@@ -55,7 +39,7 @@ class Space extends React.Component {
 
     _onInputChange(inputName, newVal) {
         this._setPropertyValue(inputName, newVal);
-        CurrentColorActions.updateCurrentColor({
+        HuesAppActions.updateCurrentColor({
             name: this._name,
             value: this._getPropertiesValuesArray()
         });
@@ -68,6 +52,7 @@ class Space extends React.Component {
     }
 
     render() {
+        console.log('Space rendered - state:', this.props.state);
         return React.createElement(
             'div',
             this._getRenderAttributes(),

@@ -1,16 +1,16 @@
-import CurrentColorActions from './currentColorActions';
+import HuesAppActions from './huesAppActions';
 import colorverter from '../helpers/colorverter';
 import myAlt from './myAlt';
 
 const defaultSpace = 'rgb';
 
-class CurrentColorStore {
+class HuesAppStore {
     constructor() {
         this.name = defaultSpace;
         this.value = colorverter.getRandom[defaultSpace]();
 
         this.bindListeners({
-            _handleCurrentColorChange: CurrentColorActions.UPDATE_CURRENT_COLOR
+            _handleCurrentColorChange: HuesAppActions.UPDATE_CURRENT_COLOR
         });
     }
 
@@ -20,4 +20,4 @@ class CurrentColorStore {
     }
 }
 
-export default myAlt.createStore(CurrentColorStore, 'CurrentColorStore');
+export default myAlt.createStore(HuesAppStore, 'HuesAppStore');
