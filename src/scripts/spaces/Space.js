@@ -53,6 +53,7 @@ class Space extends React.Component {
 
     render() {
         console.log('Space rendered - state:', this.props.state);
+        // TODO apply state values to input value
         return React.createElement(
             'div',
             this._getRenderAttributes(),

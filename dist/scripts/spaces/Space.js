@@ -172,6 +172,7 @@ define(['exports', '../flux/huesAppActions', 'react', './SpaceInput'], function 
             key: 'render',
             value: function render() {
                 console.log('Space rendered - state:', this.props.state);
+                // TODO apply state values to input value
                 return _react2.default.createElement('div', this._getRenderAttributes(), this._syntax.before, this._createInput(this._properties[0]), this._syntax.between, this._createInput(this._properties[1]), this._syntax.between, this._createInput(this._properties[2]), this._syntax.after);
             }
         }]);
