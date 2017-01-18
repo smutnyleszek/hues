@@ -43,29 +43,54 @@ define(['exports', './huesAppActions', '../helpers/colorverter', './myAlt', '../
         };
     }();
 
-    var defaultSpace = 'rgb';
+    var initialSpaceName = 'rgb';
+    var initialSpaceValue = _colorverter2.default.getRandom[initialSpaceName]();
 
     var HuesAppStore = function () {
         function HuesAppStore() {
             _classCallCheck(this, HuesAppStore);
 
-            this.name = defaultSpace;
-            this.value = _colorverter2.default.getRandom[defaultSpace]();
-
-            // TODO check if keep current space name?
-            // TODO loop over spacesData map, keep all spaces values here
-
+            this._buildInitialState();
             this.bindListeners({
                 _handleCurrentColorChange: _huesAppActions2.default.UPDATE_CURRENT_COLOR
             });
         }
 
         _createClass(HuesAppStore, [{
+            key: '_buildInitialState',
+            value: function _buildInitialState() {
+                var _this = this;
+
+                this.currentSpaceName = initialSpaceName;
+
+                // create all spaces objects
+                this.spaces = {};
+                _spacesData2.default.forEach(function (spaceData, spaceName) {
+                    _this.spaces[spaceName] = spaceData;
+                    _this.spaces[spaceName].value = null;
+                });
+
+                // apply initial color to all spaces
+                this._applyColorValueToSpaces(initialSpaceName, initialSpaceValue);
+            }
+        }, {
+            key: '_applyColorValueToSpaces',
+            value: function _applyColorValueToSpaces(sourceSpaceName, sourceSpaceValue) {
+                var _this2 = this;
+
+                _spacesData2.default.forEach(function (spaceData, spaceName) {
+                    if (spaceName === sourceSpaceName) {
+                        _this2.spaces[spaceName].value = sourceSpaceValue;
+                    } else {
+                        _this2.spaces[spaceName].value = _colorverter2.default.convert[sourceSpaceName].to[spaceName](sourceSpaceValue);
+                    }
+                });
+            }
+        }, {
             key: '_handleCurrentColorChange',
             value: function _handleCurrentColorChange(newColor) {
-                // TODO update all color spaces
-                this.name = newColor.name;
-                this.value = newColor.value;
+                this.currentSpaceName = newColor.name;
+                this._applyColorValueToSpaces(newColor.name, newColor.value);
             }
         }]);
 
