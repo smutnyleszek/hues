@@ -59,51 +59,50 @@ define(['exports', './huesAppActions', '../helpers/colorverter', './myAlt', '../
         _createClass(HuesAppStore, [{
             key: '_buildInitialState',
             value: function _buildInitialState() {
-                this.currentSpaceName = initialSpaceName;
-
                 // create all spaces objects
                 this.spaces = new Map(_spacesData2.default);
 
-                // TODO make a function for setting intial value on initialSpace with
-                // different mechanism (one that will update all 3 at once and then
-                // trigger conversion on other spaces)
-                this._applyColorValueToSpaces(initialSpaceName, initialSpaceValue);
-
+                // apply initial value to spaces
+                this._applyValuesToSpace(initialSpaceName, initialSpaceValue);
+                this._applySpaceValueToOtherSpaces(initialSpaceName);
                 console.log('_buildInitialState', this);
             }
         }, {
-            key: '_applyColorValueToSpaces',
-            value: function _applyColorValueToSpaces(sourceSpaceName, sourceSpaceValue) {
-                console.log('_applyColorValueToSpaces', sourceSpaceName, sourceSpaceValue);
-                this.spaces.forEach(function (spaceData, spaceName) {
-                    var newValue = sourceSpaceValue;
-                    if (spaceName !== sourceSpaceName) {
-                        newValue = _colorverter2.default.convert[sourceSpaceName].to[spaceName](sourceSpaceValue);
-                    }
+            key: '_applyValuesToSpace',
+            value: function _applyValuesToSpace(targetSpaceName, valuesArray) {
+                var targetSpaceData = this.spaces.get(targetSpaceName);
 
-                    var propertyIndex = 0;
-                    spaceData.properties.forEach(function (propertyData) {
-                        propertyData.value = newValue[propertyIndex];
-                        propertyIndex++;
-                    });
+                var propertyIndex = 0;
+                targetSpaceData.properties.forEach(function (propertyData) {
+                    propertyData.value = valuesArray[propertyIndex];
+                    propertyIndex++;
+                });
+            }
+        }, {
+            key: '_applySpaceValueToOtherSpaces',
+            value: function _applySpaceValueToOtherSpaces(sourceSpaceName) {
+                var _this = this;
+
+                var sourceValuesArray = [];
+                var sourceSpaceData = this.spaces.get(sourceSpaceName);
+                sourceSpaceData.properties.forEach(function (propertyData) {
+                    sourceValuesArray.push(propertyData.value);
+                });
+
+                this.spaces.forEach(function (spaceData, spaceName) {
+                    if (spaceName === sourceSpaceName) {
+                        return;
+                    }
+                    var newValuesArray = _colorverter2.default.convert[sourceSpaceName].to[spaceName](sourceValuesArray);
+                    _this._applyValuesToSpace(spaceName, newValuesArray);
                 });
             }
         }, {
             key: '_onSetSpacePropertyValue',
             value: function _onSetSpacePropertyValue(data) {
-                this.currentSpaceName = data.spaceName;
-
                 var spaceData = this.spaces.get(data.spaceName);
                 spaceData.properties.get(data.propertyName).value = data.newValue;
-
-                // TODO make a function that will just require spaceName that changed,
-                // and will convert other spaces values by it (dont use arrays, please!)
-                var valueArray = [];
-                spaceData.properties.forEach(function (propertyData, propertyName) {
-                    valueArray.push(propertyData.value);
-                });
-
-                this._applyColorValueToSpaces(data.spaceName, valueArray);
+                this._applySpaceValueToOtherSpaces(data.spaceName);
             }
         }]);
 

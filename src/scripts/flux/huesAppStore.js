@@ -15,49 +15,45 @@ class HuesAppStore {
     }
 
     _buildInitialState() {
-        this.currentSpaceName = initialSpaceName;
-
         // create all spaces objects
         this.spaces = new Map(spacesData);
 
-        // TODO make a function for setting intial value on initialSpace with
-        // different mechanism (one that will update all 3 at once and then
-        // trigger conversion on other spaces)
-        this._applyColorValueToSpaces(initialSpaceName, initialSpaceValue);
-
+        // apply initial value to spaces
+        this._applyValuesToSpace(initialSpaceName, initialSpaceValue);
+        this._applySpaceValueToOtherSpaces(initialSpaceName);
         console.log('_buildInitialState', this);
     }
 
-    _applyColorValueToSpaces(sourceSpaceName, sourceSpaceValue) {
-        console.log('_applyColorValueToSpaces', sourceSpaceName, sourceSpaceValue);
-        this.spaces.forEach((spaceData, spaceName) => {
-            let newValue = sourceSpaceValue;
-            if (spaceName !== sourceSpaceName) {
-                newValue = colorverter.convert[sourceSpaceName].to[spaceName](sourceSpaceValue);
-            }
+    _applyValuesToSpace(targetSpaceName, valuesArray) {
+        const targetSpaceData = this.spaces.get(targetSpaceName);
 
-            let propertyIndex = 0;
-            spaceData.properties.forEach((propertyData) => {
-                propertyData.value = newValue[propertyIndex];
-                propertyIndex++;
-            });
+        let propertyIndex = 0;
+        targetSpaceData.properties.forEach((propertyData) => {
+            propertyData.value = valuesArray[propertyIndex];
+            propertyIndex++;
+        });
+    }
+
+    _applySpaceValueToOtherSpaces(sourceSpaceName) {
+        const sourceValuesArray = [];
+        const sourceSpaceData = this.spaces.get(sourceSpaceName);
+        sourceSpaceData.properties.forEach((propertyData) => {
+            sourceValuesArray.push(propertyData.value);
+        });
+
+        this.spaces.forEach((spaceData, spaceName) => {
+            if (spaceName === sourceSpaceName) {
+                return;
+            }
+            const newValuesArray = colorverter.convert[sourceSpaceName].to[spaceName](sourceValuesArray);
+            this._applyValuesToSpace(spaceName, newValuesArray);
         });
     }
 
     _onSetSpacePropertyValue(data) {
-        this.currentSpaceName = data.spaceName;
-
         const spaceData = this.spaces.get(data.spaceName);
         spaceData.properties.get(data.propertyName).value = data.newValue;
-
-        // TODO make a function that will just require spaceName that changed,
-        // and will convert other spaces values by it (dont use arrays, please!)
-        const valueArray = [];
-        spaceData.properties.forEach((propertyData, propertyName) => {
-            valueArray.push(propertyData.value);
-        });
-
-        this._applyColorValueToSpaces(data.spaceName, valueArray);
+        this._applySpaceValueToOtherSpaces(data.spaceName);
     }
 }
 
