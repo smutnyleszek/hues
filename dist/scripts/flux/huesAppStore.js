@@ -64,7 +64,9 @@ define(['exports', './huesAppActions', '../helpers/colorverter', './myAlt', '../
                 // create all spaces objects
                 this.spaces = new Map(_spacesData2.default);
 
-                // apply initial color to all spaces
+                // TODO make a function for setting intial value on initialSpace with
+                // different mechanism (one that will update all 3 at once and then
+                // trigger conversion on other spaces)
                 this._applyColorValueToSpaces(initialSpaceName, initialSpaceValue);
 
                 console.log('_buildInitialState', this);
@@ -94,6 +96,8 @@ define(['exports', './huesAppActions', '../helpers/colorverter', './myAlt', '../
                 var spaceData = this.spaces.get(data.spaceName);
                 spaceData.properties.get(data.propertyName).value = data.newValue;
 
+                // TODO make a function that will just require spaceName that changed,
+                // and will convert other spaces values by it (dont use arrays, please!)
                 var valueArray = [];
                 spaceData.properties.forEach(function (propertyData, propertyName) {
                     valueArray.push(propertyData.value);

@@ -20,7 +20,9 @@ class HuesAppStore {
         // create all spaces objects
         this.spaces = new Map(spacesData);
 
-        // apply initial color to all spaces
+        // TODO make a function for setting intial value on initialSpace with
+        // different mechanism (one that will update all 3 at once and then
+        // trigger conversion on other spaces)
         this._applyColorValueToSpaces(initialSpaceName, initialSpaceValue);
 
         console.log('_buildInitialState', this);
@@ -48,6 +50,8 @@ class HuesAppStore {
         const spaceData = this.spaces.get(data.spaceName);
         spaceData.properties.get(data.propertyName).value = data.newValue;
 
+        // TODO make a function that will just require spaceName that changed,
+        // and will convert other spaces values by it (dont use arrays, please!)
         const valueArray = [];
         spaceData.properties.forEach((propertyData, propertyName) => {
             valueArray.push(propertyData.value);
