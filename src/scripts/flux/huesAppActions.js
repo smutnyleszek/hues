@@ -1,8 +1,8 @@
 import myAlt from './myAlt';
 
 class HuesAppActions {
-    updateCurrentColor(color) {
-        return color;
+    setSpacePropertyValue(data) {
+        return data;
     }
 }
 

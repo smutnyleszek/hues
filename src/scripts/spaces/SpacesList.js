@@ -1,7 +1,6 @@
 import HuesAppStore from '../flux/huesAppStore';
 import React from 'react';
 import Space from './Space';
-import spacesData from './spacesData';
 
 class SpacesList extends React.Component {
     constructor() {
@@ -28,11 +27,8 @@ class SpacesList extends React.Component {
     }
 
     createSpace(spaceName) {
-        const spaceData = spacesData.get(spaceName);
         return React.createElement(Space, {
             name: spaceName,
-            properties: spaceData.properties,
-            syntax: spaceData.syntax,
             state: this.state
         });
     }

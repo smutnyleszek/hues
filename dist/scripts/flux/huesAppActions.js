@@ -43,9 +43,9 @@ define(['exports', './myAlt'], function (exports, _myAlt) {
         }
 
         _createClass(HuesAppActions, [{
-            key: 'updateCurrentColor',
-            value: function updateCurrentColor(color) {
-                return color;
+            key: 'setSpacePropertyValue',
+            value: function setSpacePropertyValue(data) {
+                return data;
             }
         }]);
 

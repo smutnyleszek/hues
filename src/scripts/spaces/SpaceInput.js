@@ -1,3 +1,4 @@
+import HuesAppActions from '../flux/huesAppActions';
 import React from 'react';
 import deepFreeze from '../helpers/deepFreeze';
 
@@ -7,36 +8,35 @@ const inputTypesMap = deepFreeze(new Map([
 ]));
 
 class SpaceInput extends React.Component {
-    constructor(data) {
-        super();
-        this._name = data.name;
-        this._category = data.category;
-        this._range = data.range;
-        this._maxlength = data.maxlength;
-        this._onChangeCallback = data.onChangeCallback;
-    }
-
-    _onChange(e) {
-        const currentValue = e.target.value;
-        this._onChangeCallback(this._name, currentValue);
+    _onChange(changeEvent) {
+        HuesAppActions.setSpacePropertyValue({
+            spaceName: this.props.spaceName,
+            propertyName: this.props.propertyName,
+            newValue: changeEvent.target.value
+        });
     }
 
     _getRenderAttributes() {
         const attributes = {};
+        const spaceData = this.props.state.spaces.get(this.props.spaceName);
+        const propertyData = spaceData.properties.get(this.props.propertyName);
 
-        attributes.name = this._name;
+        attributes.name = this.props.propertyName;
 
-        attributes.type = inputTypesMap.get(this._category);
+        attributes.value = propertyData.value;
+
+        attributes.type = inputTypesMap.get(propertyData.category);
 
         // number input range limits
-        if (typeof this._range !== 'undefined') {
-            attributes.min = this._range[0];
-            attributes.max = this._range[1];
+        if (typeof propertyData.range !== 'undefined') {
+            attributes.min = propertyData.range[0];
+            attributes.max = propertyData.range[1];
+            attributes.step = 1;
         }
 
         // text input string length limit
-        if (typeof this._maxlength !== 'undefined') {
-            attributes.maxLength = this._maxlength;
+        if (typeof propertyData.maxlength !== 'undefined') {
+            attributes.maxLength = propertyData.maxlength;
         }
 
         attributes.onChange = this._onChange.bind(this);
@@ -45,6 +45,7 @@ class SpaceInput extends React.Component {
     }
 
     render() {
+        console.log('SpaceInput render - props', this.props);
         return React.createElement('input', this._getRenderAttributes());
     }
 }

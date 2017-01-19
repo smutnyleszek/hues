@@ -10,7 +10,7 @@ class HuesAppStore {
     constructor() {
         this._buildInitialState();
         this.bindListeners({
-            _handleCurrentColorChange: HuesAppActions.UPDATE_CURRENT_COLOR
+            _onSetSpacePropertyValue: HuesAppActions.SET_SPACE_PROPERTY_VALUE
         });
     }
 
@@ -18,29 +18,42 @@ class HuesAppStore {
         this.currentSpaceName = initialSpaceName;
 
         // create all spaces objects
-        this.spaces = {};
-        spacesData.forEach((spaceData, spaceName) => {
-            this.spaces[spaceName] = spaceData;
-            this.spaces[spaceName].value = null;
-        });
+        this.spaces = new Map(spacesData);
 
         // apply initial color to all spaces
         this._applyColorValueToSpaces(initialSpaceName, initialSpaceValue);
+
+        console.log('_buildInitialState', this);
     }
 
     _applyColorValueToSpaces(sourceSpaceName, sourceSpaceValue) {
-        spacesData.forEach((spaceData, spaceName) => {
-            if (spaceName === sourceSpaceName) {
-                this.spaces[spaceName].value = sourceSpaceValue;
-            } else {
-                this.spaces[spaceName].value = colorverter.convert[sourceSpaceName].to[spaceName](sourceSpaceValue);
+        console.log('_applyColorValueToSpaces', sourceSpaceName, sourceSpaceValue);
+        this.spaces.forEach((spaceData, spaceName) => {
+            let newValue = sourceSpaceValue;
+            if (spaceName !== sourceSpaceName) {
+                newValue = colorverter.convert[sourceSpaceName].to[spaceName](sourceSpaceValue);
             }
+
+            let propertyIndex = 0;
+            spaceData.properties.forEach((propertyData) => {
+                propertyData.value = newValue[propertyIndex];
+                propertyIndex++;
+            });
         });
     }
 
-    _handleCurrentColorChange(newColor) {
-        this.currentSpaceName = newColor.name;
-        this._applyColorValueToSpaces(newColor.name, newColor.value);
+    _onSetSpacePropertyValue(data) {
+        this.currentSpaceName = data.spaceName;
+
+        const spaceData = this.spaces.get(data.spaceName);
+        spaceData.properties.get(data.propertyName).value = data.newValue;
+
+        const valueArray = [];
+        spaceData.properties.forEach((propertyData, propertyName) => {
+            valueArray.push(propertyData.value);
+        });
+
+        this._applyColorValueToSpaces(data.spaceName, valueArray);
     }
 }
 

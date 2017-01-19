@@ -1,9 +1,11 @@
-define(['exports', 'react', '../helpers/deepFreeze'], function (exports, _react, _deepFreeze) {
+define(['exports', '../flux/huesAppActions', 'react', '../helpers/deepFreeze'], function (exports, _huesAppActions, _react, _deepFreeze) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
+
+    var _huesAppActions2 = _interopRequireDefault(_huesAppActions);
 
     var _react2 = _interopRequireDefault(_react);
 
@@ -68,43 +70,44 @@ define(['exports', 'react', '../helpers/deepFreeze'], function (exports, _react,
     var SpaceInput = function (_React$Component) {
         _inherits(SpaceInput, _React$Component);
 
-        function SpaceInput(data) {
+        function SpaceInput() {
             _classCallCheck(this, SpaceInput);
 
-            var _this = _possibleConstructorReturn(this, (SpaceInput.__proto__ || Object.getPrototypeOf(SpaceInput)).call(this));
-
-            _this._name = data.name;
-            _this._category = data.category;
-            _this._range = data.range;
-            _this._maxlength = data.maxlength;
-            _this._onChangeCallback = data.onChangeCallback;
-            return _this;
+            return _possibleConstructorReturn(this, (SpaceInput.__proto__ || Object.getPrototypeOf(SpaceInput)).apply(this, arguments));
         }
 
         _createClass(SpaceInput, [{
             key: '_onChange',
-            value: function _onChange(e) {
-                var currentValue = e.target.value;
-                this._onChangeCallback(this._name, currentValue);
+            value: function _onChange(changeEvent) {
+                _huesAppActions2.default.setSpacePropertyValue({
+                    spaceName: this.props.spaceName,
+                    propertyName: this.props.propertyName,
+                    newValue: changeEvent.target.value
+                });
             }
         }, {
             key: '_getRenderAttributes',
             value: function _getRenderAttributes() {
                 var attributes = {};
+                var spaceData = this.props.state.spaces.get(this.props.spaceName);
+                var propertyData = spaceData.properties.get(this.props.propertyName);
 
-                attributes.name = this._name;
+                attributes.name = this.props.propertyName;
 
-                attributes.type = inputTypesMap.get(this._category);
+                attributes.value = propertyData.value;
+
+                attributes.type = inputTypesMap.get(propertyData.category);
 
                 // number input range limits
-                if (typeof this._range !== 'undefined') {
-                    attributes.min = this._range[0];
-                    attributes.max = this._range[1];
+                if (typeof propertyData.range !== 'undefined') {
+                    attributes.min = propertyData.range[0];
+                    attributes.max = propertyData.range[1];
+                    attributes.step = 1;
                 }
 
                 // text input string length limit
-                if (typeof this._maxlength !== 'undefined') {
-                    attributes.maxLength = this._maxlength;
+                if (typeof propertyData.maxlength !== 'undefined') {
+                    attributes.maxLength = propertyData.maxlength;
                 }
 
                 attributes.onChange = this._onChange.bind(this);
@@ -114,6 +117,7 @@ define(['exports', 'react', '../helpers/deepFreeze'], function (exports, _react,
         }, {
             key: 'render',
             value: function render() {
+                console.log('SpaceInput render - props', this.props);
                 return _react2.default.createElement('input', this._getRenderAttributes());
             }
         }]);

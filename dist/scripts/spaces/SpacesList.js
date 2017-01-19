@@ -1,4 +1,4 @@
-define(['exports', '../flux/huesAppStore', 'react', './Space', './spacesData'], function (exports, _huesAppStore, _react, _Space, _spacesData) {
+define(['exports', '../flux/huesAppStore', 'react', './Space'], function (exports, _huesAppStore, _react, _Space) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -10,8 +10,6 @@ define(['exports', '../flux/huesAppStore', 'react', './Space', './spacesData'], 
     var _react2 = _interopRequireDefault(_react);
 
     var _Space2 = _interopRequireDefault(_Space);
-
-    var _spacesData2 = _interopRequireDefault(_spacesData);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -104,11 +102,8 @@ define(['exports', '../flux/huesAppStore', 'react', './Space', './spacesData'], 
         }, {
             key: 'createSpace',
             value: function createSpace(spaceName) {
-                var spaceData = _spacesData2.default.get(spaceName);
                 return _react2.default.createElement(_Space2.default, {
                     name: spaceName,
-                    properties: spaceData.properties,
-                    syntax: spaceData.syntax,
                     state: this.state
                 });
             }
