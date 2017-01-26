@@ -36,18 +36,21 @@
       "patterns": [
         "src/styles"
       ],
+      "extensions": "css",
       "quiet": false
     },
     "scripts:build": {
       "patterns": [
         "src/scripts"
       ],
+      "extensions": "js",
       "quiet": false
     },
     "scripts:test": {
       "patterns": [
         "test/scripts"
       ],
+      "extensions": "js",
       "quiet": false
     }
   },

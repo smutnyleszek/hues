@@ -1,4 +1,18 @@
 # TODO
+- stage 1: start with simple color converter
+    - four spaces components that updates on currentColor
+    - store with current value
+    - converter service
+    - initial styles + logo
+- stage 2: add library
+    - multiple colors components that onClick set color value in currentColor
+- stage 3: add visualiser
+    - visualiser component that updates on currentColor and displays color
+- stage 4: add guesser
+    - guesser service that finds closes color from library (returns color and similarity score - 1=exact)
+    - visualiser shows guessed color with name, hue and similarity
+
+## Notes
 
 Babel:
 - https://babeljs.io/docs/learn-es2015/
@@ -15,21 +29,17 @@ CSS Modules:
 - https://jakearchibald.com/2016/link-in-body/
 
 Color names inspiration:
-
 - http://chir.ag/projects/name-that-color
 - https://www.npmjs.org/package/color-namer
 - http://viget.com/inspire/naming-colors
 
 Converter tools:
-
 - https://github.com/MoOx/color-convert
 - https://github.com/imathis/hsl-picker
 - https://drafts.csswg.org/css-color/#the-hwb-notation
 
 Color identify:
-
 - https://github.com/surfacecurve/sc-color/blob/master/lib/surfacecurve-color.js
-
 
 ## Architecture
 
@@ -68,42 +78,3 @@ Library color should have these informations:
 - general hue group
 - source (if it has one; could be Crayola, Resene, etc.)
 - additional information/short description (?)
-
-Scripts idea:
-
-```
-paster/
-    pasterRenderer.js
-visualiser/
-    currentColor.js
-    currentColorRenderer.js
-    guessedColorRenderer.js
-helpers/
-    colorFinder.js
-    colorValidator.js
-spaces/
-    spacesRenderer.js
-    spacesLibrary.js
-    space.js
-colors/
-    colorsRenderer.js
-    colorsLibrary.js
-    color.js
-requireConfig.js
-main.js
-```
-
-start with simple color converter:
-- four spaces components that updates on currentColor
-- store: currentColor (spaceId, colorValue)
-- converter service
-
-then add library:
-- multiple colors components that onClick set color value in currentColor
-
-then add visualiser:
-- visualiser component that updates on currentColor and displays color
-
-then add guesser:
-- guesser service that finds closes color from library (returns color and similarity score - 1=exact)
-- visualiser shows guessed color with name, hue and similarity
