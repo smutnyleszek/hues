@@ -92,6 +92,8 @@ define(['exports', './deepFreeze'], function (exports, _deepFreeze) {
                 hsl: this._getRandomHsl.bind(this),
                 hwb: this._getRandomHwb.bind(this)
             });
+            this.intToHex = this._intToHex.bind(this);
+            this.hexToInt = this._hexToInt.bind(this);
         }
 
         // -----------------------------------------------------------------------------
