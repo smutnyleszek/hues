@@ -59,6 +59,8 @@ class Colorverter {
             hsl: this._getRandomHsl.bind(this),
             hwb: this._getRandomHwb.bind(this)
         });
+        this.intToHex = this._intToHex.bind(this);
+        this.hexToInt = this._hexToInt.bind(this);
     }
 
 // -----------------------------------------------------------------------------
