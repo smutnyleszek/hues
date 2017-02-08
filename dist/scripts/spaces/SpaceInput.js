@@ -1,4 +1,4 @@
-define(['exports', '../flux/huesAppActions', 'react', '../helpers/deepFreeze'], function (exports, _huesAppActions, _react, _deepFreeze) {
+define(['exports', '../flux/huesAppActions', 'react', '../helpers/colorverter'], function (exports, _huesAppActions, _react, _colorverter) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -9,7 +9,7 @@ define(['exports', '../flux/huesAppActions', 'react', '../helpers/deepFreeze'], 
 
     var _react2 = _interopRequireDefault(_react);
 
-    var _deepFreeze2 = _interopRequireDefault(_deepFreeze);
+    var _colorverter2 = _interopRequireDefault(_colorverter);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -65,8 +65,6 @@ define(['exports', '../flux/huesAppActions', 'react', '../helpers/deepFreeze'], 
         if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
     }
 
-    var inputTypesMap = (0, _deepFreeze2.default)(new Map([['hexadecimal', 'text'], ['integer', 'number']]));
-
     var SpaceInput = function (_React$Component) {
         _inherits(SpaceInput, _React$Component);
 
@@ -79,38 +77,87 @@ define(['exports', '../flux/huesAppActions', 'react', '../helpers/deepFreeze'], 
         _createClass(SpaceInput, [{
             key: '_onChange',
             value: function _onChange(changeEvent) {
+                this._applyNewValue(changeEvent.target.value);
+            }
+        }, {
+            key: '_onKeyDown',
+            value: function _onKeyDown(keyDownEvent) {
+                switch (keyDownEvent.key) {
+                    case 'ArrowUp':
+                        this._changeValueByNumber(1);
+                        keyDownEvent.preventDefault();
+                        break;
+                    case 'ArrowDown':
+                        this._changeValueByNumber(-1);
+                        keyDownEvent.preventDefault();
+                        break;
+                    default:
+                        return;
+                }
+            }
+        }, {
+            key: '_changeValueByNumber',
+            value: function _changeValueByNumber(number) {
+                var propertyData = this._getPropertyData();
+                var minValue = propertyData.range[0];
+                var maxValue = propertyData.range[1];
+                var newValue = propertyData.value;
+
+                // STEP 1: get integer
+                if (propertyData.category === 'integer') {
+                    newValue = parseInt(newValue, 10);
+                } else if (propertyData.category === 'hexadecimal') {
+                    newValue = _colorverter2.default.hexToInt(newValue);
+                }
+
+                // STEP 2: add number to it
+                newValue += number;
+
+                // STEP 3: fix by range limits
+                if (newValue > maxValue) {
+                    newValue = maxValue;
+                } else if (newValue < minValue) {
+                    newValue = minValue;
+                }
+
+                // STEP 4: change it back to proper type if necessary
+                if (propertyData.category === 'hexadecimal') {
+                    newValue = _colorverter2.default.intToHex(newValue);
+                }
+
+                this._applyNewValue(newValue);
+            }
+        }, {
+            key: '_applyNewValue',
+            value: function _applyNewValue(newValue) {
                 _huesAppActions2.default.setSpacePropertyValue({
                     spaceName: this.props.spaceName,
                     propertyName: this.props.propertyName,
-                    newValue: changeEvent.target.value
+                    newValue: newValue
                 });
+            }
+        }, {
+            key: '_getPropertyData',
+            value: function _getPropertyData() {
+                var spaceData = this.props.state.spaces.get(this.props.spaceName);
+                return spaceData.properties.get(this.props.propertyName);
             }
         }, {
             key: '_getRenderAttributes',
             value: function _getRenderAttributes() {
                 var attributes = {};
-                var spaceData = this.props.state.spaces.get(this.props.spaceName);
-                var propertyData = spaceData.properties.get(this.props.propertyName);
+                var propertyData = this._getPropertyData();
 
                 attributes.name = this.props.propertyName;
-
                 attributes.value = propertyData.value;
+                attributes.type = 'text';
 
-                attributes.type = inputTypesMap.get(propertyData.category);
-
-                // number input range limits
-                if (typeof propertyData.range !== 'undefined') {
-                    attributes.min = propertyData.range[0];
-                    attributes.max = propertyData.range[1];
-                    attributes.step = 1;
-                }
-
-                // text input string length limit
-                if (typeof propertyData.maxlength !== 'undefined') {
-                    attributes.maxLength = propertyData.maxlength;
-                }
+                // disable attributes whitelist and apply styles module
+                attributes.is = '';
+                attributes['i-input'] = 'space';
 
                 attributes.onChange = this._onChange.bind(this);
+                attributes.onKeyDown = this._onKeyDown.bind(this);
 
                 return attributes;
             }

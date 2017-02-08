@@ -15,7 +15,7 @@ define(['exports', '../helpers/deepFreeze'], function (exports, _deepFreeze) {
 
     var spacesData = (0, _deepFreeze2.default)(new Map([['hex', {
         syntax: { before: '#', between: '', after: '' },
-        properties: new Map([['red', { category: 'hexadecimal', maxlength: 2 }], ['green', { category: 'hexadecimal', maxlength: 2 }], ['blue', { category: 'hexadecimal', maxlength: 2 }]])
+        properties: new Map([['red', { category: 'hexadecimal', range: [0, 255] }], ['green', { category: 'hexadecimal', range: [0, 255] }], ['blue', { category: 'hexadecimal', range: [0, 255] }]])
     }], ['rgb', {
         syntax: { before: 'rgb(', between: ',', after: ')' },
         properties: new Map([['red', { category: 'integer', range: [0, 255] }], ['green', { category: 'integer', range: [0, 255] }], ['blue', { category: 'integer', range: [0, 255] }]])

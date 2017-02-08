@@ -6,9 +6,9 @@ const spacesData = deepFreeze(new Map([
         {
             syntax: {before: '#', between: '', after: ''},
             properties: new Map([
-                ['red', {category: 'hexadecimal', maxlength: 2}],
-                ['green', {category: 'hexadecimal', maxlength: 2}],
-                ['blue', {category: 'hexadecimal', maxlength: 2}]
+                ['red', {category: 'hexadecimal', range: [0, 255]}],
+                ['green', {category: 'hexadecimal', range: [0, 255]}],
+                ['blue', {category: 'hexadecimal', range: [0, 255]}]
             ])
         }
     ],
