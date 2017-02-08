@@ -1,151 +1,125 @@
-/* -----------------------------------------------------------------------------
+/*******************************************************************************
 main styles aggregation
------------------------------------------------------------------------------ */
+*******************************************************************************/
 
-/* atoms */
+/* variables palette */
 
-/* -----------------------------------------------------------------------------
-atoms - a palette of all possible variables used throughout the project
------------------------------------------------------------------------------ */
+/*******************************************************************************
+variables - all global and pallete variables for project
+*******************************************************************************/
 
 :root {
-    /* colors */
+    /* colors palette */
 
-    /* font families */
+    /* font families palette */
 
-    /* fractions */
+    /* base */ /* 640px @ 16px */
 
-    /* percents */
+    /* root typography */
 
-    /* time durations */
+    /* font sizes with respect to user browser default sizes */ /* probably 18px */ /* probably 16px */ /* probably 20px */
 
-    /* z-indexes */
+    /* leading size for all spacing between elements to be pretty */
 
-    /* sizes */ /* extremely big */ /* 80px @ 16px */ /* 64px @ 16px */ /* 40px @ 16px */ /* 32px @ 16px */ /* 20px @ 16px */ /* 16px @ 16px */ /* 10px @ 16px */ /* 8px @ 16px */ /* 4px @ 16px */
+    /* globals */
 }
 
-/* -----------------------------------------------------------------------------
-custom media queries and selectors
------------------------------------------------------------------------------ */
+/*******************************************************************************
+custom media queries and selectors shortcuts
+*******************************************************************************/
+
+/* media queries for scaling everything */
+
+/* retina media query */
+
+/* groups selectors */
 
 /* basics */
 
-/* -----------------------------------------------------------------------------
+/*******************************************************************************
 root stuff and normalizations
------------------------------------------------------------------------------ */
 
-/* Root line height is being used in many places throughout the project.
+NOTE: Root line height is being used in many places throughout the project.
 It is recommended to keep all vertical margins and heights of elements to match
 the leading. Use caution when adding borders or when using vertical-align middle
-as they tend to add unwanted pixels, thus braking the flow. */
-
-/* -----------------------------------------------------------------------------
-basics configuration
------------------------------------------------------------------------------ */
-
-:root {
-    /* base */ /* 576px @ 16px */
-
-    /* root typography with font sizes for different screens scaling */
-
-    /* specific elements */ /* 1px @ 16px */
-
-    /* reusable stuff */
-}
+as they tend to add unwanted pixels, thus braking the flow.
+*******************************************************************************/
 
 html {
-    background-color: rgb(255, 255, 255);
-
-    min-height: 100%;
-
-    line-height: 1.5;
-
-    color: rgb(51, 51, 51);
-
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    text-rendering: optimizeLegibility;
-
     box-sizing: border-box;
+    min-height: 100%;
+    background-color: rgb(255, 255, 255);
+    color: rgb(51, 51, 51);
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 400;
+    font-size: 112.5%;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
 }
 
 /* clever page scaling with root font size changes */
 
-@media (min-width: 1536px) {
-    html {
-        font-size: 20px;
-    }
-}
+@media (min-width: 1536px) { html { font-size: 125%; } }
 
-@media (max-width: 720px) {
-    html {
-        font-size: 16px;
-    }
-}
+@media (max-width: 720px) { html { font-size: 100%; } }
 
 *,
 *::before,
 *::after {
     box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
 }
 
 body {
-    margin: 0;
-    padding: 54px 27px;
-    padding: 3rem 1.5rem;
+    margin: 0 auto;
     width: 100%;
-    max-width: 648px;
-    max-width: 36rem;
+    max-width: 720px;
+    max-width: 40rem;
 }
 
-/* -----------------------------------------------------------------------------
+/*******************************************************************************
 user-action influenced states
------------------------------------------------------------------------------ */
+*******************************************************************************/
+
+:root { /* 1px @ 16px */
+}
 
 /* links */
 
 a {
     /* custom underlines */
-    background-size: 0.062rem 0.062rem;
+    background-position: 0 100%;
+    background-size: 0.0625rem 0.0625rem;
     background-image: -webkit-linear-gradient(right, currentColor 0%, currentColor 0%);
     background-image: linear-gradient(to left, currentColor 0%, currentColor 0%);
     background-repeat: repeat-x;
-    background-position: 0 100%;
-
+    color: inherit;
     text-decoration: none;
-
-    color: inherit;
-}
-
-a:visited {
-    color: inherit;
 }
 
 a:hover {
-    background-size: 0.124rem 0.124rem;
+    background-size: 0.125rem 0.125rem;
     color: inherit;
 }
 
-a:active {
-    color: rgb(250, 31, 74);
-}
+a:visited { color: inherit; }
 
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-    border: 0;
-    padding: 0;
-}
+a:active { color: rgb(250, 31, 74); }
 
-button:focus,
-input:focus {
+/* text selection */
+
+:focus {
     outline-color: rgb(250, 31, 74);
     outline-style: auto;
     outline-width: 4.5px;
     outline-width: 0.25rem;
 }
 
-/* text selection */
+::-moz-focus-inner { border: 0; }
 
 ::-moz-selection {
     background-color: rgb(250, 31, 74);
@@ -160,20 +134,16 @@ input:focus {
 /* disabled elements */
 
 [disabled] {
-    opacity: 0.5;
-    cursor: default;
     pointer-events: none;
+    opacity: 0.5;
+
+    /* avoid adding up opacity on nested disabled elements */
+    [disabled] { opacity: 1; }
 }
 
-/* avoid adding up opacity on nested disabled elements */
-
-[disabled] [disabled] {
-    opacity: 1;
-}
-
-/* -----------------------------------------------------------------------------
+/*******************************************************************************
 base typographic rules
------------------------------------------------------------------------------ */
+*******************************************************************************/
 
 h1,
 h2,
@@ -198,10 +168,7 @@ pre:not(:last-child) {
     margin-bottom: 1.5rem;
 }
 
-h1 {
-    font-size: 54px;
-    font-size: 3rem;
-}
+h1 { font-size: 54px; font-size: 3rem; }
 
 h2 {
     padding-top: 9px;
@@ -212,10 +179,7 @@ h2 {
     font-size: 2rem;
 }
 
-h3 {
-    font-size: 27px;
-    font-size: 1.5rem;
-}
+h3 { font-size: 27px; font-size: 1.5rem; }
 
 h4 {
     font-size: inherit;
@@ -234,13 +198,9 @@ ol {
     padding: 0;
 }
 
-ul {
-    list-style-type: disc;
-}
+ul { list-style-type: disc; }
 
-ol {
-    list-style-type: decimal;
-}
+ol { list-style-type: decimal; }
 
 small,
 sub,
@@ -250,74 +210,82 @@ sup {
 
 sub,
 sup {
-    position: relative;
     vertical-align: baseline;
+    position: relative;
     line-height: 0;
 }
 
-sup {
-    top: -0.5em;
-}
+sup { top: -0.5em; }
 
-sub {
-    bottom: -0.25em;
-}
+sub { bottom: -0.25em; }
 
-strong {
-    font-weight: 700;
-}
+strong { font-weight: 700; }
 
-em {
-    font-style: italic;
-}
+em { font-style: italic; }
 
 blockquote {
-    margin-right: 0;
     margin-left: 0;
-
+    margin-right: 0;
     padding-left: 27px;
     padding-left: 1.5rem;
-
-    font-style: italic;
-
     box-shadow: inset 0.25rem 0 0 0 rgb(204, 204, 204);
+    font-style: italic;
 }
 
 blockquote cite::before {
+    content: "\2014";
     display: inline-block;
     margin-right: 4.5px;
     margin-right: 0.25rem;
-    content: '\2014';
 }
+
+code,
+pre {
+    font-family: "Input Mono",
+        "Office Code Pro",
+        "Source Code Pro",
+        "Fira Mono",
+        "Inconsolata",
+        "Monaco",
+        "Consolas",
+        "Lucida Console",
+        "Liberation Mono",
+        "DejaVu Sans Mono",
+        monospace;
+}
+
+/* line-height-margin trick for when two of those meet on neighbour lines */
 
 code {
     display: inline-block;
-
-    border-radius: 0.125rem;
-
-    background-color: rgb(204, 204, 204);
-
-    padding-right: 4.5px;
-    padding-right: 0.25rem;
-    padding-left: 4.5px;
-    padding-left: 0.25rem;
-
     vertical-align: bottom;
-
-    line-height: 27px;
-    line-height: 1.5rem;
-
+    margin-top: 2.25px;
+    margin-top: 0.125rem;
+    margin-bottom: 2.25px;
+    margin-bottom: 0.125rem;
+    border-radius: 0.125rem;
+    padding-left: 2.25px;
+    padding-left: 0.125rem;
+    padding-right: 2.25px;
+    padding-right: 0.125rem;
+    background-color: rgb(204, 204, 204);
     color: rgb(51, 51, 51);
-
-    font-family: 'Input Mono', 'Office Code Pro', 'Source Code Pro', 'Fira Mono', 'Inconsolata', 'Monaco', 'Consolas', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', monospace;
     font-size: 13.5px;
     font-size: 0.75rem;
+    line-height: 22.5px;
+    line-height: 1.25rem;
 }
+
+/* bigger blocks - reset line-height-margin trick for multiline */
 
 pre code {
     display: block;
-    max-width: 100%;
     overflow: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    max-width: 100%;
+    line-height: 27px;
+    line-height: 1.5rem;
 }
 
 /* form elements */
@@ -327,804 +295,590 @@ input,
 select,
 textarea {
     color: inherit;
-    font-style: inherit;
     font-family: inherit;
+    font-style: inherit;
     font-weight: inherit;
 }
 
-/* molecules */
+/* modules */
 
-/* -----------------------------------------------------------------------------
-area molecule
------------------------------------------------------------------------------ */
+/*******************************************************************************
+area module - colors
+*******************************************************************************/
 
-[gui-m-area~='amaranth'] {
-    background-color: rgb(250, 31, 74);
-}
+[i-area~="amaranth"] { background-color: rgb(250, 31, 74); }
 
-[gui-m-area~='purple'] {
-    background-color: rgb(194, 31, 118);
-}
+[i-area~="purple"] { background-color: rgb(194, 31, 118); }
 
-[gui-m-area~='violet'] {
-    background-color: rgb(103, 36, 148);
-}
+[i-area~="violet"] { background-color: rgb(103, 36, 148); }
 
-[gui-m-area~='white'] {
-    background-color: rgb(255, 255, 255);
-}
+[i-area~="white"] { background-color: rgb(255, 255, 255); }
 
-[gui-m-area~='silver'] {
-    background-color: rgb(204, 204, 204);
-}
+[i-area~="silver"] { background-color: rgb(204, 204, 204); }
 
-[gui-m-area~='charcoal'] {
-    background-color: rgb(51, 51, 51);
-}
+[i-area~="charcoal"] { background-color: rgb(51, 51, 51); }
 
 /* text color for light backgrounds */
 
-[gui-m-area~='white'],
-[gui-m-area~='silver'] {
+[i-area~="white"],
+[i-area~="silver"] {
     color: rgb(51, 51, 51);
 }
 
 /* text color for dark backgrounds */
 
-[gui-m-area~='charcoal'],
-[gui-m-area~='amaranth'],
-[gui-m-area~='purple'],
-[gui-m-area~='violet'] {
+[i-area~="charcoal"],
+[i-area~="amaranth"],
+[i-area~="purple"],
+[i-area~="violet"] {
     color: rgb(255, 255, 255);
 }
 
-/* -----------------------------------------------------------------------------
-col molecule
------------------------------------------------------------------------------ */
+/*******************************************************************************
+area module - spacing
+*******************************************************************************/
 
-/* Remember to truncate the white space between columns! */
+[i-area~="medium"] { padding: 27px; padding: 1.5rem; }
 
-[gui-m-col] {
-    display: inline-block;
-    width: 100%;
-    vertical-align: top;
-}
-
-/* vertical aligning columns */
-
-[gui-m-col~='top'] {
-    vertical-align: top;
-}
-
-[gui-m-col~='middle'] {
-    vertical-align: middle;
-}
-
-[gui-m-col~='bottom'] {
-    vertical-align: bottom;
-}
-
-/* -----------------------------------------------------------------------------
-columns
------------------------------------------------------------------------------ */
-
-[gui-m-col~='1/2'] {
-    width: 50%;
-}
-
-[gui-m-col~='1/3'] {
-    width: 33.33333%;
-}
-
-[gui-m-col~='2/3'] {
-    width: 66.66667%;
-}
-
-[gui-m-col~='1/4'] {
-    width: 25%;
-}
-
-[gui-m-col~='3/4'] {
-    width: 75%;
-}
-
-@media (min-width: 1536px) {
-    [gui-m-col~='b-1/2'] {
-        width: 50%;
-    }
-
-    [gui-m-col~='b-1/3'] {
-        width: 33.33333%;
-    }
-
-    [gui-m-col~='b-2/3'] {
-        width: 66.66667%;
-    }
-
-    [gui-m-col~='b-1/4'] {
-        width: 25%;
-    }
-
-    [gui-m-col~='b-3/4'] {
-        width: 75%;
-    }
-}
-
-@media (min-width: 721px) and (max-width: 1535px) {
-    [gui-m-col~='m-1/2'] {
-        width: 50%;
-    }
-
-    [gui-m-col~='m-1/3'] {
-        width: 33.33333%;
-    }
-
-    [gui-m-col~='m-2/3'] {
-        width: 66.66667%;
-    }
-
-    [gui-m-col~='m-1/4'] {
-        width: 25%;
-    }
-
-    [gui-m-col~='m-3/4'] {
-        width: 75%;
-    }
-}
-
-@media (max-width: 720px) {
-    [gui-m-col~='s-1/2'] {
-        width: 50%;
-    }
-
-    [gui-m-col~='s-1/3'] {
-        width: 33.33333%;
-    }
-
-    [gui-m-col~='s-2/3'] {
-        width: 66.66667%;
-    }
-
-    [gui-m-col~='s-1/4'] {
-        width: 25%;
-    }
-
-    [gui-m-col~='s-3/4'] {
-        width: 75%;
-    }
-}
-
-/* -----------------------------------------------------------------------------
-space before column
------------------------------------------------------------------------------ */
-
-[gui-m-colb~='1/2'] {
-    margin-left: 50%;
-}
-
-[gui-m-colb~='1/3'] {
-    margin-left: 33.33333%;
-}
-
-[gui-m-colb~='2/3'] {
-    margin-left: 66.66667%;
-}
-
-[gui-m-colb~='1/4'] {
-    margin-left: 25%;
-}
-
-[gui-m-colb~='3/4'] {
-    margin-left: 75%;
-}
-
-@media (min-width: 1536px) {
-    [gui-m-colb~='b-1/2'] {
-        margin-left: 50%;
-    }
-
-    [gui-m-colb~='b-1/3'] {
-        margin-left: 33.33333%;
-    }
-
-    [gui-m-colb~='b-2/3'] {
-        margin-left: 66.66667%;
-    }
-
-    [gui-m-colb~='b-1/4'] {
-        margin-left: 25%;
-    }
-
-    [gui-m-colb~='b-3/4'] {
-        margin-left: 75%;
-    }
-
-}
-
-@media (min-width: 721px) and (max-width: 1535px) {
-    [gui-m-colb~='m-1/2'] {
-        margin-left: 50%;
-    }
-
-    [gui-m-colb~='m-1/3'] {
-        margin-left: 33.33333%;
-    }
-
-    [gui-m-colb~='m-2/3'] {
-        margin-left: 66.66667%;
-    }
-
-    [gui-m-colb~='m-1/4'] {
-        margin-left: 25%;
-    }
-
-    [gui-m-colb~='m-3/4'] {
-        margin-left: 75%;
-    }
-
-}
-
-@media (max-width: 720px) {
-    [gui-m-colb~='s-1/2'] {
-        margin-left: 50%;
-    }
-
-    [gui-m-colb~='s-1/3'] {
-        margin-left: 33.33333%;
-    }
-
-    [gui-m-colb~='s-2/3'] {
-        margin-left: 66.66667%;
-    }
-
-    [gui-m-colb~='s-1/4'] {
-        margin-left: 25%;
-    }
-
-    [gui-m-colb~='s-3/4'] {
-        margin-left: 75%;
-    }
-
-}
-
-/* -----------------------------------------------------------------------------
-space after column
------------------------------------------------------------------------------ */
-
-[gui-m-cola~='1/2'] {
-    margin-right: 50%;
-}
-
-[gui-m-cola~='1/3'] {
-    margin-right: 33.33333%;
-}
-
-[gui-m-cola~='2/3'] {
-    margin-right: 66.66667%;
-}
-
-[gui-m-cola~='1/4'] {
-    margin-right: 25%;
-}
-
-[gui-m-cola~='3/4'] {
-    margin-right: 75%;
-}
-
-@media (min-width: 1536px) {
-    [gui-m-cola~='b-1/2'] {
-        margin-right: 50%;
-    }
-
-    [gui-m-cola~='b-1/3'] {
-        margin-right: 33.33333%;
-    }
-
-    [gui-m-cola~='b-2/3'] {
-        margin-right: 66.66667%;
-    }
-
-    [gui-m-cola~='b-1/4'] {
-        margin-right: 25%;
-    }
-
-    [gui-m-cola~='b-3/4'] {
-        margin-right: 75%;
-    }
-}
-
-@media (min-width: 721px) and (max-width: 1535px) {
-    [gui-m-cola~='m-1/2'] {
-        margin-right: 50%;
-    }
-
-    [gui-m-cola~='m-1/3'] {
-        margin-right: 33.33333%;
-    }
-
-    [gui-m-cola~='m-2/3'] {
-        margin-right: 66.66667%;
-    }
-
-    [gui-m-cola~='m-1/4'] {
-        margin-right: 25%;
-    }
-
-    [gui-m-cola~='m-3/4'] {
-        margin-right: 75%;
-    }
-}
-
-@media (max-width: 720px) {
-    [gui-m-cola~='s-1/2'] {
-        margin-right: 50%;
-    }
-
-    [gui-m-cola~='s-1/3'] {
-        margin-right: 33.33333%;
-    }
-
-    [gui-m-cola~='s-2/3'] {
-        margin-right: 66.66667%;
-    }
-
-    [gui-m-cola~='s-1/4'] {
-        margin-right: 25%;
-    }
-
-    [gui-m-cola~='s-3/4'] {
-        margin-right: 75%;
-    }
-}
-
-/* -----------------------------------------------------------------------------
-hover molecule
------------------------------------------------------------------------------ */
-
-[gui-m-hover]:not(:hover) [gui-m-hover-item~='restore'],
-[gui-m-hover]:hover [gui-m-hover-item~='remove'] {
-    display: none;
-}
-
-[gui-m-hover]:not(:hover) [gui-m-hover-item~='show'],
-[gui-m-hover]:hover [gui-m-hover-item~='hide'] {
-    visibility: hidden;
-    opacity: 0;
-}
-
-[gui-m-hover-item~='animate'] {
-    -webkit-transition-duration: 0.125s;
-            transition-duration: 0.125s;
-}
-
-/* -----------------------------------------------------------------------------
-inlineblock molecule
------------------------------------------------------------------------------ */
-
-[gui-m-inlineblock] {
-    display: inline-block;
-}
-
-/* -----------------------------------------------------------------------------
-pad molecule
------------------------------------------------------------------------------ */
-
-[gui-m-pad~='medium'] {
-    padding: 27px;
-    padding: 1.5rem;
-}
-
-[gui-m-pad~='medium-v'] {
+[i-area~="medium-v"] {
     padding-top: 27px;
     padding-top: 1.5rem;
     padding-bottom: 27px;
     padding-bottom: 1.5rem;
 }
 
-[gui-m-pad~='medium-h'] {
-    padding-right: 27px;
-    padding-right: 1.5rem;
+[i-area~="medium-h"] {
     padding-left: 27px;
     padding-left: 1.5rem;
+    padding-right: 27px;
+    padding-right: 1.5rem;
 }
 
-[gui-m-pad~='half'] {
-    padding: 13.5px;
-    padding: 0.75rem;
-}
+[i-area~="half"] { padding: 13.5px; padding: 0.75rem; }
 
-[gui-m-pad~='half-v'] {
+[i-area~="half-v"] {
     padding-top: 13.5px;
     padding-top: 0.75rem;
     padding-bottom: 13.5px;
     padding-bottom: 0.75rem;
 }
 
-[gui-m-pad~='half-h'] {
-    padding-right: 13.5px;
-    padding-right: 0.75rem;
+[i-area~="half-h"] {
     padding-left: 13.5px;
     padding-left: 0.75rem;
+    padding-right: 13.5px;
+    padding-right: 0.75rem;
 }
 
-[gui-m-pad~='double'] {
+[i-area~="double"] {
     padding: 54px;
     padding: 3rem;
 }
 
-[gui-m-pad~='double-v'] {
+[i-area~="double-v"] {
     padding-top: 54px;
     padding-top: 3rem;
     padding-bottom: 54px;
     padding-bottom: 3rem;
 }
 
-[gui-m-pad~='double-h'] {
-    padding-right: 54px;
-    padding-right: 3rem;
+[i-area~="double-h"] {
     padding-left: 54px;
     padding-left: 3rem;
+    padding-right: 54px;
+    padding-right: 3rem;
 }
 
-/* -----------------------------------------------------------------------------
-text molecule
------------------------------------------------------------------------------ */
+/*******************************************************************************
+button module
+*******************************************************************************/
 
-/* aligns */
-
-[gui-m-text~='lefted'] {
-    text-align: left;
-}
-
-[gui-m-text~='righted'] {
-    text-align: right;
-}
-
-[gui-m-text~='centered'] {
-    text-align: center;
-}
-
-[gui-m-text~='justified'] {
-    text-align: justify;
-}
-
-/* weights */
-
-[gui-m-text~='300'] {
-    font-weight: 300;
-}
-
-[gui-m-text~='400'] {
-    font-weight: 400;
-}
-
-[gui-m-text~='600'] {
-    font-weight: 600;
-}
-
-[gui-m-text~='700'] {
-    font-weight: 700;
-}
-
-/* text transforms */
-
-[gui-m-text~='uppercased'] {
-    text-transform: uppercase;
-}
-
-[gui-m-text~='lowercased'] {
-    text-transform: lowercase;
-}
-
-[gui-m-text~='untransformed'] {
-    text-transform: none;
-}
-
-/* trims text with an ellipsis */
-
-[gui-m-text~='trimmed'] {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-/* organisms */
-
-/* -----------------------------------------------------------------------------
-button organism
------------------------------------------------------------------------------ */
-
-/* -----------------------------------------------------------------------------
-button config
------------------------------------------------------------------------------ */
-
-[gui-o-button] {
+[i-button] {
     display: inline-block;
-
-    margin: 2.25px 0;
-    margin: 0.125rem 0;
-
-    outline: 0;
+    vertical-align: top;
+    margin: 0;
     border: 0;
-
     border-radius: 0.125rem;
-
-    background-color: rgb(204, 204, 204);
-    background-image: none;
-    box-shadow: 0 0.125rem 0 0 rgb(173, 173, 173);
-
-    cursor: pointer;
-
     padding-top: 0;
-    padding-right: 9px;
-    padding-right: 0.5rem;
     padding-bottom: 0;
     padding-left: 9px;
     padding-left: 0.5rem;
-
-    height: 22.5px;
-    height: 1.25rem;
-
-    overflow: hidden;
-
-    vertical-align: top;
-
-    text-align: center;
-    text-decoration: none;
-    line-height: 24.75px;
-    line-height: 1.375rem;
-    white-space: nowrap;
-
-    color: rgb(51, 51, 51);
-
-    font-family: inherit;
+    padding-right: 9px;
+    padding-right: 0.5rem;
+    height: auto;
+    /* we want the button to fit into leading size with breathing space */
+    min-height: 22.5px;
+    min-height: 1.25rem;
+    outline: 0;
+    cursor: pointer;
+    background-image: none;
     font-size: 13.5px;
     font-size: 0.75rem;
     font-weight: 700;
-
-    text-overflow: ellipsis;
+    font-family: inherit;
+    /* adjust line-height to adjusted height */
+    line-height: 24.75px;
+    line-height: 1.375rem;
+    text-align: center;
+    text-decoration: none;
 }
 
-[gui-o-button]:visited {
-    background-color: rgb(204, 204, 204);
-    color: rgb(51, 51, 51);
-    box-shadow: 0 0.125rem 0 0 rgb(173, 173, 173);
+/* default button state */
+
+[i-button],
+[i-button]:visited {
+    margin-top: 2.25px;
+    margin-top: 0.125rem;
+    margin-bottom: 2.25px;
+    margin-bottom: 0.125rem;
 }
 
-[gui-o-button]:hover {
-    background-color: rgb(214, 214, 214);
-    box-shadow: 0 0.125rem 0 0 rgb(184, 184, 184);
+[i-button]:not([disabled]):hover,
+[i-button~="hover"]:not([disabled]) {
+    margin-top: 2.25px;
+    margin-top: 0.125rem;
+    margin-bottom: 2.25px;
+    margin-bottom: 0.125rem;
 }
 
-[gui-o-button]:active {
-    background-color: rgb(219, 219, 219);
-    box-shadow: 0 0.125rem 0 0 rgb(194, 194, 194);
+[i-button]:not([disabled]):active,
+[i-button~="active"]:not([disabled]) {
+    /* swap margins to make the button look pressed-in */
+    margin-top: 4.5px;
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+    /* remove shadow to make the button look pressed-in */
+    box-shadow: none !important;
 }
 
-[gui-o-button~='middle'] {
+[i-button~="middle"] {
     vertical-align: middle;
 }
 
-/* -----------------------------------------------------------------------------
-button sizes
------------------------------------------------------------------------------ */
+/*******************************************************************************
+button colors
+*******************************************************************************/
 
-[gui-o-button~='double'] {
-    padding-right: 18px;
-    padding-right: 1rem;
+/* default */
+
+[i-button],
+[i-button]:visited {
+    box-shadow: 0 0.125rem 0 0 rgb(173, 173, 173);
+    background-color: rgb(204, 204, 204);
+    color: rgb(51, 51, 51);
+}
+
+[i-button]:not([disabled]):hover,
+[i-button~="hover"]:not([disabled]) {
+    box-shadow: 0 0.125rem 0 0 rgb(184, 184, 184);
+    background-color: rgb(214, 214, 214);
+    color: rgb(51, 51, 51);
+}
+
+[i-button]:not([disabled]):active,
+[i-button~="active"]:not([disabled]) {
+    background-color: rgb(214, 214, 214);
+    color: rgb(51, 51, 51);
+}
+
+/* amaranth */
+
+[i-button~="amaranth"],
+[i-button~="amaranth"]:visited {
+    box-shadow: 0 0.125rem 0 0 rgb(213, 26, 63);
+    background-color: rgb(250, 31, 74);
+    color: rgb(255, 255, 255);
+}
+
+[i-button~="amaranth"]:not([disabled]):hover {
+    box-shadow: 0 0.125rem 0 0 rgb(225, 28, 67);
+    background-color: rgb(251, 76, 110);
+    color: rgb(255, 255, 255);
+}
+
+[i-button~="amaranth"]:not([disabled]):active {
+    background-color: rgb(251, 76, 110);
+    color: rgb(255, 255, 255);
+}
+
+/*******************************************************************************
+button sizes
+*******************************************************************************/
+
+[i-button~="double"] {
     padding-left: 18px;
     padding-left: 1rem;
-
-    height: 49.5px;
-    height: 2.75rem;
-    line-height: 49.5px;
-    line-height: 2.75rem;
-
+    padding-right: 18px;
+    padding-right: 1rem;
+    min-height: 49.5px;
+    min-height: 2.75rem;
     font-size: 27px;
     font-size: 1.5rem;
+    line-height: 49.5px;
+    line-height: 2.75rem;
 }
 
-[gui-o-button~='triple'] {
-    padding-right: 27px;
-    padding-right: 1.5rem;
+[i-button~="triple"] {
     padding-left: 27px;
     padding-left: 1.5rem;
-
-    height: 76.5px;
-    height: 4.25rem;
-    line-height: 74.25px;
-    line-height: 4.125rem;
-
+    padding-right: 27px;
+    padding-right: 1.5rem;
+    min-height: 76.5px;
+    min-height: 4.25rem;
     font-size: 40.5px;
     font-size: 2.25rem;
+    line-height: 74.25px;
+    line-height: 4.125rem;
 }
 
-[gui-o-button~='full'] {
+[i-button~="quadruple"] {
+    padding-left: 36px;
+    padding-left: 2rem;
+    padding-right: 36px;
+    padding-right: 2rem;
+    min-height: 103.5px;
+    min-height: 5.75rem;
+    font-size: 54px;
+    font-size: 3rem;
+    line-height: 99px;
+    line-height: 5.5rem;
+}
+
+[i-button~="full"] {
     display: block;
     width: 100%;
 }
 
-/* -----------------------------------------------------------------------------
-icon organism
------------------------------------------------------------------------------ */
+/*******************************************************************************
+column module
 
-/* -----------------------------------------------------------------------------
-icon config
------------------------------------------------------------------------------ */
+NOTE: you need to truncate the whitespace between columns, because these are
+inline-blocks!
+*******************************************************************************/
 
-[gui-o-icon] {
+[i-column] {
     display: inline-block;
+    width: 100%;
+}
 
+[i-column~="top"] { vertical-align: top; }
+
+[i-column~="middle"] { vertical-align: middle; }
+
+[i-column~="bottom"] { vertical-align: bottom; }
+
+/*******************************************************************************
+column sizes (as fractions)
+*******************************************************************************/
+
+[i-column~="1/2"] { width: 50%; }
+
+[i-column~="1/3"] { width: 33.33333%; }
+
+[i-column~="2/3"] { width: 66.66667%; }
+
+[i-column~="1/4"] { width: 25%; }
+
+[i-column~="3/4"] { width: 75%; }
+
+@media (min-width: 1536px) {
+    [i-column~="b-1/2"] { width: 50%; }
+    [i-column~="b-1/3"] { width: 33.33333%; }
+    [i-column~="b-2/3"] { width: 66.66667%; }
+    [i-column~="b-1/4"] { width: 25%; }
+    [i-column~="b-3/4"] { width: 75%; }
+}
+
+@media (min-width: 721px) and (max-width: 1535px) {
+    [i-column~="m-1/2"] { width: 50%; }
+    [i-column~="m-1/3"] { width: 33.33333%; }
+    [i-column~="m-2/3"] { width: 66.66667%; }
+    [i-column~="m-1/4"] { width: 25%; }
+    [i-column~="m-3/4"] { width: 75%; }
+}
+
+@media (max-width: 720px) {
+    [i-column~="s-1/2"] { width: 50%; }
+    [i-column~="s-1/3"] { width: 33.33333%; }
+    [i-column~="s-2/3"] { width: 66.66667%; }
+    [i-column~="s-1/4"] { width: 25%; }
+    [i-column~="s-3/4"] { width: 75%; }
+}
+
+/*******************************************************************************
+space before column
+*******************************************************************************/
+
+[i-column-before~="1/2"] { margin-left: 50%; }
+
+[i-column-before~="1/3"] { margin-left: 33.33333%; }
+
+[i-column-before~="2/3"] { margin-left: 66.66667%; }
+
+[i-column-before~="1/4"] { margin-left: 25%; }
+
+[i-column-before~="3/4"] { margin-left: 75%; }
+
+@media (min-width: 1536px) {
+    [i-column-before~="b-1/2"] { margin-left: 50%; }
+    [i-column-before~="b-1/3"] { margin-left: 33.33333%; }
+    [i-column-before~="b-2/3"] { margin-left: 66.66667%; }
+    [i-column-before~="b-1/4"] { margin-left: 25%; }
+    [i-column-before~="b-3/4"] { margin-left: 75%; }
+}
+
+@media (min-width: 721px) and (max-width: 1535px) {
+    [i-column-before~="m-1/2"] { margin-left: 50%; }
+    [i-column-before~="m-1/3"] { margin-left: 33.33333%; }
+    [i-column-before~="m-2/3"] { margin-left: 66.66667%; }
+    [i-column-before~="m-1/4"] { margin-left: 25%; }
+    [i-column-before~="m-3/4"] { margin-left: 75%; }
+}
+
+@media (max-width: 720px) {
+    [i-column-before~="s-1/2"] { margin-left: 50%; }
+    [i-column-before~="s-1/3"] { margin-left: 33.33333%; }
+    [i-column-before~="s-2/3"] { margin-left: 66.66667%; }
+    [i-column-before~="s-1/4"] { margin-left: 25%; }
+    [i-column-before~="s-3/4"] { margin-left: 75%; }
+}
+
+/*******************************************************************************
+space after column
+*******************************************************************************/
+
+[i-column-after~="1/2"] { margin-right: 50%; }
+
+[i-column-after~="1/3"] { margin-right: 33.33333%; }
+
+[i-column-after~="2/3"] { margin-right: 66.66667%; }
+
+[i-column-after~="1/4"] { margin-right: 25%; }
+
+[i-column-after~="3/4"] { margin-right: 75%; }
+
+@media (min-width: 1536px) {
+    [i-column-after~="b-1/2"] { margin-right: 50%; }
+    [i-column-after~="b-1/3"] { margin-right: 33.33333%; }
+    [i-column-after~="b-2/3"] { margin-right: 66.66667%; }
+    [i-column-after~="b-1/4"] { margin-right: 25%; }
+    [i-column-after~="b-3/4"] { margin-right: 75%; }
+}
+
+@media (min-width: 721px) and (max-width: 1535px) {
+    [i-column-after~="m-1/2"] { margin-right: 50%; }
+    [i-column-after~="m-1/3"] { margin-right: 33.33333%; }
+    [i-column-after~="m-2/3"] { margin-right: 66.66667%; }
+    [i-column-after~="m-1/4"] { margin-right: 25%; }
+    [i-column-after~="m-3/4"] { margin-right: 75%; }
+}
+
+@media (max-width: 720px) {
+    [i-column-after~="s-1/2"] { margin-right: 50%; }
+    [i-column-after~="s-1/3"] { margin-right: 33.33333%; }
+    [i-column-after~="s-2/3"] { margin-right: 66.66667%; }
+    [i-column-after~="s-1/4"] { margin-right: 25%; }
+    [i-column-after~="s-3/4"] { margin-right: 75%; }
+}
+
+/*******************************************************************************
+icon config
+*******************************************************************************/
+
+:root { /* 360px */ /* 240px */
+}
+
+[i-icon] {
+    display: inline-block;
+    vertical-align: bottom;
     width: 27px;
     width: 1.5rem;
     height: 27px;
     height: 1.5rem;
-
-    vertical-align: middle;
-
-    shape-rendering: geometricPrecision;
-
-    fill: currentColor;
     color: inherit;
+    shape-rendering: geometricPrecision;
+    fill: currentColor;
 }
 
 /* bugfix for click target SVGElementInstance */
 
-[gui-o-icon] > * {
-    pointer-events: none;
-}
+[i-icon] > * { pointer-events: none; }
 
-[gui-o-icon~='big'] {
+[i-icon~="middle"] { vertical-align: middle; }
+
+/*******************************************************************************
+icon sizes
+*******************************************************************************/
+
+[i-icon~="double"] {
     width: 54px;
     width: 3rem;
     height: 54px;
     height: 3rem;
 }
 
-[gui-o-icon~='silver'] {
-    fill: rgb(204, 204, 204);
+[i-icon~="triple"] {
+    width: 81px;
+    width: 4.5rem;
+    height: 81px;
+    height: 4.5rem;
 }
 
-/* -----------------------------------------------------------------------------
-image organism
------------------------------------------------------------------------------ */
-
-/* -----------------------------------------------------------------------------
-image config
------------------------------------------------------------------------------ */
-
-:root { /* 400px @ 16px */ /* 288px @ 16px */
-
+[i-icon~="madSkeletonLogo"] {
+    width: 405px;
+    width: 22.5rem;
+    height: 270px;
+    height: 15rem;
 }
 
-/* -----------------------------------------------------------------------------
-image organism library
------------------------------------------------------------------------------ */
+/*******************************************************************************
+icon colors
+*******************************************************************************/
 
-[gui-o-image~='medievalbloodandgore'] {
-    background-image: url('/public/images/test/thumbnail/medieval-blood-and-gore.jpg');
-}
+[i-icon~="amaranth"] { fill: rgb(250, 31, 74); }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
-    [gui-o-image~='medievalbloodandgore'] {
-        background-image: url('/public/images/test/thumbnail-x2/medieval-blood-and-gore.jpg');
+[i-icon~="purple"] { fill: rgb(194, 31, 118); }
+
+[i-icon~="violet"] { fill: rgb(103, 36, 148); }
+
+[i-icon~="white"] { fill: rgb(255, 255, 255); }
+
+[i-icon~="silver"] { fill: rgb(204, 204, 204); }
+
+@-webkit-keyframes crazyPulseAnimation {
+    0% {
+        filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="0" /></filter></svg>#filter');
+        -webkit-filter: blur(0);
+                filter: blur(0);
+        fill: rgb(103, 36, 148);
+    }
+
+    50% {
+        fill: rgb(194, 31, 118);
+    }
+
+    100% {
+        filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="12" /></filter></svg>#filter');
+        -webkit-filter: blur(0.75rem);
+                filter: blur(0.75rem);
+        fill: rgb(250, 31, 74);
     }
 }
 
-[gui-o-image] {
+@keyframes crazyPulseAnimation {
+    0% {
+        filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="0" /></filter></svg>#filter');
+        -webkit-filter: blur(0);
+                filter: blur(0);
+        fill: rgb(103, 36, 148);
+    }
+
+    50% {
+        fill: rgb(194, 31, 118);
+    }
+
+    100% {
+        filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="12" /></filter></svg>#filter');
+        -webkit-filter: blur(0.75rem);
+                filter: blur(0.75rem);
+        fill: rgb(250, 31, 74);
+    }
+}
+
+[i-icon~="crazyPulseAnimatedOnHover"]:hover {
+    -webkit-animation-name: crazyPulseAnimation;
+            animation-name: crazyPulseAnimation;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+    -webkit-animation-fill-mode: none;
+            animation-fill-mode: none;
+    -webkit-animation-delay: 0;
+            animation-delay: 0;
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+    -webkit-animation-direction: alternate;
+            animation-direction: alternate;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+    -webkit-animation-play-state: running;
+            animation-play-state: running;
+}
+
+/*******************************************************************************
+nakedLink module
+*******************************************************************************/
+
+[i-nakedLink] {
     display: inline-block;
-
-    margin: 0;
-
-    background-size: cover;
-    background-color: rgb(204, 204, 204);
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-
-    padding: 0;
-
-    width: 100%;
-
-    vertical-align: top;
-
-    -webkit-backface-visibility: hidden;
-
-            backface-visibility: hidden;
+    cursor: pointer;
+    background-image: none;
 }
 
-[gui-o-image]:not(:last-child) {
-    margin-bottom: 27px;
-    margin-bottom: 1.5rem;
+[i-nakedLink]:not([disabled]):hover {
+    opacity: 0.8;
+    color: inherit;
 }
 
-[gui-o-image~='small'] {
-    width: 450px;
-    width: 25rem;
-    height: 324px;
-    height: 18rem;
+[i-nakedLink]:not([disabled]):active {
+    opacity: 0.6;
+    color: inherit;
 }
 
-/* -----------------------------------------------------------------------------
-progressbar organism
------------------------------------------------------------------------------ */
-
-/* -----------------------------------------------------------------------------
-progressbar config
------------------------------------------------------------------------------ */
+/*******************************************************************************
+progressBar config
+*******************************************************************************/
 
 :root { /* 160px @ 16px */
-
 }
 
-[gui-o-progressbar] {
+/*******************************************************************************
+progressBar module
+*******************************************************************************/
+
+[i-progressBar] {
     position: relative;
     overflow: hidden;
-
+    margin-top: 4.5px;
+    margin-top: 0.25rem;
+    border-radius: 0.125rem;
     width: 100%;
-
     height: 18px;
     height: 1rem;
-    margin: 4.5px 0;
-    margin: 0.25rem 0;
-
     background-color: rgb(204, 204, 204);
-
-    border-radius: 0.125rem;
 }
 
-[gui-o-progressbar]:not(:last-child) {
-    margin-bottom: 27px;
-    margin-bottom: 1.5rem;
-}
+[i-progressBar]:not(:last-child) { margin-bottom: 27px; margin-bottom: 1.5rem; }
 
-[gui-o-progressbar-indicator] {
+[i-progressBar-indicator] {
     display: block;
-    height: 100%;
-    width: 0%;
-
-    background-color: rgb(51, 51, 51);
     border-radius: 0.125rem;
-
+    width: 0%;
+    height: 100%;
+    background-color: rgb(51, 51, 51);
     -webkit-transition: 0.25s;
-
     transition: 0.25s;
 }
 
-[gui-o-progressbar~='short'] {
-    max-width: 180px;
-    max-width: 10rem;
-}
+[i-progressBar~="short"] { max-width: 180px; max-width: 10rem; }
 
 @-webkit-keyframes framesProgressPending {
-    0% {
-        background-position: -1rem 0;
-    }
-    100% {
-        background-position: 1rem 0;
-    }
+    0% { background-position: -1rem 0; }
+    100% { background-position: 1rem 0; }
 }
 
 @keyframes framesProgressPending {
-    0% {
-        background-position: -1rem 0;
-    }
-    100% {
-        background-position: 1rem 0;
-    }
+    0% { background-position: -1rem 0; }
+    100% { background-position: 1rem 0; }
 }
 
-[gui-o-progressbar~='is-pending']:after {
-    content: '';
-
+[i-progressBar~="pending"]::after {
+    content: "";
     position: absolute;
-    z-index: 10;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-
     opacity: 0.25;
-
     background-image: -webkit-radial-gradient(
         circle 0.33rem,
         rgb(255, 255, 255) 0%,
@@ -1132,7 +886,6 @@ progressbar config
         transparent 50%,
         transparent 100%
     );
-
     background-image: radial-gradient(
         circle 0.33rem,
         rgb(255, 255, 255) 0%,
@@ -1142,18 +895,14 @@ progressbar config
     );
     background-size: 1rem 100%;
     background-repeat: repeat-x;
-
     -webkit-animation-name: framesProgressPending;
-
             animation-name: framesProgressPending;
     -webkit-animation-duration: 0.75s;
             animation-duration: 0.75s;
     -webkit-animation-timing-function: linear;
             animation-timing-function: linear;
-    -webkit-animation-delay: 0s;
-            animation-delay: 0s;
-    -webkit-animation-delay: initial;
-            animation-delay: initial;
+    -webkit-animation-delay: 0;
+            animation-delay: 0;
     -webkit-animation-direction: normal;
             animation-direction: normal;
     -webkit-animation-iteration-count: infinite;
@@ -1164,61 +913,106 @@ progressbar config
             animation-play-state: running;
 }
 
-/* -----------------------------------------------------------------------------
-section organism
------------------------------------------------------------------------------ */
+/*******************************************************************************
+table module
+*******************************************************************************/
 
-[gui-o-section]:not(:last-child) {
-    margin-bottom: 54px;
-    margin-bottom: 3rem;
-}
-
-[gui-o-section~='main']:not(:last-child) {
-    margin-bottom: 81px;
-    margin-bottom: 4.5rem;
-}
-
-/* -----------------------------------------------------------------------------
-table organism
------------------------------------------------------------------------------ */
-
-/* -----------------------------------------------------------------------------
-table config
------------------------------------------------------------------------------ */
-
-[gui-o-table] {
-    border-collapse: separate;
+[i-table] {
+    border-collapse: collapse;
     border-spacing: 0;
 }
 
-[gui-o-table]:not(:last-child) {
+[i-table]:not(:last-child),
+[i-table] caption:not(:last-child) {
     margin-bottom: 27px;
     margin-bottom: 1.5rem;
 }
 
-[gui-o-table] td,
-[gui-o-table] th {
+[i-table] td,
+[i-table] th {
+    border: 1.125px solid rgb(204, 204, 204);
+    border: 0.0625rem solid rgb(204, 204, 204);
     padding: 13.5px;
     padding: 0.75rem;
-    box-shadow: 0 0 0 0.063rem rgb(163, 163, 163);
-
-    background-color: rgb(255, 255, 255);
+    word-wrap: break-word;
 }
 
-[gui-o-table] thead { font-weight: 700; }
+[i-table] thead {
+    font-weight: 700;
+}
 
-[gui-o-table] caption {
-    text-align: center;
+[i-table] caption {
     font-style: italic;
+    text-align: center;
 }
 
-[gui-o-table] caption:not(:last-child) {
-    margin-bottom: 27px;
-    margin-bottom: 1.5rem;
+/*******************************************************************************
+additional modifiers
+*******************************************************************************/
+
+[i-table~="hoverable"] tr:hover {
+    background-color: rgba(204, 204, 204, 0.2);
 }
 
-[gui-o-table~='hoverable'] tr:hover td {
-    background-color: rgb(230, 230, 230);
+[i-table~="fullwidth"] {
+    table-layout: fixed;
+    width: 100%;
 }
 
-[gui-o-table~='full'] { width: 100%; }
+/*******************************************************************************
+text module
+*******************************************************************************/
+
+/* aligns */
+
+[i-text~="lefted"] { text-align: left; }
+
+[i-text~="righted"] { text-align: right; }
+
+[i-text~="centered"] { text-align: center; }
+
+[i-text~="justified"] { text-align: justify; }
+
+/* weights */
+
+[i-text~="light"],
+[i-text~="300"] { font-weight: 300; }
+
+[i-text~="regular"],
+[i-text~="400"] { font-weight: 400; }
+
+[i-text~="semibold"],
+[i-text~="600"] { font-weight: 600; }
+
+[i-text~="bold"],
+[i-text~="700"] { font-weight: 700; }
+
+/* sizes */
+
+[i-text~="75%"] { font-size: 75%; }
+
+[i-text~="150%"] { font-size: 150%; }
+
+[i-text~="200%"] { font-size: 200%; }
+
+[i-text~="300%"] { font-size: 300%; }
+
+/* text transforms */
+
+[i-text~="uppercased"] { text-transform: uppercase; }
+
+[i-text~="lowercased"] { text-transform: lowercase; }
+
+[i-text~="untransformed"] { text-transform: none; }
+
+/* makes text not wrap :-D */
+
+[i-text~="nowrap"] { white-space: nowrap; }
+
+/* trims text with an ellipsis */
+
+[i-text~="trimmed"] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

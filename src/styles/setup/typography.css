@@ -1,6 +1,10 @@
-/* -----------------------------------------------------------------------------
+/*******************************************************************************
 base typographic rules
------------------------------------------------------------------------------ */
+*******************************************************************************/
+
+:root {
+    --s-code-safeSpace: 0.125rem;
+}
 
 :--headers {
     margin: 0;
@@ -10,12 +14,10 @@ base typographic rules
 
 :--textblocks:not(:last-child) {
     margin-top: 0;
-    margin-bottom: var(--leading-s);
+    margin-bottom: var(--s-leading);
 }
 
-h1 {
-    font-size: 3rem;
-}
+h1 { font-size: 3rem; }
 
 h2 {
     padding-top: 0.5rem;
@@ -23,9 +25,7 @@ h2 {
     font-size: 2rem;
 }
 
-h3 {
-    font-size: 1.5rem;
-}
+h3 { font-size: 1.5rem; }
 
 h4 {
     font-size: inherit;
@@ -39,95 +39,83 @@ pre {
 
 ul,
 ol {
-    margin-left: var(--leading-s);
+    margin-left: var(--s-leading);
     padding: 0;
 }
 
-ul {
-    list-style-type: disc;
-}
+ul { list-style-type: disc; }
 
-ol {
-    list-style-type: decimal;
-}
+ol { list-style-type: decimal; }
 
 small,
 sub,
 sup {
-    font-size: var(--a-p-giant);
+    font-size: 75%;
 }
 
 sub,
 sup {
-    position: relative;
     vertical-align: baseline;
+    position: relative;
     line-height: 0;
 }
 
-sup {
-    top: -0.5em;
-}
+sup { top: -0.5em; }
 
-sub {
-    bottom: -0.25em;
-}
+sub { bottom: -0.25em; }
 
-strong {
-    font-weight: 700;
-}
+strong { font-weight: 700; }
 
-em {
-    font-style: italic;
-}
+em { font-style: italic; }
 
 blockquote {
-    margin-right: 0;
     margin-left: 0;
-
-    padding-left: var(--leading-s);
-
+    margin-right: 0;
+    padding-left: var(--s-leading);
+    box-shadow: inset 0.25rem 0 0 0 var(--c-silver);
     font-style: italic;
-
-    box-shadow: inset var(--a-s-tiny) 0 0 0 var(--a-c-silver);
 }
 
 blockquote cite::before {
+    content: "\2014";
     display: inline-block;
-    margin-right: var(--a-s-tiny);
-    content: '\2014';
+    margin-right: 0.25rem;
 }
 
+code,
+pre {
+    font-family: var(--font-monospace);
+}
+
+/* line-height-margin trick for when two of those meet on neighbour lines */
 code {
     display: inline-block;
-
-    border-radius: 0.125rem;
-
-    background-color: var(--a-c-silver);
-
-    padding-right: var(--a-s-tiny);
-    padding-left: var(--a-s-tiny);
-
     vertical-align: bottom;
-
-    line-height: var(--leading-s);
-
-    color: var(--a-c-charcoal);
-
-    font-family: var(--a-font-monospace);
+    margin-top: var(--s-code-safeSpace);
+    margin-bottom: var(--s-code-safeSpace);
+    border-radius: var(--s-global-br);
+    padding-left: var(--s-code-safeSpace);
+    padding-right: var(--s-code-safeSpace);
+    background-color: var(--c-silver);
+    color: var(--c-charcoal);
     font-size: 0.75rem;
+    line-height: calc(var(--s-leading) - calc(var(--s-code-safeSpace) * 2));
 }
 
+/* bigger blocks - reset line-height-margin trick for multiline */
 pre code {
     display: block;
-    max-width: 100%;
     overflow: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    max-width: 100%;
+    line-height: var(--s-leading);
 }
 
 /* form elements */
-
 :--formelements {
     color: inherit;
-    font-style: inherit;
     font-family: inherit;
+    font-style: inherit;
     font-weight: inherit;
 }

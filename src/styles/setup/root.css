@@ -1,54 +1,43 @@
-/* -----------------------------------------------------------------------------
+/*******************************************************************************
 root stuff and normalizations
------------------------------------------------------------------------------ */
 
-/* Root line height is being used in many places throughout the project.
+NOTE: Root line height is being used in many places throughout the project.
 It is recommended to keep all vertical margins and heights of elements to match
 the leading. Use caution when adding borders or when using vertical-align middle
-as they tend to add unwanted pixels, thus braking the flow. */
-
-@import '_config.css';
+as they tend to add unwanted pixels, thus braking the flow.
+*******************************************************************************/
 
 html {
-    background-color: var(--app-bg-c);
-
-    min-height: 100%;
-
-    line-height: var(--rootLineHeight);
-
-    color: var(--app-txt-c);
-
-    font-family: var(--rootFontFamily);
-    font-size: var(--rootFontSize);
-    font-weight: var(--rootFontWeight);
-    text-rendering: optimizeLegibility;
-
     box-sizing: border-box;
+    min-height: 100%;
+    background-color: var(--c-root-bg);
+    color: var(--c-root-txt);
+    font-family: var(--root-fontFamily);
+    font-weight: var(--root-fontWeight);
+    font-size: var(--root-fontSize-medium);
+    line-height: var(--root-lineHeight);
+    text-rendering: optimizeLegibility;
 }
 
 /* clever page scaling with root font size changes */
 
-@media (--bigger) {
-    html {
-        font-size: var(--rootFontSizeBigger);
-    }
-}
+@media (--bigger) { html { font-size: var(--root-fontSize-bigger); } }
 
-@media (--smaller) {
-    html {
-        font-size: var(--rootFontSizeSmaller);
-    }
-}
+@media (--smaller) { html { font-size: var(--root-fontSize-smaller); } }
 
 *,
 *::before,
 *::after {
     box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
 }
 
 body {
-    margin: 0;
-    padding: calc(var(--leading-s) * 2) var(--leading-s);
+    margin: 0 auto;
     width: 100%;
-    max-width: var(--app-content-w);
+    max-width: var(--s-root-content);
 }

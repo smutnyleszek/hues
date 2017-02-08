@@ -1,28 +1,21 @@
-/* -----------------------------------------------------------------------------
+/*******************************************************************************
 main styles aggregation
------------------------------------------------------------------------------ */
+*******************************************************************************/
 
-/* atoms */
-@import 'atoms/atoms.css';
-@import 'atoms/selectors.css';
+/* variables palette */
+@import "variables.css";
 
 /* basics */
-@import 'setup/root.css';
-@import 'setup/states.css';
-@import 'setup/typography.css';
+@import "setup/root.css";
+@import "setup/states.css";
+@import "setup/typography.css";
 
-/* molecules */
-@import 'molecules/area.css';
-@import 'molecules/col.css';
-@import 'molecules/hover.css';
-@import 'molecules/inlineblock.css';
-@import 'molecules/pad.css';
-@import 'molecules/text.css';
-
-/* organisms */
-@import 'organisms/button/base.css';
-@import 'organisms/icon/base.css';
-@import 'organisms/image/base.css';
-@import 'organisms/progressbar/base.css';
-@import 'organisms/section/base.css';
-@import 'organisms/table/base.css';
+/* modules */
+@import "modules/area.css";
+@import "modules/button.css";
+@import "modules/column.css";
+@import "modules/icon.css";
+@import "modules/nakedLink.css";
+@import "modules/progressBar.css";
+@import "modules/table.css";
+@import "modules/text.css";
