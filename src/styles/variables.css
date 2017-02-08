@@ -12,7 +12,6 @@ variables - all global and pallete variables for project
     --c-charcoal: hwb(0deg, 20%, 80%);
 
     /* font families palette */
-    --font-sourceSansPro: "Source Sans Pro", sans-serif;
     --font-monospace:
         "Input Mono",
         "Office Code Pro",
@@ -29,12 +28,11 @@ variables - all global and pallete variables for project
     /* base */
     --c-root-txt: var(--c-charcoal);
     --c-root-bg: var(--c-white);
-    --s-root-content: 40rem; /* 640px @ 16px */
 
     /* root typography */
     --root-fontWeight: 400;
     --root-lineHeight: 1.5;
-    --root-fontFamily: var(--font-sourceSansPro);
+    --root-fontFamily: var(--font-monospace);
 
     /* font sizes with respect to user browser default sizes */
     --root-fontSize-medium: 112.5%; /* probably 18px */
