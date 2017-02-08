@@ -1,6 +1,7 @@
 import HuesAppActions from '../flux/huesAppActions';
 import React from 'react';
-import colorverter from '../helpers/colorverter'
+import ReactDom from 'react-dom';
+import colorverter from '../helpers/colorverter';
 
 class SpaceInput extends React.Component {
     _onChange(changeEvent) {
@@ -67,21 +68,19 @@ class SpaceInput extends React.Component {
     }
 
     _getRenderAttributes() {
-        const attributes = {};
         const propertyData = this._getPropertyData();
+        return {
+            name: this.props.propertyName,
+            value: propertyData.value,
+            type: 'text',
+            onChange: this._onChange.bind(this),
+            onKeyDown: this._onKeyDown.bind(this)
+        };
+    }
 
-        attributes.name = this.props.propertyName;
-        attributes.value = propertyData.value;
-        attributes.type = 'text';
-
-        // disable attributes whitelist and apply styles module
-        attributes.is = '';
-        attributes['i-input'] = 'space';
-
-        attributes.onChange = this._onChange.bind(this);
-        attributes.onKeyDown = this._onKeyDown.bind(this);
-
-        return attributes;
+    componentDidMount() {
+        // apply MADCSS module
+        ReactDom.findDOMNode(this).setAttribute('i-input', 'space');
     }
 
     render() {

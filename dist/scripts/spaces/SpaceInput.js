@@ -1,4 +1,4 @@
-define(['exports', '../flux/huesAppActions', 'react', '../helpers/colorverter'], function (exports, _huesAppActions, _react, _colorverter) {
+define(['exports', '../flux/huesAppActions', 'react', 'react-dom', '../helpers/colorverter'], function (exports, _huesAppActions, _react, _reactDom, _colorverter) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -8,6 +8,8 @@ define(['exports', '../flux/huesAppActions', 'react', '../helpers/colorverter'],
     var _huesAppActions2 = _interopRequireDefault(_huesAppActions);
 
     var _react2 = _interopRequireDefault(_react);
+
+    var _reactDom2 = _interopRequireDefault(_reactDom);
 
     var _colorverter2 = _interopRequireDefault(_colorverter);
 
@@ -145,21 +147,20 @@ define(['exports', '../flux/huesAppActions', 'react', '../helpers/colorverter'],
         }, {
             key: '_getRenderAttributes',
             value: function _getRenderAttributes() {
-                var attributes = {};
                 var propertyData = this._getPropertyData();
-
-                attributes.name = this.props.propertyName;
-                attributes.value = propertyData.value;
-                attributes.type = 'text';
-
-                // disable attributes whitelist and apply styles module
-                attributes.is = '';
-                attributes['i-input'] = 'space';
-
-                attributes.onChange = this._onChange.bind(this);
-                attributes.onKeyDown = this._onKeyDown.bind(this);
-
-                return attributes;
+                return {
+                    name: this.props.propertyName,
+                    value: propertyData.value,
+                    type: 'text',
+                    onChange: this._onChange.bind(this),
+                    onKeyDown: this._onKeyDown.bind(this)
+                };
+            }
+        }, {
+            key: 'componentDidMount',
+            value: function componentDidMount() {
+                // apply MADCSS module
+                _reactDom2.default.findDOMNode(this).setAttribute('i-input', 'space');
             }
         }, {
             key: 'render',
