@@ -11,11 +11,19 @@ class SpaceInput extends React.Component {
     _onKeyDown(keyDownEvent) {
         switch (keyDownEvent.key) {
             case 'ArrowUp':
-                this._changeValueByNumber(1);
+                if (keyDownEvent.shiftKey) {
+                    this._changeValueByNumber(10);
+                } else {
+                    this._changeValueByNumber(1);
+                }
                 keyDownEvent.preventDefault();
                 break;
             case 'ArrowDown':
-                this._changeValueByNumber(-1);
+                if (keyDownEvent.shiftKey) {
+                    this._changeValueByNumber(-10);
+                } else {
+                    this._changeValueByNumber(-1);
+                }
                 keyDownEvent.preventDefault();
                 break;
             default:
