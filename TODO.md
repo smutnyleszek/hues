@@ -1,16 +1,46 @@
 # TODO
 - stage 1: start with simple color converter
     - four spaces components that updates on currentColor
-    - store with current value
+    - store with current values
     - converter service
-    - initial styles + logo
-- stage 2: add library
-    - multiple colors components that onClick set color value in currentColor
+    - initial styles
+    - maybe logo of some kind
+- stage 2:
+    - add copy syntax buttons to spaces
 - stage 3: add visualiser
-    - visualiser component that updates on currentColor and displays color
-- stage 4: add guesser
-    - guesser service that finds closes color from library (returns color and similarity score - 1=exact)
-    - visualiser shows guessed color with name, hue and similarity
+    - square with current color
+    - tool for calculating general hue and getting name for it
+    - square with current color general hue (with name)
+    - shows current from rgb space (same space as colors in library later?)
+- stage 4: interpreter
+    - interpreter service that receives a string and guesses if this is:
+        - #abcdef
+        - rgb(1,2,3)
+        - hsl(1,2,3)
+        - hwb(1,2,3)
+    - input for pasting stuff that will be interpreted ("interpret" button)
+    - after interpretation we should validate if values are proper?
+    - after interpretation, apply values to given space (if makes sense)
+- stage 5: add library
+    - squares with names
+    - grouped by hues?
+    - displayed alphabetically?
+    - onClick set current color value
+    - add checking color names in interpreter
+    - Library color should have these informations:
+        - name
+        - value (decide whether base should be HEX, RGB or HWB)
+        - general hue group (or calculate? rgb.to.hwb and read "h"?)
+        - source? (if it has one; could be Crayola, Resene, etc.)
+        - additional information/short description (?)
+    - library sorted by hue and then what? or alphabetically
+- stage 6: add guesser
+    - watches only the base color space (rgb?)
+    - guesser service that finds closest color from library (returns color and similarity score - 1 for exact, >1 for approximate)
+    - guessed color square
+    - guessed color general hue square (with name)
+    - similarity label (only show if exact? or only approx?)
+    - button to copy name?
 
 ## Notes
 
@@ -40,41 +70,3 @@ Converter tools:
 
 Color identify:
 - https://github.com/surfacecurve/sc-color/blob/master/lib/surfacecurve-color.js
-
-## Architecture
-
-Elments that tool should be made of:
-
-1. **paster** - one component
-    - an input for pasting strings
-    - should interpret string and identify space from syntax
-    - should update spaces after interpretation
-    - should log error if couldn't identify space
-2. **space** - one component for each color space (HEX, RGB, HSL, HWB)
-    - multiple inputs for each property
-    - button to copy syntaxed color
-    - should update other spaces on change
-3. **visualiser** - one component
-    - rectangle for displaying current color
-    - rectangle for displaying general color hue
-    - general color hue name
-    - should update when a space color changes
-4. **guesser** - one component
-    - rectangle for displaying guessed color
-    - read-only input for color name string
-    - "approximate" or "exact" sublabel
-    - should update when a space color changes
-5. **library** - one component
-    - list of all colors from the library hue-sorted
-    - **library item** - one component for each color
-        - rectangle for displaying color
-        - read-only input for color name string
-        - button to load color in spaces
-
-Library color should have these informations:
-- name
-- id/slug (hex?)
-- value (decide whether base should be HEX, RGB or HWB)
-- general hue group
-- source (if it has one; could be Crayola, Resene, etc.)
-- additional information/short description (?)

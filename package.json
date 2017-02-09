@@ -1,7 +1,6 @@
 {
   "name": "hues",
   "private": true,
-  "version": "0.0.0",
   "description": "A tool for working with colors",
   "repository": {
     "type": "git",
