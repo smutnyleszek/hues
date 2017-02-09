@@ -1,4 +1,5 @@
 # TODO
+
 - stage 1: start with simple color converter
     - four spaces components that updates on currentColor
     - store with current values
