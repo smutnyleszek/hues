@@ -1,4 +1,4 @@
-define(['exports', 'react', './SpaceInput'], function (exports, _react, _SpaceInput) {
+define(['exports', 'react', './SpaceCopier', './SpaceInput'], function (exports, _react, _SpaceCopier, _SpaceInput) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -6,6 +6,8 @@ define(['exports', 'react', './SpaceInput'], function (exports, _react, _SpaceIn
     });
 
     var _react2 = _interopRequireDefault(_react);
+
+    var _SpaceCopier2 = _interopRequireDefault(_SpaceCopier);
 
     var _SpaceInput2 = _interopRequireDefault(_SpaceInput);
 
@@ -73,13 +75,6 @@ define(['exports', 'react', './SpaceInput'], function (exports, _react, _SpaceIn
         }
 
         _createClass(Space, [{
-            key: '_getRenderAttributes',
-            value: function _getRenderAttributes() {
-                return {
-                    name: this.props.name
-                };
-            }
-        }, {
             key: '_getRenderChildren',
             value: function _getRenderChildren() {
                 var _this2 = this;
@@ -106,15 +101,18 @@ define(['exports', 'react', './SpaceInput'], function (exports, _react, _SpaceIn
 
                 children.push(spaceData.syntax.after);
 
-                console.log('_getRenderChildren', this.props.name, children);
+                children.push(_react2.default.createElement(_SpaceCopier2.default, {
+                    key: this.props.name + '-copier',
+                    state: this.props.state,
+                    spaceName: this.props.name
+                }));
 
                 return children;
             }
         }, {
             key: 'render',
             value: function render() {
-                console.log('Space rendered - props:', this.props);
-                return _react2.default.createElement('div', this._getRenderAttributes(), this._getRenderChildren());
+                return _react2.default.createElement('div', { name: this.props.name }, this._getRenderChildren());
             }
         }]);
 

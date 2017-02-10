@@ -92,7 +92,6 @@ class SpaceInput extends React.Component {
     }
 
     render() {
-        console.log('SpaceInput render - props', this.props);
         return React.createElement('input', this._getRenderAttributes());
     }
 }

@@ -1,13 +1,8 @@
 import React from 'react';
+import SpaceCopier from './SpaceCopier';
 import SpaceInput from './SpaceInput';
 
 class Space extends React.Component {
-    _getRenderAttributes() {
-        return {
-            name: this.props.name
-        };
-    }
-
     _getRenderChildren() {
         const spaceData = this.props.state.spaces.get(this.props.name);
 
@@ -31,16 +26,19 @@ class Space extends React.Component {
 
         children.push(spaceData.syntax.after);
 
-        console.log('_getRenderChildren', this.props.name, children);
+        children.push(React.createElement(SpaceCopier, {
+            key: `${this.props.name}-copier`,
+            state: this.props.state,
+            spaceName: this.props.name
+        }));
 
         return children;
     }
 
     render() {
-        console.log('Space rendered - props:', this.props);
         return React.createElement(
             'div',
-            this._getRenderAttributes(),
+            {name: this.props.name},
             this._getRenderChildren()
         );
     }

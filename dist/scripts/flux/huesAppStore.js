@@ -65,7 +65,6 @@ define(['exports', './huesAppActions', '../helpers/colorverter', './myAlt', '../
                 // apply initial value to spaces
                 this._applyValuesToSpace(initialSpaceName, initialSpaceValue);
                 this._applySpaceValueToOtherSpaces(initialSpaceName);
-                console.log('_buildInitialState', this);
             }
         }, {
             key: '_applyValuesToSpace',

@@ -23,7 +23,7 @@ class SpacesList extends React.Component {
     }
 
     componentDidUpdate() {
-        console.log('componentDidUpdate:', this.state);
+        console.debug('state changed:', this.state);
     }
 
     createSpace(spaceName) {

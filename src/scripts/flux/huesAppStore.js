@@ -21,7 +21,6 @@ class HuesAppStore {
         // apply initial value to spaces
         this._applyValuesToSpace(initialSpaceName, initialSpaceValue);
         this._applySpaceValueToOtherSpaces(initialSpaceName);
-        console.log('_buildInitialState', this);
     }
 
     _applyValuesToSpace(targetSpaceName, valuesArray) {

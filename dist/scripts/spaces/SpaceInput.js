@@ -173,7 +173,6 @@ define(['exports', '../flux/huesAppActions', 'react', 'react-dom', '../helpers/c
         }, {
             key: 'render',
             value: function render() {
-                console.log('SpaceInput render - props', this.props);
                 return _react2.default.createElement('input', this._getRenderAttributes());
             }
         }]);

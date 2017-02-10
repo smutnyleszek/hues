@@ -1,15 +1,15 @@
-define(['exports', '../flux/huesAppStore', 'react', './Space'], function (exports, _huesAppStore, _react, _Space) {
+define(['exports', 'react', 'react-dom', '../helpers/clipboardier'], function (exports, _react, _reactDom, _clipboardier) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
 
-    var _huesAppStore2 = _interopRequireDefault(_huesAppStore);
-
     var _react2 = _interopRequireDefault(_react);
 
-    var _Space2 = _interopRequireDefault(_Space);
+    var _reactDom2 = _interopRequireDefault(_reactDom);
+
+    var _clipboardier2 = _interopRequireDefault(_clipboardier);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -65,57 +65,48 @@ define(['exports', '../flux/huesAppStore', 'react', './Space'], function (export
         if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
     }
 
-    var SpacesList = function (_React$Component) {
-        _inherits(SpacesList, _React$Component);
+    var SpaceCopier = function (_React$Component) {
+        _inherits(SpaceCopier, _React$Component);
 
-        function SpacesList() {
-            _classCallCheck(this, SpacesList);
+        function SpaceCopier() {
+            _classCallCheck(this, SpaceCopier);
 
-            var _this = _possibleConstructorReturn(this, (SpacesList.__proto__ || Object.getPrototypeOf(SpacesList)).call(this));
-
-            _this.state = _huesAppStore2.default.getState();
-            return _this;
+            return _possibleConstructorReturn(this, (SpaceCopier.__proto__ || Object.getPrototypeOf(SpaceCopier)).apply(this, arguments));
         }
 
-        _createClass(SpacesList, [{
+        _createClass(SpaceCopier, [{
+            key: '_onClick',
+            value: function _onClick() {
+                var spaceData = this.props.state.spaces.get(this.props.spaceName);
+                var stringValue = spaceData.syntax.before;
+
+                var propertyIndex = 0;
+                spaceData.properties.forEach(function (propertyData) {
+                    if (propertyIndex !== 0) {
+                        stringValue += spaceData.syntax.between;
+                    }
+                    stringValue += propertyData.value;
+                    propertyIndex++;
+                });
+
+                stringValue += spaceData.syntax.after;
+                _clipboardier2.default.copy(stringValue);
+            }
+        }, {
             key: 'componentDidMount',
             value: function componentDidMount() {
-                _huesAppStore2.default.listen(this.onHuesAppStoreChange.bind(this));
-            }
-        }, {
-            key: 'componentWillUnmount',
-            value: function componentWillUnmount() {
-                _huesAppStore2.default.unlisten(this.onHuesAppStoreChange.bind(this));
-            }
-        }, {
-            key: 'onHuesAppStoreChange',
-            value: function onHuesAppStoreChange(currentColor) {
-                // NOTE: setState is asynchronous, so if you need access for current
-                // state, do it in componentDidUpdate
-                this.setState(currentColor);
-            }
-        }, {
-            key: 'componentDidUpdate',
-            value: function componentDidUpdate() {
-                console.debug('state changed:', this.state);
-            }
-        }, {
-            key: 'createSpace',
-            value: function createSpace(spaceName) {
-                return _react2.default.createElement(_Space2.default, {
-                    name: spaceName,
-                    state: this.state
-                });
+                // apply MADCSS module
+                _reactDom2.default.findDOMNode(this).setAttribute('i-button', '');
             }
         }, {
             key: 'render',
             value: function render() {
-                return _react2.default.createElement('div', null, this.createSpace('rgb'), this.createSpace('hex'), this.createSpace('hsl'), this.createSpace('hwb'));
+                return _react2.default.createElement('button', { onClick: this._onClick.bind(this) }, 'copy');
             }
         }]);
 
-        return SpacesList;
+        return SpaceCopier;
     }(_react2.default.Component);
 
-    exports.default = SpacesList;
+    exports.default = SpaceCopier;
 });
