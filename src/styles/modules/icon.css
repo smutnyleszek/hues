@@ -2,11 +2,6 @@
 icon config
 *******************************************************************************/
 
-:root {
-    --s-mad-skeleton-logo-w: 22.5rem; /* 360px */
-    --s-mad-skeleton-logo-h: 15rem; /* 240px */
-}
-
 [i-icon] {
     display: inline-block;
     vertical-align: bottom;
@@ -36,9 +31,9 @@ icon sizes
     height: calc(var(--s-leading) * 3);
 }
 
-[i-icon~="madSkeletonLogo"] {
-    width: var(--s-mad-skeleton-logo-w);
-    height: var(--s-mad-skeleton-logo-h);
+[i-icon~="quadruple"] {
+    width: calc(var(--s-leading) * 4);
+    height: calc(var(--s-leading) * 4);
 }
 
 /*******************************************************************************

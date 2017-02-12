@@ -692,9 +692,6 @@ space after column
 icon config
 *******************************************************************************/
 
-:root { /* 360px */ /* 240px */
-}
-
 [i-icon] {
     display: inline-block;
     vertical-align: bottom;
@@ -731,11 +728,11 @@ icon sizes
     height: 4.5rem;
 }
 
-[i-icon~="madSkeletonLogo"] {
-    width: 405px;
-    width: 22.5rem;
-    height: 270px;
-    height: 15rem;
+[i-icon~="quadruple"] {
+    width: 108px;
+    width: 6rem;
+    height: 108px;
+    height: 6rem;
 }
 
 /*******************************************************************************
@@ -857,6 +854,26 @@ input module
 [i-input~="space"] {
     width: 36px;
     width: 2rem;
+}
+
+/*******************************************************************************
+nakedLink module
+*******************************************************************************/
+
+[i-nakedLink] {
+    display: inline-block;
+    cursor: pointer;
+    background-image: none;
+}
+
+[i-nakedLink]:not([disabled]):hover {
+    opacity: 0.8;
+    color: inherit;
+}
+
+[i-nakedLink]:not([disabled]):active {
+    opacity: 0.6;
+    color: inherit;
 }
 
 /*******************************************************************************
