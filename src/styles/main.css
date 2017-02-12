@@ -15,6 +15,7 @@ main styles aggregation
 @import "modules/button.css";
 @import "modules/column.css";
 @import "modules/icon.css";
+@import "modules/inlineBlock.css";
 @import "modules/input.css";
 @import "modules/nakedLink.css";
 @import "modules/table.css";

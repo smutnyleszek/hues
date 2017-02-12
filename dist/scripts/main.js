@@ -13,5 +13,5 @@ define(['react', 'react-dom', 'spaces/SpacesList'], function (_react, _reactDom,
         };
     }
 
-    _reactDom2.default.render(_react2.default.createElement(_SpacesList2.default), document.getElementById('app'));
+    _reactDom2.default.render(_react2.default.createElement(_SpacesList2.default), document.querySelector('[js-huesAppRoot]'));
 });

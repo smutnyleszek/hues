@@ -4,5 +4,5 @@ import SpacesList from 'spaces/SpacesList';
 
 ReactDom.render(
     React.createElement(SpacesList),
-    document.getElementById('app')
+    document.querySelector('[js-huesAppRoot]')
 );

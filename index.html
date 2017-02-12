@@ -24,12 +24,17 @@ layout: null
             {% include symbols.svg %}
         </div>
 
-        <section role="main" i-area="medium">
-            <a href="" i-nakedLink>
-                <svg i-icon="quadruple"><use xlink:href="#symbol-hues-logo"></svg>
-            </a>
-
-            <div id="app">Loading...</div>
+        <section role="main" i-area="half">
+            <a href="" i-nakedLink="middle" i-area="half">
+                <svg i-icon="huesFaceLogo">
+                    <use xlink:href="#symbol-hues-logo">
+                </svg>
+            </a><div
+                js-huesAppRoot
+                i-inlineBlock="middle"
+                i-area="half"
+                i-text="righted"
+            >loading&hellip;</div>
         </section>
 
         <script

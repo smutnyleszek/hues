@@ -689,8 +689,11 @@ space after column
 }
 
 /*******************************************************************************
-icon config
+icon
 *******************************************************************************/
+
+:root { /* 192px/3 */ /* 240px/3 */
+}
 
 [i-icon] {
     display: inline-block;
@@ -728,11 +731,11 @@ icon sizes
     height: 4.5rem;
 }
 
-[i-icon~="quadruple"] {
-    width: 108px;
-    width: 6rem;
-    height: 108px;
-    height: 6rem;
+[i-icon~="huesFaceLogo"] {
+    width: 72px;
+    width: 4rem;
+    height: 90px;
+    height: 5rem;
 }
 
 /*******************************************************************************
@@ -809,6 +812,18 @@ icon colors
 }
 
 /*******************************************************************************
+inlineBlock module
+*******************************************************************************/
+
+[i-inlineBlock] { display: inline-block; }
+
+[i-inlineBlock~="middle"] { vertical-align: middle; }
+
+[i-inlineBlock~="top"] { vertical-align: top; }
+
+[i-inlineBlock~="bottom"] { vertical-align: bottom; }
+
+/*******************************************************************************
 input module
 *******************************************************************************/
 
@@ -864,6 +879,10 @@ nakedLink module
     display: inline-block;
     cursor: pointer;
     background-image: none;
+}
+
+[i-nakedLink~="middle"] {
+    vertical-align: middle;
 }
 
 [i-nakedLink]:not([disabled]):hover {

@@ -8,6 +8,10 @@ nakedLink module
     background-image: none;
 }
 
+[i-nakedLink~="middle"] {
+    vertical-align: middle;
+}
+
 [i-nakedLink]:not([disabled]):hover {
     opacity: 0.8;
     color: inherit;

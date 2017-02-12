@@ -1,6 +1,11 @@
 /*******************************************************************************
-icon config
+icon
 *******************************************************************************/
+
+:root {
+    --s-huesFaceLogo-w: calc(12rem / 3); /* 192px/3 */
+    --s-huesFaceLogo-h: calc(15rem / 3); /* 240px/3 */
+}
 
 [i-icon] {
     display: inline-block;
@@ -31,9 +36,9 @@ icon sizes
     height: calc(var(--s-leading) * 3);
 }
 
-[i-icon~="quadruple"] {
-    width: calc(var(--s-leading) * 4);
-    height: calc(var(--s-leading) * 4);
+[i-icon~="huesFaceLogo"] {
+    width: var(--s-huesFaceLogo-w);
+    height: var(--s-huesFaceLogo-h);
 }
 
 /*******************************************************************************
