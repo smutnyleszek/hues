@@ -7,11 +7,11 @@ user-action influenced states
     --line-gr-solid-c: currentColor 0%, currentColor 0%;
     --line-gr: linear-gradient(to left, var(--line-gr-solid-c));
 
-    --focus-outline-c: var(--c-amaranth);
+    --focus-outline-c: var(--c-silver);
     --focus-outline-w: 0.25rem;
 
     --selection-txt-c: var(--c-white);
-    --selection-bg-c: var(--c-amaranth);
+    --selection-bg-c: var(--c-silver);
 
     --disabled-o: 0.5;
 }
