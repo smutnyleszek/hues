@@ -19,23 +19,29 @@ layout: null
         <link rel="apple-touch-icon" href="/dist/images/hues-logo-1440.png?v1">
     </head>
 
-    <body>
+    <body i-area="medium">
         <div style="display: none;">
             {% include symbols.svg %}
         </div>
 
-        <section role="main" i-area="half">
-            <a href="" i-nakedLink="middle" i-area="half">
+        <section role="main">
+            <a href="" i-nakedLink i-inlineBlock="middle">
                 <svg i-icon="huesFaceLogo">
                     <use xlink:href="#symbol-hues-logo">
                 </svg>
             </a><div
                 js-huesAppRoot
                 i-inlineBlock="middle"
-                i-area="half"
+                i-area="half-h"
                 i-text="righted"
             >loading&hellip;</div>
         </section>
+
+        <footer>
+            <a href="{{ site.rootSiteUrl }}" i-nakedLink i-text="75%">
+                &copy; leszek pietrzak
+            </a>
+        </footer>
 
         <script
             data-main="dist/scripts/main.js"

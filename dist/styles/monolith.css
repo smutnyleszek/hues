@@ -120,7 +120,7 @@ a:active { color: rgb(250, 31, 74); }
 /* text selection */
 
 :focus {
-    outline-color: rgb(250, 31, 74);
+    outline-color: rgb(204, 204, 204);
     outline-style: auto;
     outline-width: 4.5px;
     outline-width: 0.25rem;
@@ -129,12 +129,12 @@ a:active { color: rgb(250, 31, 74); }
 ::-moz-focus-inner { border: 0; }
 
 ::-moz-selection {
-    background-color: rgb(250, 31, 74);
+    background-color: rgb(204, 204, 204);
     color: rgb(255, 255, 255);
 }
 
 ::selection {
-    background-color: rgb(250, 31, 74);
+    background-color: rgb(204, 204, 204);
     color: rgb(255, 255, 255);
 }
 
@@ -424,8 +424,8 @@ button module
     font-weight: 700;
     font-family: inherit;
     /* adjust line-height to adjusted height */
-    line-height: 24.75px;
-    line-height: 1.375rem;
+    line-height: 22.5px;
+    line-height: 1.25rem;
     text-align: center;
     text-decoration: none;
 }
@@ -488,23 +488,23 @@ button colors
     color: rgb(51, 51, 51);
 }
 
-/* amaranth */
+/* charcoal */
 
-[i-button~="amaranth"],
-[i-button~="amaranth"]:visited {
-    box-shadow: 0 0.125rem 0 0 rgb(213, 26, 63);
-    background-color: rgb(250, 31, 74);
+[i-button~="charcoal"],
+[i-button~="charcoal"]:visited {
+    box-shadow: 0 0.125rem 0 0 rgb(36, 36, 36);
+    background-color: rgb(51, 51, 51);
     color: rgb(255, 255, 255);
 }
 
-[i-button~="amaranth"]:not([disabled]):hover {
-    box-shadow: 0 0.125rem 0 0 rgb(225, 28, 67);
-    background-color: rgb(251, 76, 110);
+[i-button~="charcoal"]:not([disabled]):hover {
+    box-shadow: 0 0.125rem 0 0 rgb(46, 46, 46);
+    background-color: rgb(92, 92, 92);
     color: rgb(255, 255, 255);
 }
 
-[i-button~="amaranth"]:not([disabled]):active {
-    background-color: rgb(251, 76, 110);
+[i-button~="charcoal"]:not([disabled]):active {
+    background-color: rgb(92, 92, 92);
     color: rgb(255, 255, 255);
 }
 
@@ -692,7 +692,8 @@ space after column
 icon
 *******************************************************************************/
 
-:root { /* 192px/3 */ /* 240px/3 */
+:root {
+    /* original design is 192x240px */
 }
 
 [i-icon] {
@@ -732,10 +733,10 @@ icon sizes
 }
 
 [i-icon~="huesFaceLogo"] {
-    width: 72px;
-    width: 4rem;
-    height: 90px;
-    height: 5rem;
+    width: 86.399px;
+    width: 4.8rem;
+    height: 108px;
+    height: 6rem;
 }
 
 /*******************************************************************************
@@ -835,10 +836,9 @@ input module
     border: 0;
     border-radius: 0.125rem;
     padding: 0;
-    height: auto;
     /* we want the input to fit into leading size with breathing space */
-    min-height: 22.5px;
-    min-height: 1.25rem;
+    height: 22.5px;
+    height: 1.25rem;
     outline: 0;
     cursor: text;
     color: rgb(51, 51, 51);
@@ -879,10 +879,6 @@ nakedLink module
     display: inline-block;
     cursor: pointer;
     background-image: none;
-}
-
-[i-nakedLink~="middle"] {
-    vertical-align: middle;
 }
 
 [i-nakedLink]:not([disabled]):hover {

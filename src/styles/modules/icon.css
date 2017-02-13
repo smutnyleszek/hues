@@ -3,8 +3,9 @@ icon
 *******************************************************************************/
 
 :root {
-    --s-huesFaceLogo-w: calc(12rem / 3); /* 192px/3 */
-    --s-huesFaceLogo-h: calc(15rem / 3); /* 240px/3 */
+    /* original design is 192x240px */
+    --s-huesFaceLogo-h: calc(var(--s-leading) * 4);
+    --s-huesFaceLogo-w: calc(var(--s-huesFaceLogo-h) * (192 / 240));
 }
 
 [i-icon] {
