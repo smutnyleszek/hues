@@ -96,7 +96,7 @@ define(['exports', 'react', 'react-dom', '../helpers/clipboardier'], function (e
             key: 'componentDidMount',
             value: function componentDidMount() {
                 // apply MADCSS module
-                _reactDom2.default.findDOMNode(this).setAttribute('i-button', '');
+                _reactDom2.default.findDOMNode(this).setAttribute('i-button', 'charcoal');
             }
         }, {
             key: 'render',

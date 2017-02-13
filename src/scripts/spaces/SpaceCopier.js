@@ -22,7 +22,7 @@ class SpaceCopier extends React.Component {
 
     componentDidMount() {
         // apply MADCSS module
-        ReactDom.findDOMNode(this).setAttribute('i-button', '');
+        ReactDom.findDOMNode(this).setAttribute('i-button', 'charcoal');
     }
 
     render() {
