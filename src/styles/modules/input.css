@@ -18,9 +18,8 @@ input module
     border: 0;
     border-radius: var(--s-global-br);
     padding: 0;
-    height: auto;
     /* we want the input to fit into leading size with breathing space */
-    min-height: calc(var(--s-leading) - calc(var(--s-input-verticalMargin) * 2));
+    height: calc(var(--s-leading) - calc(var(--s-input-verticalMargin) * 2));
     outline: 0;
     cursor: text;
     color: var(--c-input-txt);
