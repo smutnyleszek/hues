@@ -18,7 +18,7 @@
     "test": "npm-run-all scripts:test",
     "watch": "npm-watch",
     "dist:rebuild": "rm -rf dist && mkdir dist && mkdir dist/styles && mkdir dist/scripts && mkdir dist/scripts/npmdeps",
-    "styles:build": "postcss -u postcss-import -u postcss-cssnext -o dist/styles/monolith.css src/styles/main.css",
+    "styles:build": "postcss --config .postcss.config.json",
     "scripts:copydeps": "npm-run-all copy:require copy:react copy:reactDom copy:alt copy:requireConfig",
     "scripts:build": "babel src/scripts --out-dir dist/scripts",
     "scripts:test": "karma start .karma.conf.js",
