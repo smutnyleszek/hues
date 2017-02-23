@@ -1,34 +1,23 @@
 # Hues
 
-A yet-nonexistent tool for working with colors in CSS (SCSS).
-
-
-## Development
+A tool for working with colors.
 
 Requirements:
 
 1. [Jekyll](http://jekyllrb.com/)
 2. [Node](https://nodejs.org)
 
+## Building
 
-### Building
+To preview the project, you need to do three things:
 
-Basic tasks:
+1. `npm install`
+2. `npm run serve`
+3. open [127.0.0.1:4000](http://127.0.0.1:4000/) in the browser
 
-```
-npm run build
-npm run test
-npm run watch
-```
+## Development
 
-Building Jekyll project:
+What you want is to basically have two terminals:
 
-```
-npm run jekyll:build
-```
-
-You can also serve it on [127.0.0.1:4000](http://127.0.0.1:4000/) with:
-
-```
-npm run jekyll:serve
-```
+1. `npm run serve` -- this is providing the [127.0.0.1:4000](http://127.0.0.1:4000/) "server" and watching changes on Jekyll
+2. `npm run watch` -- this is watching all source files and producing dist ones
