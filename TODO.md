@@ -1,5 +1,8 @@
 # TODO
 
+bugs:
+- add missing % to hsl and hwb syntax!
+
 - stage 1: start with simple color converter
     - four spaces components that updates on currentColor
     - store with current values
