@@ -35,7 +35,15 @@ module.exports = function (config) {
         },
 
         coverageReporter: {
-            dir: 'test/coverage',
+            dir: 'test-coverage',
+            check: {
+                global: {
+                  statements: 75,
+                  branches: 75,
+                  functions: 75,
+                  lines: 75
+                }
+            },
             reporters: [
                 {
                     type: 'html',
@@ -44,6 +52,25 @@ module.exports = function (config) {
                 {
                     type: 'text-summary',
                     file: 'text-summary.txt',
+                    includeAllSources: true
+                },
+                // for generating readme badges
+                {
+                    type: function () {
+                        var shieldBadgeReporter = require('istanbul-reporter-shield-badge')
+                        var istanbul = require('istanbul')
+                        istanbul.Report.register(shieldBadgeReporter)
+                        return 'shield-badge'
+                    }(),
+                    range: [75, 90],
+                    subject: 'coverage',
+                    readmeFilename: 'README.md',
+                    readmeDir: __dirname,
+                    includeAllSources: true
+                },
+                // for terminal console
+                {
+                    type: 'text-summary',
                     includeAllSources: true
                 }
             ]
