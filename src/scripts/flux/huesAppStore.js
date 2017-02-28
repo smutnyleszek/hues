@@ -3,7 +3,7 @@ import colorverter from '../helpers/colorverter';
 import myAlt from './myAlt';
 import spacesData from '../spaces/spacesData';
 
-const initialSpaceName = 'rgb';
+const initialSpaceName = 'hsl';
 const initialSpaceValue = colorverter.getRandom[initialSpaceName]();
 
 class HuesAppStore {
