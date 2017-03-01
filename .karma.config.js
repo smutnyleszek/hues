@@ -19,19 +19,19 @@ module.exports = function (config) {
         files: [
             './node_modules/phantomjs-polyfill/bind-polyfill.js',
             './node_modules/babel-polyfill/dist/polyfill.min.js',
-            {pattern: 'src/scripts/**/*.js', included: false},
-            {pattern: 'test/scripts/**/*Test.js', included: false},
-            'test/scripts/init.js'
+            {pattern: 'src/**/*.js', included: false},
+            {pattern: 'test/**/*Test.js', included: false},
+            'test/init.js'
         ],
         exclude: [
-            'src/scripts/main.js'
+            'src/app.js'
         ],
 
         // preprocess matching files before serving them to the browser
         // https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            'src/scripts/**/*.js': ['babel', 'coverage'],
-            'test/scripts/**/*Test.js': ['babel']
+            'src/**/*.js': ['babel', 'coverage'],
+            'test/**/*Test.js': ['babel']
         },
 
         coverageReporter: {

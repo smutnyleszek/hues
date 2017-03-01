@@ -1,0 +1,22 @@
+/*******************************************************************************
+main styles aggregation
+*******************************************************************************/
+
+/* variables palette */
+@import "variables.css";
+
+/* basics */
+@import "appSetup/reset.css";
+@import "appSetup/root.css";
+@import "appSetup/states.css";
+
+/* modules */
+@import "cssModules/area.css";
+@import "cssModules/button.css";
+@import "cssModules/column.css";
+@import "cssModules/icon.css";
+@import "cssModules/inlineBlock.css";
+@import "cssModules/input.css";
+@import "cssModules/nakedLink.css";
+@import "cssModules/table.css";
+@import "cssModules/text.css";

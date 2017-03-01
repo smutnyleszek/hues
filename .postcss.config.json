@@ -1,11 +1,15 @@
 {
     "use": [
         "postcss-import",
-        "postcss-cssnext"
+        "postcss-cssnext",
+        "cssnano"
     ],
-    "input": "src/styles/main.css",
-    "output": "dist/styles/monolith.css",
+    "input": "src/app.css",
+    "output": "dist/monolith.css",
     "postcss-cssnext": {
-        "browsers": "last 2 versions"
+        "browsers": "> 5%"
+    },
+    "cssnano": {
+        "autoprefixer": false
     }
 }

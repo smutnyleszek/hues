@@ -16,7 +16,7 @@ layout: null
         <link rel="author" href="humans.txt">
         <link rel="home" href="{{ site.baseurl }}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/dist/styles/monolith.css?{{ versionCache }}" media="all" rel="stylesheet">
+        <link href="/dist/monolith.css?{{ versionCache }}" media="all" rel="stylesheet">
         <link rel="icon" href="/favicon.ico?{{ versionCache }}">
         <link rel="apple-touch-icon" href="/favicon.png?{{ versionCache }}">
     </head>
@@ -45,11 +45,7 @@ layout: null
             </a>
         </footer>
 
-        <script
-            data-main="dist/scripts/main.js"
-            src="dist/scripts/npmdeps/require.js"
-        ></script>
-
-        <script src="dist/scripts/requireConfig.js"></script>
+        <script data-main="dist/app.js" src="dist/npmdeps/require.js"></script>
+        <script src="dist/requireConfig.js"></script>
     </body>
 </html>

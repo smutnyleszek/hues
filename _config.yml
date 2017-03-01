@@ -25,5 +25,4 @@ exclude:
     - node_modules
     - LICENSE
     - README.md
-    - TODO.md
     - package.json

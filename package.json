@@ -14,19 +14,20 @@
   },
   "homepage": "https://hues.smutnyleszek.com",
   "scripts": {
-    "build": "npm-run-all test dist:rebuild svg:build styles:build scripts:copydeps scripts:build",
-    "test": "npm-run-all scripts:test",
+    "build": "npm-run-all test dist:rebuild svg:build styles:build scripts:build scripts:copydeps",
     "watch": "npm-watch",
-    "dist:rebuild": "rm -rf dist && mkdir dist && mkdir dist/styles && mkdir dist/scripts && mkdir dist/scripts/npmdeps",
+    "serve": "npm-run-all build jekyll:serve",
+    "test": "npm-run-all scripts:test",
+    "dist:rebuild": "rm -rf dist && mkdir dist && cd dist && mkdir npmdeps",
     "styles:build": "postcss --config .postcss.config.json",
+    "scripts:build": "babel src --out-dir dist",
     "scripts:copydeps": "npm-run-all copy:require copy:react copy:reactDom copy:alt copy:requireConfig",
-    "scripts:build": "babel src/scripts --out-dir dist/scripts",
-    "scripts:test": "karma start .karma.conf.js",
-    "copy:require": "cp node_modules/requirejs/require.js dist/scripts/npmdeps/require.js",
-    "copy:react": "cp node_modules/react/dist/react.js dist/scripts/npmdeps/react.js",
-    "copy:reactDom": "cp node_modules/react-dom/dist/react-dom.js dist/scripts/npmdeps/react-dom.js",
-    "copy:alt": "cp node_modules/alt/dist/alt.js dist/scripts/npmdeps/alt.js",
-    "copy:requireConfig": "cp src/scripts/requireConfig.js dist/scripts/requireConfig.js",
+    "scripts:test": "karma start .karma.config.js",
+    "copy:require": "cp node_modules/requirejs/require.js dist/npmdeps/require.js",
+    "copy:react": "cp node_modules/react/dist/react.js dist/npmdeps/react.js",
+    "copy:reactDom": "cp node_modules/react-dom/dist/react-dom.js dist/npmdeps/react-dom.js",
+    "copy:alt": "cp node_modules/alt/dist/alt.js dist/npmdeps/alt.js",
+    "copy:requireConfig": "cp src/requireConfig.js dist/requireConfig.js",
     "svg:build": "svgo -f src/symbols/ && svgshelf -p symbol- src/symbols/\\*.svg _includes/symbols.svg",
     "jekyll:build": "jekyll build",
     "jekyll:serve": "jekyll serve --watch --baseurl ''"
@@ -34,21 +35,21 @@
   "watch": {
     "styles:build": {
       "patterns": [
-        "src/styles"
+        "src"
       ],
       "extensions": "css",
       "quiet": false
     },
     "scripts:build": {
       "patterns": [
-        "src/scripts"
+        "src"
       ],
       "extensions": "js",
       "quiet": false
     },
     "scripts:test": {
       "patterns": [
-        "test/scripts"
+        "test"
       ],
       "extensions": "js",
       "quiet": false
@@ -60,6 +61,7 @@
     "babel-plugin-transform-es2015-modules-amd": "^6.22.0",
     "babel-polyfill": "^6.22.0",
     "babel-preset-es2015": "^6.22.0",
+    "cssnano": "^3.10.0",
     "eslint": "^3.15.0",
     "istanbul-reporter-shield-badge": "^1.1.3",
     "jasmine": "^2.5.3",

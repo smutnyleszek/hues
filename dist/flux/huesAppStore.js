@@ -43,7 +43,7 @@ define(['exports', './huesAppActions', '../helpers/colorverter', './myAlt', '../
         };
     }();
 
-    var initialSpaceName = 'rgb';
+    var initialSpaceName = 'hsl';
     var initialSpaceValue = _colorverter2.default.getRandom[initialSpaceName]();
 
     var HuesAppStore = function () {
