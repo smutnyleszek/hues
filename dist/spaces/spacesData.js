@@ -14,17 +14,62 @@ define(['exports', '../helpers/deepFreeze'], function (exports, _deepFreeze) {
     }
 
     var spacesData = (0, _deepFreeze2.default)(new Map([['hex', {
-        syntax: { before: '#', between: '', after: '' },
-        properties: new Map([['red', { category: 'hexadecimal', range: [0, 255] }], ['green', { category: 'hexadecimal', range: [0, 255] }], ['blue', { category: 'hexadecimal', range: [0, 255] }]])
+        properties: new Map([['red', {
+            category: 'hexadecimal',
+            range: [0, 255],
+            before: '#'
+        }], ['green', {
+            category: 'hexadecimal',
+            range: [0, 255]
+        }], ['blue', {
+            category: 'hexadecimal',
+            range: [0, 255]
+        }]])
     }], ['rgb', {
-        syntax: { before: 'rgb(', between: ',', after: ')' },
-        properties: new Map([['red', { category: 'integer', range: [0, 255] }], ['green', { category: 'integer', range: [0, 255] }], ['blue', { category: 'integer', range: [0, 255] }]])
+        properties: new Map([['red', {
+            category: 'integer',
+            range: [0, 255],
+            before: 'rgb(',
+            after: ', '
+        }], ['green', {
+            category: 'integer',
+            range: [0, 255],
+            after: ', '
+        }], ['blue', {
+            category: 'integer',
+            range: [0, 255],
+            after: ')'
+        }]])
     }], ['hsl', {
-        syntax: { before: 'hsl(', between: ',', after: ')' },
-        properties: new Map([['hue', { category: 'integer', range: [0, 360] }], ['saturation', { category: 'integer', range: [0, 100] }], ['lightness', { category: 'integer', range: [0, 100] }]])
+        properties: new Map([['hue', {
+            category: 'integer',
+            range: [0, 360],
+            before: 'hsl(',
+            after: ', '
+        }], ['saturation', {
+            category: 'integer',
+            range: [0, 100],
+            after: '%, '
+        }], ['lightness', {
+            category: 'integer',
+            range: [0, 100],
+            after: '%)'
+        }]])
     }], ['hwb', {
-        syntax: { before: 'hwb(', between: ',', after: ')' },
-        properties: new Map([['hue', { category: 'integer', range: [0, 360] }], ['whiteness', { category: 'integer', range: [0, 100] }], ['blackness', { category: 'integer', range: [0, 100] }]])
+        properties: new Map([['hue', {
+            category: 'integer',
+            range: [0, 360],
+            before: 'hwb(',
+            after: ', '
+        }], ['whiteness', {
+            category: 'integer',
+            range: [0, 100],
+            after: '%, '
+        }], ['blackness', {
+            category: 'integer',
+            range: [0, 100],
+            after: '%)'
+        }]])
     }]]));
 
     exports.default = spacesData;

@@ -8,12 +8,9 @@ class Space extends React.Component {
 
         const children = [];
 
-        children.push(spaceData.syntax.before);
-
-        let propertyIndex = 0;
         spaceData.properties.forEach((propertyData, propertyName) => {
-            if (propertyIndex !== 0) {
-                children.push(spaceData.syntax.between);
+            if (propertyData.before) {
+                children.push(propertyData.before);
             }
             children.push(React.createElement(SpaceInput, {
                 key: `${this.props.name}-${propertyName}`,
@@ -21,10 +18,10 @@ class Space extends React.Component {
                 spaceName: this.props.name,
                 propertyName: propertyName
             }));
-            propertyIndex++;
+            if (propertyData.after) {
+                children.push(propertyData.after);
+            }
         });
-
-        children.push(spaceData.syntax.after);
 
         children.push(React.createElement(SpaceCopier, {
             key: `${this.props.name}-copier`,

@@ -16,5 +16,6 @@ main styles aggregation
 @import "common/button.css";
 @import "common/icon.css";
 @import "common/nakedLink.css";
+@import "spaces/spaceCopier.css";
 @import "spaces/spaceInput.css";
 @import "spaces/spacesList.css";

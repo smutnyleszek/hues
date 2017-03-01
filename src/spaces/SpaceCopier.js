@@ -5,24 +5,25 @@ import clipboardier from '../helpers/clipboardier';
 class SpaceCopier extends React.Component {
     _onClick() {
         const spaceData = this.props.state.spaces.get(this.props.spaceName);
-        let stringValue = spaceData.syntax.before;
+        let stringValue = '';
 
-        let propertyIndex = 0;
         spaceData.properties.forEach((propertyData) => {
-            if (propertyIndex !== 0) {
-                stringValue += spaceData.syntax.between;
+            if (propertyData.before) {
+                stringValue += propertyData.before;
             }
             stringValue += propertyData.value;
-            propertyIndex++;
+            if (propertyData.after) {
+                stringValue += propertyData.after;
+            }
         });
 
-        stringValue += spaceData.syntax.after;
         clipboardier.copy(stringValue);
     }
 
     componentDidMount() {
-        // apply MADCSS module
+        // apply MADCSS modules
         ReactDom.findDOMNode(this).setAttribute('i-button', 'charcoal');
+        ReactDom.findDOMNode(this).setAttribute('i-spaceCopier', '');
     }
 
     render() {

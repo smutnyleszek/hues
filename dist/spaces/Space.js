@@ -83,12 +83,9 @@ define(['exports', 'react', './SpaceCopier', './SpaceInput'], function (exports,
 
                 var children = [];
 
-                children.push(spaceData.syntax.before);
-
-                var propertyIndex = 0;
                 spaceData.properties.forEach(function (propertyData, propertyName) {
-                    if (propertyIndex !== 0) {
-                        children.push(spaceData.syntax.between);
+                    if (propertyData.before) {
+                        children.push(propertyData.before);
                     }
                     children.push(_react2.default.createElement(_SpaceInput2.default, {
                         key: _this2.props.name + '-' + propertyName,
@@ -96,10 +93,10 @@ define(['exports', 'react', './SpaceCopier', './SpaceInput'], function (exports,
                         spaceName: _this2.props.name,
                         propertyName: propertyName
                     }));
-                    propertyIndex++;
+                    if (propertyData.after) {
+                        children.push(propertyData.after);
+                    }
                 });
-
-                children.push(spaceData.syntax.after);
 
                 children.push(_react2.default.createElement(_SpaceCopier2.default, {
                     key: this.props.name + '-copier',

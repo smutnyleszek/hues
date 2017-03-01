@@ -78,25 +78,26 @@ define(['exports', 'react', 'react-dom', '../helpers/clipboardier'], function (e
             key: '_onClick',
             value: function _onClick() {
                 var spaceData = this.props.state.spaces.get(this.props.spaceName);
-                var stringValue = spaceData.syntax.before;
+                var stringValue = '';
 
-                var propertyIndex = 0;
                 spaceData.properties.forEach(function (propertyData) {
-                    if (propertyIndex !== 0) {
-                        stringValue += spaceData.syntax.between;
+                    if (propertyData.before) {
+                        stringValue += propertyData.before;
                     }
                     stringValue += propertyData.value;
-                    propertyIndex++;
+                    if (propertyData.after) {
+                        stringValue += propertyData.after;
+                    }
                 });
 
-                stringValue += spaceData.syntax.after;
                 _clipboardier2.default.copy(stringValue);
             }
         }, {
             key: 'componentDidMount',
             value: function componentDidMount() {
-                // apply MADCSS module
+                // apply MADCSS modules
                 _reactDom2.default.findDOMNode(this).setAttribute('i-button', 'charcoal');
+                _reactDom2.default.findDOMNode(this).setAttribute('i-spaceCopier', '');
             }
         }, {
             key: 'render',
