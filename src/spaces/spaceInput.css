@@ -1,0 +1,47 @@
+/*******************************************************************************
+spaceInput module
+*******************************************************************************/
+
+:root {
+    --s-spaceInput-verticalMargin: 0.125rem;
+
+    --c-spaceInput-txt: var(--c-charcoal);
+    --c-spaceInput-bg: var(--c-white);
+    --c-spaceInput-bg-hover: color(var(--c-spaceInput-bg) shade(5%));
+    --c-spaceInput-bg-active: color(var(--c-spaceInput-bg) shade(10%));
+}
+
+[i-spaceInput] {
+    display: inline-block;
+    vertical-align: top;
+    margin: var(--s-spaceInput-verticalMargin) 0;
+    border: 0;
+    border-radius: var(--s-global-br);
+    padding: 0;
+    width: 2rem;
+    /* we want the spaceInput to fit into leading size with breathing space */
+    height: calc(var(--s-leading) - calc(var(--s-spaceInput-verticalMargin) * 2));
+    outline: 0;
+    cursor: text;
+    color: var(--c-spaceInput-txt);
+    font-weight: 400;
+    font-family: inherit;
+    /* adjust line-height to adjusted height */
+    line-height: calc(var(--s-leading) - var(--s-spaceInput-verticalMargin));
+    text-align: center;
+    text-decoration: none;
+}
+
+/* default spaceInput state */
+[i-spaceInput] {
+    background-color: var(--c-spaceInput-bg);
+}
+
+[i-spaceInput]:not([disabled]):hover {
+    background-color: var(--c-spaceInput-bg-hover);
+}
+
+[i-spaceInput]:not([disabled]):active,
+[i-spaceInput]:not([disabled]):focus {
+    background-color: var(--c-spaceInput-bg-active);
+}

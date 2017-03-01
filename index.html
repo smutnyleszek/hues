@@ -21,22 +21,17 @@ layout: null
         <link rel="apple-touch-icon" href="/favicon.png?{{ versionCache }}">
     </head>
 
-    <body i-area="medium">
-        <div style="display: none;">
-            {% include symbols.svg %}
-        </div>
+    <body>
+        <div style="display: none;">{% include symbols.svg %}</div>
 
         <section role="main">
-            <a href="" i-nakedLink i-inlineBlock="middle">
+            <a href="" i-nakedLink i-appLogo>
                 <svg i-icon="huesFaceLogo">
                     <use xlink:href="#symbol-hues-logo">
                 </svg>
-            </a><div
-                js-huesAppRoot
-                i-inlineBlock="middle"
-                i-area="half-h"
-                i-text="righted"
-            >loading&hellip;</div>
+            </a>
+
+            <div js-huesAppRoot>loading&hellip;</div>
         </section>
 
         <footer>

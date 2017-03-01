@@ -1,5 +1,6 @@
 import HuesAppStore from '../flux/huesAppStore';
 import React from 'react';
+import ReactDom from 'react-dom';
 import Space from './Space';
 
 class SpacesList extends React.Component {
@@ -10,6 +11,8 @@ class SpacesList extends React.Component {
 
     componentDidMount() {
         HuesAppStore.listen(this.onHuesAppStoreChange.bind(this));
+        // apply MADCSS module
+        ReactDom.findDOMNode(this).setAttribute('i-spacesList', '');
     }
 
     componentWillUnmount() {

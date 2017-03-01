@@ -128,24 +128,3 @@ button sizes
     font-size: calc(var(--s-button-fontsize) * 2);
     line-height: calc((var(--s-leading) - var(--s-button-verticalMargin)) * 2);
 }
-
-[i-button~="triple"] {
-    padding-left: calc(var(--s-button-padding) * 3);
-    padding-right: calc(var(--s-button-padding) * 3);
-    min-height: calc(var(--s-leading) * 3 - calc(var(--s-button-verticalMargin) * 2));
-    font-size: calc(var(--s-button-fontsize) * 3);
-    line-height: calc((var(--s-leading) - var(--s-button-verticalMargin)) * 3);
-}
-
-[i-button~="quadruple"] {
-    padding-left: calc(var(--s-button-padding) * 4);
-    padding-right: calc(var(--s-button-padding) * 4);
-    min-height: calc(var(--s-leading) * 4 - calc(var(--s-button-verticalMargin) * 2));
-    font-size: calc(var(--s-button-fontsize) * 4);
-    line-height: calc((var(--s-leading) - var(--s-button-verticalMargin)) * 4);
-}
-
-[i-button~="full"] {
-    display: block;
-    width: 100%;
-}

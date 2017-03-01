@@ -88,7 +88,7 @@ class SpaceInput extends React.Component {
 
     componentDidMount() {
         // apply MADCSS module
-        ReactDom.findDOMNode(this).setAttribute('i-input', 'space');
+        ReactDom.findDOMNode(this).setAttribute('i-spaceInput', '');
     }
 
     render() {

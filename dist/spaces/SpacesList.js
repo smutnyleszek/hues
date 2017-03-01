@@ -1,4 +1,4 @@
-define(['exports', '../flux/huesAppStore', 'react', './Space'], function (exports, _huesAppStore, _react, _Space) {
+define(['exports', '../flux/huesAppStore', 'react', 'react-dom', './Space'], function (exports, _huesAppStore, _react, _reactDom, _Space) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -8,6 +8,8 @@ define(['exports', '../flux/huesAppStore', 'react', './Space'], function (export
     var _huesAppStore2 = _interopRequireDefault(_huesAppStore);
 
     var _react2 = _interopRequireDefault(_react);
+
+    var _reactDom2 = _interopRequireDefault(_reactDom);
 
     var _Space2 = _interopRequireDefault(_Space);
 
@@ -81,6 +83,8 @@ define(['exports', '../flux/huesAppStore', 'react', './Space'], function (export
             key: 'componentDidMount',
             value: function componentDidMount() {
                 _huesAppStore2.default.listen(this.onHuesAppStoreChange.bind(this));
+                // apply MADCSS module
+                _reactDom2.default.findDOMNode(this).setAttribute('i-spacesList', '');
             }
         }, {
             key: 'componentWillUnmount',

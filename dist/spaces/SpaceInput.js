@@ -168,7 +168,7 @@ define(['exports', '../flux/huesAppActions', 'react', 'react-dom', '../helpers/c
             key: 'componentDidMount',
             value: function componentDidMount() {
                 // apply MADCSS module
-                _reactDom2.default.findDOMNode(this).setAttribute('i-input', 'space');
+                _reactDom2.default.findDOMNode(this).setAttribute('i-spaceInput', '');
             }
         }, {
             key: 'render',

@@ -1,9 +1,0 @@
-/*******************************************************************************
-inlineBlock module
-*******************************************************************************/
-
-[i-inlineBlock] { display: inline-block; }
-
-[i-inlineBlock~="middle"] { vertical-align: middle; }
-[i-inlineBlock~="top"] { vertical-align: top; }
-[i-inlineBlock~="bottom"] { vertical-align: bottom; }
