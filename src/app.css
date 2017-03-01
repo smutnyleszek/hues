@@ -12,6 +12,7 @@ main styles aggregation
 
 /* modules */
 @import "common/appLogo.css";
+@import "common/appRoot.css";
 @import "common/button.css";
 @import "common/icon.css";
 @import "common/nakedLink.css";

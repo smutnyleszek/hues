@@ -3,7 +3,6 @@ nakedLink module
 *******************************************************************************/
 
 [i-nakedLink] {
-    display: inline-block;
     cursor: pointer;
     background-image: none;
 }

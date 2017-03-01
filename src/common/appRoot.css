@@ -1,9 +1,8 @@
 /*******************************************************************************
-appLogo module
+appRoot module
 *******************************************************************************/
 
-[i-appLogo] {
+[i-appRoot] {
     display: inline-block;
     vertical-align: top;
-    margin-left: calc(var(--s-leading) * 0.5);
 }
