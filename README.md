@@ -4,6 +4,17 @@
 
 A tool for working with colors.
 
+Features:
+
+- ES6 (with Babel)
+- React
+- Alt
+- RequireJS
+- Karma tests
+- SVG icons
+- postcss/cssnext
+- MADCSS
+
 Requirements:
 
 1. [Jekyll](http://jekyllrb.com/)
