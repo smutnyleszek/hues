@@ -9,20 +9,22 @@ for (var file in window.__karma__.files) {
     }
 }
 
-requirejs.config({
+require.config({
     // Karma serves files from '/base'
     baseUrl: '/base/src',
 
     paths: {
         alt: '../dist/npmdeps/alt',
         react: '../dist/npmdeps/react',
-        'react-dom': '../dist/npmdeps/react-dom'
+        'react-dom': '../dist/npmdeps/react-dom',
+        'react-test-renderer': '../node_modules/react-test-renderer/index'
     },
 
     shim: {
         alt: {exports: 'alt'},
         react: {exports: 'react'},
-        'react-dom': {exports: 'react-dom'}
+        'react-dom': {exports: 'react-dom'},
+        'react-test-renderer': {exports: 'react-test-renderer'}
     },
 
     // ask Require.js to load these files (all our allTestFiles)

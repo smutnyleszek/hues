@@ -1,4 +1,4 @@
-![coverage-shield-badge-1](https://img.shields.io/badge/coverage-90.76%25-brightgreen.svg)
+![coverage-shield-badge-1](https://img.shields.io/badge/coverage-78.43%25-yellow.svg)
 
 # Hues
 
@@ -22,7 +22,7 @@ Requirements:
 
 ## Building
 
-To preview the project, you need to do three things:
+To preview the project, you need to take three steps:
 
 1. `npm install`
 2. `npm run serve`
