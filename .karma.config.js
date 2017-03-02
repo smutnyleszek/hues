@@ -17,10 +17,11 @@ module.exports = function (config) {
         browsers: ['PhantomJS'],
 
         files: [
-            'node_modules/requirejs/require.js',
             'node_modules/phantomjs-polyfill/bind-polyfill.js',
             'node_modules/babel-polyfill/dist/polyfill.min.js',
-            {pattern: 'node_modules/react-test-renderer/**/*.js', included: false},
+            {pattern: 'node_modules/alt/dist/alt.js', included: false},
+            {pattern: 'node_modules/react/dist/react-with-addons.js', included: false},
+            {pattern: 'node_modules/react-dom/dist/react-dom.js', included: false},
             {pattern: 'dist/npmdeps/**/*.js', included: false},
             {pattern: 'src/**/*.js', included: false},
             {pattern: 'test/**/*Test.js', included: false},

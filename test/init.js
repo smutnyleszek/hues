@@ -14,17 +14,15 @@ require.config({
     baseUrl: '/base/src',
 
     paths: {
-        alt: '../dist/npmdeps/alt',
-        react: '../dist/npmdeps/react',
-        'react-dom': '../dist/npmdeps/react-dom',
-        'react-test-renderer': '../node_modules/react-test-renderer/index'
+        alt: '../node_modules/alt/dist/alt',
+        react: '../node_modules/react/dist/react-with-addons',
+        'react-dom': '../node_modules/react-dom/dist/react-dom'
     },
 
     shim: {
         alt: {exports: 'alt'},
         react: {exports: 'react'},
-        'react-dom': {exports: 'react-dom'},
-        'react-test-renderer': {exports: 'react-test-renderer'}
+        'react-dom': {exports: 'react-dom'}
     },
 
     // ask Require.js to load these files (all our allTestFiles)

@@ -1,4 +1,4 @@
-![coverage-shield-badge-1](https://img.shields.io/badge/coverage-78.43%25-yellow.svg)
+![coverage-shield-badge-1](https://img.shields.io/badge/coverage-85.82%25-yellow.svg)
 
 # Hues
 
