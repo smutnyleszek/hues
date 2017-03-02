@@ -1,4 +1,4 @@
-define(['exports', 'react', 'react-dom', '../helpers/clipboardier'], function (exports, _react, _reactDom, _clipboardier) {
+define(['exports', 'react', 'react-dom', '../common/clipboardier'], function (exports, _react, _reactDom, _clipboardier) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {

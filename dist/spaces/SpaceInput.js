@@ -1,4 +1,4 @@
-define(['exports', '../flux/huesAppActions', 'react', 'react-dom', '../helpers/colorverter'], function (exports, _huesAppActions, _react, _reactDom, _colorverter) {
+define(['exports', '../flux/huesAppActions', 'react', 'react-dom', '../common/colorverter'], function (exports, _huesAppActions, _react, _reactDom, _colorverter) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {

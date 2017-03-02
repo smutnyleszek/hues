@@ -1,4 +1,4 @@
-define(['exports', './huesAppActions', '../helpers/colorverter', './myAlt', '../spaces/spacesData'], function (exports, _huesAppActions, _colorverter, _myAlt, _spacesData) {
+define(['exports', './huesAppActions', '../common/colorverter', './myAlt', '../spaces/spacesData'], function (exports, _huesAppActions, _colorverter, _myAlt, _spacesData) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {

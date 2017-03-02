@@ -1,4 +1,4 @@
-import deepFreeze from 'helpers/deepFreeze';
+import deepFreeze from 'common/deepFreeze';
 
 describe('deepFreeze', () => {
     it('should freeze all nested object\'s properties', () => {

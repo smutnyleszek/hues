@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import clipboardier from '../helpers/clipboardier';
+import clipboardier from '../common/clipboardier';
 
 class SpaceCopier extends React.Component {
     _onClick() {

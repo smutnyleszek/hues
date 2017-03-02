@@ -1,4 +1,4 @@
-define(['exports', '../helpers/deepFreeze'], function (exports, _deepFreeze) {
+define(['exports', '../common/deepFreeze'], function (exports, _deepFreeze) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {

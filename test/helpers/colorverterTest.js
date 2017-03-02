@@ -1,4 +1,4 @@
-import colorverter from 'helpers/colorverter';
+import colorverter from 'common/colorverter';
 
 const spacesList = ['hex', 'rgb', 'hsl', 'hwb'];
 

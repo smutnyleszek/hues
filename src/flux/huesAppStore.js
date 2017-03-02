@@ -1,5 +1,5 @@
 import HuesAppActions from './huesAppActions';
-import colorverter from '../helpers/colorverter';
+import colorverter from '../common/colorverter';
 import myAlt from './myAlt';
 import spacesData from '../spaces/spacesData';
 

@@ -1,7 +1,7 @@
 import HuesAppActions from '../flux/huesAppActions';
 import React from 'react';
 import ReactDom from 'react-dom';
-import colorverter from '../helpers/colorverter';
+import colorverter from '../common/colorverter';
 
 class SpaceInput extends React.Component {
     _onChange(changeEvent) {

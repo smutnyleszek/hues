@@ -1,4 +1,4 @@
-import deepFreeze from '../helpers/deepFreeze';
+import deepFreeze from '../common/deepFreeze';
 
 const spacesData = deepFreeze(new Map([
     ['hex', {
