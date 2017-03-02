@@ -1,7 +1,7 @@
-import HuesAppActions from '../flux/huesAppActions';
 import React from 'react';
 import ReactDom from 'react-dom';
 import colorverter from '../common/colorverter';
+import huesAppActions from '../flux/huesAppActions';
 
 class SpaceInput extends React.Component {
     _onChange(changeEvent) {
@@ -63,7 +63,7 @@ class SpaceInput extends React.Component {
     }
 
     _applyNewValue(newValue) {
-        HuesAppActions.setSpacePropertyValue({
+        huesAppActions.setSpacePropertyValue({
             spaceName: this.props.spaceName,
             propertyName: this.props.propertyName,
             newValue: newValue

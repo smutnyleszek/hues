@@ -1,6 +1,4 @@
-import deepFreeze from '../common/deepFreeze';
-
-const spacesData = deepFreeze(new Map([
+const spacesData = new Map([
     ['hex', {
         properties: new Map([
             ['red', {
@@ -78,6 +76,6 @@ const spacesData = deepFreeze(new Map([
             }]
         ])
     }]
-]));
+]);
 
 export default spacesData;

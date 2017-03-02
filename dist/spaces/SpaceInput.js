@@ -1,17 +1,17 @@
-define(['exports', '../flux/huesAppActions', 'react', 'react-dom', '../common/colorverter'], function (exports, _huesAppActions, _react, _reactDom, _colorverter) {
+define(['exports', 'react', 'react-dom', '../common/colorverter', '../flux/huesAppActions'], function (exports, _react, _reactDom, _colorverter, _huesAppActions) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
 
-    var _huesAppActions2 = _interopRequireDefault(_huesAppActions);
-
     var _react2 = _interopRequireDefault(_react);
 
     var _reactDom2 = _interopRequireDefault(_reactDom);
 
     var _colorverter2 = _interopRequireDefault(_colorverter);
+
+    var _huesAppActions2 = _interopRequireDefault(_huesAppActions);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {

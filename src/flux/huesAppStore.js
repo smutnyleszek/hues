@@ -1,5 +1,5 @@
-import HuesAppActions from './huesAppActions';
 import colorverter from '../common/colorverter';
+import huesAppActions from './huesAppActions';
 import myAlt from './myAlt';
 import spacesData from '../spaces/spacesData';
 
@@ -10,7 +10,7 @@ class HuesAppStore {
     constructor() {
         this._buildInitialState();
         this.bindListeners({
-            _onSetSpacePropertyValue: HuesAppActions.SET_SPACE_PROPERTY_VALUE
+            _onSetSpacePropertyValue: huesAppActions.SET_SPACE_PROPERTY_VALUE
         });
     }
 

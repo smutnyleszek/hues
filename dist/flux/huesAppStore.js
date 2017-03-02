@@ -1,13 +1,13 @@
-define(['exports', './huesAppActions', '../common/colorverter', './myAlt', '../spaces/spacesData'], function (exports, _huesAppActions, _colorverter, _myAlt, _spacesData) {
+define(['exports', '../common/colorverter', './huesAppActions', './myAlt', '../spaces/spacesData'], function (exports, _colorverter, _huesAppActions, _myAlt, _spacesData) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
 
-    var _huesAppActions2 = _interopRequireDefault(_huesAppActions);
-
     var _colorverter2 = _interopRequireDefault(_colorverter);
+
+    var _huesAppActions2 = _interopRequireDefault(_huesAppActions);
 
     var _myAlt2 = _interopRequireDefault(_myAlt);
 

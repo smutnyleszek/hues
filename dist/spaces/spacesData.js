@@ -1,19 +1,10 @@
-define(['exports', '../common/deepFreeze'], function (exports, _deepFreeze) {
+define(['exports'], function (exports) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-
-    var _deepFreeze2 = _interopRequireDefault(_deepFreeze);
-
-    function _interopRequireDefault(obj) {
-        return obj && obj.__esModule ? obj : {
-            default: obj
-        };
-    }
-
-    var spacesData = (0, _deepFreeze2.default)(new Map([['hex', {
+    var spacesData = new Map([['hex', {
         properties: new Map([['red', {
             category: 'hexadecimal',
             range: [0, 255],
@@ -70,7 +61,7 @@ define(['exports', '../common/deepFreeze'], function (exports, _deepFreeze) {
             range: [0, 100],
             after: '%)'
         }]])
-    }]]));
+    }]]);
 
     exports.default = spacesData;
 });
