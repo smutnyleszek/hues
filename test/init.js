@@ -16,13 +16,15 @@ require.config({
     paths: {
         alt: '../node_modules/alt/dist/alt',
         react: '../node_modules/react/dist/react-with-addons',
-        'react-dom': '../node_modules/react-dom/dist/react-dom'
+        'react-dom': '../node_modules/react-dom/dist/react-dom',
+        testHelpers: '../test/testHelpers'
     },
 
     shim: {
         alt: {exports: 'alt'},
         react: {exports: 'react'},
-        'react-dom': {exports: 'react-dom'}
+        'react-dom': {exports: 'react-dom'},
+        testHelpers: {exports: 'testHelpers'}
     },
 
     // ask Require.js to load these files (all our allTestFiles)

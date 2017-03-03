@@ -25,6 +25,7 @@ module.exports = function (config) {
             {pattern: 'dist/npmdeps/**/*.js', included: false},
             {pattern: 'src/**/*.js', included: false},
             {pattern: 'test/**/*Test.js', included: false},
+            {pattern: 'test/testHelpers.js', included: false},
             'test/init.js'
         ],
         exclude: [
@@ -35,7 +36,8 @@ module.exports = function (config) {
         // https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
             'src/**/*.js': ['babel', 'coverage'],
-            'test/**/*Test.js': ['babel']
+            'test/**/*Test.js': ['babel'],
+            'test/testHelpers.js': ['babel']
         },
 
         coverageReporter: {
