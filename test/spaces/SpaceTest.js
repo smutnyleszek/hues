@@ -10,7 +10,7 @@ describe('Space', () => {
         const result = shallowRenderer.render(
             React.createElement(Space, {
                 state: huesAppStore.state,
-                name: 'hsl'
+                spaceName: 'hsl'
             })
         );
 

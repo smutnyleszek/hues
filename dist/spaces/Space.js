@@ -79,7 +79,7 @@ define(['exports', 'react', './SpaceCopier', './SpaceInput'], function (exports,
             value: function _getRenderChildren() {
                 var _this2 = this;
 
-                var spaceData = this.props.state.spaces.get(this.props.name);
+                var spaceData = this.props.state.spaces.get(this.props.spaceName);
 
                 var children = [];
 
@@ -88,9 +88,9 @@ define(['exports', 'react', './SpaceCopier', './SpaceInput'], function (exports,
                         children.push(propertyData.before);
                     }
                     children.push(_react2.default.createElement(_SpaceInput2.default, {
-                        key: _this2.props.name + '-' + propertyName,
+                        key: _this2.props.spaceName + '-' + propertyName,
                         state: _this2.props.state,
-                        spaceName: _this2.props.name,
+                        spaceName: _this2.props.spaceName,
                         propertyName: propertyName
                     }));
                     if (propertyData.after) {
@@ -99,9 +99,9 @@ define(['exports', 'react', './SpaceCopier', './SpaceInput'], function (exports,
                 });
 
                 children.push(_react2.default.createElement(_SpaceCopier2.default, {
-                    key: this.props.name + '-copier',
+                    key: this.props.spaceName + '-copier',
                     state: this.props.state,
-                    spaceName: this.props.name
+                    spaceName: this.props.spaceName
                 }));
 
                 return children;
@@ -109,7 +109,7 @@ define(['exports', 'react', './SpaceCopier', './SpaceInput'], function (exports,
         }, {
             key: 'render',
             value: function render() {
-                return _react2.default.createElement('div', { name: this.props.name }, this._getRenderChildren());
+                return _react2.default.createElement('div', { name: this.props.spaceName }, this._getRenderChildren());
             }
         }]);
 

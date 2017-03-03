@@ -31,7 +31,7 @@ class SpacesList extends React.Component {
 
     createSpace(spaceName) {
         return React.createElement(Space, {
-            name: spaceName,
+            spaceName: spaceName,
             state: this.state
         });
     }

@@ -4,7 +4,7 @@ import SpaceInput from './SpaceInput';
 
 class Space extends React.Component {
     _getRenderChildren() {
-        const spaceData = this.props.state.spaces.get(this.props.name);
+        const spaceData = this.props.state.spaces.get(this.props.spaceName);
 
         const children = [];
 
@@ -13,9 +13,9 @@ class Space extends React.Component {
                 children.push(propertyData.before);
             }
             children.push(React.createElement(SpaceInput, {
-                key: `${this.props.name}-${propertyName}`,
+                key: `${this.props.spaceName}-${propertyName}`,
                 state: this.props.state,
-                spaceName: this.props.name,
+                spaceName: this.props.spaceName,
                 propertyName: propertyName
             }));
             if (propertyData.after) {
@@ -24,9 +24,9 @@ class Space extends React.Component {
         });
 
         children.push(React.createElement(SpaceCopier, {
-            key: `${this.props.name}-copier`,
+            key: `${this.props.spaceName}-copier`,
             state: this.props.state,
-            spaceName: this.props.name
+            spaceName: this.props.spaceName
         }));
 
         return children;
@@ -35,7 +35,7 @@ class Space extends React.Component {
     render() {
         return React.createElement(
             'div',
-            {name: this.props.name},
+            {name: this.props.spaceName},
             this._getRenderChildren()
         );
     }

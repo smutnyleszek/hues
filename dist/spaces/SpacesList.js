@@ -107,7 +107,7 @@ define(['exports', '../flux/huesAppStore', 'react', 'react-dom', './Space'], fun
             key: 'createSpace',
             value: function createSpace(spaceName) {
                 return _react2.default.createElement(_Space2.default, {
-                    name: spaceName,
+                    spaceName: spaceName,
                     state: this.state
                 });
             }

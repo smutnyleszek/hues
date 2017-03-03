@@ -1,4 +1,4 @@
-define(['exports', 'react', 'react-dom', '../common/clipboardier'], function (exports, _react, _reactDom, _clipboardier) {
+define(['exports', 'react', 'react-dom', '../common/clipboardier', '../common/colorFormatter'], function (exports, _react, _reactDom, _clipboardier, _colorFormatter) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -10,6 +10,8 @@ define(['exports', 'react', 'react-dom', '../common/clipboardier'], function (ex
     var _reactDom2 = _interopRequireDefault(_reactDom);
 
     var _clipboardier2 = _interopRequireDefault(_clipboardier);
+
+    var _colorFormatter2 = _interopRequireDefault(_colorFormatter);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -78,19 +80,7 @@ define(['exports', 'react', 'react-dom', '../common/clipboardier'], function (ex
             key: '_onClick',
             value: function _onClick() {
                 var spaceData = this.props.state.spaces.get(this.props.spaceName);
-                var stringValue = '';
-
-                spaceData.properties.forEach(function (propertyData) {
-                    if (propertyData.before) {
-                        stringValue += propertyData.before;
-                    }
-                    stringValue += propertyData.value;
-                    if (propertyData.after) {
-                        stringValue += propertyData.after;
-                    }
-                });
-
-                _clipboardier2.default.copy(stringValue);
+                _clipboardier2.default.copy(_colorFormatter2.default.get(spaceData));
             }
         }, {
             key: 'componentDidMount',
