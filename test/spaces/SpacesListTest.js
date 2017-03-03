@@ -1,16 +1,18 @@
 import React from 'react';
 import SpacesList from 'spaces/SpacesList';
+import huesAppStore from 'flux/huesAppStore';
 
-const TestUtils = React.addons.TestUtils;
-const renderer = TestUtils.createRenderer();
+const shallowRenderer = React.addons.TestUtils.createRenderer();
 
 describe('SpacesList', () => {
     it('should contain four spaces', () => {
-        const result = renderer.render(
-            React.createElement(SpacesList)
+        const component = shallowRenderer.render(
+            React.createElement(SpacesList, {
+                state: huesAppStore.state
+            })
         );
 
-        expect(result.props.children).toBeDefined();
-        expect(result.props.children.length).toEqual(4);
+        expect(component.props.children).toBeDefined();
+        expect(component.props.children.length).toEqual(4);
     });
 });

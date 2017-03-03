@@ -7,7 +7,7 @@ const shallowRenderer = React.addons.TestUtils.createRenderer();
 
 describe('Space', () => {
     it('should contain three inputs and a button', () => {
-        const result = shallowRenderer.render(
+        const component = shallowRenderer.render(
             React.createElement(Space, {
                 state: huesAppStore.state,
                 spaceName: 'hsl'
@@ -16,7 +16,7 @@ describe('Space', () => {
 
         let inputsCount = 0;
         let copiersCount = 0;
-        for (const child of result.props.children) {
+        for (const child of component.props.children) {
             switch (testHelpers.getClassName(child.type)) {
                 case 'SpaceInput':
                     inputsCount++;

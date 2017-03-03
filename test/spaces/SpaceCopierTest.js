@@ -6,14 +6,14 @@ const shallowRenderer = React.addons.TestUtils.createRenderer();
 
 describe('SpaceCopier', () => {
     it('should be a button with "copy" text on it', () => {
-        const result = shallowRenderer.render(
+        const component = shallowRenderer.render(
             React.createElement(SpaceCopier, {
                 state: huesAppStore.state,
                 spaceName: 'hsl'
             })
         );
 
-        expect(result.props.children).toEqual('copy');
-        expect(result.type).toEqual('button');
+        expect(component.props.children).toEqual('copy');
+        expect(component.type).toEqual('button');
     });
 });
