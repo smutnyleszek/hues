@@ -4,15 +4,15 @@
   "description": "A tool for working with colors",
   "repository": {
     "type": "git",
-    "url": "https://github.com/smutnyleszek/hues.git"
+    "url": "https://github.com/magicznyleszek/hues.git"
   },
   "author": "Leszek Pietrzak",
   "license": "CC-BY-4.0",
   "bugs": {
-    "url": "https://github.com/smutnyleszek/hues/issues",
-    "email": "smutnyleszek@gmail.com"
+    "url": "https://github.com/magicznyleszek/hues/issues",
+    "email": "leszek@magicznyleszek.xyz"
   },
-  "homepage": "https://hues.smutnyleszek.com",
+  "homepage": "https://hues.magicznyleszek.xyz",
   "scripts": {
     "build": "npm-run-all test dist:rebuild svg:build styles:build scripts:build scripts:copydeps",
     "watch": "npm-watch",
