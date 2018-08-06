@@ -6,3 +6,8 @@ appRoot module
     display: inline-block;
     vertical-align: top;
 }
+
+[i-appRoot-footer] {
+    width: 100%;
+    margin-top: var(--s-leading);
+}

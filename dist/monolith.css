@@ -56,11 +56,11 @@ appLogo module
 
 /*******************************************************************************
 appRoot module
-*******************************************************************************/
+*******************************************************************************/[i-appLogo],[i-appRoot]{display:inline-block;vertical-align:top}[i-appRoot-footer]{width:100%;margin-top:calc(1.5 * 1rem)}
 
 /*******************************************************************************
 button module
-*******************************************************************************/[i-appLogo],[i-appRoot],[i-button]{display:inline-block;vertical-align:top}[i-button]{margin:0;border:0;border-radius:.125rem;padding:0 .5rem;height:auto;
+*******************************************************************************/[i-button]{display:inline-block;vertical-align:top;margin:0;border:0;border-radius:.125rem;padding:0 .5rem;height:auto;
     /* we want the button to fit into leading size with breathing space */min-height:calc(calc(1.5 * 1rem) - .125rem * 2);outline:0;cursor:pointer;background-image:none;font-size:.75rem;font-weight:700;font-family:inherit;
     /* adjust line-height to adjusted height */line-height:calc(calc(1.5 * 1rem) - .125rem * 2);text-align:center;text-decoration:none}
 
