@@ -3,19 +3,19 @@ icon
 *******************************************************************************/
 
 :root {
-    /* original design is 192x240px */
-    --s-huesFaceLogo-h: calc(var(--s-leading) * 4);
-    --s-huesFaceLogo-w: calc(var(--s-huesFaceLogo-h) * (192 / 240));
+  /* original design is 192x240px */
+  --s-huesFaceLogo-h: calc(var(--s-leading) * 4);
+  --s-huesFaceLogo-w: calc(var(--s-huesFaceLogo-h) * (192 / 240));
 }
 
 [i-icon] {
-    display: inline-block;
-    vertical-align: bottom;
-    width: var(--s-leading);
-    height: var(--s-leading);
-    color: inherit;
-    shape-rendering: geometricPrecision;
-    fill: currentColor;
+  display: inline-block;
+  vertical-align: bottom;
+  width: var(--s-leading);
+  height: var(--s-leading);
+  color: inherit;
+  shape-rendering: geometricPrecision;
+  fill: currentColor;
 }
 
 /* bugfix for click target SVGElementInstance */
@@ -28,18 +28,18 @@ icon sizes
 *******************************************************************************/
 
 [i-icon~="double"] {
-    width: calc(var(--s-leading) * 2);
-    height: calc(var(--s-leading) * 2);
+  width: calc(var(--s-leading) * 2);
+  height: calc(var(--s-leading) * 2);
 }
 
 [i-icon~="triple"] {
-    width: calc(var(--s-leading) * 3);
-    height: calc(var(--s-leading) * 3);
+  width: calc(var(--s-leading) * 3);
+  height: calc(var(--s-leading) * 3);
 }
 
 [i-icon~="huesFaceLogo"] {
-    width: var(--s-huesFaceLogo-w);
-    height: var(--s-huesFaceLogo-h);
+  width: var(--s-huesFaceLogo-w);
+  height: var(--s-huesFaceLogo-h);
 }
 
 /*******************************************************************************
@@ -53,28 +53,28 @@ icon colors
 [i-icon~="silver"] { fill: var(--c-silver); }
 
 @keyframes crazyPulseAnimation {
-    0% {
-        filter: blur(0);
-        fill: var(--c-violet);
-    }
+  0% {
+    filter: blur(0);
+    fill: var(--c-violet);
+  }
 
-    50% {
-        fill: var(--c-purple);
-    }
+  50% {
+    fill: var(--c-purple);
+  }
 
-    100% {
-        filter: blur(calc(var(--s-leading) * 0.5));
-        fill: var(--c-amaranth);
-    }
+  100% {
+    filter: blur(calc(var(--s-leading) * 0.5));
+    fill: var(--c-amaranth);
+  }
 }
 
 [i-icon~="crazyPulseAnimatedOnHover"]:hover {
-    animation-name: crazyPulseAnimation;
-    animation-duration: 1s;
-    animation-fill-mode: none;
-    animation-delay: 0;
-    animation-timing-function: ease-in;
-    animation-direction: alternate;
-    animation-iteration-count: infinite;
-    animation-play-state: running;
+  animation-name: crazyPulseAnimation;
+  animation-duration: 1s;
+  animation-fill-mode: none;
+  animation-delay: 0;
+  animation-timing-function: ease-in;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
 }

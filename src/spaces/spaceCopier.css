@@ -3,5 +3,5 @@ spaceCopier module
 *******************************************************************************/
 
 [i-spaceCopier] {
-    margin-left: calc(var(--s-leading) * 0.5);
+  margin-left: calc(var(--s-leading) * 0.5);
 }

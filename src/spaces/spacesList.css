@@ -3,8 +3,8 @@ spacesList module
 *******************************************************************************/
 
 [i-spacesList] {
-    /* align content to right, but keep whole thing on left */
-    display: inline-block;
-    vertical-align: top;
-    text-align: right;
+  /* align content to right, but keep whole thing on left */
+  display: inline-block;
+  vertical-align: top;
+  text-align: right;
 }

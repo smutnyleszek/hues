@@ -3,72 +3,72 @@ button module
 *******************************************************************************/
 
 :root {
-    --s-button-fontsize: 0.75rem;
-    --s-button-padding: 0.5rem;
-    --s-button-verticalMargin: 0.125rem;
+  --s-button-fontsize: 0.75rem;
+  --s-button-padding: 0.5rem;
+  --s-button-verticalMargin: 0.125rem;
 
-    --c-button-default-txt: var(--c-charcoal);
-    --c-button-default-bg: var(--c-silver);
-    --button-default-sh: 0 0.125rem 0 0 color(var(--c-button-default-bg) shade(15%));
-    --c-button-default-bg-hover: color(var(--c-button-default-bg) tint(20%));
-    --button-default-sh-hover: 0 0.125rem 0 0 color(var(--c-button-default-bg) shade(10%));
+  --c-button-default-txt: var(--c-charcoal);
+  --c-button-default-bg: var(--c-silver);
+  --button-default-sh: 0 0.125rem 0 0 color(var(--c-button-default-bg) shade(15%));
+  --c-button-default-bg-hover: color(var(--c-button-default-bg) tint(20%));
+  --button-default-sh-hover: 0 0.125rem 0 0 color(var(--c-button-default-bg) shade(10%));
 
-    --c-button-charcoal-txt: var(--c-white);
-    --c-button-charcoal-bg: var(--c-charcoal);
-    --button-charcoal-sh: 0 0.125rem 0 0 color(var(--c-button-charcoal-bg) shade(30%));
-    --c-button-charcoal-bg-hover: color(var(--c-button-charcoal-bg) tint(20%));
-    --button-charcoal-sh-hover: 0 0.125rem 0 0 color(var(--c-button-charcoal-bg) shade(10%));
+  --c-button-charcoal-txt: var(--c-white);
+  --c-button-charcoal-bg: var(--c-charcoal);
+  --button-charcoal-sh: 0 0.125rem 0 0 color(var(--c-button-charcoal-bg) shade(30%));
+  --c-button-charcoal-bg-hover: color(var(--c-button-charcoal-bg) tint(20%));
+  --button-charcoal-sh-hover: 0 0.125rem 0 0 color(var(--c-button-charcoal-bg) shade(10%));
 }
 
 [i-button] {
-    display: inline-block;
-    vertical-align: top;
-    margin: 0;
-    border: 0;
-    border-radius: var(--s-global-br);
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-left: var(--s-button-padding);
-    padding-right: var(--s-button-padding);
-    height: auto;
-    /* we want the button to fit into leading size with breathing space */
-    min-height: calc(var(--s-leading) - calc(var(--s-button-verticalMargin) * 2));
-    outline: 0;
-    cursor: pointer;
-    background-image: none;
-    font-size: var(--s-button-fontsize);
-    font-weight: 700;
-    font-family: inherit;
-    /* adjust line-height to adjusted height */
-    line-height: calc(var(--s-leading) - calc(var(--s-button-verticalMargin) * 2));
-    text-align: center;
-    text-decoration: none;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+  border: 0;
+  border-radius: var(--s-global-br);
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: var(--s-button-padding);
+  padding-right: var(--s-button-padding);
+  height: auto;
+  /* we want the button to fit into leading size with breathing space */
+  min-height: calc(var(--s-leading) - calc(var(--s-button-verticalMargin) * 2));
+  outline: 0;
+  cursor: pointer;
+  background-image: none;
+  font-size: var(--s-button-fontsize);
+  font-weight: 700;
+  font-family: inherit;
+  /* adjust line-height to adjusted height */
+  line-height: calc(var(--s-leading) - calc(var(--s-button-verticalMargin) * 2));
+  text-align: center;
+  text-decoration: none;
 }
 
 /* default button state */
 [i-button],
 [i-button]:visited {
-    margin-top: var(--s-button-verticalMargin);
-    margin-bottom: var(--s-button-verticalMargin);
+  margin-top: var(--s-button-verticalMargin);
+  margin-bottom: var(--s-button-verticalMargin);
 }
 
 [i-button]:not([disabled]):hover,
 [i-button~="hover"]:not([disabled]) {
-    margin-top: var(--s-button-verticalMargin);
-    margin-bottom: var(--s-button-verticalMargin);
+  margin-top: var(--s-button-verticalMargin);
+  margin-bottom: var(--s-button-verticalMargin);
 }
 
 [i-button]:not([disabled]):active,
 [i-button~="active"]:not([disabled]) {
-    /* swap margins to make the button look pressed-in */
-    margin-top: calc(var(--s-button-verticalMargin) * 2);
-    margin-bottom: 0;
-    /* remove shadow to make the button look pressed-in */
-    box-shadow: none !important;
+  /* swap margins to make the button look pressed-in */
+  margin-top: calc(var(--s-button-verticalMargin) * 2);
+  margin-bottom: 0;
+  /* remove shadow to make the button look pressed-in */
+  box-shadow: none !important;
 }
 
 [i-button~="middle"] {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 /*******************************************************************************
@@ -79,42 +79,42 @@ button colors
 
 [i-button],
 [i-button]:visited {
-    box-shadow: var(--button-default-sh);
-    background-color: var(--c-button-default-bg);
-    color: var(--c-button-default-txt);
+  box-shadow: var(--button-default-sh);
+  background-color: var(--c-button-default-bg);
+  color: var(--c-button-default-txt);
 }
 
 [i-button]:not([disabled]):hover,
 [i-button~="hover"]:not([disabled]) {
-    box-shadow: var(--button-default-sh-hover);
-    background-color: var(--c-button-default-bg-hover);
-    color: var(--c-button-default-txt);
+  box-shadow: var(--button-default-sh-hover);
+  background-color: var(--c-button-default-bg-hover);
+  color: var(--c-button-default-txt);
 }
 
 [i-button]:not([disabled]):active,
 [i-button~="active"]:not([disabled]) {
-    background-color: var(--c-button-default-bg-hover);
-    color: var(--c-button-default-txt);
+  background-color: var(--c-button-default-bg-hover);
+  color: var(--c-button-default-txt);
 }
 
 /* charcoal */
 
 [i-button~="charcoal"],
 [i-button~="charcoal"]:visited {
-    box-shadow: var(--button-charcoal-sh);
-    background-color: var(--c-button-charcoal-bg);
-    color: var(--c-button-charcoal-txt);
+  box-shadow: var(--button-charcoal-sh);
+  background-color: var(--c-button-charcoal-bg);
+  color: var(--c-button-charcoal-txt);
 }
 
 [i-button~="charcoal"]:not([disabled]):hover {
-    box-shadow: var(--button-charcoal-sh-hover);
-    background-color: var(--c-button-charcoal-bg-hover);
-    color: var(--c-button-charcoal-txt);
+  box-shadow: var(--button-charcoal-sh-hover);
+  background-color: var(--c-button-charcoal-bg-hover);
+  color: var(--c-button-charcoal-txt);
 }
 
 [i-button~="charcoal"]:not([disabled]):active {
-    background-color: var(--c-button-charcoal-bg-hover);
-    color: var(--c-button-charcoal-txt);
+  background-color: var(--c-button-charcoal-bg-hover);
+  color: var(--c-button-charcoal-txt);
 }
 
 /*******************************************************************************
@@ -122,9 +122,9 @@ button sizes
 *******************************************************************************/
 
 [i-button~="double"] {
-    padding-left: calc(var(--s-button-padding) * 2);
-    padding-right: calc(var(--s-button-padding) * 2);
-    min-height: calc(var(--s-leading) * 2 - calc(var(--s-button-verticalMargin) * 2));
-    font-size: calc(var(--s-button-fontsize) * 2);
-    line-height: calc((var(--s-leading) - var(--s-button-verticalMargin)) * 2);
+  padding-left: calc(var(--s-button-padding) * 2);
+  padding-right: calc(var(--s-button-padding) * 2);
+  min-height: calc(var(--s-leading) * 2 - calc(var(--s-button-verticalMargin) * 2));
+  font-size: calc(var(--s-button-fontsize) * 2);
+  line-height: calc((var(--s-leading) - var(--s-button-verticalMargin)) * 2);
 }

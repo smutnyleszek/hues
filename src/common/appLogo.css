@@ -3,7 +3,7 @@ appLogo module
 *******************************************************************************/
 
 [i-appLogo] {
-    display: inline-block;
-    vertical-align: top;
-    margin-left: calc(var(--s-leading) * 0.5);
+  display: inline-block;
+  vertical-align: top;
+  margin-left: calc(var(--s-leading) * 0.5);
 }

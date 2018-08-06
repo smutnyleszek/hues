@@ -8,15 +8,15 @@ as they tend to add unwanted pixels, thus braking the flow.
 *******************************************************************************/
 
 html {
-    box-sizing: border-box;
-    min-height: 100%;
-    background-color: var(--c-root-bg);
-    color: var(--c-root-txt);
-    font-family: var(--root-fontFamily);
-    font-weight: var(--root-fontWeight);
-    font-size: var(--root-fontSize-medium);
-    line-height: var(--root-lineHeight);
-    text-rendering: optimizeLegibility;
+  box-sizing: border-box;
+  min-height: 100%;
+  background-color: var(--c-root-bg);
+  color: var(--c-root-txt);
+  font-family: var(--root-fontFamily);
+  font-weight: var(--root-fontWeight);
+  font-size: var(--root-fontSize-medium);
+  line-height: var(--root-lineHeight);
+  text-rendering: optimizeLegibility;
 }
 
 /* clever page scaling with root font size changes */
@@ -28,15 +28,15 @@ html {
 *,
 *::before,
 *::after {
-    box-sizing: inherit;
-    margin: 0;
-    padding: 0;
-    color: inherit;
-    font-size: inherit;
-    font-family: inherit;
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
 }
 
 body {
-    padding: var(--s-leading);
-    width: 100%;
+  padding: var(--s-leading);
+  width: 100%;
 }

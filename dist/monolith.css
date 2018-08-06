@@ -40,13 +40,13 @@ user-action influenced states
 *******************************************************************************/
 
 /* links */a{
-    /* custom underlines */background-position:0 100%;background-size:.0625rem .0625rem;background-image:linear-gradient(270deg,currentColor 0,currentColor 0);background-repeat:repeat-x;text-decoration:none}a,a:hover{color:inherit}a:hover{background-size:calc(.0625rem * 2) calc(.0625rem * 2)}a:visited{color:inherit}a:active{color:#fa1f4b}
+  /* custom underlines */background-position:0 100%;background-size:.0625rem .0625rem;background-image:linear-gradient(270deg,currentColor 0,currentColor 0);background-repeat:repeat-x;text-decoration:none}a,a:hover{color:inherit}a:hover{background-size:calc(.0625rem * 2) calc(.0625rem * 2)}a:visited{color:inherit}a:active{color:#fa1f4b}
 
 /* text selection */:focus{outline-color:#ccc;outline-style:auto;outline-width:.25rem}::-moz-focus-inner{border:0}::selection{background-color:#ccc;color:#fff}
 
 /* disabled elements */[disabled]{pointer-events:none;opacity:.5;
 
-    /* avoid adding up opacity on nested disabled elements */[disabled]{opacity:1}}
+  /* avoid adding up opacity on nested disabled elements */[disabled]{opacity:1}}
 
 /* modules */
 
@@ -61,12 +61,12 @@ appRoot module
 /*******************************************************************************
 button module
 *******************************************************************************/[i-button]{display:inline-block;vertical-align:top;margin:0;border:0;border-radius:.125rem;padding:0 .5rem;height:auto;
-    /* we want the button to fit into leading size with breathing space */min-height:calc(calc(1.5 * 1rem) - .125rem * 2);outline:0;cursor:pointer;background-image:none;font-size:.75rem;font-weight:700;font-family:inherit;
-    /* adjust line-height to adjusted height */line-height:calc(calc(1.5 * 1rem) - .125rem * 2);text-align:center;text-decoration:none}
+  /* we want the button to fit into leading size with breathing space */min-height:calc(calc(1.5 * 1rem) - .125rem * 2);outline:0;cursor:pointer;background-image:none;font-size:.75rem;font-weight:700;font-family:inherit;
+  /* adjust line-height to adjusted height */line-height:calc(calc(1.5 * 1rem) - .125rem * 2);text-align:center;text-decoration:none}
 
 /* default button state */[i-button],[i-button]:not([disabled]):hover,[i-button]:visited,[i-button~=hover]:not([disabled]){margin-top:.125rem;margin-bottom:.125rem}[i-button]:not([disabled]):active,[i-button~=active]:not([disabled]){
-    /* swap margins to make the button look pressed-in */margin-top:calc(.125rem * 2);margin-bottom:0;
-    /* remove shadow to make the button look pressed-in */box-shadow:none!important}[i-button~=middle]{vertical-align:middle}
+  /* swap margins to make the button look pressed-in */margin-top:calc(.125rem * 2);margin-bottom:0;
+  /* remove shadow to make the button look pressed-in */box-shadow:none!important}[i-button~=middle]{vertical-align:middle}
 
 /*******************************************************************************
 button colors
@@ -83,7 +83,7 @@ button sizes
 /*******************************************************************************
 icon
 *******************************************************************************/:root{
-    /* original design is 192x240px */}[i-icon]{display:inline-block;vertical-align:bottom;width:calc(1.5 * 1rem);height:calc(1.5 * 1rem);color:inherit;shape-rendering:geometricPrecision;fill:currentColor}
+  /* original design is 192x240px */}[i-icon]{display:inline-block;vertical-align:bottom;width:calc(1.5 * 1rem);height:calc(1.5 * 1rem);color:inherit;shape-rendering:geometricPrecision;fill:currentColor}
 
 /* bugfix for click target SVGElementInstance */[i-icon]>*{pointer-events:none}[i-icon~=middle]{vertical-align:middle}
 
@@ -106,12 +106,12 @@ spaceCopier module
 /*******************************************************************************
 spaceInput module
 *******************************************************************************/[i-spaceInput]{display:inline-block;vertical-align:top;margin:.125rem 0;border:0;border-radius:.125rem;padding:0;width:2rem;
-    /* we want the spaceInput to fit into leading size with breathing space */height:calc(calc(1.5 * 1rem) - .125rem * 2);outline:0;cursor:text;color:#333;font-weight:400;font-family:inherit;
-    /* adjust line-height to adjusted height */line-height:calc(calc(1.5 * 1rem) - .125rem);text-align:center;text-decoration:none;background-color:#fff}
+  /* we want the spaceInput to fit into leading size with breathing space */height:calc(calc(1.5 * 1rem) - .125rem * 2);outline:0;cursor:text;color:#333;font-weight:400;font-family:inherit;
+  /* adjust line-height to adjusted height */line-height:calc(calc(1.5 * 1rem) - .125rem);text-align:center;text-decoration:none;background-color:#fff}
 
 /* default spaceInput state */[i-spaceInput]:not([disabled]):hover{background-color:#f2f2f2}[i-spaceInput]:not([disabled]):active,[i-spaceInput]:not([disabled]):focus{background-color:#e6e6e6}
 
 /*******************************************************************************
 spacesList module
 *******************************************************************************/[i-spacesList]{
-    /* align content to right, but keep whole thing on left */display:inline-block;vertical-align:top;text-align:right}
+  /* align content to right, but keep whole thing on left */display:inline-block;vertical-align:top;text-align:right}
