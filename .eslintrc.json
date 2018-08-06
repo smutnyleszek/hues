@@ -6,7 +6,8 @@
     },
     "globals": {
         "requirejs": true,
-        "require": true
+        "require": true,
+        "module": true
     },
     "parserOptions": {
         "ecmaVersion": 6,
