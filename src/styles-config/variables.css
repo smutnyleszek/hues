@@ -1,0 +1,33 @@
+/*******************************************************************************
+variables - all global and pallete variables for project
+*******************************************************************************/
+
+:root {
+  /* colors palette */
+  --c-snow: hsl(30, 100%, 99%);
+  --c-wildwatermelon: hsl(354, 100%, 70%);
+  --c-maverick: hsl(303, 16%, 78%);
+  --c-honeyflower: hsl(273, 54%, 29%);
+
+  /* font families palette */
+  --font-sansSerif: "Source Sans Pro", "Roboto", "PT Sans", "Droid Sans",
+    "Fira Sans", "Work Sans", "Open Sans", "Noto Sans", "Hind", "Dosis", "Cabin",
+    "Verdana", "Tahoma", sans-serif;
+  --font-monospace: "Input", "Office Code Pro", "Source Code Pro", "Fira Mono",
+    "Inconsolata", "Monaco", "Consolas", "Lucida Console", "Liberation Mono",
+    "DejaVu Sans Mono", monospace;
+
+  /* base */
+  --c-root-txt: var(--c-honeyflower);
+  --c-root-bg: var(--c-maverick);
+  --c-root-focus: var(--c-honeyflower);
+
+  /* leading size for all spacing between elements to be pretty */
+  --root-lineHeight: 1.5;
+  --s-leading: calc(var(--root-lineHeight) * 1rem);
+  --s-leading-half: calc(var(--s-leading) * 0.5);
+
+  /* globals */
+  --s-global-br: 0.125rem;
+  --s-global-border: 0.125rem;
+}

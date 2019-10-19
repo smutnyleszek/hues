@@ -1,0 +1,99 @@
+/*******************************************************************************
+root stuff and normalizations
+
+NOTE: Root line height is being used in many places throughout the project.
+It is recommended to keep all vertical margins and heights of elements to match
+the leading. Use caution when adding borders or when using vertical-align middle
+as they tend to add unwanted pixels, thus braking the flow.
+*******************************************************************************/
+
+html {
+  min-height: 100%;
+  background-color: var(--c-root-bg);
+  color: var(--c-root-txt);
+  font-family: var(--font-sansSerif);
+  font-weight: 400;
+  font-size: 100%;
+  line-height: var(--root-lineHeight);
+  text-rendering: optimizeLegibility;
+}
+
+/*
+clever page scaling with root font size changes:
+https://www.smashingmagazine.com/2016/05/fluid-typography/
+calc(AZ + (B - A) * (100vw - CZ) / (D - C))
+- A: min font size
+- B: max font size
+- C: min screen size
+- D: max screen size
+- Z: unit (px, rem, etc.)
+*/
+html {
+  font-size: calc(1rem + (1.5 - 1) * (100vw - 30rem) / (120 - 30));
+}
+
+body {
+  margin: 0;
+  padding: var(--s-leading);
+}
+
+/*******************************************************************************
+user-action influenced states
+*******************************************************************************/
+
+/* links */
+
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: inherit;
+}
+
+a:hover {
+  color: var(--c-honeyflower);
+}
+
+a:active {
+  color: var(--c-wildwatermelon);
+}
+
+/* selection */
+
+:focus {
+  outline: var(--c-root-focus) solid var(--s-global-border);
+  background-color: var(--c-root-focus);
+  color: var(--c-maverick);
+}
+
+:focus svg {
+  background-color: var(--c-root-focus);
+}
+
+::-moz-focus-inner {
+  border: 0;
+}
+
+::placeholder {
+  opacity: 0.5;
+  color: currentColor;
+}
+
+::selection {
+  background-color: var(--c-honeyflower);
+  color: var(--c-maverick);
+}
+
+/* disabled elements */
+
+[disabled] {
+  pointer-events: none;
+  opacity: 0.5;
+
+  /* avoid adding up opacity on nested disabled elements */
+  [disabled] {
+    opacity: 1;
+  }
+}
