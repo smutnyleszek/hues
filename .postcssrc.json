@@ -1,4 +1,4 @@
 {
   "modules": false,
-  "plugins": ["postcss-cssnext"]
+  "plugins": ["postcss-preset-env"]
 }
