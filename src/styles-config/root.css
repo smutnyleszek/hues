@@ -53,11 +53,11 @@ a:visited {
 }
 
 a:hover {
-  color: var(--c-honeyflower);
+  color: var(--c-eclpise);
 }
 
 a:active {
-  color: var(--c-wildwatermelon);
+  color: var(--c-eclipse);
 }
 
 /* selection */
@@ -65,7 +65,7 @@ a:active {
 :focus {
   outline: var(--c-root-focus) solid var(--s-global-border);
   background-color: var(--c-root-focus);
-  color: var(--c-maverick);
+  color: var(--c-whitesmoke);
 }
 
 :focus svg {
@@ -82,8 +82,8 @@ a:active {
 }
 
 ::selection {
-  background-color: var(--c-honeyflower);
-  color: var(--c-maverick);
+  background-color: var(--c-eclpise);
+  color: var(--c-whitesmoke);
 }
 
 /* disabled elements */

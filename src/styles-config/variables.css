@@ -4,10 +4,8 @@ variables - all global and pallete variables for project
 
 :root {
   /* colors palette */
-  --c-snow: hsl(30, 100%, 99%);
-  --c-wildwatermelon: hsl(354, 100%, 70%);
-  --c-maverick: hsl(303, 16%, 78%);
-  --c-honeyflower: hsl(273, 54%, 29%);
+  --c-whitesmoke: hsl(0, 0%, 90%);
+  --c-eclipse: hsl(0, 0%, 10%);
 
   /* font families palette */
   --font-sansSerif: "Source Sans Pro", "Roboto", "PT Sans", "Droid Sans",
@@ -18,9 +16,9 @@ variables - all global and pallete variables for project
     "DejaVu Sans Mono", monospace;
 
   /* base */
-  --c-root-txt: var(--c-honeyflower);
-  --c-root-bg: var(--c-maverick);
-  --c-root-focus: var(--c-honeyflower);
+  --c-root-txt: var(--c-eclipse);
+  --c-root-bg: var(--c-whitesmoke);
+  --c-root-focus: var(--c-eclipse);
 
   /* leading size for all spacing between elements to be pretty */
   --root-lineHeight: 1.5;
