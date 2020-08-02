@@ -34,8 +34,8 @@ class Converter {
     ]
   ]);
 
-  public getRandomColor(spaceName: TSpaceName = "rgb"): TColorValue {
-    switch (spaceName) {
+  public getRandomColor(space: TSpace = "rgb"): TColorValue {
+    switch (space) {
       case "hex":
         return this.getRandomHex();
       case "hsl":
@@ -49,18 +49,22 @@ class Converter {
   }
 
   public convertFromTo(
-    fromSpace: TSpaceName,
-    toSpace: TSpaceName,
+    fromSpace: TSpace,
+    toSpace: TSpace,
     color: TColorValue
   ): TColorValue {
-    const fromGroup = this.convertMap.get(fromSpace);
-    if (fromGroup instanceof Map) {
-      const toFn = fromGroup.get(toSpace);
-      if (typeof toFn === "function") {
-        return toFn(color);
+    if (fromSpace === toSpace) {
+      return color;
+    } else {
+      const fromGroup = this.convertMap.get(fromSpace);
+      if (fromGroup instanceof Map) {
+        const toFn = fromGroup.get(toSpace);
+        if (typeof toFn === "function") {
+          return toFn(color);
+        }
       }
     }
-    // fallback to returning source color
+    // safety fallback
     return color;
   }
 

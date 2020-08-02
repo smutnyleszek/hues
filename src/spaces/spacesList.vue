@@ -1,17 +1,17 @@
 <template lang="html">
   <div class="spaces-list">
-    <space v-for="spaceDef in spaces" v-bind:spaceName="spaceDef"></space>
+    <space-form v-for="spaceDef in spaces" v-bind:space="spaceDef"></space-form>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import space from "./space.vue";
+import spaceForm from "./spaceForm.vue";
 import { spaces } from "./spacesConfig";
 export default Vue.extend({
   name: "spacesList",
   components: {
-    space
+    spaceForm
   }
   data: function() {
     return {

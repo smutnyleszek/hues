@@ -1,4 +1,4 @@
-type TSpaceName = "hex" | "rgb" | "hsl" | "hwb";
+type TSpace = "hex" | "rgb" | "hsl" | "hwb";
 
 interface ISpaceDefinition {
   parts: ISpacePart[];

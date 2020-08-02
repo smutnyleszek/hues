@@ -24,16 +24,15 @@ export default Vue.extend({
       type: Array,
       required: true
     },
-    spaceName: {
+    space: {
       type: String,
       required: true
     }
   },
   computed: {
     partValue() {
-      const colorValue = this.$store.getters.getColorInSpace(this.spaceName);
-      console.log("computed partValue", this.spaceName, colorValue);
-      return colorValue[this.partIndex];
+      const color = this.$store.getters.getColorInSpace(this.space);
+      return color[this.partIndex];
     },
     inputType() {
       return this.partType === "integer" ? "number" : "text";
@@ -41,15 +40,15 @@ export default Vue.extend({
   },
   methods: {
     updateColor(evt) {
-      const colorValue = this.$store.getters.getColorInSpace(this.spaceName);
+      const color = this.$store.getters.getColorInSpace(this.space);
       let newPartValue = evt.target.value;
       if (this.partType === "integer") {
         newPartValue = Number(newPartValue);
       }
-      colorValue[this.partIndex] = newPartValue;
+      color[this.partIndex] = newPartValue;
       this.$store.commit("setColor", {
-        spaceName: this.spaceName,
-        colorValue: colorValue
+        space: this.space,
+        color: color
       });
     }
   }

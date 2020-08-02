@@ -12,16 +12,19 @@
       />
     </svg>
     <spaces-list></spaces-list>
+    <current-color></current-color>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import spacesList from "./spaces/spacesList.vue";
+import currentColor from "./display/currentColor.vue";
 export default Vue.extend({
   name: "app",
   components: {
-    spacesList
+    spacesList,
+    currentColor
   }
 });
 </script>

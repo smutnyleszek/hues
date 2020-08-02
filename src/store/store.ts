@@ -2,32 +2,32 @@ import Vue from "vue";
 import Vuex from "vuex";
 import * as packageJsonData from "../../package.json";
 import converter from "../colors/converter";
+import matcher from "../dictionary/matcher";
 const version = (packageJsonData as any).version;
 
 Vue.use(Vuex);
 
-const initialColorSpace = "rgb";
-const initialColor = converter.getRandomColor(initialColorSpace);
+const initialColorSpace = "hsl";
+const initialColorValue = converter.getRandomColor(initialColorSpace);
 
 const myStore = new Vuex.Store({
   getters: {
-    getColorInSpace: (state: IState) => (spaceName: TSpaceName) => {
-      return converter.convertFromTo(
-        state.spaceName,
-        spaceName,
-        state.colorValue
-      );
+    getColorInSpace: (state: IState) => (space: TSpace) => {
+      return converter.convertFromTo(state.space, space, state.color);
     }
   },
   mutations: {
-    setColor(state, payload) {
-      Vue.set(state, "spaceName", payload.spaceName);
-      Vue.set(state, "colorValue", [...payload.colorValue]);
+    setColor(state: IState, payload: ISetColorPayload) {
+      const match = matcher.matchColor(payload.space, payload.color);
+      Vue.set(state, "match", match);
+      Vue.set(state, "color", [...payload.color]);
+      Vue.set(state, "space", payload.space);
     }
   },
   state: {
-    colorValue: initialColor,
-    spaceName: initialColorSpace,
+    color: initialColorValue,
+    match: matcher.matchColor(initialColorSpace, initialColorValue),
+    space: initialColorSpace,
     version
   },
   // we want strict only during development (performance heavy-ish)

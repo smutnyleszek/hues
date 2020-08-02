@@ -6,7 +6,7 @@
         v-bind:partIndex="index"
         v-bind:partType="part.partType"
         v-bind:range="part.range"
-        v-bind:spaceName="spaceName"
+        v-bind:space="space"
       ></space-part>
       <span v-if="part.after">{{ part.after }}</span>
     </span>
@@ -18,19 +18,19 @@ import Vue from "vue";
 import spacePart from "./spacePart.vue";
 import { spaces } from "./spacesConfig";
 export default Vue.extend({
-  name: "space",
+  name: "spaceForm",
   components: {
     spacePart
   },
   props: {
-    spaceName: {
+    space: {
       type: String,
       required: true
     }
   },
   data: function() {
     return {
-      parts: spaces.get(this.spaceName).parts
+      parts: spaces.get(this.space).parts
     };
   }
 });
