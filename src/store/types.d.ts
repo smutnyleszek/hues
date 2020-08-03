@@ -1,7 +1,7 @@
 interface IState {
   color: TColorValue;
-  primaryHue: IColorMatch;
   match: IColorMatch;
+  primaryHue: IColorMatch;
   space: TSpace;
   version: string;
 }

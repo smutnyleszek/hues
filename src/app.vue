@@ -1,8 +1,15 @@
 <template>
   <div class="app">
-    <figure class="logo">h(u,e,s)</figure>
-    <spaces-list></spaces-list>
-    <current-color></current-color>
+    <header class="logo">h(u,e,s)</header>
+    <main>
+      <spaces-list></spaces-list>
+      <current-color></current-color>
+    </main>
+    <footer>
+      <a href="https://github.com/magicznyleszek/hues" target="_blank"
+        >source code</a
+      >
+    </footer>
   </div>
 </template>
 
@@ -23,5 +30,8 @@ export default Vue.extend({
 .logo {
   font-weight: bold;
   margin-bottom: var(--s-leading);
+}
+footer {
+  margin-top: var(--s-leading);
 }
 </style>
