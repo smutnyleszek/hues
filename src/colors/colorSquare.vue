@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="square" v-bind:style="bgStyle"></div>
+  <figure v-bind:style="bgStyle"></figure>
 </template>
 
 <script lang="ts">
@@ -28,10 +28,9 @@ export default Vue.extend({
 
 <style lang="css" scoped>
 @import "../styles-config/variables.css";
-.square {
-  width: calc(var(--s-leading) * 2);
-  height: calc(var(--s-leading) * 2);
-  border: 1px solid currentColor;
-  border-radius: 0.125rem;
+figure {
+  width: 100%;
+  min-width: calc(var(--s-leading) * 3);
+  height: calc(var(--s-leading) * 3);
 }
 </style>

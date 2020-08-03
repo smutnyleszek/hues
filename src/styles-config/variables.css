@@ -5,6 +5,7 @@ variables - all global and pallete variables for project
 :root {
   /* colors palette */
   --c-whitesmoke: hsl(0, 0%, 90%);
+  --c-silver: hsl(0, 0%, 50%);
   --c-eclipse: hsl(0, 0%, 10%);
 
   /* font families palette */
@@ -18,7 +19,7 @@ variables - all global and pallete variables for project
   /* base */
   --c-root-txt: var(--c-eclipse);
   --c-root-bg: var(--c-whitesmoke);
-  --c-root-focus: var(--c-eclipse);
+  --c-root-focus: var(--c-silver);
 
   /* leading size for all spacing between elements to be pretty */
   --root-lineHeight: 1.5;

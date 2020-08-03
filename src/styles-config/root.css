@@ -11,7 +11,7 @@ html {
   min-height: 100%;
   background-color: var(--c-root-bg);
   color: var(--c-root-txt);
-  font-family: var(--font-sansSerif);
+  font-family: var(--font-monospace);
   font-weight: 400;
   font-size: 100%;
   line-height: var(--root-lineHeight);
@@ -53,7 +53,7 @@ a:visited {
 }
 
 a:hover {
-  color: var(--c-eclpise);
+  color: var(--c-eclipse);
 }
 
 a:active {
@@ -82,7 +82,7 @@ a:active {
 }
 
 ::selection {
-  background-color: var(--c-eclpise);
+  background-color: var(--c-eclipse);
   color: var(--c-whitesmoke);
 }
 

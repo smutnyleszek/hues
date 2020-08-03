@@ -1,6 +1,6 @@
 <template lang="html">
-  <div class="space">
-    <span v-for="(part, index) in parts">
+  <form>
+    <div v-for="(part, index) in parts">
       <span v-if="part.before">{{ part.before }}</span>
       <space-part
         v-bind:partIndex="index"
@@ -9,8 +9,8 @@
         v-bind:space="space"
       ></space-part>
       <span v-if="part.after">{{ part.after }}</span>
-    </span>
-  </div>
+    </div>
+  </form>
 </template>
 
 <script lang="ts">
@@ -36,4 +36,9 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+form, div {
+  display: flex;
+  flex-direction: row;
+}
+</style>

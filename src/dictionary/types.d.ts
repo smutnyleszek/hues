@@ -1,8 +1,3 @@
-interface IDictionaryHue {
-  0: number;
-  1: string;
-}
-
 interface IDictionaryNamed {
   0: string;
   1: string;
@@ -16,7 +11,7 @@ interface IDictionaryColor {
 }
 
 interface IDictionary {
-  primaryHues: IDictionaryHue[];
+  primaryHues: IDictionaryColor[];
   cssNamedColors: IDictionaryNamed[];
   colors: IDictionaryColor[];
 }

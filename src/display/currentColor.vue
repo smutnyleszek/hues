@@ -1,20 +1,18 @@
 <template lang="html">
-  <div class="current-color">
-    <div>
-      <h1>current</h1>
-      <color-square
-        v-bind:space="space"
-        v-bind:color="currentColor"
-      ></color-square>
+  <div class="wrapper">
+    <div class="current">
+      <color-square space="hsl" v-bind:color="currentColor"></color-square>
     </div>
-    <div>
-      <h1>matched</h1>
+
+    <div class="matched">
+      <color-square space="hsl" v-bind:color="matchedColor"></color-square>
       <label>{{ matchedName }}</label>
-      <color-square
-        v-bind:space="space"
-        v-bind:color="matchedColor"
-      ></color-square>
-      <small>{{ matchedDifference }}</small>
+      <span>&larr;&rarr; {{ matchedDifference }}</span>
+    </div>
+
+    <div class="hue">
+      <color-square space="hsl" v-bind:color="primaryHueColor"></color-square>
+      <label>{{ primaryHueName }}</label>
     </div>
   </div>
 </template>
@@ -28,8 +26,14 @@ export default Vue.extend({
     colorSquare
   },
   computed: {
+    primaryHueColor() {
+      return this.$store.state.primaryHue.color;
+    },
+    primaryHueName() {
+      return this.$store.state.primaryHue.name;
+    },
     currentColor() {
-      return this.$store.getters.getColorInSpace(this.space);
+      return this.$store.getters.getColorInSpace("hsl");
     },
     matchedColor() {
       return this.$store.state.match.color;
@@ -40,13 +44,24 @@ export default Vue.extend({
     matchedDifference() {
       return this.$store.state.match.difference;
     }
-  },
-  data: function() {
-    return {
-      space: "hsl"
-    };
-  },
+  }
 });
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.current {
+  width: 100%;
+}
+.matched {
+  flex: 1;
+}
+.hue {
+  text-align: center;
+}
+</style>

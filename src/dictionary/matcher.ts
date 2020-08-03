@@ -3,8 +3,19 @@ const dictionary: IDictionary = dictionaryJsonData as any;
 import converter from "../colors/converter";
 
 class ColorMatcher {
-  // returns hsl color
   public matchColor(space: TSpace, color: TColorValue): IColorMatch {
+    return this.matchDictionaryColor(space, color, dictionary.colors);
+  }
+
+  public matchHue(space: TSpace, color: TColorValue): IColorMatch {
+    return this.matchDictionaryColor(space, color, dictionary.primaryHues);
+  }
+
+  private matchDictionaryColor(
+    space: TSpace,
+    color: TColorValue,
+    dict: IDictionaryColor[]
+  ): IColorMatch {
     const targetRgb = converter.convertFromTo(space, "rgb", color);
     const targetHsl = converter.convertFromTo(space, "hsl", color);
 
@@ -15,7 +26,7 @@ class ColorMatcher {
       space: "hsl" as TSpace
     };
 
-    dictionary.colors.forEach((dictColor: IDictionaryColor): void => {
+    dict.forEach((dictColor: IDictionaryColor): void => {
       const dictHsl = [dictColor[0], dictColor[1], dictColor[2]];
       const differenceHsl = this.getHslDifference(targetHsl, dictHsl);
 
@@ -33,22 +44,32 @@ class ColorMatcher {
     return match;
   }
 
-  private getRgbDifference(first: TColorValue, second: TColorValue): number {
-    const differenceR = Math.abs(Number(first[0]) - Number(second[0]));
-    const differenceG = Math.abs(Number(first[1]) - Number(second[1]));
-    const differenceB = Math.abs(Number(first[2]) - Number(second[2]));
+  private getRgbDifference(target: TColorValue, dict: TColorValue): number {
+    const differenceR = Math.abs(Number(target[0]) - Number(dict[0]));
+    const differenceG = Math.abs(Number(target[1]) - Number(dict[1]));
+    const differenceB = Math.abs(Number(target[2]) - Number(dict[2]));
     return differenceR + differenceG + differenceB;
   }
 
-  private getHslDifference(first: TColorValue, second: TColorValue): number {
-    const differenceH = Math.abs(Number(first[0]) - Number(second[0]));
-    const differenceS = Math.abs(Number(first[1]) - Number(second[1]));
-    const differenceL = Math.abs(Number(first[2]) - Number(second[2]));
-    // hue is most important here
-    return differenceH * 1.5 + differenceS + differenceL;
+  private getHslDifference(target: TColorValue, dict: TColorValue): number {
+    let differenceH = Math.abs(Number(target[0]) - Number(dict[0]));
+    let differenceS = Math.abs(Number(target[1]) - Number(dict[1]));
+    const differenceL = Math.abs(Number(target[2]) - Number(dict[2]));
+
+    // with only light or no light at all, saturation is meaningless
+    if (target[2] === 100 || target[2] === 0) {
+      differenceS = 0;
+    }
+
+    // with zero saturation hue is meaningless
+    if (target[1] === 0) {
+      differenceH = 0;
+    }
+
+    return differenceH + differenceS + differenceL;
   }
 
-  private findColor(name: string): IColor | undefined {
+  private findColorByName(name: string): IColor | undefined {
     const lowerName = String(name).toLowerCase();
     const found = dictionary.colors.find(dictionaryColor => {
       return String(dictionaryColor[3]).toLowerCase() === lowerName;

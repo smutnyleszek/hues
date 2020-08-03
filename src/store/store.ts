@@ -18,14 +18,17 @@ const myStore = new Vuex.Store({
   },
   mutations: {
     setColor(state: IState, payload: ISetColorPayload) {
+      const primaryHue = matcher.matchHue(payload.space, payload.color);
       const match = matcher.matchColor(payload.space, payload.color);
-      Vue.set(state, "match", match);
       Vue.set(state, "color", [...payload.color]);
+      Vue.set(state, "primaryHue", primaryHue);
+      Vue.set(state, "match", match);
       Vue.set(state, "space", payload.space);
     }
   },
   state: {
     color: initialColorValue,
+    primaryHue: matcher.matchHue(initialColorSpace, initialColorValue),
     match: matcher.matchColor(initialColorSpace, initialColorValue),
     space: initialColorSpace,
     version

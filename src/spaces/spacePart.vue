@@ -1,14 +1,16 @@
 <template lang="html">
   <input
-    class="space-part"
-    :value="partValue"
-    v-bind:type="inputType"
-    @input="updateColor"
+    v-bind:value="partValue"
+    type="text"
+    v-bind:style="widthStyle"
+    @input="onInput"
+    @keydown="onKeyDown"
   />
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import converter from "../colors/converter";
 export default Vue.extend({
   name: "spacePart",
   props: {
@@ -34,18 +36,64 @@ export default Vue.extend({
       const color = this.$store.getters.getColorInSpace(this.space);
       return color[this.partIndex];
     },
-    inputType() {
-      return this.partType === "integer" ? "number" : "text";
+    widthStyle() {
+      const valueTextLength = String(this.partValue).length;
+      return `width: ${valueTextLength * 0.75}rem;`;
     }
   },
   methods: {
-    updateColor(evt) {
-      const color = this.$store.getters.getColorInSpace(this.space);
-      let newPartValue = evt.target.value;
-      if (this.partType === "integer") {
-        newPartValue = Number(newPartValue);
+    onInput(evt): void {
+      this.setValueWithChange(evt.target.value);
+    },
+    onKeyDown(evt) {
+      switch (evt.key) {
+        case "ArrowUp":
+          if (evt.shiftKey) {
+            this.setValueWithChange(this.partValue, 10);
+          } else {
+            this.setValueWithChange(this.partValue, 1);
+          }
+          evt.preventDefault();
+          break;
+        case "ArrowDown":
+          if (evt.shiftKey) {
+            this.setValueWithChange(this.partValue, -10);
+          } else {
+            this.setValueWithChange(this.partValue, -1);
+          }
+          evt.preventDefault();
+          break;
+        default:
+          return;
       }
-      color[this.partIndex] = newPartValue;
+    },
+    setValueWithChange(newValue: TColorValuePart, change: number = 0): void {
+      let finalValue = newValue || "0";
+      if (this.partType === "hexadecimal") {
+        finalValue = converter.hexToInt(finalValue);
+      } else {
+        finalValue = parseInt(finalValue, 10);
+      }
+
+      finalValue += change;
+
+      // fix by range limits
+      finalValue = Math.max(finalValue, this.range[0]);
+      finalValue = Math.min(finalValue, this.range[1]);
+
+      // change it back to proper type if necessary
+      if (this.partType === "hexadecimal") {
+        finalValue = converter.intToHex(finalValue);
+      }
+
+      this.updatePartValue(finalValue);
+    },
+    updatePartValue(newValue): void {
+      const color = this.$store.getters.getColorInSpace(this.space);
+      if (this.partType === "integer") {
+        newValue = Number(newValue);
+      }
+      color[this.partIndex] = newValue;
       this.$store.commit("setColor", {
         space: this.space,
         color: color
@@ -55,4 +103,10 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+@import "../styles-config/variables.css";
+input {
+  min-width: 1rem;
+  text-align: center;
+}
+</style>

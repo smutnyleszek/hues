@@ -68,6 +68,16 @@ class Converter {
     return color;
   }
 
+  public intToHex(decimal: number | string): string {
+    const hex = Math.round(Number(decimal)).toString(16);
+    // make sure to always have two characters
+    return `0${hex}`.slice(-2);
+  }
+
+  public hexToInt(hex: string | number): number {
+    return parseInt(String(hex), 16);
+  }
+
   // ---------------------------------------------------------------------------
   // helpers
   // ---------------------------------------------------------------------------
@@ -82,16 +92,6 @@ class Converter {
       }
     }
     return safe;
-  }
-
-  private intToHex(decimal: number | string): string {
-    const hex = Math.round(Number(decimal)).toString(16);
-    // make sure to always have two characters
-    return `0${hex}`.slice(-2);
-  }
-
-  private hexToInt(hex: string | number): number {
-    return parseInt(String(hex), 16);
   }
 
   // ---------------------------------------------------------------------------
