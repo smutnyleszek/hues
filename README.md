@@ -9,7 +9,7 @@ Strongly inspired by awesome [Name that Color](http://chir.ag/projects/name-that
 ## Building
 
 1. `npm install`
-2. `npm build-website`
+2. `npm build-app`
 3. open `docs/index.html`
 
 ## Development

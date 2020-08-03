@@ -10,6 +10,7 @@
       ></space-part>
       <span v-if="part.after">{{ part.after }}</span>
     </div>
+    <button @click="onCopyClick" title="copy to clipboard">&darr;</button>
   </form>
 </template>
 
@@ -17,6 +18,8 @@
 import Vue from "vue";
 import spacePart from "./spacePart.vue";
 import { spaces } from "./spacesConfig";
+import formatter from "../colors/formatter";
+import clipboardier from "../misc/clipboardier";
 export default Vue.extend({
   name: "spaceForm",
   components: {
@@ -32,6 +35,13 @@ export default Vue.extend({
     return {
       parts: spaces.get(this.space).parts
     };
+  },
+  methods: {
+    onCopyClick(evt) {
+      evt.preventDefault();
+      const colorValue = this.$store.getters.getColorInSpace(this.space);
+      clipboardier.copy(formatter.formatColor(this.space, colorValue));
+    }
   }
 });
 </script>
@@ -40,5 +50,18 @@ export default Vue.extend({
 form, div {
   display: flex;
   flex-direction: row;
+}
+button {
+  cursor: pointer;
+  position: relative;
+  padding: 0 0.25rem;
+  margin-left: 0.25rem;
+  opacity: 0.25;
+}
+button:hover {
+  opacity: 1;
+}
+button:active {
+  opacity: 0.75;
 }
 </style>

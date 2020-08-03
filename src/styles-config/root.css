@@ -45,7 +45,7 @@ user-action influenced states
 
 a {
   color: inherit;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:visited {
@@ -53,11 +53,13 @@ a:visited {
 }
 
 a:hover {
-  color: var(--c-eclipse);
+  color: inherit;
+  text-decoration: underline;
 }
 
 a:active {
-  color: var(--c-eclipse);
+  color: inherit;
+  text-decoration: dotted;
 }
 
 /* selection */

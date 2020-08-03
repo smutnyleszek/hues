@@ -6,9 +6,7 @@
       <current-color></current-color>
     </main>
     <footer>
-      <a href="https://github.com/magicznyleszek/hues" target="_blank"
-        >source code</a
-      >
+      <a href="https://github.com/magicznyleszek/hues" target="_blank">*</a>
     </footer>
   </div>
 </template>
@@ -33,5 +31,15 @@ export default Vue.extend({
 }
 footer {
   margin-top: var(--s-leading);
+}
+footer a {
+  text-decoration: none;
+  opacity: 0.25;
+}
+footer a:hover {
+  opacity: 1;
+}
+footer a:active {
+  opacity: 0.75;
 }
 </style>

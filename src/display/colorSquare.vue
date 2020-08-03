@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import formatter from "./formatter";
+import formatter from "/colors/formatter";
 export default Vue.extend({
   name: "colorSquare",
   props: {

@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import colorSquare from "../colors/colorSquare.vue";
+import colorSquare from "./colorSquare.vue";
 export default Vue.extend({
   name: "currentColor",
   components: {
