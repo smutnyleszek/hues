@@ -1,5 +1,5 @@
 <template lang="html">
-  <figure v-bind:style="bgStyle"></figure>
+  <figure v-bind:style="bgStyle" v-bind:title="title"></figure>
 </template>
 
 <script lang="ts">
@@ -15,6 +15,10 @@ export default Vue.extend({
     space: {
       type: String,
       required: true
+    },
+    title: {
+      type: String,
+      required: false
     }
   },
   computed: {
@@ -27,7 +31,6 @@ export default Vue.extend({
 </script>
 
 <style lang="css" scoped>
-@import "../styles-config/variables.css";
 figure {
   width: 100%;
   min-width: calc(var(--s-leading) * 3);

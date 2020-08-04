@@ -52,16 +52,6 @@ form, div {
   flex-direction: row;
 }
 button {
-  cursor: pointer;
-  position: relative;
-  padding: 0 0.25rem;
   margin-left: 0.25rem;
-  opacity: 0.25;
-}
-button:hover {
-  opacity: 1;
-}
-button:active {
-  opacity: 0.75;
 }
 </style>

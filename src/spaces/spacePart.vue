@@ -104,7 +104,6 @@ export default Vue.extend({
 </script>
 
 <style lang="css" scoped>
-@import "../styles-config/variables.css";
 input {
   min-width: 1rem;
   text-align: center;

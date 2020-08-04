@@ -4,9 +4,12 @@ variables - all global and pallete variables for project
 
 :root {
   /* colors palette */
-  --c-whitesmoke: hsl(0, 0%, 90%);
-  --c-silver: hsl(0, 0%, 50%);
-  --c-eclipse: hsl(0, 0%, 10%);
+  --c-mercury: hsl(0, 0%, 90%);
+  --c-celeste: hsl(0, 0%, 80%);
+  --c-shady-lady: hsl(0, 0%, 65%);
+  --c-stack: hsl(0, 0%, 55%);
+  --c-dove-gray: hsl(0, 0%, 45%);
+  --c-shark: hsl(0, 0%, 10%);
 
   /* font families palette */
   --font-sansSerif: "Source Sans Pro", "Roboto", "PT Sans", "Droid Sans",
@@ -15,11 +18,6 @@ variables - all global and pallete variables for project
   --font-monospace: "Input", "Office Code Pro", "Source Code Pro", "Fira Mono",
     "Inconsolata", "Monaco", "Consolas", "Lucida Console", "Liberation Mono",
     "DejaVu Sans Mono", monospace;
-
-  /* base */
-  --c-root-txt: var(--c-eclipse);
-  --c-root-bg: var(--c-whitesmoke);
-  --c-root-focus: var(--c-silver);
 
   /* leading size for all spacing between elements to be pretty */
   --root-lineHeight: 1.5;

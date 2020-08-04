@@ -9,8 +9,8 @@ as they tend to add unwanted pixels, thus braking the flow.
 
 html {
   min-height: 100%;
-  background-color: var(--c-root-bg);
-  color: var(--c-root-txt);
+  background-color: var(--c-mercury);
+  color: var(--c-shark);
   font-family: var(--font-monospace);
   font-weight: 400;
   font-size: 100%;
@@ -43,35 +43,33 @@ user-action influenced states
 
 /* links */
 
-a {
-  color: inherit;
+a,
+button {
+  cursor: pointer;
+  color: var(--c-shady-lady);
   text-decoration: none;
 }
 
 a:visited {
-  color: inherit;
+  color: var(--c-shady-lady);
 }
 
-a:hover {
-  color: inherit;
-  text-decoration: underline;
+a:hover,
+button:hover {
+  color: var(--c-stack);
 }
 
-a:active {
-  color: inherit;
-  text-decoration: dotted;
+a:active,
+button:active {
+  color: var(--c-dove-gray);
 }
 
 /* selection */
 
 :focus {
-  outline: var(--c-root-focus) solid var(--s-global-border);
-  background-color: var(--c-root-focus);
-  color: var(--c-whitesmoke);
-}
-
-:focus svg {
-  background-color: var(--c-root-focus);
+  outline: none;
+  color: var(--c-shark);
+  background-color: var(--c-celeste);
 }
 
 ::-moz-focus-inner {
@@ -84,8 +82,8 @@ a:active {
 }
 
 ::selection {
-  background-color: var(--c-eclipse);
-  color: var(--c-whitesmoke);
+  color: var(--c-shark);
+  background-color: var(--c-shady-lady);
 }
 
 /* disabled elements */

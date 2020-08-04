@@ -1,12 +1,10 @@
 <template lang="html">
-  <ul>
-    <li>
-      <space-form space="rgb"></space-form>
-      <space-form space="hex"></space-form>
-      <space-form space="hsl"></space-form>
-      <space-form space="hwb"></space-form>
-    </li>
-  </ul>
+  <div>
+    <space-form space="rgb"></space-form>
+    <space-form space="hex"></space-form>
+    <space-form space="hsl"></space-form>
+    <space-form space="hwb"></space-form>
+  </div>
 </template>
 
 <script lang="ts">
@@ -20,4 +18,11 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+</style>

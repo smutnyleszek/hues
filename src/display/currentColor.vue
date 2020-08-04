@@ -1,17 +1,31 @@
 <template lang="html">
   <div class="wrapper">
     <div class="current">
-      <color-square space="hsl" v-bind:color="currentColor"></color-square>
+      <color-square
+        space="hsl"
+        v-bind:color="currentColor"
+        title="current color"
+      ></color-square>
     </div>
 
     <div class="matched">
-      <color-square space="hsl" v-bind:color="matchedColor"></color-square>
+      <color-square
+        space="hsl"
+        v-bind:color="matchedColor"
+        title="closest match"
+      ></color-square>
       <label>{{ matchedName }}</label>
-      <span>&larr;&rarr; {{ matchedDifference }}</span>
+      <span class="distance" title="difference/distance"
+        >&larr;&rarr; {{ matchedDifference }}</span
+      >
     </div>
 
     <div class="hue">
-      <color-square space="hsl" v-bind:color="primaryHueColor"></color-square>
+      <color-square
+        space="hsl"
+        v-bind:color="primaryHueColor"
+        title="primary hue"
+      ></color-square>
       <label>{{ primaryHueName }}</label>
     </div>
   </div>
@@ -63,5 +77,8 @@ export default Vue.extend({
 }
 .hue {
   text-align: center;
+}
+.distance {
+  color: var(--c-shady-lady);
 }
 </style>

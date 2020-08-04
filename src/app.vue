@@ -1,13 +1,14 @@
 <template>
   <div class="app">
-    <header class="logo">h(u,e,s)</header>
+    <header>
+      <h1>h(u,e,s)</h1>
+      <a href="https://github.com/magicznyleszek/hues" target="_blank">*</a>
+    </header>
+
     <main>
       <spaces-list></spaces-list>
       <current-color></current-color>
     </main>
-    <footer>
-      <a href="https://github.com/magicznyleszek/hues" target="_blank">*</a>
-    </footer>
   </div>
 </template>
 
@@ -25,21 +26,14 @@ export default Vue.extend({
 </script>
 
 <style lang="css" scoped>
-.logo {
-  font-weight: bold;
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin-bottom: var(--s-leading);
 }
-footer {
-  margin-top: var(--s-leading);
-}
-footer a {
-  text-decoration: none;
-  opacity: 0.25;
-}
-footer a:hover {
-  opacity: 1;
-}
-footer a:active {
-  opacity: 0.75;
+header h1 {
+  font-size: inherit;
+  font-weight: bold;
 }
 </style>

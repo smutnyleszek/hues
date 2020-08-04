@@ -33,7 +33,7 @@ class ColorMatcher {
       const dictRgb = converter.convertFromTo("hsl", "rgb", dictHsl);
       const differenceRgb = this.getRgbDifference(targetRgb, dictRgb);
 
-      const totalDifference = differenceRgb + differenceHsl;
+      const totalDifference = differenceRgb + differenceHsl * 2;
 
       if (totalDifference < match.difference) {
         match.color = dictHsl;
@@ -56,8 +56,9 @@ class ColorMatcher {
     let differenceS = Math.abs(Number(target[1]) - Number(dict[1]));
     const differenceL = Math.abs(Number(target[2]) - Number(dict[2]));
 
-    // with only light or no light at all, saturation is meaningless
+    // with only light or no light at all, saturation and hue are meaningless
     if (target[2] === 100 || target[2] === 0) {
+      differenceH = 0;
       differenceS = 0;
     }
 
