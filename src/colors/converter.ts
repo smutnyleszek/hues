@@ -34,7 +34,7 @@ class Converter {
     ]
   ]);
 
-  public getRandomColor(space: TSpace = "rgb"): TColorValue {
+  public getRandomColor(space: TSpace = "rgb"): IColorValue {
     switch (space) {
       case "hex":
         return this.getRandomHex();
@@ -48,15 +48,11 @@ class Converter {
     }
   }
 
-  public convertFromTo(
-    fromSpace: TSpace,
-    toSpace: TSpace,
-    color: TColorValue
-  ): TColorValue {
-    if (fromSpace === toSpace) {
+  public convertTo(color: IColorValue, toSpace: TSpace): IColorValue {
+    if (color[0] === toSpace) {
       return color;
     } else {
-      const fromGroup = this.convertMap.get(fromSpace);
+      const fromGroup = this.convertMap.get(color[0]);
       if (fromGroup instanceof Map) {
         const toFn = fromGroup.get(toSpace);
         if (typeof toFn === "function") {
@@ -82,13 +78,13 @@ class Converter {
   // helpers
   // ---------------------------------------------------------------------------
 
-  private roundValues(color: TColorValue): TColorValue {
-    const safe = [];
-    for (const part of color) {
-      if (typeof part === "number") {
-        safe.push(Math.round(part));
+  private roundValues(color: IColorValue): IColorValue {
+    const safe: IColorValue = JSON.parse(JSON.stringify(color));
+    for (let i = 1; i < color.length; i++) {
+      if (typeof color[i] === "number") {
+        safe[i] = Math.round(color[i]);
       } else {
-        safe.push(part);
+        safe[i] = color[i];
       }
     }
     return safe;
@@ -98,20 +94,21 @@ class Converter {
   // generators
   // ---------------------------------------------------------------------------
 
-  private getRandomHex(): TColorValue {
+  private getRandomHex(): IColorValue {
     return this.rgbToHex(this.getRandomRgb());
   }
 
-  private getRandomHsl(): TColorValue {
+  private getRandomHsl(): IColorValue {
     return this.rgbToHsl(this.getRandomRgb());
   }
 
-  private getRandomHwb(): TColorValue {
+  private getRandomHwb(): IColorValue {
     return this.rgbToHwb(this.getRandomRgb());
   }
 
-  private getRandomRgb(): TColorValue {
+  private getRandomRgb(): IColorValue {
     return this.roundValues([
+      "rgb",
       Math.random() * 255,
       Math.random() * 255,
       Math.random() * 255
@@ -122,26 +119,26 @@ class Converter {
   // conversion from hex
   // ---------------------------------------------------------------------------
 
-  private hexToRgb(color: TColorValue): TColorValue {
-    const red = this.hexToInt(color[0]);
-    const green = this.hexToInt(color[1]);
-    const blue = this.hexToInt(color[2]);
-    return [red, green, blue];
+  private hexToRgb(color: IColorValue): IColorValue {
+    const red = this.hexToInt(color[1]);
+    const green = this.hexToInt(color[2]);
+    const blue = this.hexToInt(color[3]);
+    return ["rgb", red, green, blue];
   }
 
-  private hexToHsl(color: TColorValue): TColorValue {
+  private hexToHsl(color: IColorValue): IColorValue {
     return this.roundValues(this.hexToHslFloat(color));
   }
 
-  private hexToHwb(color: TColorValue): TColorValue {
+  private hexToHwb(color: IColorValue): IColorValue {
     return this.roundValues(this.hexToHwbFloat(color));
   }
 
-  private hexToHslFloat(color: TColorValue): TColorValue {
+  private hexToHslFloat(color: IColorValue): IColorValue {
     return this.rgbToHslFloat(this.hexToRgb(color));
   }
 
-  private hexToHwbFloat(color: TColorValue): TColorValue {
+  private hexToHwbFloat(color: IColorValue): IColorValue {
     return this.rgbToHwbFloat(this.hexToRgb(color));
   }
 
@@ -149,25 +146,25 @@ class Converter {
   // conversion from rgb
   // ---------------------------------------------------------------------------
 
-  private rgbToHex(color: TColorValue): TColorValue {
-    const red16 = this.intToHex(color[0]);
-    const green16 = this.intToHex(color[1]);
-    const blue16 = this.intToHex(color[2]);
-    return [red16, green16, blue16];
+  private rgbToHex(color: IColorValue): IColorValue {
+    const red16 = this.intToHex(color[1]);
+    const green16 = this.intToHex(color[2]);
+    const blue16 = this.intToHex(color[3]);
+    return ["hex", red16, green16, blue16];
   }
 
-  private rgbToHsl(color: TColorValue): TColorValue {
+  private rgbToHsl(color: IColorValue): IColorValue {
     return this.roundValues(this.rgbToHslFloat(color));
   }
 
-  private rgbToHwb(color: TColorValue): TColorValue {
+  private rgbToHwb(color: IColorValue): IColorValue {
     return this.roundValues(this.rgbToHwbFloat(color));
   }
 
-  private rgbToHslFloat(color: TColorValue): TColorValue {
-    const red = Number(color[0]) / 255;
-    const green = Number(color[1]) / 255;
-    const blue = Number(color[2]) / 255;
+  private rgbToHslFloat(color: IColorValue): IColorValue {
+    const red = Number(color[1]) / 255;
+    const green = Number(color[2]) / 255;
+    const blue = Number(color[3]) / 255;
 
     const min = Math.min(red, green, blue);
     const max = Math.max(red, green, blue);
@@ -202,41 +199,41 @@ class Converter {
       saturation = delta / (2 - max - min);
     }
 
-    return [hue, saturation * 100, lightness * 100];
+    return ["hsl", hue, saturation * 100, lightness * 100];
   }
 
-  private rgbToHwbFloat(color: TColorValue): TColorValue {
-    const red = Number(color[0]);
-    const green = Number(color[1]);
-    const blue = Number(color[2]);
+  private rgbToHwbFloat(color: IColorValue): IColorValue {
+    const red = Number(color[1]);
+    const green = Number(color[2]);
+    const blue = Number(color[3]);
 
     const hue = this.rgbToHslFloat(color)[0];
     const whiteness = (1 / 255) * Math.min(red, Math.min(green, blue));
     const blackness = 1 - (1 / 255) * Math.max(red, Math.max(green, blue));
 
-    return [hue, whiteness * 100, blackness * 100];
+    return ["hwb", hue, whiteness * 100, blackness * 100];
   }
 
   // ---------------------------------------------------------------------------
   // conversion from hsl
   // ---------------------------------------------------------------------------
 
-  private hslToHex(color: TColorValue): TColorValue {
+  private hslToHex(color: IColorValue): IColorValue {
     return this.rgbToHex(this.hslToRgbFloat(color));
   }
 
-  private hslToRgb(color: TColorValue): TColorValue {
+  private hslToRgb(color: IColorValue): IColorValue {
     return this.roundValues(this.hslToRgbFloat(color));
   }
 
-  private hslToHwb(color: TColorValue): TColorValue {
+  private hslToHwb(color: IColorValue): IColorValue {
     return this.roundValues(this.hslToHwbFloat(color));
   }
 
-  private hslToRgbFloat(color: TColorValue): TColorValue {
-    const hue = Number(color[0]) / 360;
-    const sat = Number(color[1]) / 100;
-    const lum = Number(color[2]) / 100;
+  private hslToRgbFloat(color: IColorValue): IColorValue {
+    const hue = Number(color[1]) / 360;
+    const sat = Number(color[2]) / 100;
+    const lum = Number(color[3]) / 100;
 
     let q = null;
     if (lum <= 0.5) {
@@ -255,7 +252,7 @@ class Converter {
     const g = Math.round(this.hueToRgb(p, q, gt) * 255);
     const b = Math.round(this.hueToRgb(p, q, bt) * 255);
 
-    return [r, g, b];
+    return ["rgb", r, g, b];
   }
 
   private hueToRgb(p: number, q: number, h: number): number {
@@ -276,7 +273,7 @@ class Converter {
     }
   }
 
-  private hslToHwbFloat(color: TColorValue): TColorValue {
+  private hslToHwbFloat(color: IColorValue): IColorValue {
     return this.rgbToHwbFloat(this.hslToRgbFloat(color));
   }
 
@@ -284,23 +281,23 @@ class Converter {
   // conversion from hwb
   // ---------------------------------------------------------------------------
 
-  private hwbToHex(color: TColorValue): TColorValue {
+  private hwbToHex(color: IColorValue): IColorValue {
     return this.rgbToHex(this.hwbToRgbFloat(color));
   }
 
-  private hwbToRgb(color: TColorValue): TColorValue {
+  private hwbToRgb(color: IColorValue): IColorValue {
     return this.roundValues(this.hwbToRgbFloat(color));
   }
 
-  private hwbToHsl(color: TColorValue): TColorValue {
+  private hwbToHsl(color: IColorValue): IColorValue {
     return this.roundValues(this.hwbToHslFloat(color));
   }
 
   // http://dev.w3.org/csswg/css-color/#hwb-to-rgb
-  private hwbToRgbFloat(color: TColorValue): TColorValue {
-    const hue = Number(color[0]) / 360;
-    let whiteness = Number(color[1]) / 100;
-    let blackness = Number(color[2]) / 100;
+  private hwbToRgbFloat(color: IColorValue): IColorValue {
+    const hue = Number(color[1]) / 360;
+    let whiteness = Number(color[2]) / 100;
+    let blackness = Number(color[3]) / 100;
     const ratio = whiteness + blackness;
 
     // whiteness + blackness cant be > 1
@@ -359,10 +356,10 @@ class Converter {
         throw new Error(`unproper case ${i} for HWB: ${color}`);
     }
 
-    return [red * 255, green * 255, blue * 255];
+    return ["rgb", red * 255, green * 255, blue * 255];
   }
 
-  private hwbToHslFloat(color: TColorValue) {
+  private hwbToHslFloat(color: IColorValue) {
     return this.rgbToHslFloat(this.hwbToRgbFloat(color));
   }
 }

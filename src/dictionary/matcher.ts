@@ -3,21 +3,20 @@ const dictionary: IDictionary = dictionaryJsonData as any;
 import converter from "../colors/converter";
 
 class ColorMatcher {
-  public matchColor(space: TSpace, color: TColorValue): IColorMatch {
-    return this.matchDictionaryColor(space, color, dictionary.colors);
+  public matchColor(color: IColorValue): IColorMatch {
+    return this.matchDictionaryColor(color, dictionary.colors);
   }
 
-  public matchHue(space: TSpace, color: TColorValue): IColorMatch {
-    return this.matchDictionaryColor(space, color, dictionary.primaryHues);
+  public matchHue(color: IColorValue): IColorMatch {
+    return this.matchDictionaryColor(color, dictionary.primaryHues);
   }
 
   private matchDictionaryColor(
-    space: TSpace,
-    color: TColorValue,
+    color: IColorValue,
     dict: IDictionaryColor[]
   ): IColorMatch {
-    const targetRgb = converter.convertFromTo(space, "rgb", color);
-    const targetHsl = converter.convertFromTo(space, "hsl", color);
+    const targetRgb = converter.convertTo(color, "rgb");
+    const targetHsl = converter.convertTo(color, "hsl");
 
     const match = {
       color: this.getColorByIndex(0).color,
@@ -27,10 +26,15 @@ class ColorMatcher {
     };
 
     dict.forEach((dictColor: IDictionaryColor): void => {
-      const dictHsl = [dictColor[0], dictColor[1], dictColor[2]];
+      const dictHsl: IColorValue = [
+        "hsl",
+        dictColor[0],
+        dictColor[1],
+        dictColor[2]
+      ];
       const differenceHsl = this.getHslDifference(targetHsl, dictHsl);
 
-      const dictRgb = converter.convertFromTo("hsl", "rgb", dictHsl);
+      const dictRgb = converter.convertTo(dictHsl, "rgb");
       const differenceRgb = this.getRgbDifference(targetRgb, dictRgb);
 
       const totalDifference = differenceRgb + differenceHsl * 2;
@@ -44,26 +48,26 @@ class ColorMatcher {
     return match;
   }
 
-  private getRgbDifference(target: TColorValue, dict: TColorValue): number {
-    const differenceR = Math.abs(Number(target[0]) - Number(dict[0]));
-    const differenceG = Math.abs(Number(target[1]) - Number(dict[1]));
-    const differenceB = Math.abs(Number(target[2]) - Number(dict[2]));
+  private getRgbDifference(target: IColorValue, dict: IColorValue): number {
+    const differenceR = Math.abs(Number(target[1]) - Number(dict[1]));
+    const differenceG = Math.abs(Number(target[2]) - Number(dict[2]));
+    const differenceB = Math.abs(Number(target[3]) - Number(dict[3]));
     return differenceR + differenceG + differenceB;
   }
 
-  private getHslDifference(target: TColorValue, dict: TColorValue): number {
-    let differenceH = Math.abs(Number(target[0]) - Number(dict[0]));
-    let differenceS = Math.abs(Number(target[1]) - Number(dict[1]));
-    const differenceL = Math.abs(Number(target[2]) - Number(dict[2]));
+  private getHslDifference(target: IColorValue, dict: IColorValue): number {
+    let differenceH = Math.abs(Number(target[1]) - Number(dict[1]));
+    let differenceS = Math.abs(Number(target[2]) - Number(dict[2]));
+    const differenceL = Math.abs(Number(target[3]) - Number(dict[3]));
 
     // with only light or no light at all, saturation and hue are meaningless
-    if (target[2] === 100 || target[2] === 0) {
+    if (target[3] === 100 || target[3] === 0) {
       differenceH = 0;
       differenceS = 0;
     }
 
     // with zero saturation hue is meaningless
-    if (target[1] === 0) {
+    if (target[2] === 0) {
       differenceH = 0;
     }
 
@@ -77,9 +81,8 @@ class ColorMatcher {
     });
     if (found) {
       return {
-        color: [found[0], found[1], found[2]],
-        name: found[3],
-        space: "hsl"
+        color: ["hsl", found[0], found[1], found[2]],
+        name: found[3]
       };
     } else {
       return undefined;
@@ -89,9 +92,8 @@ class ColorMatcher {
   private getColorByIndex(index: number): IColor {
     const dictColor = dictionary.colors[index];
     return {
-      color: [dictColor[0], dictColor[1], dictColor[2]],
-      name: dictColor[3],
-      space: "hsl"
+      color: ["hsl", dictColor[0], dictColor[1], dictColor[2]],
+      name: dictColor[3]
     };
   }
 }

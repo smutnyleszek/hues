@@ -12,10 +12,6 @@ export default Vue.extend({
       type: Array,
       required: true
     },
-    space: {
-      type: String,
-      required: true
-    },
     title: {
       type: String,
       required: false
@@ -23,7 +19,7 @@ export default Vue.extend({
   },
   computed: {
     bgStyle() {
-      const colorString = formatter.formatColor(this.space, this.color);
+      const colorString = formatter.formatColor(this.color);
       return `background-color: ${colorString};`;
     }
   }

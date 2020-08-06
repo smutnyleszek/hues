@@ -1,12 +1,10 @@
 interface IState {
-  color: TColorValue;
+  color: IColorValue;
   match: IColorMatch;
   primaryHue: IColorMatch;
-  space: TSpace;
   version: string;
 }
 
 interface ISetColorPayload {
-  space: TSpace;
-  color: TColorValue;
+  color: IColorValue;
 }

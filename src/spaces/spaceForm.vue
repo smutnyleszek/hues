@@ -40,7 +40,7 @@ export default Vue.extend({
     onCopyClick(evt) {
       evt.preventDefault();
       const colorValue = this.$store.getters.getColorInSpace(this.space);
-      clipboardier.copy(formatter.formatColor(this.space, colorValue));
+      clipboardier.copy(formatter.formatColor(colorValue));
     }
   }
 });

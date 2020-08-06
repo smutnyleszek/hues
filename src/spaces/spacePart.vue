@@ -34,7 +34,7 @@ export default Vue.extend({
   computed: {
     partValue() {
       const color = this.$store.getters.getColorInSpace(this.space);
-      return color[this.partIndex];
+      return color[this.partIndex + 1];
     },
     widthStyle() {
       const valueTextLength = String(this.partValue).length;
@@ -93,11 +93,8 @@ export default Vue.extend({
       if (this.partType === "integer") {
         newValue = Number(newValue);
       }
-      color[this.partIndex] = newValue;
-      this.$store.commit("setColor", {
-        space: this.space,
-        color: color
-      });
+      color[this.partIndex + 1] = newValue;
+      this.$store.commit("setColor", { color: color });
     }
   }
 });

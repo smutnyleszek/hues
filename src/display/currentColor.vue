@@ -2,7 +2,6 @@
   <div class="wrapper">
     <div class="current">
       <color-square
-        space="hsl"
         v-bind:color="currentColor"
         title="current color"
       ></color-square>
@@ -10,7 +9,6 @@
 
     <div class="matched">
       <color-square
-        space="hsl"
         v-bind:color="matchedColor"
         title="closest match"
       ></color-square>

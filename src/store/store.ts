@@ -7,30 +7,27 @@ const version = (packageJsonData as any).version;
 
 Vue.use(Vuex);
 
-const initialColorSpace = "hsl";
-const initialColorValue = converter.getRandomColor(initialColorSpace);
+const initialColorValue = converter.getRandomColor("hsl");
 
 const myStore = new Vuex.Store({
   getters: {
     getColorInSpace: (state: IState) => (space: TSpace) => {
-      return converter.convertFromTo(state.space, space, state.color);
+      return converter.convertTo(state.color, space);
     }
   },
   mutations: {
     setColor(state: IState, payload: ISetColorPayload) {
-      const primaryHue = matcher.matchHue(payload.space, payload.color);
-      const match = matcher.matchColor(payload.space, payload.color);
+      const primaryHue = matcher.matchHue(payload.color);
+      const match = matcher.matchColor(payload.color);
       Vue.set(state, "color", [...payload.color]);
       Vue.set(state, "match", match);
       Vue.set(state, "primaryHue", primaryHue);
-      Vue.set(state, "space", payload.space);
     }
   },
   state: {
     color: initialColorValue,
-    match: matcher.matchColor(initialColorSpace, initialColorValue),
-    primaryHue: matcher.matchHue(initialColorSpace, initialColorValue),
-    space: initialColorSpace,
+    match: matcher.matchColor(initialColorValue),
+    primaryHue: matcher.matchHue(initialColorValue),
     version
   },
   // we want strict only during development (performance heavy-ish)

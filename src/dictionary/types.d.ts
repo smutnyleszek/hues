@@ -17,9 +17,8 @@ interface IDictionary {
 }
 
 interface IColor {
-  color: TColorValue;
+  color: IColorValue;
   name: string;
-  space: TSpace;
 }
 
 interface IColorMatch extends IColor {
