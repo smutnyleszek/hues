@@ -86,14 +86,12 @@ export default Vue.extend({
         finalValue = converter.intToHex(finalValue);
       }
 
-      this.updatePartValue(finalValue);
-    },
-    updatePartValue(newValue): void {
+      // update store color
       const color = this.$store.getters.getColorInSpace(this.space);
       if (this.partType === "integer") {
-        newValue = Number(newValue);
+        finalValue = Number(finalValue);
       }
-      color[this.partIndex + 1] = newValue;
+      color[this.partIndex + 1] = finalValue;
       this.$store.commit("setColor", { color: color });
     }
   }

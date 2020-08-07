@@ -1,6 +1,6 @@
 ![coverage-shield-badge-1](https://img.shields.io/badge/coverage-87.09%25-yellow.svg)
 
-# Hues
+# h(u,e,s)
 
 A tool for working with colors. Build with Parcel, TypeScript and Vue.
 

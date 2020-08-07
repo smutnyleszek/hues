@@ -6,6 +6,7 @@
     </header>
 
     <main>
+      <paste-box></paste-box>
       <spaces-list></spaces-list>
       <current-color></current-color>
     </main>
@@ -14,11 +15,13 @@
 
 <script lang="ts">
 import Vue from "vue";
+import pasteBox from "./display/pasteBox.vue";
 import spacesList from "./spaces/spacesList.vue";
 import currentColor from "./display/currentColor.vue";
 export default Vue.extend({
   name: "app",
   components: {
+    pasteBox,
     spacesList,
     currentColor
   }
@@ -30,7 +33,6 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: var(--s-leading);
 }
 header h1 {
   font-size: inherit;

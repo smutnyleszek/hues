@@ -37,10 +37,10 @@ export default Vue.extend({
     };
   },
   methods: {
-    onCopyClick(evt) {
+    onCopyClick(evt): void {
       evt.preventDefault();
       const colorValue = this.$store.getters.getColorInSpace(this.space);
-      clipboardier.copy(formatter.formatColor(colorValue));
+      clipboardier.copyToClipboard(formatter.formatColor(colorValue));
     }
   }
 });

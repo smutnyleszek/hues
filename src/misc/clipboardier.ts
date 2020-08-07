@@ -1,5 +1,5 @@
 class Clipboardier {
-  public copy(text: string): void {
+  public copyToClipboard(text: string): void {
     const textField = document.createElement("textarea");
     textField.innerText = text;
     document.body.appendChild(textField);

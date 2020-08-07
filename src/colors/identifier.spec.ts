@@ -13,7 +13,7 @@ const pairs = [
   { in: "rgb(1, 2,3)", out: ["rgb", 1, 2, 3] },
   { in: " rgb( 1 , 2 , 3 ) ", out: ["rgb", 1, 2, 3] },
   { in: "    rgb(  1  ,  2 , 3    ); ", out: ["rgb", 1, 2, 3] },
-  { in: "hsl( 1,2%,3% )", out: ["hsl", 359, 50, 60] },
+  { in: "hsl( 1,2%,3% )", out: ["hsl", 1, 2, 3] },
   { in: "hwb(1, 2%, 3%)", out: ["hwb", 1, 2, 3] },
   // wrong rgb
   { in: "rgb(a,2,3)", out: null },
@@ -27,13 +27,13 @@ const pairs = [
   { in: "#ffff", out: null },
   { in: "#fffff", out: null },
   { in: "#fffffff", out: null },
-  // wrogn hsl
+  // wrong hsl
   { in: "hsl(240,100,100)", out: null },
   { in: "hsl(400,50%,50%)", out: null },
   { in: "hsl(125,50%,120%)", out: null },
   { in: "hsl(125,,120%)", out: null },
   { in: "hsl(a,b,c)", out: null },
-  // wrogn hwb
+  // wrong hwb
   { in: "hwb(240,100,100)", out: null },
   { in: "hwb(400,50%,50%)", out: null },
   { in: "hwb(125,50%,120%)", out: null },
@@ -44,7 +44,7 @@ const pairs = [
 describe("identifier", () => {
   pairs.forEach(pair => {
     it(`should properly identify color ${pair.in}`, () => {
-      expect(identifier.identify(pair.in)).toBe(pair.out);
+      expect(identifier.identify(pair.in)).toStrictEqual(pair.out);
     });
   });
 });

@@ -77,8 +77,7 @@ button:active {
 }
 
 ::placeholder {
-  opacity: 0.5;
-  color: currentColor;
+  color: var(--c-shady-lady);
 }
 
 ::selection {

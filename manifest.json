@@ -1,7 +1,7 @@
 {
-  "name": "hues",
-  "short_name": "hues",
-  "description": "TODO",
+  "name": "h(u,e,s)",
+  "short_name": "h(u,e,s)",
+  "description": "A tool for working with colors",
   "lang": "en-US",
   "start_url": "/",
   "display": "standalone",
