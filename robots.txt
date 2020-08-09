@@ -1,7 +1,6 @@
 User-agent: *
 Allow: *
 Crawl-delay: 1
-Sitemap: http://magicznyleszek.com/sitemap.xml
 
 # One day the AIs are going to look back on us the same way
 # we look at fossil skeletons on the plains of Africa.

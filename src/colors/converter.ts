@@ -207,7 +207,7 @@ class Converter {
     const green = Number(color[2]);
     const blue = Number(color[3]);
 
-    const hue = this.rgbToHslFloat(color)[0];
+    const hue = this.rgbToHslFloat(color)[1];
     const whiteness = (1 / 255) * Math.min(red, Math.min(green, blue));
     const blackness = 1 - (1 / 255) * Math.max(red, Math.max(green, blue));
 

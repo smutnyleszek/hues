@@ -9,7 +9,7 @@ class Validator {
     let areValuesInRange = true;
     let areValuesHex = true;
     for (let i = 1; i < hex.length; i++) {
-      if (typeof hex[i] === "string" && !this.isHexValue(hex[i])) {
+      if (this.isHexValue(hex[i]) === false) {
         areValuesHex = false;
       }
       if (
