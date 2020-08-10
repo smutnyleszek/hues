@@ -1,0 +1,98 @@
+/*******************************************************************************
+root stuff and normalizations
+
+NOTE: Root line height is being used in many places throughout the project.
+It is recommended to keep all vertical margins and heights of elements to match
+the leading. Use caution when adding borders or when using vertical-align middle
+as they tend to add unwanted pixels, thus braking the flow.
+*******************************************************************************/
+
+html {
+  min-height: 100%;
+  background-color: var(--c-mercury);
+  color: var(--c-shark);
+  font-family: var(--font-monospace);
+  font-weight: 400;
+  font-size: 100%;
+  line-height: var(--root-lineHeight);
+  text-rendering: optimizeLegibility;
+}
+
+/*
+clever page scaling with root font size changes:
+https://www.smashingmagazine.com/2016/05/fluid-typography/
+calc(AZ + (B - A) * (100vw - CZ) / (D - C))
+- A: min font size
+- B: max font size
+- C: min screen size
+- D: max screen size
+- Z: unit (px, rem, etc.)
+*/
+html {
+  font-size: calc(1rem + (1.5 - 1) * (100vw - 30rem) / (120 - 30));
+}
+
+body {
+  margin: 0;
+  padding: var(--s-leading);
+}
+
+/*******************************************************************************
+user-action influenced states
+*******************************************************************************/
+
+/* links */
+
+a,
+button {
+  cursor: pointer;
+  color: var(--c-shady-lady);
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--c-shady-lady);
+}
+
+a:hover,
+button:hover {
+  color: var(--c-stack);
+}
+
+a:active,
+button:active {
+  color: var(--c-dove-gray);
+}
+
+/* selection */
+
+:focus {
+  outline: none;
+  color: var(--c-shark);
+  background-color: var(--c-celeste);
+}
+
+::-moz-focus-inner {
+  border: 0;
+}
+
+::placeholder {
+  color: var(--c-shady-lady);
+}
+
+::selection {
+  color: var(--c-shark);
+  background-color: var(--c-shady-lady);
+}
+
+/* disabled elements */
+
+[disabled] {
+  pointer-events: none;
+  opacity: 0.5;
+
+  /* avoid adding up opacity on nested disabled elements */
+  [disabled] {
+    opacity: 1;
+  }
+}

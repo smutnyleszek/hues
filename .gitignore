@@ -1,13 +1,14 @@
-# Jekyll site is built by gh-pages
-_site
-.jekyll-metadata
+# Jest
+coverage
 
 # NPM
 node_modules
 npm-debug.log
 
-test-coverage
-
 # OS generated
 .DS_Store
 Thumbs.db
+
+# Parcel
+.cache
+dev
