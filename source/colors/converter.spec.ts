@@ -14,21 +14,21 @@ const black: TConverterTestColor = {
   hex: ["hex", "00", "00", "00"],
   hsl: ["hsl", 0, 0, 0],
   hwb: ["hwb", 0, 0, 100],
-  rgb: ["rgb", 0, 0, 0]
+  rgb: ["rgb", 0, 0, 0],
 };
 
 const white: TConverterTestColor = {
   hex: ["hex", "ff", "ff", "ff"],
   hsl: ["hsl", 0, 0, 100],
   hwb: ["hwb", 0, 100, 0],
-  rgb: ["rgb", 255, 255, 255]
+  rgb: ["rgb", 255, 255, 255],
 };
 
 const gray: TConverterTestColor = {
   hex: ["hex", "80", "80", "80"],
   hsl: ["hsl", 0, 0, 50],
   hwb: ["hwb", 0, 100, 100],
-  rgb: ["rgb", 128, 128, 128]
+  rgb: ["rgb", 128, 128, 128],
 };
 
 const testCases: IConverterTest[] = [
@@ -77,11 +77,11 @@ const testCases: IConverterTest[] = [
   { in: black.hwb, out: black.rgb },
   { in: black.rgb, out: black.hex },
   { in: black.rgb, out: black.hsl },
-  { in: black.rgb, out: black.hwb }
+  { in: black.rgb, out: black.hwb },
 ];
 
 describe("converter.convertTo", () => {
-  testCases.forEach(testCase => {
+  testCases.forEach((testCase) => {
     it(`should convert ${testCase.in} to ${testCase.out}`, () => {
       const converted = converter.convertTo(testCase.in, testCase.out[0]);
       expect(converted).toStrictEqual(testCase.out);

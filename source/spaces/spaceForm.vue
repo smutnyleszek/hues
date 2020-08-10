@@ -23,17 +23,17 @@ import clipboardier from "../misc/clipboardier";
 export default Vue.extend({
   name: "spaceForm",
   components: {
-    spacePart
+    spacePart,
   },
   props: {
     space: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
-  data: function() {
+  data: function () {
     return {
-      parts: spaces.get(this.space).parts
+      parts: spaces.get(this.space).parts,
     };
   },
   methods: {
@@ -41,13 +41,14 @@ export default Vue.extend({
       evt.preventDefault();
       const colorValue = this.$store.getters.getColorInSpace(this.space);
       clipboardier.copyToClipboard(formatter.formatColor(colorValue));
-    }
-  }
+    },
+  },
 });
 </script>
 
 <style lang="css" scoped>
-form, div {
+form,
+div {
   display: flex;
   flex-direction: row;
 }

@@ -13,13 +13,13 @@ class ColorMatcher {
 
   public findColorByName(name: string): IColor | undefined {
     const lowerName = String(name).toLowerCase();
-    const found = dictionary.colors.find(dictionaryColor => {
+    const found = dictionary.colors.find((dictionaryColor) => {
       return String(dictionaryColor[3]).toLowerCase() === lowerName;
     });
     if (found) {
       return {
         color: ["hsl", found[0], found[1], found[2]],
-        name: found[3]
+        name: found[3],
       };
     } else {
       return undefined;
@@ -36,7 +36,7 @@ class ColorMatcher {
     const match = {
       color: this.getColorByIndex(0).color,
       difference: Infinity,
-      name: this.getColorByIndex(0).name
+      name: this.getColorByIndex(0).name,
     };
 
     dict.forEach((dictColor: IDictionaryColor): void => {
@@ -44,7 +44,7 @@ class ColorMatcher {
         "hsl",
         dictColor[0],
         dictColor[1],
-        dictColor[2]
+        dictColor[2],
       ];
       const differenceHsl = this.getHslDifference(targetHsl, dictHsl);
 
@@ -92,7 +92,7 @@ class ColorMatcher {
     const dictColor = dictionary.colors[index];
     return {
       color: ["hsl", dictColor[0], dictColor[1], dictColor[2]],
-      name: dictColor[3]
+      name: dictColor[3],
     };
   }
 }

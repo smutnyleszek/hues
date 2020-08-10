@@ -42,11 +42,11 @@ const testCases = [
   { in: "hwb(400,50%,50%)", out: null },
   { in: "hwb(125,50%,120%)", out: null },
   { in: "hwb(125,,120%)", out: null },
-  { in: "hwb(a,b,c)", out: null }
+  { in: "hwb(a,b,c)", out: null },
 ];
 
 describe("identifier.identify", () => {
-  testCases.forEach(testCase => {
+  testCases.forEach((testCase) => {
     it(`should properly identify color ${testCase.in}`, () => {
       expect(identifier.identify(testCase.in)).toStrictEqual(testCase.out);
     });

@@ -5,33 +5,33 @@ class Converter {
       new Map([
         ["hsl", this.hexToHsl.bind(this)],
         ["hwb", this.hexToHwb.bind(this)],
-        ["rgb", this.hexToRgb.bind(this)]
-      ])
+        ["rgb", this.hexToRgb.bind(this)],
+      ]),
     ],
     [
       "hsl",
       new Map([
         ["hex", this.hslToHex.bind(this)],
         ["hwb", this.hslToHwb.bind(this)],
-        ["rgb", this.hslToRgb.bind(this)]
-      ])
+        ["rgb", this.hslToRgb.bind(this)],
+      ]),
     ],
     [
       "hwb",
       new Map([
         ["hex", this.hwbToHex.bind(this)],
         ["hsl", this.hwbToHsl.bind(this)],
-        ["rgb", this.hwbToRgb.bind(this)]
-      ])
+        ["rgb", this.hwbToRgb.bind(this)],
+      ]),
     ],
     [
       "rgb",
       new Map([
         ["hex", this.rgbToHex.bind(this)],
         ["hsl", this.rgbToHsl.bind(this)],
-        ["hwb", this.rgbToHwb.bind(this)]
-      ])
-    ]
+        ["hwb", this.rgbToHwb.bind(this)],
+      ]),
+    ],
   ]);
 
   public getRandomColor(space: TSpace = "rgb"): IColorValue {
@@ -107,7 +107,7 @@ class Converter {
       "rgb",
       Math.random() * 255,
       Math.random() * 255,
-      Math.random() * 255
+      Math.random() * 255,
     ]);
   }
 

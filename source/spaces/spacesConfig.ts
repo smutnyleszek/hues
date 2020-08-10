@@ -7,20 +7,20 @@ export const spaces: Map<TSpace, ISpaceDefinition> = new Map([
           before: "#",
           partName: "red",
           partType: "hexadecimal",
-          range: [0, 255]
+          range: [0, 255],
         },
         {
           partName: "green",
           partType: "hexadecimal",
-          range: [0, 255]
+          range: [0, 255],
         },
         {
           partName: "blue",
           partType: "hexadecimal",
-          range: [0, 255]
-        }
-      ]
-    }
+          range: [0, 255],
+        },
+      ],
+    },
   ],
   [
     "rgb",
@@ -31,22 +31,22 @@ export const spaces: Map<TSpace, ISpaceDefinition> = new Map([
           before: "rgb(",
           partName: "red",
           partType: "integer",
-          range: [0, 255]
+          range: [0, 255],
         },
         {
           after: ", ",
           partName: "green",
           partType: "integer",
-          range: [0, 255]
+          range: [0, 255],
         },
         {
           after: ")",
           partName: "blue",
           partType: "integer",
-          range: [0, 255]
-        }
-      ]
-    }
+          range: [0, 255],
+        },
+      ],
+    },
   ],
   [
     "hsl",
@@ -57,22 +57,22 @@ export const spaces: Map<TSpace, ISpaceDefinition> = new Map([
           before: "hsl(",
           partName: "hue",
           partType: "integer",
-          range: [0, 360]
+          range: [0, 360],
         },
         {
           after: "%, ",
           partName: "saturation",
           partType: "integer",
-          range: [0, 100]
+          range: [0, 100],
         },
         {
           after: "%)",
           partName: "lightness",
           partType: "integer",
-          range: [0, 100]
-        }
-      ]
-    }
+          range: [0, 100],
+        },
+      ],
+    },
   ],
   [
     "hwb",
@@ -83,21 +83,21 @@ export const spaces: Map<TSpace, ISpaceDefinition> = new Map([
           before: "hwb(",
           partName: "hue",
           partType: "integer",
-          range: [0, 360]
+          range: [0, 360],
         },
         {
           after: "%, ",
           partName: "whiteness",
           partType: "integer",
-          range: [0, 100]
+          range: [0, 100],
         },
         {
           after: "%)",
           partName: "blackness",
           partType: "integer",
-          range: [0, 100]
-        }
-      ]
-    }
-  ]
+          range: [0, 100],
+        },
+      ],
+    },
+  ],
 ]);

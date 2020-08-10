@@ -13,7 +13,7 @@ const myStore = new Vuex.Store({
   getters: {
     getColorInSpace: (state: IState) => (space: TSpace) => {
       return converter.convertTo(state.color, space);
-    }
+    },
   },
   mutations: {
     setColor(state: IState, payload: ISetColorPayload) {
@@ -22,16 +22,16 @@ const myStore = new Vuex.Store({
       Vue.set(state, "color", [...payload.color]);
       Vue.set(state, "match", match);
       Vue.set(state, "primaryHue", primaryHue);
-    }
+    },
   },
   state: {
     color: initialColorValue,
     match: matcher.matchColor(initialColorValue),
     primaryHue: matcher.matchHue(initialColorValue),
-    version
+    version,
   },
   // we want strict only during development (performance heavy-ish)
-  strict: window.location.hostname === "localhost"
+  strict: window.location.hostname === "localhost",
 });
 
 export const store = myStore;

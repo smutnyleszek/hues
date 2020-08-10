@@ -12,11 +12,11 @@ const testCases: IFormatterTest[] = [
   { in: ["hsl", 359, 50, 60], out: "hsl(359, 50%, 60%)" },
   { in: ["hwb", 300, 100, 50], out: "hwb(300, 100%, 50%)" },
   // wrong ones
-  { in: ["hwb", 500, 600, 1000], out: "" }
+  { in: ["hwb", 500, 600, 1000], out: "" },
 ];
 
 describe("formatter.formatColor", () => {
-  testCases.forEach(testCase => {
+  testCases.forEach((testCase) => {
     it(`should format (in)valid color ${testCase.in}`, () => {
       expect(formatter.formatColor(testCase.in)).toStrictEqual(testCase.out);
     });
@@ -34,12 +34,12 @@ const testCases2: IFormatterTest2[] = [
   {
     in1: "Purple Mountain's Majesty",
     in2: ["hsl", 269, 30, 59],
-    out: "--c-purple-mountain-s-majesty: hsl(269, 30%, 59%);"
-  }
+    out: "--c-purple-mountain-s-majesty: hsl(269, 30%, 59%);",
+  },
 ];
 
 describe("formatter.formatVariable", () => {
-  testCases2.forEach(testCase => {
+  testCases2.forEach((testCase) => {
     it(`should format variable for: ${testCase.in1} ${testCase.in2}`, () => {
       expect(
         formatter.formatVariable(testCase.in1, testCase.in2)

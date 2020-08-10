@@ -13,8 +13,8 @@ import spaceForm from "./spaceForm.vue";
 export default Vue.extend({
   name: "spacesList",
   components: {
-    spaceForm
-  }
+    spaceForm,
+  },
 });
 </script>
 

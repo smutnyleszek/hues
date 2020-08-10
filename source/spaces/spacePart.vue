@@ -16,20 +16,20 @@ export default Vue.extend({
   props: {
     partIndex: {
       type: Number,
-      required: true
+      required: true,
     },
     partType: {
       type: String,
-      required: true
+      required: true,
     },
     range: {
       type: Array,
-      required: true
+      required: true,
     },
     space: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     partValue() {
@@ -39,7 +39,7 @@ export default Vue.extend({
     widthStyle() {
       const valueTextLength = String(this.partValue).length;
       return `width: ${valueTextLength * 0.75}rem;`;
-    }
+    },
   },
   methods: {
     onInput(evt): void {
@@ -93,8 +93,8 @@ export default Vue.extend({
       }
       color[this.partIndex + 1] = finalValue;
       this.$store.commit("setColor", { color: color });
-    }
-  }
+    },
+  },
 });
 </script>
 

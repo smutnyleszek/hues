@@ -1,6 +1,6 @@
 coverage
 dev
-docs
+public
 node_modules
 package.json
 package-lock.json

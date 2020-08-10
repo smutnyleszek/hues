@@ -31,11 +31,11 @@ const testCases: IValidatorTest[] = [
   { in: ["hwb", 125.5, 0, 0], out: false },
   { in: ["hwb", 360, 110, 0], out: false },
   { in: ["hwb", 360, 0, 110], out: false },
-  { in: ["hwb", -45, 0.5, 55.5], out: false }
+  { in: ["hwb", -45, 0.5, 55.5], out: false },
 ];
 
 describe("validator.isValid", () => {
-  testCases.forEach(testCase => {
+  testCases.forEach((testCase) => {
     it(`should properly validate color ${testCase.in}`, () => {
       expect(validator.isValid(testCase.in)).toStrictEqual(testCase.out);
     });

@@ -28,8 +28,8 @@ export default Vue.extend({
     },
     onBlur(evt): void {
       evt.target.setAttribute("placeholder", "…");
-    }
-  }
+    },
+  },
 });
 </script>
 

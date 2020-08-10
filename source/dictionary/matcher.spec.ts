@@ -9,12 +9,12 @@ const testCases: IMatcherTest[] = [
   // proper ones
   {
     in: ["rgb", 0, 0, 0],
-    out: { difference: 0, color: ["hsl", 0, 0, 0], name: "Black" }
-  }
+    out: { difference: 0, color: ["hsl", 0, 0, 0], name: "Black" },
+  },
 ];
 
 describe("matcher.formatColor", () => {
-  testCases.forEach(testCase => {
+  testCases.forEach((testCase) => {
     it(`should match color ${testCase.in} to ${testCase.out}`, () => {
       expect(matcher.matchColor(testCase.in)).toStrictEqual(testCase.out);
     });

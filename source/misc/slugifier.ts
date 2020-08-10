@@ -1,9 +1,6 @@
 class Slugifier {
   public slugify(text: string): string {
-    text = text
-      .toString()
-      .toLowerCase()
-      .trim();
+    text = text.toString().toLowerCase().trim();
 
     const sets = [
       { to: "a", from: "[ÀÁÂÃÄÅÆĀĂĄẠẢẤẦẨẪẬẮẰẲẴẶ]" },
@@ -30,10 +27,10 @@ class Slugifier {
       { to: "x", from: "[ẍ]" },
       { to: "y", from: "[ÝŶŸỲỴỶỸ]" },
       { to: "z", from: "[ŹŻŽ]" },
-      { to: "-", from: "[·/_,:;']" }
+      { to: "-", from: "[·/_,:;']" },
     ];
 
-    sets.forEach(set => {
+    sets.forEach((set) => {
       text = text.replace(new RegExp(set.from, "gi"), set.to);
     });
 

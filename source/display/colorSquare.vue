@@ -10,19 +10,19 @@ export default Vue.extend({
   props: {
     color: {
       type: Array,
-      required: true
+      required: true,
     },
     title: {
       type: String,
-      required: false
-    }
+      required: false,
+    },
   },
   computed: {
     bgStyle() {
       const colorString = formatter.formatColor(this.color);
       return `background-color: ${colorString};`;
-    }
-  }
+    },
+  },
 });
 </script>
 

@@ -23,8 +23,8 @@ export default Vue.extend({
   components: {
     pasteBox,
     spacesList,
-    currentColor
-  }
+    currentColor,
+  },
 });
 </script>
 

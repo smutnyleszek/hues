@@ -4,9 +4,9 @@ import { store } from "./store/store";
 
 const myApp = new Vue({
   components: {
-    app
+    app,
   },
   el: "#app",
-  render: h => h("app"),
-  store
+  render: (h) => h("app"),
+  store,
 });
