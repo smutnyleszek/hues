@@ -49,9 +49,7 @@ class Converter {
   }
 
   public convertTo(color: IColorValue, toSpace: TSpace): IColorValue {
-    if (color[0] === toSpace) {
-      return color;
-    } else {
+    if (color[0] !== toSpace) {
       const fromGroup = this.convertMap.get(color[0]);
       if (fromGroup instanceof Map) {
         const toFn = fromGroup.get(toSpace);
@@ -83,8 +81,6 @@ class Converter {
     for (let i = 1; i < color.length; i++) {
       if (typeof color[i] === "number") {
         safe[i] = Math.round(color[i]);
-      } else {
-        safe[i] = color[i];
       }
     }
     return safe;

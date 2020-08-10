@@ -1,8 +1,13 @@
 import { spaces } from "../spaces/spacesConfig";
+import validator from "./validator";
 
 class ColorFormatter {
   public formatColor(color: IColorValue): string {
     let stringValue = "";
+
+    if (!validator.isValid(color)) {
+      return stringValue;
+    }
 
     const spaceDefinition = spaces.get(color[0]);
     if (spaceDefinition) {

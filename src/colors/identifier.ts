@@ -26,7 +26,7 @@ class ColorIdentifier {
         finalColor[2] = text.slice(3, 5);
         finalColor[3] = text.slice(5, 7);
       }
-      if (validator.isHex(finalColor)) {
+      if (validator.isValid(finalColor)) {
         return finalColor;
       }
     }
@@ -35,7 +35,7 @@ class ColorIdentifier {
     if (text.startsWith("rgb(") && text.endsWith(")")) {
       finalColor[0] = "rgb";
       this.applyValues(finalColor, text);
-      if (validator.isRgb(finalColor)) {
+      if (validator.isValid(finalColor)) {
         return finalColor;
       }
     }
@@ -44,7 +44,7 @@ class ColorIdentifier {
     if (text.startsWith("hsl(") && text.endsWith(")")) {
       finalColor[0] = "hsl";
       this.applyValues(finalColor, text);
-      if (validator.isHsl(finalColor)) {
+      if (validator.isValid(finalColor)) {
         return finalColor;
       }
     }
@@ -53,7 +53,7 @@ class ColorIdentifier {
     if (text.startsWith("hwb(") && text.endsWith(")")) {
       finalColor[0] = "hwb";
       this.applyValues(finalColor, text);
-      if (validator.isHwb(finalColor)) {
+      if (validator.isValid(finalColor)) {
         return finalColor;
       }
     }

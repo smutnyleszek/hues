@@ -1,11 +1,15 @@
 import identifier from "./identifier";
 
-const pairs = [
+const testCases = [
   // proper ones
   { in: "rgb(240,255,0)", out: ["rgb", 240, 255, 0] },
   { in: "#ff00aa", out: ["hex", "ff", "00", "aa"] },
+  { in: "#f0a", out: ["hex", "ff", "00", "aa"] },
   { in: "hsl(359,50%,60%)", out: ["hsl", 359, 50, 60] },
   { in: "hwb(300,100%,50%)", out: ["hwb", 300, 100, 50] },
+  { in: "Black", out: ["hsl", 0, 0, 0] },
+  { in: "Sapphire", out: ["hsl", 222, 54, 40] },
+  { in: "Rebecca Purple", out: ["hsl", 270, 50, 40] },
   // semicolon case
   { in: "rgb(1,2,3);", out: ["rgb", 1, 2, 3] },
   // white space
@@ -41,10 +45,10 @@ const pairs = [
   { in: "hwb(a,b,c)", out: null }
 ];
 
-describe("identifier", () => {
-  pairs.forEach(pair => {
-    it(`should properly identify color ${pair.in}`, () => {
-      expect(identifier.identify(pair.in)).toStrictEqual(pair.out);
+describe("identifier.identify", () => {
+  testCases.forEach(testCase => {
+    it(`should properly identify color ${testCase.in}`, () => {
+      expect(identifier.identify(testCase.in)).toStrictEqual(testCase.out);
     });
   });
 });
