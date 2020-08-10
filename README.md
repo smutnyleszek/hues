@@ -1,10 +1,8 @@
-![coverage-shield-badge-1](https://img.shields.io/badge/coverage-87.09%25-yellow.svg)
-
 # h(u,e,s)
 
 A tool for working with colors. Build with Parcel, TypeScript and Vue.
 
-Strongly inspired by awesome [Name that Color](http://chir.ag/projects/name-that-color) by Chirag Mehta &heart;.
+Strongly inspired by awesome [Name that Color](http://chir.ag/projects/name-that-color) by Chirag Mehta ❤.
 
 ## Building
 
