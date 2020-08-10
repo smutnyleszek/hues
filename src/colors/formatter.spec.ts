@@ -22,3 +22,28 @@ describe("formatter.formatColor", () => {
     });
   });
 });
+
+interface IFormatterTest2 {
+  in1: string;
+  in2: IColorValue;
+  out: string;
+}
+
+const testCases2: IFormatterTest2[] = [
+  { in1: "Black", in2: ["hsl", 0, 0, 0], out: "--c-black: hsl(0, 0%, 0%);" },
+  {
+    in1: "Purple Mountain's Majesty",
+    in2: ["hsl", 269, 30, 59],
+    out: "--c-purple-mountain-s-majesty: hsl(269, 30%, 59%);"
+  }
+];
+
+describe("formatter.formatVariable", () => {
+  testCases2.forEach(testCase => {
+    it(`should format variable for: ${testCase.in1} ${testCase.in2}`, () => {
+      expect(
+        formatter.formatVariable(testCase.in1, testCase.in2)
+      ).toStrictEqual(testCase.out);
+    });
+  });
+});

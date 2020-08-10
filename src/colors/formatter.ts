@@ -1,3 +1,4 @@
+import slugifier from "../misc/slugifier";
 import { spaces } from "../spaces/spacesConfig";
 import validator from "./validator";
 
@@ -23,6 +24,10 @@ class ColorFormatter {
     }
 
     return stringValue;
+  }
+
+  public formatVariable(name: string, color: IColorValue): string {
+    return `--c-${slugifier.slugify(name)}: ${this.formatColor(color)};`;
   }
 }
 

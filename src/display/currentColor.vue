@@ -12,10 +12,11 @@
         v-bind:color="matchedColor"
         title="closest match"
       ></color-square>
-      <label>{{ matchedName }}</label>
       <span class="distance" title="difference/distance"
         >&larr;&rarr; {{ matchedDifference }}</span
       >
+      <label>{{ matchedName }}</label>
+      <button @click="onCopyClick" title="copy as CSS variable">&darr;</button>
     </div>
 
     <div class="hue">
@@ -32,6 +33,8 @@
 <script lang="ts">
 import Vue from "vue";
 import colorSquare from "./colorSquare.vue";
+import formatter from "../colors/formatter";
+import clipboardier from "../misc/clipboardier";
 export default Vue.extend({
   name: "currentColor",
   components: {
@@ -55,6 +58,12 @@ export default Vue.extend({
     }
     matchedDifference() {
       return this.$store.state.match.difference;
+    }
+  },
+  methods: {
+    onCopyClick(evt): void {
+      evt.preventDefault();
+      clipboardier.copyToClipboard(formatter.formatVariable(this.matchedName, this.matchedColor));
     }
   }
 });
