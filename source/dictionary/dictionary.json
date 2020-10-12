@@ -1341,6 +1341,24 @@
     [201, 67, 75, "Cornflower"],
     [201, 70, 48, "Curious Blue"],
     [202, 60, 17, "Elephant"],
+    hsl(255, 96%, 54%) Han Purple
+    hsl(267, 35%, 49%) Royal Purple
+    hsl(278, 100%, 50%) Mauveine
+    hsl(300, 100%, 25%) Patriarch
+    hsl(277, 87%, 53%) Veronica
+    hsl(288, 100%, 39%) Munsell Purple
+    hsl(300, 67%, 94%) Pale Purple
+    hsl(292, 100%, 50%) Phlox
+    hsl(333, 63%, 65%) Liseran Purple
+    hsl(316, 35%, 56%) Pearly Purple
+    hsl(287, 38%, 49%) Purpureus
+    hsl(264, 52%, 34%) Northwestern Purple
+    hsl(290, 19%, 47%) Pomp Aand Power
+    hsl(301, 100%, 27%) Mardi Gras
+    hsl(311, 46%, 30%) Byzantium
+    hsl(329, 67%, 28%) Pansy Purple
+    hsl(305, 52%, 29%) Palatinate,
+    hsl(291, 35%, 15%) Dark Purple
     [202, 68, 28, "Chathams Blue"],
     [202, 78, 82, "Uranian Blue"],
     [202, 93, 28, "Venice Blue"],
@@ -1604,7 +1622,7 @@
     [272, 19, 16, "Bastille"],
     [272, 72, 20, "Jagger"],
     [273, 51, 21, "Grape"],
-    [273, 100, 50, "Electric Violet"],
+    [273, 100, 50, "Electric Purple"],
     [274, 31, 58, "Wisteria"],
     [274, 35, 43, "Affair"],
     [275, 57, 68, "Lavender"],
