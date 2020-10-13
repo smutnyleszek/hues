@@ -1341,24 +1341,6 @@
     [201, 67, 75, "Cornflower"],
     [201, 70, 48, "Curious Blue"],
     [202, 60, 17, "Elephant"],
-    hsl(255, 96%, 54%) Han Purple
-    hsl(267, 35%, 49%) Royal Purple
-    hsl(278, 100%, 50%) Mauveine
-    hsl(300, 100%, 25%) Patriarch
-    hsl(277, 87%, 53%) Veronica
-    hsl(288, 100%, 39%) Munsell Purple
-    hsl(300, 67%, 94%) Pale Purple
-    hsl(292, 100%, 50%) Phlox
-    hsl(333, 63%, 65%) Liseran Purple
-    hsl(316, 35%, 56%) Pearly Purple
-    hsl(287, 38%, 49%) Purpureus
-    hsl(264, 52%, 34%) Northwestern Purple
-    hsl(290, 19%, 47%) Pomp Aand Power
-    hsl(301, 100%, 27%) Mardi Gras
-    hsl(311, 46%, 30%) Byzantium
-    hsl(329, 67%, 28%) Pansy Purple
-    hsl(305, 52%, 29%) Palatinate,
-    hsl(291, 35%, 15%) Dark Purple
     [202, 68, 28, "Chathams Blue"],
     [202, 78, 82, "Uranian Blue"],
     [202, 93, 28, "Venice Blue"],
@@ -1574,6 +1556,7 @@
     [254, 88, 25, "Deep Blue"],
     [255, 42, 41, "Gigas"],
     [255, 43, 29, "Jacarta"],
+    [255, 96, 54, "Han Purple"],
     [256, 8, 50, "Topaz"],
     [256, 28, 52, "Deluge"],
     [256, 33, 45, "Butterfly Bush"],
@@ -1599,9 +1582,11 @@
     [264, 8, 25, "Ship Gray"],
     [264, 12, 17, "Baltic Sea"],
     [264, 33, 97, "Whisper"],
+    [264, 52, 34, "Northwestern Purple"],
     [265, 16, 65, "Amethyst Smoke"],
     [266, 42, 83, "Prelude"],
     [267, 29, 60, "Lavender Purple"],
+    [267, 35, 49, "Royal Purple"],
     [267, 38, 69, "East Side"],
     [267, 43, 44, "Royal Purple"],
     [267, 93, 18, "Cherry Pie"],
@@ -1631,7 +1616,9 @@
     [276, 100, 85, "Mauve"],
     [277, 21, 16, "Bleached Cedar"],
     [277, 64, 23, "Scarlet Gum"],
+    [277, 87, 53, "Veronica"],
     [278, 8, 40, "Salt Box"],
+    [278, 100, 50, "Mauveine"],
     [280, 1, 58, "Mountain Mist"],
     [280, 100, 30, "Purple"],
     [281, 46, 75, "Light Wisteria"],
@@ -1642,14 +1629,19 @@
     [285, 100, 17, "Ripe Plum"],
     [286, 100, 73, "Heliotrope"],
     [287, 6, 53, "Rocket Metallic"],
+    [287, 38, 49, "Purpureus"],
     [287, 39, 14, "Revolver"],
+    [288, 100, 39, "Munsell Purple"],
     [289, 20, 49, "Trendy Pink"],
     [289, 45, 39, "Vivid Violet"],
+    [290, 19, 47, "Pomp Aand Power"],
     [290, 19, 71, "London Hue"],
     [290, 87, 18, "Clairvoyant"],
     [291, 5, 28, "Gravel"],
+    [291, 35, 15, "Dark Purple"],
     [291, 100, 99, "White Pointer"],
     [292, 6, 54, "Mamba"],
+    [292, 100, 50, "Phlox"],
     [296, 9, 29, "Mortar"],
     [296, 24, 27, "Voodoo"],
     [297, 53, 86, "French Lilac"],
@@ -1659,16 +1651,20 @@
     [300, 26, 71, "Lilac"],
     [300, 47, 54, "Fuchsia Pink"],
     [300, 60, 50, "Steel Pink"],
+    [300, 67, 94, "Pale Purple"],
     [300, 76, 72, "Lavender Magenta"],
     [300, 80, 33, "Violet Eggplant"],
+    [300, 100, 25, "Patriarch"],
     [300, 100, 27, "Dark Magenta"],
     [300, 100, 50, "Magenta"],
     [300, 100, 70, "Pink Flamingo"],
     [300, 100, 72, "Ultra Pink"],
+    [301, 100, 27, "Mardi Gras"],
     [302, 59, 65, "Orchid"],
     [303, 10, 63, "Rose Quartz"],
     [304, 7, 45, "Fedora"],
     [304, 8, 44, "Old Lavender"],
+    [305, 52, 29, "Palatinate,"],
     [305, 73, 16, "Loulou"],
     [307, 88, 10, "Jacaranda"],
     [308, 22, 80, "Maverick"],
@@ -1676,6 +1672,7 @@
     [309, 3, 53, "Monsoon"],
     [309, 6, 55, "Venus"],
     [310, 81, 10, "Melanzane"],
+    [311, 46, 30, "Byzantium"],
     [312, 2, 52, "Suva Gray"],
     [312, 3, 66, "Shady Lady"],
     [312, 99, 65, "Purple Pizzazz"],
@@ -1685,6 +1682,7 @@
     [315, 36, 78, "Pink Lavender"],
     [315, 98, 52, "Shocking Pink"],
     [315, 100, 60, "Razzle Dazzle Rose"],
+    [316, 35, 56, "Pearly Purple"],
     [316, 92, 81, "Lavender Rose"],
     [317, 20, 49, "Strikemaster"],
     [317, 28, 85, "Twilight"],
@@ -1736,6 +1734,7 @@
     [329, 34, 40, "Cannon Pink"],
     [329, 53, 44, "Royal Heath"],
     [329, 60, 76, "Kobi"],
+    [329, 67, 28, "Pansy Purple"],
     [329, 68, 93, "Carousel Pink"],
     [329, 69, 91, "Cherub"],
     [329, 73, 31, "Disco"],
@@ -1754,6 +1753,7 @@
     [332, 98, 24, "Siren"],
     [333, 58, 45, "Hibiscus"],
     [333, 63, 65, "China Pink"],
+    [333, 63, 65, "Liseran Purple"],
     [333, 80, 34, "Quinacridone Magenta"],
     [333, 82, 80, "Illusion"],
     [334, 34, 53, "Tapestry"],
