@@ -10,6 +10,8 @@ const testCases = [
   { in: "Black", out: ["hsl", 0, 0, 0] },
   { in: "Sapphire", out: ["hsl", 222, 54, 40] },
   { in: "Rebecca Purple", out: ["hsl", 270, 50, 40] },
+  // hex without "#" prefix can be still identified
+  { in: "ff00aa", out: ["hex", "ff", "00", "aa"] },
   // semicolon case
   { in: "rgb(1,2,3);", out: ["rgb", 1, 2, 3] },
   // white space
