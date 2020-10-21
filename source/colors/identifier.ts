@@ -8,27 +8,9 @@ class ColorIdentifier {
     // cleanup whitespace
     text = text.trim();
 
-    // drop semicolon that could easily be included by mistake
+    // drop semicolon that could've been included by mistake
     if (text.endsWith(";")) {
       text = text.slice(0, -1).trimRight();
-    }
-
-    // hex case
-    if (text.startsWith("#") && [4, 7].includes(text.length)) {
-      finalColor[0] = "hex";
-      if (text.length === 4) {
-        finalColor[1] = text[1].repeat(2);
-        finalColor[2] = text[2].repeat(2);
-        finalColor[3] = text[3].repeat(2);
-      }
-      if (text.length === 7) {
-        finalColor[1] = text.slice(1, 3);
-        finalColor[2] = text.slice(3, 5);
-        finalColor[3] = text.slice(5, 7);
-      }
-      if (validator.isValid(finalColor)) {
-        return finalColor;
-      }
     }
 
     // rgb case
@@ -62,6 +44,29 @@ class ColorIdentifier {
     const named = matcher.findColorByName(text);
     if (named) {
       return named.color;
+    }
+
+    // hex case
+    // we assume "#" character could've been mistakingly ommited
+    // and we have hex as last case because of this versatility
+    if (!text.startsWith("#") && [3, 6].includes(text.length)) {
+      text = `#${text}`;
+    }
+    if (text.startsWith("#") && [4, 7].includes(text.length)) {
+      finalColor[0] = "hex";
+      if (text.length === 4) {
+        finalColor[1] = text[1].repeat(2);
+        finalColor[2] = text[2].repeat(2);
+        finalColor[3] = text[3].repeat(2);
+      }
+      if (text.length === 7) {
+        finalColor[1] = text.slice(1, 3);
+        finalColor[2] = text.slice(3, 5);
+        finalColor[3] = text.slice(5, 7);
+      }
+      if (validator.isValid(finalColor)) {
+        return finalColor;
+      }
     }
 
     return null;
