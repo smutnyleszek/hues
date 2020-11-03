@@ -2,12 +2,21 @@ import Vue from "vue";
 import Vuex from "vuex";
 import * as packageJsonData from "../../package.json";
 import converter from "../colors/converter";
+import identifier from "../colors/identifier";
 import matcher from "../dictionary/matcher";
 const version = (packageJsonData as any).version;
 
 Vue.use(Vuex);
 
-const initialColorValue = converter.getRandomColor("hsl");
+let initialColorValue = converter.getRandomColor("hsl");
+
+// read possible color strings from the hash
+if (window.location.hash) {
+  const hashColor = identifier.identify(window.location.hash.substring(1));
+  if (hashColor !== null) {
+    initialColorValue = hashColor;
+  }
+}
 
 const myStore = new Vuex.Store({
   getters: {
